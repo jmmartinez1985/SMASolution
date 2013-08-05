@@ -267,8 +267,11 @@
     <Content Include="Content\Bootstrap2.3\bootstrap.css" />
     <Content Include="Content\Bootstrap2.3\bootstrap.min.css" />
     <Content Include="Content\Unify\blue.css" />
+    <Content Include="Content\Unify\flexslider.css" />
     <Content Include="Content\Unify\header1-blue.css" />
     <Content Include="Content\Unify\header1.css" />
+    <Content Include="Content\Unify\parallax-slider.css" />
+    <Content Include="Content\Unify\rs-style.css" />
     <Content Include="Content\Unify\style.css" />
     <Content Include="Content\Unify\style_responsive.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -389,9 +392,12 @@
     <Content Include="Scripts\Bootstrap2.3\bootstrap.js" />
     <Content Include="Scripts\Bootstrap2.3\bootstrap.min.js" />
     <Content Include="Scripts\CustomScript\app.js" />
+    <Content Include="Scripts\CustomScript\back-to-top.js" />
     <Content Include="Scripts\CustomScript\index.js" />
     <Content Include="Scripts\CustomScript\jquery.cslider.js" />
     <Content Include="Scripts\CustomScript\jquery.flexslider-min.js" />
+    <Content Include="Scripts\CustomScript\modernizr.custom.js" />
+    <Content Include="Scripts\CustomScript\modernizr.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

@@ -96,8 +96,10 @@ var App = function () {
             handleSwitcher();
         },
 
+
         initSliders: function () {
-            $('#clients-flexslider').flexslider({
+            debugger;
+           jQuery('#clients-flexslider').flexslider({
                 animation: "slide",
                 easing: "swing",
                 animationLoop: true,
