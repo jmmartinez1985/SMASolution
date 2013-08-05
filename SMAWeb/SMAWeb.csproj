@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -188,9 +190,87 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AE_AnunciosExtras.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AM_MultimediaAnuncios.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AN_Anuncios.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CD_CategoriaServicio.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MB_Membresia.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MT_MultimediaTipos.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PA_Paises.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\REG_Region.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RT_TipoReview.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RW_Reviews.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SBS_SubCategoriaServicio.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SMAModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SMAModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SMAModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SMAModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SMAModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SS_SolicitudServicio.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ST_Estatus.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserProfile.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_Membership.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_OAuthMembership.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_Roles.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Bootstrap2.3\bootstrap-responsive.css" />
+    <Content Include="Content\Bootstrap2.3\bootstrap-responsive.min.css" />
+    <Content Include="Content\Bootstrap2.3\bootstrap.css" />
+    <Content Include="Content\Bootstrap2.3\bootstrap.min.css" />
+    <Content Include="Content\Unify\blue.css" />
+    <Content Include="Content\Unify\header1-blue.css" />
+    <Content Include="Content\Unify\header1.css" />
+    <Content Include="Content\Unify\style.css" />
+    <Content Include="Content\Unify\style_responsive.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -247,7 +327,67 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\SMAModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SMAModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Images\1.png" />
+    <Content Include="Images\10%281%29.jpg" />
+    <Content Include="Images\10.jpg" />
+    <Content Include="Images\11.jpg" />
+    <Content Include="Images\2.jpg" />
+    <Content Include="Images\3.jpg" />
+    <Content Include="Images\4.jpg" />
+    <Content Include="Images\5.jpg" />
+    <Content Include="Images\6%281%29.jpg" />
+    <Content Include="Images\6.jpg" />
+    <Content Include="Images\9.jpg" />
+    <Content Include="Images\aztec.png" />
+    <Content Include="Images\aztec_grey.png" />
+    <Content Include="Images\cisco.png" />
+    <Content Include="Images\cisco_grey.png" />
+    <Content Include="Images\cocacola.png" />
+    <Content Include="Images\cocacola_grey.png" />
+    <Content Include="Images\everyday.png" />
+    <Content Include="Images\everyday_grey.png" />
+    <Content Include="Images\gamescast.png" />
+    <Content Include="Images\gamescast_grey.png" />
+    <Content Include="Images\hp.png" />
+    <Content Include="Images\hp_grey.png" />
+    <Content Include="Images\html5andcss3.png" />
+    <Content Include="Images\igneus.png" />
+    <Content Include="Images\igneus_grey.png" />
+    <Content Include="Images\logo1-blue.png" />
+    <Content Include="Images\logo2-blue.png" />
+    <Content Include="Images\natural.png" />
+    <Content Include="Images\natural_grey.png" />
+    <Content Include="Images\shell.png" />
+    <Content Include="Images\shell_grey.png" />
+    <Content Include="Images\spinworkx.png" />
+    <Content Include="Images\spinworkx_grey.png" />
+    <Content Include="Images\up.png" />
+    <Content Include="Images\vadafone.png" />
+    <Content Include="Images\vadafone_grey.png" />
+    <Content Include="Images\walmart.png" />
+    <Content Include="Images\walmart_grey.png" />
+    <Content Include="Models\SMAModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SMAModel.edmx</DependentUpon>
+      <LastGenOutput>SMAModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SMAModel.edmx.diagram">
+      <DependentUpon>SMAModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\SMAModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SMAModel.edmx</DependentUpon>
+      <LastGenOutput>SMAModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\Bootstrap2.3\bootstrap.js" />
+    <Content Include="Scripts\Bootstrap2.3\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -271,19 +411,6 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -304,9 +431,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\CustomScript\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

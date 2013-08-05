@@ -1,48 +1,298 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-                </div>
-            </div>
-        </footer>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Service Market</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @*        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+
+    <link href="@Url.Content("~/Content/Bootstrap2.3/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Unify/style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Unify/header1.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Bootstrap2.3/bootstrap-responsive.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Unify/style_responsive.css")" rel="stylesheet" />
+
+    <link href="@Url.Content("~/Content/Unify/header1-blue.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Unify/blue.css")" rel="stylesheet" />
+
+</head>
+<body>
+
+
+    <!--=== Top ===-->
+    <div class="top">
+        <div class="container">
+            <ul class="loginbar pull-right">
+                <li><i class="icon-globe"></i><a>Languages <i class="icon-sort-up"></i></a>
+                    <ul class="nav-list">
+                        <li class="active"><a href="#">English</a> <i class="icon-ok"></i></li>
+                        <li><a href="#">Spanish</a></li>
+                    </ul>
+                </li>
+                <li class="devider">&nbsp;</li>
+                <li><a href="http://htmlstream.com/unify/page_faq.html" class="login-btn">Help</a></li>
+                <li class="devider">&nbsp;</li>
+                <li><a href="http://htmlstream.com/unify/page_login.html" class="login-btn">Login</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--/top-->
+    <!--=== End Top ===-->
+
+    <!--=== Header ===-->
+    <div class="header">
+        <div class="container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="http://htmlstream.com/unify/index.html">
+                    <img id="logo-header" src="@Url.Content("~/Images/logo1-blue.png")" alt="Logo"></a>
+            </div>
+            <!-- /logo -->
+
+            <!-- Menu -->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <!-- /nav-collapse -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav top-2">
+                            <li class="active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home
+                               
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="active"><a href="#">Option1: Landing Page</a></li>
+                                    <li><a href="#">Option2: Header Option</a></li>
+                                    <li><a href="#">Option3: Revolution Slider</a></li>
+                                    <li><a href="#">Option4: Amazing Content</a></li>
+                                    <li><a href="#">Option5: Mixed Content</a></li>
+                                </ul>
+                                <b class="caret-out"></b>
+                            </li>
+                            <li class="">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">Pages
+                               
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Option2: Header Option</a></li>
+                                    <li><a href="#">Option3: Revolution Slider</a></li>
+                                    <li><a href="#">Option4: Amazing Content</a></li>
+                                    <li><a href="#">Option5: Mixed Content</a></li>
+                                </ul>
+                                <b class="caret-out"></b>
+                            </li>
+                            <li class="">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Features
+                               
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Option2: Header Option</a></li>
+                                    <li><a href="#">Option3: Revolution Slider</a></li>
+                                    <li><a href="#">Option4: Amazing Content</a></li>
+                                    <li><a href="#">Option5: Mixed Content</a></li>
+                                </ul>
+                                <b class="caret-out"></b>
+                            </li>
+                            <li class="">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio
+                               
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Option2: Header Option</a></li>
+                                    <li><a href="#">Option3: Revolution Slider</a></li>
+                                    <li><a href="#">Option4: Amazing Content</a></li>
+                                    <li><a href="#">Option5: Mixed Content</a></li>
+                                </ul>
+                                <b class="caret-out"></b>
+                            </li>
+                            <li class="">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog
+                               
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Option2: Header Option</a></li>
+                                    <li><a href="#">Option3: Revolution Slider</a></li>
+                                    <li><a href="#">Option4: Amazing Content</a></li>
+                                    <li><a href="#">Option5: Mixed Content</a></li>
+                                </ul>
+                                <b class="caret-out"></b>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact
+                               
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Contact Default</a></li>
+                                    <li><a href="#">Contact Boxed Map</a></li>
+                                </ul>
+                                <b class="caret-out"></b>
+                            </li>
+                            <li><a class="search"><i class="search-btn icon-search"></i></a></li>
+                        </ul>
+                        <div class="search-open" style="display: none;">
+                            <div class="input-append">
+                                <form>
+                                    <input type="text" class="span3" placeholder="Search">
+                                    <button type="submit" class="btn-u">Go</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /nav-collapse -->
+                </div>
+                <!-- /navbar-inner -->
+            </div>
+            <!-- /navbar -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!--/header -->
+    <!--=== End Header ===-->
+
+       <!--=== Body ===-->
+    <div class="container">
+
+        <div class="row">
+            @*    @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">*@
+            @RenderBody()
+            @*    </section>*@
+        </div>
+    </div>
+        <!--/body -->
+    <!--=== End Body ===-->
+
+    <!--=== Footer ===-->
+    <div class="footer">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span4">
+                    <!-- About -->
+                    <div class="headline">
+                        <h3>About</h3>
+                    </div>
+                    <p class="margin-bottom-25">Unify is an incredibly beautiful responsive Bootstrap Template for corporate and creative professionals.</p>
+
+                    <!-- Monthly Newsletter -->
+                    <div class="headline">
+                        <h3>Monthly Newsletter</h3>
+                    </div>
+                    <p>Subscribe to our newsletter and stay up to date with the latest news and deals!</p>
+                    <form class="form-inline">
+                        <div class="input-append">
+                            <input type="text" placeholder="Email Address" class="input-medium">
+                            <button class="btn-u">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+                <!--/span4-->
+
+                <div class="span4">
+                    <div class="posts">
+                        <div class="headline">
+                            <h3>Recent Blog Entries</h3>
+                        </div>
+                        <dl class="dl-horizontal">
+                            <dt><a href="#">
+                                <img src="@Url.Content("~/Images/6(1).jpg")" alt=""></a></dt>
+                            <dd>
+                                <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+                            </dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt><a href="#">
+                                <img src="@Url.Content("~/Images/10(1).jpg")"alt=""></a></dt>
+                            <dd>
+                                <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+                            </dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt><a href="#">
+                                <img src="@Url.Content("~/Images/11.jpg")" alt=""></a></dt>
+                            <dd>
+                                <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <!--/span4-->
+
+                <div class="span4">
+                    <!-- Monthly Newsletter -->
+                    <div class="headline">
+                        <h3>Contact Us</h3>
+                    </div>
+                    <address>
+                        25, Lorem Lis Street, Orange
+                        <br>
+                        California, US
+                        <br>
+                        Phone: 800 123 3456
+                        <br>
+                        Fax: 800 123 3456
+                        <br>
+                        Email: <a href="mailto:info@anybiz.com" class="">info@anybiz.com</a>
+                    </address>
+
+                    <!-- Stay Connected -->
+                    <div class="headline">
+                        <h3>Stay Connected</h3>
+                    </div>
+                    <ul class="social-icons">
+                        <li><a href="#" data-original-title="Feed" class="social_rss"></a></li>
+                        <li><a href="#" data-original-title="Facebook" class="social_facebook"></a></li>
+                        <li><a href="#" data-original-title="Twitter" class="social_twitter"></a></li>
+                        <li><a href="#" data-original-title="Goole Plus" class="social_googleplus"></a></li>
+                        <li><a href="#" data-original-title="Pinterest" class="social_pintrest"></a></li>
+                        <li><a href="#" data-original-title="Linkedin" class="social_linkedin"></a></li>
+                        <li><a href="#" data-original-title="Vimeo" class="social_vimeo"></a></li>
+                    </ul>
+                </div>
+                <!--/span4-->
+            </div>
+            <!--/row-fluid-->
+        </div>
+        <!--/container-->
+    </div>
+    <!--/footer-->
+    <!--=== End Footer ===-->
+
+    <!--=== Copyright ===-->
+    <div class="copyright">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span8">
+                    <p>2013 © Service Market. ALL Rights Reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                </div>
+                <div class="span4">
+                    <a href="#">
+                        <img id="logo-footer" src="@Url.Content("~/Images/logo2-blue.png")" class="pull-right" alt=""></a>
+                </div>
+            </div>
+            <!--/row-fluid-->
+        </div>
+        <!--/container-->
+    </div>
+    <!--/copyright-->
+    <!--=== End Copyright ===-->
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+    <script src="@Url.Content("~/Scripts/Bootstrap2.3/bootstrap.min.js")"></script>
+
+</body>
 </html>

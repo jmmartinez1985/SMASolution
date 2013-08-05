@@ -1,0 +1,1195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ServiceMarketModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ServiceMarketModelStoreContainer">
+          <EntitySet Name="AE_AnunciosExtras" EntityType="ServiceMarketModel.Store.AE_AnunciosExtras" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AM_MultimediaAnuncios" EntityType="ServiceMarketModel.Store.AM_MultimediaAnuncios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AN_Anuncios" EntityType="ServiceMarketModel.Store.AN_Anuncios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CD_CategoriaServicio" EntityType="ServiceMarketModel.Store.CD_CategoriaServicio" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.Store.MB_Membresia" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.Store.MT_MultimediaTipos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PA_Paises" EntityType="ServiceMarketModel.Store.PA_Paises" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="REG_Region" EntityType="ServiceMarketModel.Store.REG_Region" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RT_TipoReview" EntityType="ServiceMarketModel.Store.RT_TipoReview" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RW_Reviews" EntityType="ServiceMarketModel.Store.RW_Reviews" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SBS_SubCategoriaServicio" EntityType="ServiceMarketModel.Store.SBS_SubCategoriaServicio" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SS_SolicitudServicio" EntityType="ServiceMarketModel.Store.SS_SolicitudServicio" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ST_Estatus" EntityType="ServiceMarketModel.Store.ST_Estatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="ServiceMarketModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserProfile" EntityType="ServiceMarketModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_Membership" EntityType="ServiceMarketModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="ServiceMarketModel.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_Roles" EntityType="ServiceMarketModel.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="ServiceMarketModel.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_AE_AnunciosExtras_AN_Anuncios" Association="ServiceMarketModel.Store.FK_AE_AnunciosExtras_AN_Anuncios">
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+            <End Role="AE_AnunciosExtras" EntitySet="AE_AnunciosExtras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AM_MultimediaAnuncios_AN_Anuncios" Association="ServiceMarketModel.Store.FK_AM_MultimediaAnuncios_AN_Anuncios">
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+            <End Role="AM_MultimediaAnuncios" EntitySet="AM_MultimediaAnuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AM_MultimediaAnuncios_MT_MultimediaTipos" Association="ServiceMarketModel.Store.FK_AM_MultimediaAnuncios_MT_MultimediaTipos">
+            <End Role="MT_MultimediaTipos" EntitySet="MT_MultimediaTipos" />
+            <End Role="AM_MultimediaAnuncios" EntitySet="AM_MultimediaAnuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_SBS_SubCategoriaServicio" Association="ServiceMarketModel.Store.FK_AN_Anuncios_SBS_SubCategoriaServicio">
+            <End Role="SBS_SubCategoriaServicio" EntitySet="SBS_SubCategoriaServicio" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_ST_Estatus" Association="ServiceMarketModel.Store.FK_AN_Anuncios_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_UserProfile" Association="ServiceMarketModel.Store.FK_AN_Anuncios_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PA_Paises_REG_Region" Association="ServiceMarketModel.Store.FK_PA_Paises_REG_Region">
+            <End Role="REG_Region" EntitySet="REG_Region" />
+            <End Role="PA_Paises" EntitySet="PA_Paises" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleId" Association="ServiceMarketModel.Store.fk_RoleId">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RW_Reviews_RT_TipoReview" Association="ServiceMarketModel.Store.FK_RW_Reviews_RT_TipoReview">
+            <End Role="RT_TipoReview" EntitySet="RT_TipoReview" />
+            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RW_Reviews_SS_SolicitudServicio" Association="ServiceMarketModel.Store.FK_RW_Reviews_SS_SolicitudServicio">
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SBS_SubCategoriaServicio_CD_CategoriaServicio" Association="ServiceMarketModel.Store.FK_SBS_SubCategoriaServicio_CD_CategoriaServicio">
+            <End Role="CD_CategoriaServicio" EntitySet="CD_CategoriaServicio" />
+            <End Role="SBS_SubCategoriaServicio" EntitySet="SBS_SubCategoriaServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SS_SolicitudServicio_AN_Anuncios" Association="ServiceMarketModel.Store.FK_SS_SolicitudServicio_AN_Anuncios">
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SS_SolicitudServicio_ST_Estatus" Association="ServiceMarketModel.Store.FK_SS_SolicitudServicio_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserId" Association="ServiceMarketModel.Store.fk_UserId">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_MB_Membresia" Association="ServiceMarketModel.Store.FK_UserProfile_MB_Membresia">
+            <End Role="MB_Membresia" EntitySet="MB_Membresia" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_PA_Paises" Association="ServiceMarketModel.Store.FK_UserProfile_PA_Paises">
+            <End Role="PA_Paises" EntitySet="PA_Paises" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_ST_Estatus" Association="ServiceMarketModel.Store.FK_UserProfile_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AE_AnunciosExtras">
+          <Key>
+            <PropertyRef Name="AE_Id" />
+          </Key>
+          <Property Name="AE_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AN_Id" Type="int" Nullable="false" />
+          <Property Name="AN_Titulo" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="AN_Imagen" Type="varchar" MaxLength="250" />
+          <Property Name="AN_ImagenBinary" Type="image" />
+        </EntityType>
+        <EntityType Name="AM_MultimediaAnuncios">
+          <Key>
+            <PropertyRef Name="AM_Id" />
+          </Key>
+          <Property Name="AM_Id" Type="int" Nullable="false" />
+          <Property Name="AN_Id" Type="int" Nullable="false" />
+          <Property Name="AM_Titulo" Type="varchar" MaxLength="50" />
+          <Property Name="AM_MultimediaUrl" Type="varchar" MaxLength="1000" />
+          <Property Name="MT_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AN_Anuncios">
+          <Key>
+            <PropertyRef Name="AN_Id" />
+          </Key>
+          <Property Name="AN_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PA_Id" Type="int" Nullable="false" />
+          <Property Name="SBS_Id" Type="int" />
+          <Property Name="AN_Titulo" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="AN_Telefono" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="AN_Celular" Type="varchar" MaxLength="20" />
+          <Property Name="AN_Descripcion" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="AN_Fecha" Type="datetime" Nullable="false" />
+          <Property Name="AN_FechaExpiracion" Type="datetime" />
+          <Property Name="ST_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CD_CategoriaServicio">
+          <Key>
+            <PropertyRef Name="CD_Id" />
+          </Key>
+          <Property Name="CD_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CD_Descripcion" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="MB_Membresia">
+          <Key>
+            <PropertyRef Name="MP_MemberShipId" />
+          </Key>
+          <Property Name="MP_MemberShipId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MP_Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="MP_ExpiracionDays" Type="int" />
+        </EntityType>
+        <EntityType Name="MT_MultimediaTipos">
+          <Key>
+            <PropertyRef Name="MT_Id" />
+          </Key>
+          <Property Name="MT_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MT_Descripcion" Type="varchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="PA_Paises">
+          <Key>
+            <PropertyRef Name="PA_Id" />
+          </Key>
+          <Property Name="PA_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PA_Descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="REG_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REG_Region">
+          <Key>
+            <PropertyRef Name="REG_Id" />
+          </Key>
+          <Property Name="REG_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="REG_Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RT_TipoReview">
+          <Key>
+            <PropertyRef Name="RT_Id" />
+          </Key>
+          <Property Name="RT_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RT_Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RW_Reviews">
+          <Key>
+            <PropertyRef Name="RW_Id" />
+          </Key>
+          <Property Name="RW_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RT_Id" Type="int" Nullable="false" />
+          <Property Name="SS_Id" Type="int" Nullable="false" />
+          <Property Name="RW_Comentario" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="RW_Fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SBS_SubCategoriaServicio">
+          <Key>
+            <PropertyRef Name="SBS_Id" />
+          </Key>
+          <Property Name="SBS_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CD_Id" Type="int" />
+          <Property Name="SBS_Descripcion" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="SS_SolicitudServicio">
+          <Key>
+            <PropertyRef Name="SS_Id" />
+          </Key>
+          <Property Name="SS_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AN_Id" Type="int" Nullable="false" />
+          <Property Name="SS_Fecha" Type="datetime" Nullable="false" />
+          <Property Name="SS_Nombre" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="SS_Mail" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="SS_Telefono" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="SS_Celular" Type="varchar" MaxLength="20" />
+          <Property Name="SS_Descripcion" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="ST_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ST_Estatus">
+          <Key>
+            <PropertyRef Name="ST_Id" />
+          </Key>
+          <Property Name="ST_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ST_Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Details" Type="varchar" MaxLength="150" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="City" Type="varchar" MaxLength="150" />
+          <Property Name="PA_Id" Type="int" Nullable="false" />
+          <Property Name="Image" Type="image" />
+          <Property Name="MP_MemberShipId" Type="int" Nullable="false" />
+          <Property Name="ST_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsConfirmed" Type="bit" />
+          <Property Name="LastPasswordFailureDate" Type="datetime" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordChangedDate" Type="datetime" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="ProviderUserId" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AE_AnunciosExtras_AN_Anuncios">
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="1" />
+          <End Role="AE_AnunciosExtras" Type="ServiceMarketModel.Store.AE_AnunciosExtras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AN_Anuncios">
+              <PropertyRef Name="AN_Id" />
+            </Principal>
+            <Dependent Role="AE_AnunciosExtras">
+              <PropertyRef Name="AN_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AM_MultimediaAnuncios_AN_Anuncios">
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="1" />
+          <End Role="AM_MultimediaAnuncios" Type="ServiceMarketModel.Store.AM_MultimediaAnuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AN_Anuncios">
+              <PropertyRef Name="AN_Id" />
+            </Principal>
+            <Dependent Role="AM_MultimediaAnuncios">
+              <PropertyRef Name="AN_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AM_MultimediaAnuncios_MT_MultimediaTipos">
+          <End Role="MT_MultimediaTipos" Type="ServiceMarketModel.Store.MT_MultimediaTipos" Multiplicity="1" />
+          <End Role="AM_MultimediaAnuncios" Type="ServiceMarketModel.Store.AM_MultimediaAnuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_MultimediaTipos">
+              <PropertyRef Name="MT_Id" />
+            </Principal>
+            <Dependent Role="AM_MultimediaAnuncios">
+              <PropertyRef Name="MT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AN_Anuncios_SBS_SubCategoriaServicio">
+          <End Role="SBS_SubCategoriaServicio" Type="ServiceMarketModel.Store.SBS_SubCategoriaServicio" Multiplicity="0..1" />
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SBS_SubCategoriaServicio">
+              <PropertyRef Name="SBS_Id" />
+            </Principal>
+            <Dependent Role="AN_Anuncios">
+              <PropertyRef Name="SBS_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AN_Anuncios_ST_Estatus">
+          <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="1" />
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ST_Estatus">
+              <PropertyRef Name="ST_Id" />
+            </Principal>
+            <Dependent Role="AN_Anuncios">
+              <PropertyRef Name="ST_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AN_Anuncios_UserProfile">
+          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AN_Anuncios">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PA_Paises_REG_Region">
+          <End Role="REG_Region" Type="ServiceMarketModel.Store.REG_Region" Multiplicity="1" />
+          <End Role="PA_Paises" Type="ServiceMarketModel.Store.PA_Paises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REG_Region">
+              <PropertyRef Name="REG_Id" />
+            </Principal>
+            <Dependent Role="PA_Paises">
+              <PropertyRef Name="REG_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoleId">
+          <End Role="webpages_Roles" Type="ServiceMarketModel.Store.webpages_Roles" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="ServiceMarketModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RW_Reviews_RT_TipoReview">
+          <End Role="RT_TipoReview" Type="ServiceMarketModel.Store.RT_TipoReview" Multiplicity="1" />
+          <End Role="RW_Reviews" Type="ServiceMarketModel.Store.RW_Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RT_TipoReview">
+              <PropertyRef Name="RT_Id" />
+            </Principal>
+            <Dependent Role="RW_Reviews">
+              <PropertyRef Name="RT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RW_Reviews_SS_SolicitudServicio">
+          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.Store.SS_SolicitudServicio" Multiplicity="1" />
+          <End Role="RW_Reviews" Type="ServiceMarketModel.Store.RW_Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SS_SolicitudServicio">
+              <PropertyRef Name="SS_Id" />
+            </Principal>
+            <Dependent Role="RW_Reviews">
+              <PropertyRef Name="SS_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SBS_SubCategoriaServicio_CD_CategoriaServicio">
+          <End Role="CD_CategoriaServicio" Type="ServiceMarketModel.Store.CD_CategoriaServicio" Multiplicity="0..1" />
+          <End Role="SBS_SubCategoriaServicio" Type="ServiceMarketModel.Store.SBS_SubCategoriaServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CD_CategoriaServicio">
+              <PropertyRef Name="CD_Id" />
+            </Principal>
+            <Dependent Role="SBS_SubCategoriaServicio">
+              <PropertyRef Name="CD_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SS_SolicitudServicio_AN_Anuncios">
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="1" />
+          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.Store.SS_SolicitudServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AN_Anuncios">
+              <PropertyRef Name="AN_Id" />
+            </Principal>
+            <Dependent Role="SS_SolicitudServicio">
+              <PropertyRef Name="AN_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SS_SolicitudServicio_ST_Estatus">
+          <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="1" />
+          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.Store.SS_SolicitudServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ST_Estatus">
+              <PropertyRef Name="ST_Id" />
+            </Principal>
+            <Dependent Role="SS_SolicitudServicio">
+              <PropertyRef Name="ST_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserId">
+          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="ServiceMarketModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_MB_Membresia">
+          <End Role="MB_Membresia" Type="ServiceMarketModel.Store.MB_Membresia" Multiplicity="1" />
+          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MB_Membresia">
+              <PropertyRef Name="MP_MemberShipId" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="MP_MemberShipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_PA_Paises">
+          <End Role="PA_Paises" Type="ServiceMarketModel.Store.PA_Paises" Multiplicity="1" />
+          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PA_Paises">
+              <PropertyRef Name="PA_Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="PA_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_ST_Estatus">
+          <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="1" />
+          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ST_Estatus">
+              <PropertyRef Name="ST_Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="ST_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ServiceMarketModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ServiceMarketEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="AE_AnunciosExtras" EntityType="ServiceMarketModel.AE_AnunciosExtras" />
+          <EntitySet Name="AM_MultimediaAnuncios" EntityType="ServiceMarketModel.AM_MultimediaAnuncios" />
+          <EntitySet Name="AN_Anuncios" EntityType="ServiceMarketModel.AN_Anuncios" />
+          <EntitySet Name="CD_CategoriaServicio" EntityType="ServiceMarketModel.CD_CategoriaServicio" />
+          <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.MB_Membresia" />
+          <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.MT_MultimediaTipos" />
+          <EntitySet Name="PA_Paises" EntityType="ServiceMarketModel.PA_Paises" />
+          <EntitySet Name="REG_Region" EntityType="ServiceMarketModel.REG_Region" />
+          <EntitySet Name="RT_TipoReview" EntityType="ServiceMarketModel.RT_TipoReview" />
+          <EntitySet Name="RW_Reviews" EntityType="ServiceMarketModel.RW_Reviews" />
+          <EntitySet Name="SBS_SubCategoriaServicio" EntityType="ServiceMarketModel.SBS_SubCategoriaServicio" />
+          <EntitySet Name="SS_SolicitudServicio" EntityType="ServiceMarketModel.SS_SolicitudServicio" />
+          <EntitySet Name="ST_Estatus" EntityType="ServiceMarketModel.ST_Estatus" />
+          <EntitySet Name="sysdiagrams" EntityType="ServiceMarketModel.sysdiagram" />
+          <EntitySet Name="UserProfiles" EntityType="ServiceMarketModel.UserProfile" />
+          <EntitySet Name="webpages_Membership" EntityType="ServiceMarketModel.webpages_Membership" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="ServiceMarketModel.webpages_OAuthMembership" />
+          <EntitySet Name="webpages_Roles" EntityType="ServiceMarketModel.webpages_Roles" />
+          <AssociationSet Name="FK_AE_AnunciosExtras_AN_Anuncios" Association="ServiceMarketModel.FK_AE_AnunciosExtras_AN_Anuncios">
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+            <End Role="AE_AnunciosExtras" EntitySet="AE_AnunciosExtras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AM_MultimediaAnuncios_AN_Anuncios" Association="ServiceMarketModel.FK_AM_MultimediaAnuncios_AN_Anuncios">
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+            <End Role="AM_MultimediaAnuncios" EntitySet="AM_MultimediaAnuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AM_MultimediaAnuncios_MT_MultimediaTipos" Association="ServiceMarketModel.FK_AM_MultimediaAnuncios_MT_MultimediaTipos">
+            <End Role="MT_MultimediaTipos" EntitySet="MT_MultimediaTipos" />
+            <End Role="AM_MultimediaAnuncios" EntitySet="AM_MultimediaAnuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_SBS_SubCategoriaServicio" Association="ServiceMarketModel.FK_AN_Anuncios_SBS_SubCategoriaServicio">
+            <End Role="SBS_SubCategoriaServicio" EntitySet="SBS_SubCategoriaServicio" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_ST_Estatus" Association="ServiceMarketModel.FK_AN_Anuncios_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_UserProfile" Association="ServiceMarketModel.FK_AN_Anuncios_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SS_SolicitudServicio_AN_Anuncios" Association="ServiceMarketModel.FK_SS_SolicitudServicio_AN_Anuncios">
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SBS_SubCategoriaServicio_CD_CategoriaServicio" Association="ServiceMarketModel.FK_SBS_SubCategoriaServicio_CD_CategoriaServicio">
+            <End Role="CD_CategoriaServicio" EntitySet="CD_CategoriaServicio" />
+            <End Role="SBS_SubCategoriaServicio" EntitySet="SBS_SubCategoriaServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_MB_Membresia" Association="ServiceMarketModel.FK_UserProfile_MB_Membresia">
+            <End Role="MB_Membresia" EntitySet="MB_Membresia" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PA_Paises_REG_Region" Association="ServiceMarketModel.FK_PA_Paises_REG_Region">
+            <End Role="REG_Region" EntitySet="REG_Region" />
+            <End Role="PA_Paises" EntitySet="PA_Paises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_PA_Paises" Association="ServiceMarketModel.FK_UserProfile_PA_Paises">
+            <End Role="PA_Paises" EntitySet="PA_Paises" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RW_Reviews_RT_TipoReview" Association="ServiceMarketModel.FK_RW_Reviews_RT_TipoReview">
+            <End Role="RT_TipoReview" EntitySet="RT_TipoReview" />
+            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RW_Reviews_SS_SolicitudServicio" Association="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio">
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SS_SolicitudServicio_ST_Estatus" Association="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_ST_Estatus" Association="ServiceMarketModel.FK_UserProfile_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="webpages_UsersInRoles" Association="ServiceMarketModel.webpages_UsersInRoles">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AE_AnunciosExtras">
+          <Key>
+            <PropertyRef Name="AE_Id" />
+          </Key>
+          <Property Name="AE_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AN_Id" Type="Int32" Nullable="false" />
+          <Property Name="AN_Titulo" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="AN_Imagen" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="AN_ImagenBinary" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AE_AnunciosExtras_AN_Anuncios" FromRole="AE_AnunciosExtras" ToRole="AN_Anuncios" />
+        </EntityType>
+        <EntityType Name="AM_MultimediaAnuncios">
+          <Key>
+            <PropertyRef Name="AM_Id" />
+          </Key>
+          <Property Name="AM_Id" Type="Int32" Nullable="false" />
+          <Property Name="AN_Id" Type="Int32" Nullable="false" />
+          <Property Name="AM_Titulo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="AM_MultimediaUrl" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="MT_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AM_MultimediaAnuncios_AN_Anuncios" FromRole="AM_MultimediaAnuncios" ToRole="AN_Anuncios" />
+          <NavigationProperty Name="MT_MultimediaTipos" Relationship="ServiceMarketModel.FK_AM_MultimediaAnuncios_MT_MultimediaTipos" FromRole="AM_MultimediaAnuncios" ToRole="MT_MultimediaTipos" />
+        </EntityType>
+        <EntityType Name="AN_Anuncios">
+          <Key>
+            <PropertyRef Name="AN_Id" />
+          </Key>
+          <Property Name="AN_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PA_Id" Type="Int32" Nullable="false" />
+          <Property Name="SBS_Id" Type="Int32" />
+          <Property Name="AN_Titulo" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="AN_Telefono" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="AN_Celular" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="AN_Descripcion" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="AN_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AN_FechaExpiracion" Type="DateTime" Precision="3" />
+          <Property Name="ST_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AE_AnunciosExtras" Relationship="ServiceMarketModel.FK_AE_AnunciosExtras_AN_Anuncios" FromRole="AN_Anuncios" ToRole="AE_AnunciosExtras" />
+          <NavigationProperty Name="AM_MultimediaAnuncios" Relationship="ServiceMarketModel.FK_AM_MultimediaAnuncios_AN_Anuncios" FromRole="AN_Anuncios" ToRole="AM_MultimediaAnuncios" />
+          <NavigationProperty Name="SBS_SubCategoriaServicio" Relationship="ServiceMarketModel.FK_AN_Anuncios_SBS_SubCategoriaServicio" FromRole="AN_Anuncios" ToRole="SBS_SubCategoriaServicio" />
+          <NavigationProperty Name="ST_Estatus" Relationship="ServiceMarketModel.FK_AN_Anuncios_ST_Estatus" FromRole="AN_Anuncios" ToRole="ST_Estatus" />
+          <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_AN_Anuncios_UserProfile" FromRole="AN_Anuncios" ToRole="UserProfile" />
+          <NavigationProperty Name="SS_SolicitudServicio" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_AN_Anuncios" FromRole="AN_Anuncios" ToRole="SS_SolicitudServicio" />
+        </EntityType>
+        <EntityType Name="CD_CategoriaServicio">
+          <Key>
+            <PropertyRef Name="CD_Id" />
+          </Key>
+          <Property Name="CD_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CD_Descripcion" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="SBS_SubCategoriaServicio" Relationship="ServiceMarketModel.FK_SBS_SubCategoriaServicio_CD_CategoriaServicio" FromRole="CD_CategoriaServicio" ToRole="SBS_SubCategoriaServicio" />
+        </EntityType>
+        <EntityType Name="MB_Membresia">
+          <Key>
+            <PropertyRef Name="MP_MemberShipId" />
+          </Key>
+          <Property Name="MP_MemberShipId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="MP_Descripcion" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="MP_ExpiracionDays" Type="Int32" />
+          <NavigationProperty Name="UserProfiles" Relationship="ServiceMarketModel.FK_UserProfile_MB_Membresia" FromRole="MB_Membresia" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="MT_MultimediaTipos">
+          <Key>
+            <PropertyRef Name="MT_Id" />
+          </Key>
+          <Property Name="MT_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="MT_Descripcion" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="AM_MultimediaAnuncios" Relationship="ServiceMarketModel.FK_AM_MultimediaAnuncios_MT_MultimediaTipos" FromRole="MT_MultimediaTipos" ToRole="AM_MultimediaAnuncios" />
+        </EntityType>
+        <EntityType Name="PA_Paises">
+          <Key>
+            <PropertyRef Name="PA_Id" />
+          </Key>
+          <Property Name="PA_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PA_Descripcion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="REG_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="REG_Region" Relationship="ServiceMarketModel.FK_PA_Paises_REG_Region" FromRole="PA_Paises" ToRole="REG_Region" />
+          <NavigationProperty Name="UserProfiles" Relationship="ServiceMarketModel.FK_UserProfile_PA_Paises" FromRole="PA_Paises" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="REG_Region">
+          <Key>
+            <PropertyRef Name="REG_Id" />
+          </Key>
+          <Property Name="REG_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="REG_Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="PA_Paises" Relationship="ServiceMarketModel.FK_PA_Paises_REG_Region" FromRole="REG_Region" ToRole="PA_Paises" />
+        </EntityType>
+        <EntityType Name="RT_TipoReview">
+          <Key>
+            <PropertyRef Name="RT_Id" />
+          </Key>
+          <Property Name="RT_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RT_Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RW_Reviews" Relationship="ServiceMarketModel.FK_RW_Reviews_RT_TipoReview" FromRole="RT_TipoReview" ToRole="RW_Reviews" />
+        </EntityType>
+        <EntityType Name="RW_Reviews">
+          <Key>
+            <PropertyRef Name="RW_Id" />
+          </Key>
+          <Property Name="RW_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RT_Id" Type="Int32" Nullable="false" />
+          <Property Name="SS_Id" Type="Int32" Nullable="false" />
+          <Property Name="RW_Comentario" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="RW_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="RT_TipoReview" Relationship="ServiceMarketModel.FK_RW_Reviews_RT_TipoReview" FromRole="RW_Reviews" ToRole="RT_TipoReview" />
+          <NavigationProperty Name="SS_SolicitudServicio" Relationship="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio" FromRole="RW_Reviews" ToRole="SS_SolicitudServicio" />
+        </EntityType>
+        <EntityType Name="SBS_SubCategoriaServicio">
+          <Key>
+            <PropertyRef Name="SBS_Id" />
+          </Key>
+          <Property Name="SBS_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CD_Id" Type="Int32" />
+          <Property Name="SBS_Descripcion" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AN_Anuncios_SBS_SubCategoriaServicio" FromRole="SBS_SubCategoriaServicio" ToRole="AN_Anuncios" />
+          <NavigationProperty Name="CD_CategoriaServicio" Relationship="ServiceMarketModel.FK_SBS_SubCategoriaServicio_CD_CategoriaServicio" FromRole="SBS_SubCategoriaServicio" ToRole="CD_CategoriaServicio" />
+        </EntityType>
+        <EntityType Name="SS_SolicitudServicio">
+          <Key>
+            <PropertyRef Name="SS_Id" />
+          </Key>
+          <Property Name="SS_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AN_Id" Type="Int32" Nullable="false" />
+          <Property Name="SS_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SS_Nombre" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="SS_Mail" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="SS_Telefono" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="SS_Celular" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="SS_Descripcion" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="ST_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_AN_Anuncios" FromRole="SS_SolicitudServicio" ToRole="AN_Anuncios" />
+          <NavigationProperty Name="RW_Reviews" Relationship="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio" FromRole="SS_SolicitudServicio" ToRole="RW_Reviews" />
+          <NavigationProperty Name="ST_Estatus" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus" FromRole="SS_SolicitudServicio" ToRole="ST_Estatus" />
+        </EntityType>
+        <EntityType Name="ST_Estatus">
+          <Key>
+            <PropertyRef Name="ST_Id" />
+          </Key>
+          <Property Name="ST_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ST_Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AN_Anuncios_ST_Estatus" FromRole="ST_Estatus" ToRole="AN_Anuncios" />
+          <NavigationProperty Name="SS_SolicitudServicio" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus" FromRole="ST_Estatus" ToRole="SS_SolicitudServicio" />
+          <NavigationProperty Name="UserProfiles" Relationship="ServiceMarketModel.FK_UserProfile_ST_Estatus" FromRole="ST_Estatus" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="Details" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="PA_Id" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MP_MemberShipId" Type="Int32" Nullable="false" />
+          <Property Name="ST_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AN_Anuncios_UserProfile" FromRole="UserProfile" ToRole="AN_Anuncios" />
+          <NavigationProperty Name="MB_Membresia" Relationship="ServiceMarketModel.FK_UserProfile_MB_Membresia" FromRole="UserProfile" ToRole="MB_Membresia" />
+          <NavigationProperty Name="PA_Paises" Relationship="ServiceMarketModel.FK_UserProfile_PA_Paises" FromRole="UserProfile" ToRole="PA_Paises" />
+          <NavigationProperty Name="ST_Estatus" Relationship="ServiceMarketModel.FK_UserProfile_ST_Estatus" FromRole="UserProfile" ToRole="ST_Estatus" />
+          <NavigationProperty Name="webpages_Roles" Relationship="ServiceMarketModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="IsConfirmed" Type="Boolean" />
+          <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="UserProfiles" Relationship="ServiceMarketModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_AE_AnunciosExtras_AN_Anuncios">
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.AN_Anuncios" Multiplicity="1" />
+          <End Role="AE_AnunciosExtras" Type="ServiceMarketModel.AE_AnunciosExtras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AN_Anuncios">
+              <PropertyRef Name="AN_Id" />
+            </Principal>
+            <Dependent Role="AE_AnunciosExtras">
+              <PropertyRef Name="AN_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AM_MultimediaAnuncios_AN_Anuncios">
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.AN_Anuncios" Multiplicity="1" />
+          <End Role="AM_MultimediaAnuncios" Type="ServiceMarketModel.AM_MultimediaAnuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AN_Anuncios">
+              <PropertyRef Name="AN_Id" />
+            </Principal>
+            <Dependent Role="AM_MultimediaAnuncios">
+              <PropertyRef Name="AN_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AM_MultimediaAnuncios_MT_MultimediaTipos">
+          <End Role="MT_MultimediaTipos" Type="ServiceMarketModel.MT_MultimediaTipos" Multiplicity="1" />
+          <End Role="AM_MultimediaAnuncios" Type="ServiceMarketModel.AM_MultimediaAnuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_MultimediaTipos">
+              <PropertyRef Name="MT_Id" />
+            </Principal>
+            <Dependent Role="AM_MultimediaAnuncios">
+              <PropertyRef Name="MT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AN_Anuncios_SBS_SubCategoriaServicio">
+          <End Role="SBS_SubCategoriaServicio" Type="ServiceMarketModel.SBS_SubCategoriaServicio" Multiplicity="0..1" />
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.AN_Anuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SBS_SubCategoriaServicio">
+              <PropertyRef Name="SBS_Id" />
+            </Principal>
+            <Dependent Role="AN_Anuncios">
+              <PropertyRef Name="SBS_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AN_Anuncios_ST_Estatus">
+          <End Role="ST_Estatus" Type="ServiceMarketModel.ST_Estatus" Multiplicity="1" />
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.AN_Anuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ST_Estatus">
+              <PropertyRef Name="ST_Id" />
+            </Principal>
+            <Dependent Role="AN_Anuncios">
+              <PropertyRef Name="ST_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AN_Anuncios_UserProfile">
+          <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="1" />
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.AN_Anuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AN_Anuncios">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SS_SolicitudServicio_AN_Anuncios">
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.AN_Anuncios" Multiplicity="1" />
+          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.SS_SolicitudServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AN_Anuncios">
+              <PropertyRef Name="AN_Id" />
+            </Principal>
+            <Dependent Role="SS_SolicitudServicio">
+              <PropertyRef Name="AN_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SBS_SubCategoriaServicio_CD_CategoriaServicio">
+          <End Role="CD_CategoriaServicio" Type="ServiceMarketModel.CD_CategoriaServicio" Multiplicity="0..1" />
+          <End Role="SBS_SubCategoriaServicio" Type="ServiceMarketModel.SBS_SubCategoriaServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CD_CategoriaServicio">
+              <PropertyRef Name="CD_Id" />
+            </Principal>
+            <Dependent Role="SBS_SubCategoriaServicio">
+              <PropertyRef Name="CD_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_MB_Membresia">
+          <End Role="MB_Membresia" Type="ServiceMarketModel.MB_Membresia" Multiplicity="1" />
+          <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MB_Membresia">
+              <PropertyRef Name="MP_MemberShipId" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="MP_MemberShipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PA_Paises_REG_Region">
+          <End Role="REG_Region" Type="ServiceMarketModel.REG_Region" Multiplicity="1" />
+          <End Role="PA_Paises" Type="ServiceMarketModel.PA_Paises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REG_Region">
+              <PropertyRef Name="REG_Id" />
+            </Principal>
+            <Dependent Role="PA_Paises">
+              <PropertyRef Name="REG_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_PA_Paises">
+          <End Role="PA_Paises" Type="ServiceMarketModel.PA_Paises" Multiplicity="1" />
+          <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PA_Paises">
+              <PropertyRef Name="PA_Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="PA_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RW_Reviews_RT_TipoReview">
+          <End Role="RT_TipoReview" Type="ServiceMarketModel.RT_TipoReview" Multiplicity="1" />
+          <End Role="RW_Reviews" Type="ServiceMarketModel.RW_Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RT_TipoReview">
+              <PropertyRef Name="RT_Id" />
+            </Principal>
+            <Dependent Role="RW_Reviews">
+              <PropertyRef Name="RT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RW_Reviews_SS_SolicitudServicio">
+          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.SS_SolicitudServicio" Multiplicity="1" />
+          <End Role="RW_Reviews" Type="ServiceMarketModel.RW_Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SS_SolicitudServicio">
+              <PropertyRef Name="SS_Id" />
+            </Principal>
+            <Dependent Role="RW_Reviews">
+              <PropertyRef Name="SS_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SS_SolicitudServicio_ST_Estatus">
+          <End Role="ST_Estatus" Type="ServiceMarketModel.ST_Estatus" Multiplicity="1" />
+          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.SS_SolicitudServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ST_Estatus">
+              <PropertyRef Name="ST_Id" />
+            </Principal>
+            <Dependent Role="SS_SolicitudServicio">
+              <PropertyRef Name="ST_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_ST_Estatus">
+          <End Role="ST_Estatus" Type="ServiceMarketModel.ST_Estatus" Multiplicity="1" />
+          <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ST_Estatus">
+              <PropertyRef Name="ST_Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="ST_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="webpages_UsersInRoles">
+          <End Role="webpages_Roles" Type="ServiceMarketModel.webpages_Roles" Multiplicity="*" />
+          <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ServiceMarketModelStoreContainer" CdmEntityContainer="ServiceMarketEntities">
+          <EntitySetMapping Name="AE_AnunciosExtras">
+            <EntityTypeMapping TypeName="ServiceMarketModel.AE_AnunciosExtras">
+              <MappingFragment StoreEntitySet="AE_AnunciosExtras">
+                <ScalarProperty Name="AE_Id" ColumnName="AE_Id" />
+                <ScalarProperty Name="AN_Id" ColumnName="AN_Id" />
+                <ScalarProperty Name="AN_Titulo" ColumnName="AN_Titulo" />
+                <ScalarProperty Name="AN_Imagen" ColumnName="AN_Imagen" />
+                <ScalarProperty Name="AN_ImagenBinary" ColumnName="AN_ImagenBinary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AM_MultimediaAnuncios">
+            <EntityTypeMapping TypeName="ServiceMarketModel.AM_MultimediaAnuncios">
+              <MappingFragment StoreEntitySet="AM_MultimediaAnuncios">
+                <ScalarProperty Name="AM_Id" ColumnName="AM_Id" />
+                <ScalarProperty Name="AN_Id" ColumnName="AN_Id" />
+                <ScalarProperty Name="AM_Titulo" ColumnName="AM_Titulo" />
+                <ScalarProperty Name="AM_MultimediaUrl" ColumnName="AM_MultimediaUrl" />
+                <ScalarProperty Name="MT_Id" ColumnName="MT_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AN_Anuncios">
+            <EntityTypeMapping TypeName="ServiceMarketModel.AN_Anuncios">
+              <MappingFragment StoreEntitySet="AN_Anuncios">
+                <ScalarProperty Name="AN_Id" ColumnName="AN_Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PA_Id" ColumnName="PA_Id" />
+                <ScalarProperty Name="SBS_Id" ColumnName="SBS_Id" />
+                <ScalarProperty Name="AN_Titulo" ColumnName="AN_Titulo" />
+                <ScalarProperty Name="AN_Telefono" ColumnName="AN_Telefono" />
+                <ScalarProperty Name="AN_Celular" ColumnName="AN_Celular" />
+                <ScalarProperty Name="AN_Descripcion" ColumnName="AN_Descripcion" />
+                <ScalarProperty Name="AN_Fecha" ColumnName="AN_Fecha" />
+                <ScalarProperty Name="AN_FechaExpiracion" ColumnName="AN_FechaExpiracion" />
+                <ScalarProperty Name="ST_Id" ColumnName="ST_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CD_CategoriaServicio">
+            <EntityTypeMapping TypeName="ServiceMarketModel.CD_CategoriaServicio">
+              <MappingFragment StoreEntitySet="CD_CategoriaServicio">
+                <ScalarProperty Name="CD_Id" ColumnName="CD_Id" />
+                <ScalarProperty Name="CD_Descripcion" ColumnName="CD_Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MB_Membresia">
+            <EntityTypeMapping TypeName="ServiceMarketModel.MB_Membresia">
+              <MappingFragment StoreEntitySet="MB_Membresia">
+                <ScalarProperty Name="MP_MemberShipId" ColumnName="MP_MemberShipId" />
+                <ScalarProperty Name="MP_Descripcion" ColumnName="MP_Descripcion" />
+                <ScalarProperty Name="MP_ExpiracionDays" ColumnName="MP_ExpiracionDays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT_MultimediaTipos">
+            <EntityTypeMapping TypeName="ServiceMarketModel.MT_MultimediaTipos">
+              <MappingFragment StoreEntitySet="MT_MultimediaTipos">
+                <ScalarProperty Name="MT_Id" ColumnName="MT_Id" />
+                <ScalarProperty Name="MT_Descripcion" ColumnName="MT_Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PA_Paises">
+            <EntityTypeMapping TypeName="ServiceMarketModel.PA_Paises">
+              <MappingFragment StoreEntitySet="PA_Paises">
+                <ScalarProperty Name="PA_Id" ColumnName="PA_Id" />
+                <ScalarProperty Name="PA_Descripcion" ColumnName="PA_Descripcion" />
+                <ScalarProperty Name="REG_Id" ColumnName="REG_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REG_Region">
+            <EntityTypeMapping TypeName="ServiceMarketModel.REG_Region">
+              <MappingFragment StoreEntitySet="REG_Region">
+                <ScalarProperty Name="REG_Id" ColumnName="REG_Id" />
+                <ScalarProperty Name="REG_Descripcion" ColumnName="REG_Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RT_TipoReview">
+            <EntityTypeMapping TypeName="ServiceMarketModel.RT_TipoReview">
+              <MappingFragment StoreEntitySet="RT_TipoReview">
+                <ScalarProperty Name="RT_Id" ColumnName="RT_Id" />
+                <ScalarProperty Name="RT_Descripcion" ColumnName="RT_Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RW_Reviews">
+            <EntityTypeMapping TypeName="ServiceMarketModel.RW_Reviews">
+              <MappingFragment StoreEntitySet="RW_Reviews">
+                <ScalarProperty Name="RW_Id" ColumnName="RW_Id" />
+                <ScalarProperty Name="RT_Id" ColumnName="RT_Id" />
+                <ScalarProperty Name="SS_Id" ColumnName="SS_Id" />
+                <ScalarProperty Name="RW_Comentario" ColumnName="RW_Comentario" />
+                <ScalarProperty Name="RW_Fecha" ColumnName="RW_Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SBS_SubCategoriaServicio">
+            <EntityTypeMapping TypeName="ServiceMarketModel.SBS_SubCategoriaServicio">
+              <MappingFragment StoreEntitySet="SBS_SubCategoriaServicio">
+                <ScalarProperty Name="SBS_Id" ColumnName="SBS_Id" />
+                <ScalarProperty Name="CD_Id" ColumnName="CD_Id" />
+                <ScalarProperty Name="SBS_Descripcion" ColumnName="SBS_Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SS_SolicitudServicio">
+            <EntityTypeMapping TypeName="ServiceMarketModel.SS_SolicitudServicio">
+              <MappingFragment StoreEntitySet="SS_SolicitudServicio">
+                <ScalarProperty Name="SS_Id" ColumnName="SS_Id" />
+                <ScalarProperty Name="AN_Id" ColumnName="AN_Id" />
+                <ScalarProperty Name="SS_Fecha" ColumnName="SS_Fecha" />
+                <ScalarProperty Name="SS_Nombre" ColumnName="SS_Nombre" />
+                <ScalarProperty Name="SS_Mail" ColumnName="SS_Mail" />
+                <ScalarProperty Name="SS_Telefono" ColumnName="SS_Telefono" />
+                <ScalarProperty Name="SS_Celular" ColumnName="SS_Celular" />
+                <ScalarProperty Name="SS_Descripcion" ColumnName="SS_Descripcion" />
+                <ScalarProperty Name="ST_Id" ColumnName="ST_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_Estatus">
+            <EntityTypeMapping TypeName="ServiceMarketModel.ST_Estatus">
+              <MappingFragment StoreEntitySet="ST_Estatus">
+                <ScalarProperty Name="ST_Id" ColumnName="ST_Id" />
+                <ScalarProperty Name="ST_Descripcion" ColumnName="ST_Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ServiceMarketModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="ServiceMarketModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PA_Id" ColumnName="PA_Id" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="MP_MemberShipId" ColumnName="MP_MemberShipId" />
+                <ScalarProperty Name="ST_Id" ColumnName="ST_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Membership">
+            <EntityTypeMapping TypeName="ServiceMarketModel.webpages_Membership">
+              <MappingFragment StoreEntitySet="webpages_Membership">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+                <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_OAuthMembership">
+            <EntityTypeMapping TypeName="ServiceMarketModel.webpages_OAuthMembership">
+              <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+                <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Roles">
+            <EntityTypeMapping TypeName="ServiceMarketModel.webpages_Roles">
+              <MappingFragment StoreEntitySet="webpages_Roles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="ServiceMarketModel.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
+            <EndProperty Name="webpages_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="UserProfile">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
