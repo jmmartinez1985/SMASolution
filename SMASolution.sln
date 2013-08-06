@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMAWeb", "SMAWeb\SMAWeb.csproj", "{252C6037-B2C3-4A24-A5A1-D4B116CE74EA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BD Backup", "BD Backup", "{864F7DB8-9DC2-4ED2-A029-7A01B2DF9074}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL10_50.SQL2K8\MSSQL\Backup\ServiceMarket.bak = ..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL10_50.SQL2K8\MSSQL\Backup\ServiceMarket.bak
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
