@@ -25,11 +25,11 @@ namespace SMAWeb.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<UsersContext>(null);
+                Database.SetInitializer<Entities>(null);
 
                 try
                 {
-                    using (var context = new UsersContext())
+                    using (var context = new Entities())
                     {
                         if (!context.Database.Exists())
                         {

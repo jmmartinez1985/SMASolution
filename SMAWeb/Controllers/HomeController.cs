@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SMAWeb.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,7 @@ namespace SMAWeb.Controllers
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
+    
             return View();
         }
 

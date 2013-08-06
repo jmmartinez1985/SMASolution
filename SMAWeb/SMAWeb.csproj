@@ -244,7 +244,7 @@
     <Compile Include="Models\ST_Estatus.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserProfile.cs">
@@ -372,10 +372,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="Models\SMAModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SMAModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Images\1.png" />
@@ -420,6 +416,10 @@
     <Content Include="Images\vadafone_grey.png" />
     <Content Include="Images\walmart.png" />
     <Content Include="Images\walmart_grey.png" />
+    <EntityDeploy Include="Models\SMAModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SMAModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <Content Include="Models\SMAModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SMAModel.edmx</DependentUpon>

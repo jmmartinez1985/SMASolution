@@ -16,13 +16,13 @@ namespace SMAWeb.Models
     {
         public MB_Membresia()
         {
-            this.UserProfiles = new HashSet<UserProfile>();
+            this.UserProfile = new HashSet<UserProfile>();
         }
     
         public int MP_MemberShipId { get; set; }
         public string MP_Descripcion { get; set; }
         public Nullable<int> MP_ExpiracionDays { get; set; }
     
-        public virtual ICollection<UserProfile> UserProfiles { get; set; }
+        public virtual ICollection<UserProfile> UserProfile { get; set; }
     }
 }

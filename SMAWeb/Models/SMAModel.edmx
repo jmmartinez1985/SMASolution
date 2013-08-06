@@ -229,11 +229,11 @@
           </Key>
           <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
           <Property Name="Details" Type="varchar" MaxLength="150" />
           <Property Name="Address" Type="varchar" MaxLength="150" />
           <Property Name="City" Type="varchar" MaxLength="150" />
-          <Property Name="PA_Id" Type="int" Nullable="false" />
+          <Property Name="PA_Id" Type="int" />
           <Property Name="Image" Type="image" />
           <Property Name="MP_MemberShipId" Type="int" Nullable="false" />
           <Property Name="ST_Id" Type="int" Nullable="false" />
@@ -459,7 +459,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserProfile_PA_Paises">
-          <End Role="PA_Paises" Type="ServiceMarketModel.Store.PA_Paises" Multiplicity="1" />
+          <End Role="PA_Paises" Type="ServiceMarketModel.Store.PA_Paises" Multiplicity="0..1" />
           <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PA_Paises">
@@ -487,7 +487,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ServiceMarketModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="ServiceMarketEntities" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="AE_AnunciosExtras" EntityType="ServiceMarketModel.AE_AnunciosExtras" />
           <EntitySet Name="AM_MultimediaAnuncios" EntityType="ServiceMarketModel.AM_MultimediaAnuncios" />
           <EntitySet Name="AN_Anuncios" EntityType="ServiceMarketModel.AN_Anuncios" />
@@ -501,8 +501,8 @@
           <EntitySet Name="SBS_SubCategoriaServicio" EntityType="ServiceMarketModel.SBS_SubCategoriaServicio" />
           <EntitySet Name="SS_SolicitudServicio" EntityType="ServiceMarketModel.SS_SolicitudServicio" />
           <EntitySet Name="ST_Estatus" EntityType="ServiceMarketModel.ST_Estatus" />
-          <EntitySet Name="sysdiagrams" EntityType="ServiceMarketModel.sysdiagram" />
-          <EntitySet Name="UserProfiles" EntityType="ServiceMarketModel.UserProfile" />
+          <EntitySet Name="sysdiagrams" EntityType="ServiceMarketModel.sysdiagrams" />
+          <EntitySet Name="UserProfile" EntityType="ServiceMarketModel.UserProfile" />
           <EntitySet Name="webpages_Membership" EntityType="ServiceMarketModel.webpages_Membership" />
           <EntitySet Name="webpages_OAuthMembership" EntityType="ServiceMarketModel.webpages_OAuthMembership" />
           <EntitySet Name="webpages_Roles" EntityType="ServiceMarketModel.webpages_Roles" />
@@ -527,7 +527,7 @@
             <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
           </AssociationSet>
           <AssociationSet Name="FK_AN_Anuncios_UserProfile" Association="ServiceMarketModel.FK_AN_Anuncios_UserProfile">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
           </AssociationSet>
           <AssociationSet Name="FK_SS_SolicitudServicio_AN_Anuncios" Association="ServiceMarketModel.FK_SS_SolicitudServicio_AN_Anuncios">
@@ -540,7 +540,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_UserProfile_MB_Membresia" Association="ServiceMarketModel.FK_UserProfile_MB_Membresia">
             <End Role="MB_Membresia" EntitySet="MB_Membresia" />
-            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
           <AssociationSet Name="FK_PA_Paises_REG_Region" Association="ServiceMarketModel.FK_PA_Paises_REG_Region">
             <End Role="REG_Region" EntitySet="REG_Region" />
@@ -548,7 +548,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_UserProfile_PA_Paises" Association="ServiceMarketModel.FK_UserProfile_PA_Paises">
             <End Role="PA_Paises" EntitySet="PA_Paises" />
-            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
           <AssociationSet Name="FK_RW_Reviews_RT_TipoReview" Association="ServiceMarketModel.FK_RW_Reviews_RT_TipoReview">
             <End Role="RT_TipoReview" EntitySet="RT_TipoReview" />
@@ -564,11 +564,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_UserProfile_ST_Estatus" Association="ServiceMarketModel.FK_UserProfile_ST_Estatus">
             <End Role="ST_Estatus" EntitySet="ST_Estatus" />
-            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
           <AssociationSet Name="webpages_UsersInRoles" Association="ServiceMarketModel.webpages_UsersInRoles">
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
-            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AE_AnunciosExtras">
@@ -631,7 +631,7 @@
           <Property Name="MP_MemberShipId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="MP_Descripcion" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="MP_ExpiracionDays" Type="Int32" />
-          <NavigationProperty Name="UserProfiles" Relationship="ServiceMarketModel.FK_UserProfile_MB_Membresia" FromRole="MB_Membresia" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_UserProfile_MB_Membresia" FromRole="MB_Membresia" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="MT_MultimediaTipos">
           <Key>
@@ -649,7 +649,7 @@
           <Property Name="PA_Descripcion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="REG_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="REG_Region" Relationship="ServiceMarketModel.FK_PA_Paises_REG_Region" FromRole="PA_Paises" ToRole="REG_Region" />
-          <NavigationProperty Name="UserProfiles" Relationship="ServiceMarketModel.FK_UserProfile_PA_Paises" FromRole="PA_Paises" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_UserProfile_PA_Paises" FromRole="PA_Paises" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="REG_Region">
           <Key>
@@ -714,9 +714,9 @@
           <Property Name="ST_Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AN_Anuncios_ST_Estatus" FromRole="ST_Estatus" ToRole="AN_Anuncios" />
           <NavigationProperty Name="SS_SolicitudServicio" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus" FromRole="ST_Estatus" ToRole="SS_SolicitudServicio" />
-          <NavigationProperty Name="UserProfiles" Relationship="ServiceMarketModel.FK_UserProfile_ST_Estatus" FromRole="ST_Estatus" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_UserProfile_ST_Estatus" FromRole="ST_Estatus" ToRole="UserProfile" />
         </EntityType>
-        <EntityType Name="sysdiagram">
+        <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -732,11 +732,11 @@
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
           <Property Name="Details" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
           <Property Name="Address" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
           <Property Name="City" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
-          <Property Name="PA_Id" Type="Int32" Nullable="false" />
+          <Property Name="PA_Id" Type="Int32" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="MP_MemberShipId" Type="Int32" Nullable="false" />
           <Property Name="ST_Id" Type="Int32" Nullable="false" />
@@ -777,7 +777,7 @@
           </Key>
           <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="UserProfiles" Relationship="ServiceMarketModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
         </EntityType>
         <Association Name="FK_AE_AnunciosExtras_AN_Anuncios">
           <End Role="AN_Anuncios" Type="ServiceMarketModel.AN_Anuncios" Multiplicity="1" />
@@ -900,7 +900,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserProfile_PA_Paises">
-          <End Role="PA_Paises" Type="ServiceMarketModel.PA_Paises" Multiplicity="1" />
+          <End Role="PA_Paises" Type="ServiceMarketModel.PA_Paises" Multiplicity="0..1" />
           <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PA_Paises">
@@ -968,7 +968,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ServiceMarketModelStoreContainer" CdmEntityContainer="ServiceMarketEntities">
+        <EntityContainerMapping StorageEntityContainer="ServiceMarketModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="AE_AnunciosExtras">
             <EntityTypeMapping TypeName="ServiceMarketModel.AE_AnunciosExtras">
               <MappingFragment StoreEntitySet="AE_AnunciosExtras">
@@ -1102,7 +1102,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ServiceMarketModel.sysdiagram">
+            <EntityTypeMapping TypeName="ServiceMarketModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1112,12 +1112,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserProfiles">
+          <EntitySetMapping Name="UserProfile">
             <EntityTypeMapping TypeName="ServiceMarketModel.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="City" ColumnName="City" />

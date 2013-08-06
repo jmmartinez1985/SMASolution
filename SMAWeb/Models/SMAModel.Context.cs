@@ -13,10 +13,10 @@ namespace SMAWeb.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ServiceMarketEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public ServiceMarketEntities()
-            : base("name=ServiceMarketEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -38,8 +38,8 @@ namespace SMAWeb.Models
         public DbSet<SBS_SubCategoriaServicio> SBS_SubCategoriaServicio { get; set; }
         public DbSet<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         public DbSet<ST_Estatus> ST_Estatus { get; set; }
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
-        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<UserProfile> UserProfile { get; set; }
         public DbSet<webpages_Membership> webpages_Membership { get; set; }
         public DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
         public DbSet<webpages_Roles> webpages_Roles { get; set; }
