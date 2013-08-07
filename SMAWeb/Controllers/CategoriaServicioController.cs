@@ -15,7 +15,6 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /CategoriaServicio/
-
         public ActionResult Index()
         {
             return View(db.CD_CategoriaServicio.ToList());

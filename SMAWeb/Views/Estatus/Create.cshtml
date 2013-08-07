@@ -4,9 +4,46 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
-@using (Html.BeginForm()) {
+
+<style>
+    .error {
+    color: #e80c4d;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #e80c4d;
+    font-weight: bold;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #e80c4d;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #e80c4d;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+</style>
+@*<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -33,11 +70,41 @@
             <input type="submit" value="Create" />
         </p>
     </fieldset>
-}
+}*@
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<br />
+<br />
+<div class="container">
+    <div class="row-fluid margin-bottom-10">
+        <div class="reg-page">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <h3>Register a new Status</h3>
+                <div class="controls">
+                    <label>Status Description</label>
+                    @Html.TextBoxFor(model => model.ST_Descripcion, new { @class = "span12" })
+                    @Html.ValidationMessageFor(model => model.ST_Descripcion)
+                </div>
+
+                <div class="controls form-inline">
+                    <input class="btn-u pull-right" type="submit" value="Create" />
+                </div>
+            }
+        </div>
+  <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    </div>
+  
 </div>
+
+
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
