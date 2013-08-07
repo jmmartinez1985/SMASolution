@@ -1,0 +1,100 @@
+﻿@model SMAWeb.Models.UserProfile
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>UserProfile</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserId)
+            @Html.ValidationMessageFor(model => model.UserId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Details)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Details)
+            @Html.ValidationMessageFor(model => model.Details)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.City)
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PA_Id, "PA_Paises")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PA_Id", String.Empty)
+            @Html.ValidationMessageFor(model => model.PA_Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MP_MemberShipId, "MB_Membresia")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("MP_MemberShipId", String.Empty)
+            @Html.ValidationMessageFor(model => model.MP_MemberShipId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ST_Id, "ST_Estatus")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ST_Id", String.Empty)
+            @Html.ValidationMessageFor(model => model.ST_Id)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,96 @@
+﻿@model SMAWeb.Models.AN_Anuncios
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>AN_Anuncios</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AN_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AN_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserProfile.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserProfile.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PA_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PA_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SBS_SubCategoriaServicio.SBS_Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SBS_SubCategoriaServicio.SBS_Descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AN_Titulo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AN_Titulo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AN_Telefono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AN_Telefono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AN_Celular)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AN_Celular)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AN_Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AN_Descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AN_Fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AN_Fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AN_FechaExpiracion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AN_FechaExpiracion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ST_Estatus.ST_Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ST_Estatus.ST_Descripcion)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

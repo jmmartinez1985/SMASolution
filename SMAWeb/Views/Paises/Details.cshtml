@@ -1,0 +1,36 @@
+﻿@model SMAWeb.Models.PA_Paises
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PA_Paises</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PA_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PA_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PA_Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PA_Descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.REG_Region.REG_Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.REG_Region.REG_Descripcion)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

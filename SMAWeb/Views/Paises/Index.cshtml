@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SMAWeb.Models.PA_Paises>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PA_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PA_Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.REG_Region.REG_Descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PA_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PA_Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.REG_Region.REG_Descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,44 @@
+﻿@model SMAWeb.Models.MT_MultimediaTipos
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>MT_MultimediaTipos</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MT_Id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MT_Id)
+            @Html.ValidationMessageFor(model => model.MT_Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MT_Descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MT_Descripcion)
+            @Html.ValidationMessageFor(model => model.MT_Descripcion)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,29 @@
+﻿@model SMAWeb.Models.CD_CategoriaServicio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CD_CategoriaServicio</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CD_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CD_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CD_Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CD_Descripcion)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

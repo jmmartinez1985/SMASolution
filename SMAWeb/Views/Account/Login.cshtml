@@ -8,37 +8,82 @@
     <h1>@ViewBag.Title.</h1>
 </hgroup>
 
-<section id="loginForm">
-<h2>Use a local account to log in.</h2>
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+@*<section id="loginForm">
+    <h2>Use a local account to log in.</h2>
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Log in Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.Email)
-                @Html.TextBoxFor(m => m.Email)
-                @Html.ValidationMessageFor(m => m.Email)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </li>
-            <li>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-            </li>
-        </ol>
-        <input type="submit" value="Log in" />
-    </fieldset>
-    <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
-}
-</section>
+        <fieldset>
+            <legend>Log in Form</legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email)
+                    @Html.ValidationMessageFor(m => m.Email)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)
+                </li>
+                <li>
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                </li>
+            </ol>
+            <input type="submit" value="Log in" />
+        </fieldset>
+        <p>
+            @Html.ActionLink("Register", "Register") if you don't have an account.
+        </p>
+    }
+</section>*@
+
+
+
+<div class="container">
+    <div class="row-fluid">
+
+        <div class="log-page">
+            @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <h3>Login to your account</h3>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-user"></i></span>
+                    @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email", @class = "input-xlarge" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-lock"></i></span>
+                    @Html.PasswordFor(m => m.Password, new { @placeholder = "Password", @class = "input-xlarge" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="controls form-inline">
+                    <label class="checkbox">
+                        <input type="checkbox" />
+                        Stay Signed in</label>
+                   @* <button class="btn-u pull-right" type="submit">Login</button>*@
+                      <input class="btn-u pull-right" type="submit" value="Log in" />
+                </div>
+                <hr />
+                <h4>Forget your Password ?</h4>
+                <p>no worries, <a class="color-green" href="#">click here</a> to reset your password.</p>
+                <p>
+                    @Html.ActionLink("Register", "Register") if you don't have an account.
+                </p> }
+        </div>
+
+
+    </div>
+    <!--/row-fluid-->
+</div>
+<!--/container-->
 
 <section class="social" id="socialLoginForm">
     <h2>Use another service to log in.</h2>

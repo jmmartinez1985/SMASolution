@@ -1,0 +1,44 @@
+﻿@model SMAWeb.Models.ST_Estatus
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ST_Estatus</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ST_Id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ST_Id)
+            @Html.ValidationMessageFor(model => model.ST_Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ST_Descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ST_Descripcion)
+            @Html.ValidationMessageFor(model => model.ST_Descripcion)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

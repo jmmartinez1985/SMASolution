@@ -1,0 +1,52 @@
+﻿@model SMAWeb.Models.PA_Paises
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PA_Paises</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PA_Id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PA_Id)
+            @Html.ValidationMessageFor(model => model.PA_Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PA_Descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PA_Descripcion)
+            @Html.ValidationMessageFor(model => model.PA_Descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.REG_Id, "REG_Region")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("REG_Id", String.Empty)
+            @Html.ValidationMessageFor(model => model.REG_Id)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
