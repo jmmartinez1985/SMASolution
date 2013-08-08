@@ -58,7 +58,7 @@ namespace SMAWeb.Models
     public class LoginModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Email Address")]
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
         public string Email { get; set; }
@@ -77,6 +77,7 @@ namespace SMAWeb.Models
         [Required]
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
