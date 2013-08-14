@@ -18,13 +18,13 @@ namespace SMAWeb
             //    clientId: "",
             //    clientSecret: "");
 
-            //OAuthWebSecurity.RegisterTwitterClient(
-            //    consumerKey: "",
-            //    consumerSecret: "");
+            OAuthWebSecurity.RegisterTwitterClient(
+                consumerKey: "K0Cc1B9ULfy0KWhHn9NQvA",
+                consumerSecret: "jVJJpJ1vahPbb4G9iDQTvAGApe9g5Ca0uXhJ8WAlAY");
 
-            //OAuthWebSecurity.RegisterFacebookClient(
-            //    appId: "",
-            //    appSecret: "");
+            OAuthWebSecurity.RegisterFacebookClient(
+                appId: "261973827175259",
+                appSecret: "2d42d36842716ea372514a88d5941b53");
 
             //OAuthWebSecurity.RegisterGoogleClient();
         }
