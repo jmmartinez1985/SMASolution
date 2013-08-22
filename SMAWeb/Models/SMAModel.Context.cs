@@ -18,7 +18,6 @@ namespace SMAWeb.Models
         public Entities()
             : base("name=Entities")
         {
-            
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -30,6 +29,8 @@ namespace SMAWeb.Models
         public DbSet<AM_MultimediaAnuncios> AM_MultimediaAnuncios { get; set; }
         public DbSet<AN_Anuncios> AN_Anuncios { get; set; }
         public DbSet<CD_CategoriaServicio> CD_CategoriaServicio { get; set; }
+        public DbSet<COM_Compañia> COM_Compañia { get; set; }
+        public DbSet<CON_Contactenos> CON_Contactenos { get; set; }
         public DbSet<MB_Membresia> MB_Membresia { get; set; }
         public DbSet<MT_MultimediaTipos> MT_MultimediaTipos { get; set; }
         public DbSet<PA_Paises> PA_Paises { get; set; }

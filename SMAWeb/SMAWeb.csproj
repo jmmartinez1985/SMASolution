@@ -186,6 +186,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnunciosController.cs" />
     <Compile Include="Controllers\CategoriaServicioController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\ContactosController.cs" />
     <Compile Include="Controllers\EstatusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembresiaController.cs" />
@@ -210,6 +212,12 @@
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CD_CategoriaServicio.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\COM_Compañia.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CON_Contactenos.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MB_Membresia.cs">
@@ -543,6 +551,16 @@
     <Content Include="Views\MultimediaTipos\Delete.cshtml" />
     <Content Include="Views\Shared\_LoggedMenu.cshtml" />
     <Content Include="Views\Shared\_NotLoggedMenu.cshtml" />
+    <Content Include="Views\Contactos\Index.cshtml" />
+    <Content Include="Views\Contactos\Details.cshtml" />
+    <Content Include="Views\Contactos\Create.cshtml" />
+    <Content Include="Views\Contactos\Edit.cshtml" />
+    <Content Include="Views\Contactos\Delete.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Company\Details.cshtml" />
+    <Content Include="Views\Company\Create.cshtml" />
+    <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Company\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

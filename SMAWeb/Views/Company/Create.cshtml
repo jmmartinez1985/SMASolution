@@ -1,0 +1,100 @@
+﻿@model SMAWeb.Models.COM_Compañia
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>COM_Compañia</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.COM_Id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.COM_Id)
+            @Html.ValidationMessageFor(model => model.COM_Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.COM_Nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.COM_Nombre)
+            @Html.ValidationMessageFor(model => model.COM_Nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.COM_Direccion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.COM_Direccion)
+            @Html.ValidationMessageFor(model => model.COM_Direccion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.COM_Telefono)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.COM_Telefono)
+            @Html.ValidationMessageFor(model => model.COM_Telefono)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.COM_Correo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.COM_Correo)
+            @Html.ValidationMessageFor(model => model.COM_Correo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.COM_Web)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.COM_Web)
+            @Html.ValidationMessageFor(model => model.COM_Web)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.COM_ContactoNombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.COM_ContactoNombre)
+            @Html.ValidationMessageFor(model => model.COM_ContactoNombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.COM_ContactoCelular)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.COM_ContactoCelular)
+            @Html.ValidationMessageFor(model => model.COM_ContactoCelular)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.COM_ContactoEmail)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.COM_ContactoEmail)
+            @Html.ValidationMessageFor(model => model.COM_ContactoEmail)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

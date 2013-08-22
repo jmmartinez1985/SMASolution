@@ -1,0 +1,81 @@
+﻿@model IEnumerable<SMAWeb.Models.COM_Compañia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Web)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_ContactoNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_ContactoCelular)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_ContactoEmail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Web)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_ContactoNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_ContactoCelular)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_ContactoEmail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

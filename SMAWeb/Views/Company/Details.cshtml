@@ -1,0 +1,78 @@
+﻿@model SMAWeb.Models.COM_Compañia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>COM_Compañia</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.COM_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.COM_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.COM_Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.COM_Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.COM_Direccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.COM_Direccion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.COM_Telefono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.COM_Telefono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.COM_Correo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.COM_Correo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.COM_Web)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.COM_Web)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.COM_ContactoNombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.COM_ContactoNombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.COM_ContactoCelular)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.COM_ContactoCelular)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.COM_ContactoEmail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.COM_ContactoEmail)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

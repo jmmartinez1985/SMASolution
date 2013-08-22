@@ -10,6 +10,8 @@
           <EntitySet Name="AM_MultimediaAnuncios" EntityType="ServiceMarketModel.Store.AM_MultimediaAnuncios" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AN_Anuncios" EntityType="ServiceMarketModel.Store.AN_Anuncios" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CD_CategoriaServicio" EntityType="ServiceMarketModel.Store.CD_CategoriaServicio" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="COM_Compañia" EntityType="ServiceMarketModel.Store.COM_Compañia" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CON_Contactenos" EntityType="ServiceMarketModel.Store.CON_Contactenos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.Store.MB_Membresia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.Store.MT_MultimediaTipos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PA_Paises" EntityType="ServiceMarketModel.Store.PA_Paises" store:Type="Tables" Schema="dbo" />
@@ -136,6 +138,33 @@
           </Key>
           <Property Name="CD_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CD_Descripcion" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="COM_Compañia">
+          <Key>
+            <PropertyRef Name="COM_Id" />
+          </Key>
+          <Property Name="COM_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="COM_Nombre" Type="varchar" MaxLength="150" />
+          <Property Name="COM_Direccion" Type="varchar" MaxLength="150" />
+          <Property Name="COM_Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="COM_Correo" Type="varchar" MaxLength="150" />
+          <Property Name="COM_Web" Type="varchar" MaxLength="150" />
+          <Property Name="COM_ContactoNombre" Type="varchar" MaxLength="150" />
+          <Property Name="COM_ContactoCelular" Type="varchar" MaxLength="150" />
+          <Property Name="COM_ContactoEmail" Type="varchar" MaxLength="150" />
+          <Property Name="COM_Logo" Type="image" />
+        </EntityType>
+        <EntityType Name="CON_Contactenos">
+          <Key>
+            <PropertyRef Name="CON_Id" />
+          </Key>
+          <Property Name="CON_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CON_Nombre" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="CON_Telefono" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="CON_Celular" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="CON_Email" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="CON_Mensaje" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CON_Fecha" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="MB_Membresia">
           <Key>
@@ -492,6 +521,8 @@
           <EntitySet Name="AM_MultimediaAnuncios" EntityType="ServiceMarketModel.AM_MultimediaAnuncios" />
           <EntitySet Name="AN_Anuncios" EntityType="ServiceMarketModel.AN_Anuncios" />
           <EntitySet Name="CD_CategoriaServicio" EntityType="ServiceMarketModel.CD_CategoriaServicio" />
+          <EntitySet Name="COM_Compañia" EntityType="ServiceMarketModel.COM_Compañia" />
+          <EntitySet Name="CON_Contactenos" EntityType="ServiceMarketModel.CON_Contactenos" />
           <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.MB_Membresia" />
           <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.MT_MultimediaTipos" />
           <EntitySet Name="PA_Paises" EntityType="ServiceMarketModel.PA_Paises" />
@@ -623,6 +654,33 @@
           <Property Name="CD_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="CD_Descripcion" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="SBS_SubCategoriaServicio" Relationship="ServiceMarketModel.FK_SBS_SubCategoriaServicio_CD_CategoriaServicio" FromRole="CD_CategoriaServicio" ToRole="SBS_SubCategoriaServicio" />
+        </EntityType>
+        <EntityType Name="COM_Compañia">
+          <Key>
+            <PropertyRef Name="COM_Id" />
+          </Key>
+          <Property Name="COM_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="COM_Nombre" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="COM_Direccion" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="COM_Telefono" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="COM_Correo" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="COM_Web" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="COM_ContactoNombre" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="COM_ContactoCelular" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="COM_ContactoEmail" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="COM_Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CON_Contactenos">
+          <Key>
+            <PropertyRef Name="CON_Id" />
+          </Key>
+          <Property Name="CON_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CON_Nombre" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CON_Telefono" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CON_Celular" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CON_Email" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CON_Mensaje" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="CON_Fecha" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="MB_Membresia">
           <Key>
@@ -1013,6 +1071,35 @@
               <MappingFragment StoreEntitySet="CD_CategoriaServicio">
                 <ScalarProperty Name="CD_Id" ColumnName="CD_Id" />
                 <ScalarProperty Name="CD_Descripcion" ColumnName="CD_Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COM_Compañia">
+            <EntityTypeMapping TypeName="ServiceMarketModel.COM_Compañia">
+              <MappingFragment StoreEntitySet="COM_Compañia">
+                <ScalarProperty Name="COM_Id" ColumnName="COM_Id" />
+                <ScalarProperty Name="COM_Nombre" ColumnName="COM_Nombre" />
+                <ScalarProperty Name="COM_Direccion" ColumnName="COM_Direccion" />
+                <ScalarProperty Name="COM_Telefono" ColumnName="COM_Telefono" />
+                <ScalarProperty Name="COM_Correo" ColumnName="COM_Correo" />
+                <ScalarProperty Name="COM_Web" ColumnName="COM_Web" />
+                <ScalarProperty Name="COM_ContactoNombre" ColumnName="COM_ContactoNombre" />
+                <ScalarProperty Name="COM_ContactoCelular" ColumnName="COM_ContactoCelular" />
+                <ScalarProperty Name="COM_ContactoEmail" ColumnName="COM_ContactoEmail" />
+                <ScalarProperty Name="COM_Logo" ColumnName="COM_Logo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CON_Contactenos">
+            <EntityTypeMapping TypeName="ServiceMarketModel.CON_Contactenos">
+              <MappingFragment StoreEntitySet="CON_Contactenos">
+                <ScalarProperty Name="CON_Id" ColumnName="CON_Id" />
+                <ScalarProperty Name="CON_Nombre" ColumnName="CON_Nombre" />
+                <ScalarProperty Name="CON_Telefono" ColumnName="CON_Telefono" />
+                <ScalarProperty Name="CON_Celular" ColumnName="CON_Celular" />
+                <ScalarProperty Name="CON_Email" ColumnName="CON_Email" />
+                <ScalarProperty Name="CON_Mensaje" ColumnName="CON_Mensaje" />
+                <ScalarProperty Name="CON_Fecha" ColumnName="CON_Fecha" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

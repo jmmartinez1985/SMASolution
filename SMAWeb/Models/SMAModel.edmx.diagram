@@ -4,11 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="18399391b98342b4b6353915f4bd4981" Name="Diagram1">
+      <Diagram DiagramId="76ed7dbfbd334b3194789709844b2e33" Name="Diagram1">
         <EntityTypeShape EntityType="ServiceMarketModel.AE_AnunciosExtras" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.AM_MultimediaAnuncios" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.AN_Anuncios" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.CD_CategoriaServicio" Width="1.5" PointX="1.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceMarketModel.COM_Compañia" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceMarketModel.CON_Contactenos" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.MB_Membresia" Width="1.5" PointX="3.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.MT_MultimediaTipos" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.PA_Paises" Width="1.5" PointX="3.75" PointY="15.625" IsExpanded="true" />
@@ -18,9 +20,9 @@
         <EntityTypeShape EntityType="ServiceMarketModel.SBS_SubCategoriaServicio" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.SS_SolicitudServicio" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.ST_Estatus" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServiceMarketModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceMarketModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.UserProfile" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServiceMarketModel.webpages_Membership" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceMarketModel.webpages_Membership" Width="1.5" PointX="12.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.webpages_OAuthMembership" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.webpages_Roles" Width="1.5" PointX="3.75" PointY="18.375" IsExpanded="true" />
         <AssociationConnector Association="ServiceMarketModel.FK_AE_AnunciosExtras_AN_Anuncios" ManuallyRouted="false" />

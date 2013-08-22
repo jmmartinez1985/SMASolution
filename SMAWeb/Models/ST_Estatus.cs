@@ -11,7 +11,6 @@ namespace SMAWeb.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class ST_Estatus
     {
@@ -23,8 +22,6 @@ namespace SMAWeb.Models
         }
     
         public int ST_Id { get; set; }
-        [Required]
-        [Display(Name="Descripcion")]
         public string ST_Descripcion { get; set; }
     
         public virtual ICollection<AN_Anuncios> AN_Anuncios { get; set; }
