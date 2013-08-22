@@ -194,6 +194,7 @@
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Controllers\SubCategoriaServicioController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
+    <Compile Include="Extensions\ExtensionHelper.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -214,6 +215,7 @@
     <Compile Include="Models\MB_Membresia.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelExtension.cs" />
     <Compile Include="Models\MT_MultimediaTipos.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
@@ -563,7 +565,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>5735</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

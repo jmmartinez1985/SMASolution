@@ -37,33 +37,115 @@
 <div class="slider-inner">
     <div id="da-slider" class="da-slider">
         <div class="da-slide">
-            <h2><i>CLEAN &amp; FRESH</i> <br /> <i>FULLY RESPONSIVE</i> <br /> <i>DESIGN</i></h2>
-            <p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i> <br /> <i>veniam omnis </i></p>
-            <div class="da-img"><img src="@Url.Content("~/Images/1.png")" alt="" /></div>
-        </div>
-        <div class="da-slide">
-            <h2><i>RESPONSIVE VIDEO</i> <br /> <i>SUPPORT AND</i> <br /> <i>MANY MORE</i></h2>
-            <p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i></p>
-            <div class="da-img span6">
-            	<div class="span6">
-					<iframe src="http://player.vimeo.com/video/47911018" width="100%" height="320" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> 
- 				</div>
+            <h2><i>CLEAN &amp; FRESH</i>
+                <br />
+                <i>FULLY RESPONSIVE</i>
+                <br />
+                <i>DESIGN</i></h2>
+            <p>
+                <i>Lorem ipsum dolor amet</i>
+                <br />
+                <i>tempor incididunt ut</i>
+                <br />
+                <i>veniam omnis </i>
+            </p>
+            <div class="da-img">
+                <img src="@Url.Content("~/Images/1.png")" alt="" />
             </div>
         </div>
         <div class="da-slide">
-            <h2><i>USING BEST WEB</i> <br /> <i>SOLUTIONS WITH</i> <br /> <i>HTML5/CSS3</i></h2>
-            <p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i> <br /> <i>veniam omnis </i></p>
-            <div class="da-img"><img src="@Url.Content("~/Images/html5andcss3.png")" alt="image01" /></div>
+            <h2><i>RESPONSIVE VIDEO</i>
+                <br />
+                <i>SUPPORT AND</i>
+                <br />
+                <i>MANY MORE</i></h2>
+            <p>
+                <i>Lorem ipsum dolor amet</i>
+                <br />
+                <i>tempor incididunt ut</i>
+            </p>
+            <div class="da-img span6">
+                <div class="span6">
+                    <iframe src="http://player.vimeo.com/video/47911018" width="100%" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="da-slide">
+            <h2><i>USING BEST WEB</i>
+                <br />
+                <i>SOLUTIONS WITH</i>
+                <br />
+                <i>HTML5/CSS3</i></h2>
+            <p>
+                <i>Lorem ipsum dolor amet</i>
+                <br />
+                <i>tempor incididunt ut</i>
+                <br />
+                <i>veniam omnis </i>
+            </p>
+            <div class="da-img">
+                <img src="@Url.Content("~/Images/html5andcss3.png")" alt="image01" />
+            </div>
         </div>
         <nav class="da-arrows">
             <span class="da-arrows-prev"></span>
-            <span class="da-arrows-next"></span>		
+            <span class="da-arrows-next"></span>
         </nav>
-    </div><!--/da-slider-->
-</div><!--/slider-->
+    </div>
+    <!--/da-slider-->
+</div>
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="span3">
+            <div id="anuncioInfo"></div>
+        </div>
+        <div class="span9">
+        </div>
+
+    </div>
+
+
+</div>
+<!--/slider-->
 <!--=== End Slider ===-->
 <script type="text/javascript">
     jQuery(document).ready(function () {
         Index.initParallaxSlider();
+    });
+
+    var $jq = jQuery.noConflict();
+
+    $jq(function () {
+
+
+        jQuery.ajax(
+               {
+                   type: 'post',
+                   url: '@Url.Action("GetServices", "Home")',
+                   success: function (data) {
+                       var result = JSON.parse(data);
+                       
+                       var htmldata = '';
+                       htmldata += '<table class="table">';
+                       $jq.each(result.$values, function (val, anuncio) {
+                           debugger;
+
+                           htmldata += '<tr>';
+
+                           htmldata += '<td>' + anuncio.AnunciosInfo.AN_Id + '<td>';
+                           htmldata += '<td>' + anuncio.AnunciosInfo.AN_Titulo + '<td>';
+
+                           htmldata += '</tr>';
+
+                       });
+                       htmldata += '</table>';
+                       $jq('#anuncioInfo').append(htmldata);
+
+                   },
+                   error: function (a, b, c) {
+
+                   }
+               });
     });
 </script>
