@@ -96,12 +96,21 @@
 </div>
 
 <div class="container">
+
+
     <div class="row-fluid">
-        <div class="span3">
-            <div id="anuncioInfo"></div>
+        <div class="span6">
         </div>
-        <div class="span9">
+
+        <div class="span6">
+            <div class="headline">
+                <h3>Servicios Disponibles</h3>
+            </div>
+            <div id="anuncioInfo">
+                
+            </div>
         </div>
+
 
     </div>
 
@@ -125,19 +134,17 @@
                    url: '@Url.Action("GetServices", "Home")',
                    success: function (data) {
                        var result = JSON.parse(data);
-                       
+
                        var htmldata = '';
-                       htmldata += '<table class="table">';
+                       htmldata += '<table class="table table-hover"> <tr><td>Id#</td><td>Proveedor</td><td>'
+                       htmldata += 'Estatus</td><td>Categoría</td></tr>';
                        $jq.each(result.$values, function (val, anuncio) {
-                           debugger;
-
                            htmldata += '<tr>';
-
-                           htmldata += '<td>' + anuncio.AnunciosInfo.AN_Id + '<td>';
-                           htmldata += '<td>' + anuncio.AnunciosInfo.AN_Titulo + '<td>';
-
+                           htmldata += '<td>' + anuncio.AnunciosInfo.AN_Id + '</td>';
+                           htmldata += '<td>' + anuncio.Usuario + '</td>';
+                           htmldata += '<td>' + anuncio.EstatusDescription + '</td>';
+                           htmldata += '<td>' + anuncio.CategoriaDescripcion + '</td>';
                            htmldata += '</tr>';
-
                        });
                        htmldata += '</table>';
                        $jq('#anuncioInfo').append(htmldata);
