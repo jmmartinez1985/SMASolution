@@ -30,15 +30,14 @@ namespace SMAWeb.Controllers
 
                 foreach (var item in allAnunciosList)
                 {
-                    string username = model.UserProfile.SingleOrDefault(c => c.UserId == item.UserId).UserName;
-                    string statusDesc = model.ST_Estatus.SingleOrDefault( c=>c.ST_Id == item.ST_Id).ST_Descripcion;
-
-                    var valor = model.SBS_SubCategoriaServicio.SingleOrDefault(c => c.SBS_Id == item.SBS_Id);
+                    string username = item.UserProfile.Name;
+                    string statusDesc = item.ST_Estatus.ST_Descripcion;
+                    var categoria = item.SBS_SubCategoriaServicio.CD_CategoriaServicio.CD_Descripcion;
                     viewModelAnuncios.Add(new AnunciosViewModel
                     {
                         Usuario = username,
                         EstatusDescription = statusDesc,
-                        AnunciosInfo = item
+                        AnunciosInfo = item, CategoriaDescripcion = categoria
                     });
 
                 }
@@ -47,7 +46,6 @@ namespace SMAWeb.Controllers
             {
                 return HttpNotFound();
             }
-
             var anuncios = viewModelAnuncios.SerializeToJson();
             return Json(anuncios);
         }
