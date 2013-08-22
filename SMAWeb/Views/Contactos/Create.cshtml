@@ -4,79 +4,101 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="container">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="headline">
+                <h3>Información</h3>
+            </div>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>CON_Contactenos</legend>
+            <br />
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Id)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Id)
-            @Html.ValidationMessageFor(model => model.CON_Id)
-        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Nombre)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Nombre)
-            @Html.ValidationMessageFor(model => model.CON_Nombre)
-        </div>
+            <div class="posts">
+                <div class="headline">
+                    <h3>Productos Recientes</h3>
+                </div>
+                <dl class="dl-horizontal">
+                    <dt><a href="#">
+                        <img src="~/Images/4.jpg" alt=""></a></dt>
+                    <dd>
+                        <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt><a href="#">
+                        <img src="~/Images/11.jpg" alt=""></a></dt>
+                    <dd>
+                        <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+                    </dd>
+                </dl>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Telefono)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Telefono)
-            @Html.ValidationMessageFor(model => model.CON_Telefono)
-        </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Celular)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Celular)
-            @Html.ValidationMessageFor(model => model.CON_Celular)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Email)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Email)
-            @Html.ValidationMessageFor(model => model.CON_Email)
-        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Mensaje)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Mensaje)
-            @Html.ValidationMessageFor(model => model.CON_Mensaje)
-        </div>
+        <!--/span9-->
+        <div class="span9">
+            <div class="headline">
+                <h3>Formulario de contacto</h3>
+            </div>
+            <div class="successmessage">
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Fecha)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Fecha)
-            @Html.ValidationMessageFor(model => model.CON_Fecha)
-        </div>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+    
+                
+                
+                <h4>Por favor llene todos los campos que son requeridos en el formulario para una mejor atencion en caso de contactarlos</h4>
+                <br />
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
+                <label for='Nombre'>Nombre*: </label>
+                @Html.TextBoxFor(model => model.CON_Nombre, new { @placeholder = "Nombre", @class = "input-xlarge" })
+                <br />
+                @Html.ValidationMessageFor(model => model.CON_Nombre)
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+                <label for='Email'>Correo Electronico*:</label>
+                @Html.TextBoxFor(model => model.CON_Email, new { @placeholder = "Correo Electrónico", @class = "input-xxlarge" })
+                <br />
+                @Html.ValidationMessageFor(model => model.CON_Email)
+
+                <label for='Teléfono'>Telefono*:</label>
+                @Html.TextBoxFor(model => model.CON_Telefono, new { @placeholder = "Teléfono", @class = "input-large" })
+                <br />
+                @Html.ValidationMessageFor(model => model.CON_Telefono)
+
+
+                <label for='Celular'>Celular*:</label>
+                @Html.TextBoxFor(model => model.CON_Celular, new { @placeholder = "Celular", @class = "input-large" })
+                <br />
+                @Html.ValidationMessageFor(model => model.CON_Celular)
+
+
+
+
+                <label for='message'>Mensaje:</label>
+
+                @Html.TextAreaFor(model => model.CON_Mensaje, new { @placeholder = "Mensaje", @class = "input-xxlarge" })
+                <br />
+                @Html.ValidationMessageFor(model => model.CON_Mensaje)
+
+                <br />
+                <input type="submit" value="Contactar" class="btn-u" id="submit-button" />
+                <br />
+                <p id="req-field-desc"><span class="required">*</span>Indica que es un campo mandatorio en el formulario</p>
+
+
+             
+          
+            }
+
+        </div>
+    </div>
 </div>
 
 @section Scripts {
