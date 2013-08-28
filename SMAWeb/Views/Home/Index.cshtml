@@ -95,27 +95,37 @@
     <!--/da-slider-->
 </div>
 
-<div class="container">
+<br />
 
-
-    <div class="row-fluid">
-        <div class="span6">
+<div class="row-fluid">
+    <div class="span12 booking-blocks"> <!--   -->
+        <div class="pull-left booking-img"> <!--   -->
+            <img src="~/Images/1.png" alt="Nombre del anunciante"> <!-- Nombre del Anunciante  -->
+            <ul class="unstyled">
+                <li><i class="icon-briefcase"></i>Categoria</li>  <!-- Categorias  -->
+                <li><i class="icon-map-marker"></i>Lugar del anuncio</li> <!-- Lugar del anuncio, agregar campo a la base de datos  -->
+                <li>
+                    <ul class="unstyled inline"> <!-- Calculado basado Review basado en 5  -->
+                        <li><i class="icon-star"></i></li>
+                        <li><i class="icon-star"></i></li>
+                        <li><i class="icon-star"></i></li>
+                        <li><i class="icon-star"></i></li>
+                        <li><i class="icon-star-empty"></i></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
+        <div style="overflow: hidden;">
+            <h2><a href="#">Titulo del anuncio</a></h2>  <!-- Titulo Anuncio  -->
 
-        <div class="span6">
-            <div class="headline">
-                <h3>Servicios Disponibles</h3>
-            </div>
-            <div id="anuncioInfo">
-                
-            </div>
+            <p>Esta es la descripcion del servicio que se ofrece, At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.  </p> <!-- Descripcion de anuncio, basado en 200 caracteres -->
+            <button class="btn-u btn-u-orange">Leer Más</button> <!-- Nombre del Anunciante  -->
         </div>
-
-
     </div>
-
-
 </div>
+
+
+
 <!--/slider-->
 <!--=== End Slider ===-->
 <script type="text/javascript">
@@ -136,17 +146,11 @@
                        var result = JSON.parse(data);
 
                        var htmldata = '';
-                       htmldata += '<table class="table table-hover"> <tr><td>Id#</td><td>Proveedor</td><td>'
-                       htmldata += 'Estatus</td><td>Categoría</td></tr>';
+
                        $jq.each(result.$values, function (val, anuncio) {
-                           htmldata += '<tr>';
-                           htmldata += '<td>' + anuncio.AnunciosInfo.AN_Id + '</td>';
-                           htmldata += '<td>' + anuncio.Usuario + '</td>';
-                           htmldata += '<td>' + anuncio.EstatusDescription + '</td>';
-                           htmldata += '<td>' + anuncio.CategoriaDescripcion + '</td>';
-                           htmldata += '</tr>';
+
                        });
-                       htmldata += '</table>';
+
                        $jq('#anuncioInfo').append(htmldata);
 
                    },

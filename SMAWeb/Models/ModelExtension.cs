@@ -23,6 +23,15 @@ namespace SMAWeb.Models
     {
     }
 
+    [MetadataType(typeof(SBS_SubCategoriaServicioMetadata))]
+    public partial class SBS_SubCategoriaServicio
+    {
+    }
+    [MetadataType(typeof(CD_CategoriaServicioMetadata))]
+    public partial class CD_CategoriaServicio
+    {
+    }
+
 
     public partial class AN_AnunciosMetadata
     {
@@ -62,6 +71,38 @@ namespace SMAWeb.Models
         [Display(Name = "Descripcion")]
         public string ST_Descripcion { get; set; }
 
+    }
+
+    public partial class SBS_SubCategoriaServicioMetadata
+    {
+
+        [Display(Name = "Código SubCategoría")]
+        public int SBS_Id { get; set; }
+
+        [Display(Name = "Código Categoría")]
+        [Required]
+        public Nullable<int> CD_Id { get; set; }
+
+         [Required]
+        [Display(Name = "Descripcion")]
+        public string SBS_Descripcion { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<AN_Anuncios> AN_Anuncios { get; set; }
+        [JsonIgnore]
+        [Display(Name = "Categorias")]
+        public virtual CD_CategoriaServicio CD_CategoriaServicio { get; set; }
+    }
+
+    public partial class CD_CategoriaServicioMetadata
+    {
+        [Required]
+        [Display(Name = "Código Categoría")]
+        public int CD_Id { get; set; }
+        [Display(Name = "Descripcion")]
+        public string CD_Descripcion { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<SBS_SubCategoriaServicio> SBS_SubCategoriaServicio { get; set; }
     }
 
     public class AnunciosViewModel

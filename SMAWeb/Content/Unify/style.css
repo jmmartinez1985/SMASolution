@@ -383,7 +383,8 @@ blockquote:hover {
 .footer {
 	margin-top:40px;
 	padding:20px 10px;
-	background:#585f69;
+	/*background:#585f69;*/
+    background:#585f69;
 	color:#dadada;
 } 
 .footer h1, 
@@ -584,7 +585,7 @@ blockquote:hover {
 .breadcrumbs {
 	padding:10px 0 6px;
 	box-shadow:inset 0 0 4px #eee;
-	background:url(../img/breadcrumbs.png) repeat;
+	background:url(Images/breadcrumbs.png) repeat;
 }
 .breadcrumbs h1 {
 	color:#686868;
@@ -597,7 +598,7 @@ blockquote:hover {
 
 .breadcrumb { 
 	top:9px;
-	padding-right:0;
+	padding-right:30px;
 	background:none;
 	position:relative;
 }
@@ -989,7 +990,7 @@ blockquote:hover {
 
 /*Registration and Login Page
 ------------------------------------*/
-.reg-page,
+.reg-page,.another-page,
 .login-page  {
 	overflow:hidden;
 	margin:0 auto;
@@ -1005,6 +1006,16 @@ blockquote:hover {
 	padding:30px 50px 30px;
 }
 .reg-page h3 {
+	margin-bottom:25px;
+}
+
+/*another*/
+.another-page {
+	min-width:90%;
+	max-width:30%;
+	padding:20px 50px 30px;
+}
+.another-page h3 {
 	margin-bottom:25px;
 }
 
