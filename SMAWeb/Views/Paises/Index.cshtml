@@ -4,42 +4,54 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PA_Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PA_Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.REG_Region.REG_Descripcion)
-        </th>
-        <th></th>
-    </tr>
+<br />
+<div class="container">
+    <div class="row-fluid margin-bottom-10">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PA_Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PA_Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.REG_Region.REG_Descripcion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        <div class="another-page">
+            <div class="headline">
+                <h3>Formulario de País</h3>
+            </div>
+
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PA_Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PA_Descripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.REG_Region.REG_Descripcion)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PA_Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PA_Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.REG_Region.REG_Descripcion)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.PA_Id }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
-</table>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>

@@ -26,17 +26,16 @@
               
   
                 @Html.LabelFor(model => model.CD_Id)
-                <br />
                 @Html.DropDownList("CD_Id", String.Empty)
                 @Html.ValidationMessageFor(model => model.CD_Id)
-   
+                <br />
 
  
                 @Html.LabelFor(model => model.SBS_Descripcion)
-                <br />
+                
                 @Html.TextBoxFor(model => model.SBS_Descripcion, new { @placeholder = "SubCategoría", @class = "input-xlarge" })
                 @Html.ValidationMessageFor(model => model.SBS_Descripcion)
-    
+                <br />
 
                 <p>
                     <input type="submit" value="Create" class="btn-u" />

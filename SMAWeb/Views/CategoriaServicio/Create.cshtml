@@ -4,41 +4,46 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<br />
+<div class="container">
+    <div class="row-fluid margin-bottom-10">
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+        <div class="another-page">
+            <div class="headline">
+                <h3>Crear Categoría</h3>
+            </div>
 
-    <fieldset>
-        <legend>CD_CategoriaServicio</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CD_Id)
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                @Html.HiddenFor(model => model.CD_Id)
+                    
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CD_Descripcion)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CD_Descripcion)
+                    @Html.ValidationMessageFor(model => model.CD_Descripcion)
+                </div>
+
+                <p>
+                    <input type="submit" value="Create" class="btn-u" />
+                </p>
+               
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CD_Id)
-            @Html.ValidationMessageFor(model => model.CD_Id)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CD_Descripcion)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CD_Descripcion)
-            @Html.ValidationMessageFor(model => model.CD_Descripcion)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

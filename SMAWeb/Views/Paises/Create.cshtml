@@ -4,49 +4,51 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<br />
+<div class="container">
+    <div class="row-fluid margin-bottom-10">
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+        <div class="another-page">
+            <div class="headline">
+                <h3>Crear País</h3>
+            </div>
 
-    <fieldset>
-        <legend>PA_Paises</legend>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PA_Id)
+   
+                @Html.HiddenFor(model => model.PA_Id)
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PA_Descripcion)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.PA_Descripcion)
+                    @Html.ValidationMessageFor(model => model.PA_Descripcion)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.REG_Id, "REG_Region")
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("REG_Id", String.Empty)
+                    @Html.ValidationMessageFor(model => model.REG_Id)
+                </div>
+
+                <p>
+                    <input type="submit" value="Create" class="btn-u" />
+                </p>
+    
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PA_Id)
-            @Html.ValidationMessageFor(model => model.PA_Id)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PA_Descripcion)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PA_Descripcion)
-            @Html.ValidationMessageFor(model => model.PA_Descripcion)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.REG_Id, "REG_Region")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("REG_Id", String.Empty)
-            @Html.ValidationMessageFor(model => model.REG_Id)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

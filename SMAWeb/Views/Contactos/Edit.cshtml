@@ -4,81 +4,92 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<br />
+<div class="container">
+    <div class="row-fluid margin-bottom-10">
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+        <div class="another-page">
+            <div class="headline">
+                <h3>Editar Contactos</h3>
+            </div>
 
-    <fieldset>
-        <legend>CON_Contactenos</legend>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Id)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Id)
-            @Html.ValidationMessageFor(model => model.CON_Id)
-        </div>
+                <fieldset>
+                    <legend>CON_Contactenos</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Nombre)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Nombre)
-            @Html.ValidationMessageFor(model => model.CON_Nombre)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CON_Id)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CON_Id)
+                        @Html.ValidationMessageFor(model => model.CON_Id)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Telefono)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Telefono)
-            @Html.ValidationMessageFor(model => model.CON_Telefono)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CON_Nombre)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CON_Nombre)
+                        @Html.ValidationMessageFor(model => model.CON_Nombre)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Celular)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Celular)
-            @Html.ValidationMessageFor(model => model.CON_Celular)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CON_Telefono)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CON_Telefono)
+                        @Html.ValidationMessageFor(model => model.CON_Telefono)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Email)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Email)
-            @Html.ValidationMessageFor(model => model.CON_Email)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CON_Celular)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CON_Celular)
+                        @Html.ValidationMessageFor(model => model.CON_Celular)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Mensaje)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Mensaje)
-            @Html.ValidationMessageFor(model => model.CON_Mensaje)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CON_Email)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CON_Email)
+                        @Html.ValidationMessageFor(model => model.CON_Email)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CON_Fecha)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CON_Fecha)
-            @Html.ValidationMessageFor(model => model.CON_Fecha)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CON_Mensaje)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CON_Mensaje)
+                        @Html.ValidationMessageFor(model => model.CON_Mensaje)
+                    </div>
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CON_Fecha)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CON_Fecha)
+                        @Html.ValidationMessageFor(model => model.CON_Fecha)
+                    </div>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+                    <p>
+                        <input type="submit" value="Save" class="btn-u" />
+                    </p>
+                </fieldset>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+        </div>
+    </div>
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
