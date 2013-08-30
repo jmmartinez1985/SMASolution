@@ -10,13 +10,13 @@
         <div class="nav-collapse collapse">
             <ul class="nav top-2">
                 <li class="active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tus Anuncios
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catálogos
                                
                                     <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="active"><a href="@Url.Action("GetAnunciosByUser", "Anuncios", new { UserId = WebSecurity.CurrentUserId})">Anuncios Publicados</a></li>
-                        <li><a href="#">Creación de Anuncios</a></li>
+                        <li class="active"><a href="#">Option1: Landing Page</a></li>
+                        <li><a href="#">Option2: Header Option</a></li>
                         <li><a href="#">Option3: Revolution Slider</a></li>
                         <li><a href="#">Option4: Amazing Content</a></li>
                         <li><a href="#">Option5: Mixed Content</a></li>
@@ -24,7 +24,20 @@
                     <b class="caret-out"></b>
                 </li>
                 <li class="">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tus Transacciones
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anuncios
+                               
+                                    <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Action("Index","Anuncios")">Anuncios Publicados</a></li>
+                        <li><a href="#">Option3: Revolution Slider</a></li>
+                        <li><a href="#">Option4: Amazing Content</a></li>
+                        <li><a href="#">Option5: Mixed Content</a></li>
+                    </ul>
+                    <b class="caret-out"></b>
+                </li>
+                <li class="">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transacciones
                                
                                     <b class="caret"></b>
                     </a>
@@ -37,7 +50,7 @@
                     <b class="caret-out"></b>
                 </li>
                 <li class="">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estadisticas
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quejas y +
                                
                                     <b class="caret"></b>
                     </a>
@@ -49,8 +62,20 @@
                     </ul>
                     <b class="caret-out"></b>
                 </li>
-    
-
+                <li class="">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración
+                               
+                                    <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Option2: Header Option</a></li>
+                        <li><a href="#">Option3: Revolution Slider</a></li>
+                        <li><a href="#">Option4: Amazing Content</a></li>
+                        <li><a href="#">Option5: Mixed Content</a></li>
+                    </ul>
+                    <b class="caret-out"></b>
+                </li>
+            
                 <li><a class="search"><i class="search-btn icon-search"></i></a></li>
             </ul>
             <div class="search-open" style="display: none;">

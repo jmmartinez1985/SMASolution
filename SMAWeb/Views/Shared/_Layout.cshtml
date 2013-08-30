@@ -83,9 +83,18 @@
 
          @if (Request.IsAuthenticated)
          { 
+             if(Roles.IsUserInRole("Admin"))
+             {
+             
              <text>
-                @Html.Partial("_LoggedMenu")
+                @Html.Partial("_LoggedAdminMenu")
             </text>
+         
+            }
+            else{
+                 <text>
+                @Html.Partial("_LoggedMenu")
+                </text>}
          }
          else
          {

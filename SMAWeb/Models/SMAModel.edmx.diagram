@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="76ed7dbfbd334b3194789709844b2e33" Name="Diagram1">
+      <Diagram DiagramId="c412d5c98d4f4fa8bc0bd81ba87b5565" Name="Diagram1">
         <EntityTypeShape EntityType="ServiceMarketModel.AE_AnunciosExtras" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.AM_MultimediaAnuncios" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServiceMarketModel.AN_Anuncios" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceMarketModel.AN_Anuncios" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.CD_CategoriaServicio" Width="1.5" PointX="1.5" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.COM_Compañia" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.CON_Contactenos" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />

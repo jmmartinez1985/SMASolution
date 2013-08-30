@@ -1,0 +1,108 @@
+﻿@model IEnumerable<SMAWeb.Models.AN_Anuncios>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<br />
+<div class="container">
+    <div class="row-fluid margin-bottom-10">
+
+        <div class="another-page">
+            <div class="headline">
+                <h3>Formulario de Anuncios</h3>
+            </div>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table table-striped">
+                <thead>
+
+
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AN_Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserProfile.UserName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PA_Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SBS_SubCategoriaServicio.SBS_Descripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AN_Titulo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AN_Telefono)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AN_Celular)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AN_Descripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AN_Fecha)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AN_FechaExpiracion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ST_Estatus.ST_Descripcion)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AN_Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserProfile.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PA_Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SBS_SubCategoriaServicio.SBS_Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AN_Titulo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AN_Telefono)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AN_Celular)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AN_Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AN_Fecha)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AN_FechaExpiracion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ST_Estatus.ST_Descripcion)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.AN_Id }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

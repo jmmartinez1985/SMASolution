@@ -81,6 +81,8 @@ namespace SMAWeb.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.Email, model.Password);
                     WebSecurity.Login(model.Email, model.Password);
+                    if (!Roles.IsUserInRole("Users"))
+                        Roles.AddUsersToRole(new string[] { model.Email }, "Users");
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
