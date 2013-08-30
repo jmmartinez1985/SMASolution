@@ -16,17 +16,17 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Anuncios/
-        [AdminRoleFilter]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var an_anuncios = db.AN_Anuncios.Include(a => a.SBS_SubCategoriaServicio).Include(a => a.ST_Estatus).Include(a => a.UserProfile);
             return View(an_anuncios.ToList());
         }
 
-        [UserRoleFilter]
+
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult GetAnunciosByUser(int UserId)
         {
-          
             var an_anuncios = db.AN_Anuncios.Include(a => a.SBS_SubCategoriaServicio).
                 Include(a => a.ST_Estatus).Include(a => a.UserProfile)
                 .Where(c => c.UserId == UserId);

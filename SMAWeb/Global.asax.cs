@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebMatrix.WebData;
 
 namespace SMAWeb
 {
@@ -17,7 +18,7 @@ namespace SMAWeb
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
+         
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -25,6 +26,10 @@ namespace SMAWeb
             AuthConfig.RegisterAuth();
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
+        protected void Application_End()
+        {
+   
+        } 
 
     }
 }
