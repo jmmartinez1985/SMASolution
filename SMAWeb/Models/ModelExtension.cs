@@ -98,6 +98,9 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Estado")]
         public int ST_Id { get; set; }
 
+         [Display(Name = "Lugar del Anuncio")]
+        public string AN_Area { get; set; }
+
         [JsonIgnore]
         public virtual ICollection<AE_AnunciosExtras> AE_AnunciosExtras { get; set; }
         [JsonIgnore]
@@ -211,6 +214,7 @@ namespace SMAWeb.Models
         public string EstatusDescription { get; set; }
         public string Usuario { get; set; }
         public string CategoriaDescripcion { get; set; }
+        public string  FirstImage { get; set; }
 
     }
 

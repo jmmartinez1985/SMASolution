@@ -26,18 +26,29 @@ namespace SMAWeb.Controllers
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
             using (Entities model = new Entities())
             {
-                allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).ToList();
+                allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(sts => sts.ST_Id == 1).ToList();
 
                 foreach (var item in allAnunciosList)
                 {
                     string username = item.UserProfile.Name;
                     string statusDesc = item.ST_Estatus.ST_Descripcion;
                     var categoria = item.SBS_SubCategoriaServicio.CD_CategoriaServicio.CD_Descripcion;
+                    var firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
+
+                    string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
+                    var formatted = firstImage.Replace("~", "");
+                    if (formatted.StartsWith("/"))
+                        formatted = formatted.Remove(0, 1);
+                    firstImage = urlimg + formatted;
+
+
                     viewModelAnuncios.Add(new AnunciosViewModel
                     {
                         Usuario = username,
                         EstatusDescription = statusDesc,
-                        AnunciosInfo = item, CategoriaDescripcion = categoria
+                        AnunciosInfo = item,
+                        CategoriaDescripcion = categoria,
+                        FirstImage = firstImage
                     });
 
                 }
