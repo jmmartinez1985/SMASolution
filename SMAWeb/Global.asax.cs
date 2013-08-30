@@ -25,5 +25,6 @@ namespace SMAWeb
             AuthConfig.RegisterAuth();
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
+
     }
 }

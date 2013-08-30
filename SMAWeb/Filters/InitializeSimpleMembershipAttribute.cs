@@ -5,6 +5,7 @@ using System.Threading;
 using System.Web.Mvc;
 using WebMatrix.WebData;
 using SMAWeb.Models;
+using System.Web.Security;
 
 namespace SMAWeb.Filters
 {
@@ -46,5 +47,35 @@ namespace SMAWeb.Filters
                 }
             }
         }
+    }
+
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    public class AdminRoleFilter : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (!Roles.IsUserInRole(WebSecurity.CurrentUserName, "Admin"))// Check the Role Against the database Value
+            {
+                filterContext.Result = new RedirectResult("~/Account/Login");
+                return;
+            }
+        }
+
+
+    }
+
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    public class UserRoleFilter : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (!Roles.IsUserInRole(WebSecurity.CurrentUserName, "Users"))// Check the Role Against the database Value
+            {
+                filterContext.Result = new RedirectResult("~/Account/Login");
+                return;
+            }
+        }
+
+
     }
 }

@@ -127,8 +127,9 @@
           <Property Name="AN_Titulo" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="AN_Telefono" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="AN_Celular" Type="varchar" MaxLength="20" />
-          <Property Name="AN_Descripcion" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="AN_Descripcion" Type="varchar" Nullable="false" MaxLength="2000" />
           <Property Name="AN_Fecha" Type="datetime" Nullable="false" />
+          <Property Name="AN_Area" Type="varchar" MaxLength="300" />
           <Property Name="AN_FechaExpiracion" Type="datetime" />
           <Property Name="ST_Id" Type="int" Nullable="false" />
         </EntityType>
@@ -636,8 +637,9 @@
           <Property Name="AN_Titulo" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
           <Property Name="AN_Telefono" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="AN_Celular" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="AN_Descripcion" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="AN_Descripcion" Type="String" Nullable="false" MaxLength="2000" Unicode="false" FixedLength="false" />
           <Property Name="AN_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AN_Area" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
           <Property Name="AN_FechaExpiracion" Type="DateTime" Precision="3" />
           <Property Name="ST_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AE_AnunciosExtras" Relationship="ServiceMarketModel.FK_AE_AnunciosExtras_AN_Anuncios" FromRole="AN_Anuncios" ToRole="AE_AnunciosExtras" />
@@ -1061,6 +1063,7 @@
                 <ScalarProperty Name="AN_Celular" ColumnName="AN_Celular" />
                 <ScalarProperty Name="AN_Descripcion" ColumnName="AN_Descripcion" />
                 <ScalarProperty Name="AN_Fecha" ColumnName="AN_Fecha" />
+                <ScalarProperty Name="AN_Area" ColumnName="AN_Area" />
                 <ScalarProperty Name="AN_FechaExpiracion" ColumnName="AN_FechaExpiracion" />
                 <ScalarProperty Name="ST_Id" ColumnName="ST_Id" />
               </MappingFragment>

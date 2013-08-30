@@ -30,6 +30,7 @@ namespace SMAWeb.Models
         public string AN_Celular { get; set; }
         public string AN_Descripcion { get; set; }
         public System.DateTime AN_Fecha { get; set; }
+        public string AN_Area { get; set; }
         public Nullable<System.DateTime> AN_FechaExpiracion { get; set; }
         public int ST_Id { get; set; }
     

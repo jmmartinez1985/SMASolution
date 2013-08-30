@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Models;
+using SMAWeb.Filters;
 
 namespace SMAWeb.Controllers
 {
@@ -15,13 +16,22 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Anuncios/
-
+        [AdminRoleFilter]
         public ActionResult Index()
         {
             var an_anuncios = db.AN_Anuncios.Include(a => a.SBS_SubCategoriaServicio).Include(a => a.ST_Estatus).Include(a => a.UserProfile);
             return View(an_anuncios.ToList());
         }
 
+        [UserRoleFilter]
+        public ActionResult GetAnunciosByUser(int UserId)
+        {
+          
+            var an_anuncios = db.AN_Anuncios.Include(a => a.SBS_SubCategoriaServicio).
+                Include(a => a.ST_Estatus).Include(a => a.UserProfile)
+                .Where(c => c.UserId == UserId);
+            return View(an_anuncios.ToList());
+        }
         //
         // GET: /Anuncios/Details/5
 
