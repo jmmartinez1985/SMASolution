@@ -156,6 +156,7 @@ namespace SMAWeb.Models
         public string MP_Descripcion { get; set; }
 
         [Display(Name = "Días de Expiración")]
+        [Range(0, Int32.MaxValue, ErrorMessage = "No es un número válido o no está en el rango permitido.")]
         public Nullable<int> MP_ExpiracionDays { get; set; }
 
         [JsonIgnore]
