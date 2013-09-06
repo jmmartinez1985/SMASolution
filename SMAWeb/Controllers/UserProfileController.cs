@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Models;
+using SMAWeb.Extensions;
 
 namespace SMAWeb.Controllers
 {
@@ -125,6 +126,41 @@ namespace SMAWeb.Controllers
             db.UserProfile.Remove(userprofile);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //
+        // POST: /UserProfile/EditUser/5
+
+        public ActionResult EditUser(int id = 0)
+        {
+            UserProfile userprofile = db.UserProfile.Find(id);
+            if (userprofile == null)
+            {
+                return HttpNotFound();
+            }
+           ViewBag.MP_MemberShipId = new SelectList(db.MB_Membresia, "MP_MemberShipId", "MP_Descripcion", userprofile.MP_MemberShipId);
+            ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion", userprofile.PA_Id);
+            ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", userprofile.ST_Id);
+            return View(userprofile);
+        }
+
+        //
+        // POST: /UserProfile/EditUser/5
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditUser(UserProfile userprofile)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(userprofile).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.MP_MemberShipId = new SelectList(db.MB_Membresia, "MP_MemberShipId", "MP_Descripcion", userprofile.MP_MemberShipId);
+            ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion", userprofile.PA_Id);
+            ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", userprofile.ST_Id);
+            return View(userprofile);
         }
 
         protected override void Dispose(bool disposing)

@@ -339,7 +339,10 @@ namespace SMAWeb.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                if (Roles.IsUserInRole("Admin"))
+                    return RedirectToAction("Index", "Home");
+                else
+                    return RedirectToAction("GetAnunciosByUser", "Anuncios", new { UserId = WebSecurity.CurrentUserId });
             }
         }
 

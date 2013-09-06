@@ -538,6 +538,7 @@
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Shared\_LoggedAdminMenu.cshtml" />
     <Content Include="Views\Anuncios\GetAnunciosByUser.cshtml" />
+    <Content Include="Views\UserProfile\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

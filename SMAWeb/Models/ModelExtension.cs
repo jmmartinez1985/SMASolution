@@ -52,6 +52,12 @@ namespace SMAWeb.Models
 
     }
 
+    [MetadataType(typeof(UserProfileMetadata))]
+    public partial class UserProfile
+    {
+
+    }
+
     public partial class ST_EstatusMetadata
     {
         [Display(Name = "Código de Estado")]
@@ -98,7 +104,7 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Estado")]
         public int ST_Id { get; set; }
 
-         [Display(Name = "Lugar del Anuncio")]
+        [Display(Name = "Lugar del Anuncio")]
         public string AN_Area { get; set; }
 
         [JsonIgnore]
@@ -201,11 +207,60 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Región")]
         public int REG_Id { get; set; }
 
-        [Display (Name= "Descripción de Región")]
+        [Display(Name = "Descripción de Región")]
         public string REG_Descripcion { get; set; }
 
         [JsonIgnore]
+        [Display(Name = "País")]
         public virtual ICollection<PA_Paises> PA_Paises { get; set; }
+    }
+
+    public partial class UserProfileMetadata
+    {
+
+        [Display(Name = "Código de Usuario")]
+        public int UserId { get; set; }
+
+        [Required]
+        [Display(Name = "Correo")]
+        public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "Nombre Completo")]
+        public string Name { get; set; }
+
+        [Display(Name = "Detalle")]
+        public string Details { get; set; }
+
+        [Display(Name = "Dirección")]
+        public string Address { get; set; }
+
+        [Display(Name = "Ciudad")]
+        public string City { get; set; }
+
+        [Display(Name = "Código de País")]
+        public Nullable<int> PA_Id { get; set; }
+
+        public byte[] Image { get; set; }
+        public int MP_MemberShipId { get; set; }
+
+        public int ST_Id { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<AN_Anuncios> AN_Anuncios { get; set; }
+
+        [JsonIgnore]
+        public virtual MB_Membresia MB_Membresia { get; set; }
+
+        [Display(Name = "País")]
+        [JsonIgnore]
+        public virtual PA_Paises PA_Paises { get; set; }
+
+        [JsonIgnore]
+        public virtual ST_Estatus ST_Estatus { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<webpages_Roles> webpages_Roles { get; set; }
     }
 
     public class AnunciosViewModel
@@ -214,7 +269,7 @@ namespace SMAWeb.Models
         public string EstatusDescription { get; set; }
         public string Usuario { get; set; }
         public string CategoriaDescripcion { get; set; }
-        public string  FirstImage { get; set; }
+        public string FirstImage { get; set; }
 
     }
 
