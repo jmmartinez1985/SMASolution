@@ -8,17 +8,9 @@
     <div class="row-fluid">
         <div class="span3">
             <div class="headline">
-                <h3>Información</h3>
+                <h3>Anuncios Recientes</h3>
             </div>
-
-
-            <br />
-
-
             <div class="posts">
-                <div class="headline">
-                    <h3>Productos Recientes</h3>
-                </div>
                 <dl class="dl-horizontal">
                     <dt><a href="#">
                         <img src="~/Images/4.jpg" alt=""></a></dt>
@@ -35,7 +27,6 @@
                 </dl>
 
             </div>
-
         </div>
 
 
@@ -54,43 +45,58 @@
     
                 
                 
-                <h4>Por favor llene todos los campos que son requeridos en el formulario para una mejor atencion en caso de contactarlos</h4>
+                <h4>Por favor complete la información requerida y déjenos su mensaje. Pronto le estaremos contactando.</h4>
                 <br />
 
-                <label for='Nombre'>Nombre*: </label>
-                @Html.TextBoxFor(model => model.CON_Nombre, new { @placeholder = "Nombre", @class = "input-xlarge" })
-                <br />
-                @Html.ValidationMessageFor(model => model.CON_Nombre)
 
-                <label for='Email'>Correo Electronico*:</label>
-                @Html.TextBoxFor(model => model.CON_Email, new { @placeholder = "Correo Electrónico", @class = "input-xxlarge" })
-                <br />
-                @Html.ValidationMessageFor(model => model.CON_Email)
-
-                <label for='Teléfono'>Telefono*:</label>
-                @Html.TextBoxFor(model => model.CON_Telefono, new { @placeholder = "Teléfono", @class = "input-large" })
-                <br />
-                @Html.ValidationMessageFor(model => model.CON_Telefono)
-
-
-                <label for='Celular'>Celular*:</label>
-                @Html.TextBoxFor(model => model.CON_Celular, new { @placeholder = "Celular", @class = "input-large" })
-                <br />
-                @Html.ValidationMessageFor(model => model.CON_Celular)
-
-
-
-
-                <label for='message'>Mensaje:</label>
-
-                @Html.TextAreaFor(model => model.CON_Mensaje, new { @placeholder = "Mensaje", @class = "input-xxlarge" })
-                <br />
-                @Html.ValidationMessageFor(model => model.CON_Mensaje)
+                
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CON_Nombre)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CON_Nombre, new { @placeholder = "Nombre", @class = "input-xxlarge" }) <span class="color-red">*</span>
+                    @Html.ValidationMessageFor(model => model.CON_Nombre)
+                </div>
+                
+                
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CON_Email)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CON_Email, new { @placeholder = "Correo Electrónico", @class = "input-xxlarge" }) <span class="color-red">*</span>
+                    @Html.ValidationMessageFor(model => model.CON_Email)
+                </div>
+                
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CON_Telefono)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CON_Telefono, new { @placeholder = "Teléfono", @class = "input-xxlarge" }) <span class="color-red">*</span>
+                    @Html.ValidationMessageFor(model => model.CON_Telefono)
+                </div>
+                
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CON_Celular)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CON_Celular, new { @placeholder = "Celular", @class = "input-large" }) <span class="color-red">*</span>
+                    @Html.ValidationMessageFor(model => model.CON_Celular)
+                </div>
+                
+                
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CON_Mensaje)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.CON_Mensaje, new { @placeholder = "Mensaje", @class = "input-xxlarge" }) <span class="color-red">*</span>
+                    @Html.ValidationMessageFor(model => model.CON_Mensaje)
+                </div>
+                
 
                 <br />
                 <input type="submit" value="Contactar" class="btn-u" id="submit-button" />
                 <br />
-                <p id="req-field-desc"><span class="required">*</span>Indica que es un campo mandatorio en el formulario</p>
+                <p id="req-field-desc"><span class="color-red">*</span>Indica que es un campo mandatorio en el formulario</p>
 
 
              

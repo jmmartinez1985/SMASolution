@@ -11,6 +11,8 @@ namespace SMAWeb.Models
     {
     }
 
+    #region MetadataType
+
     [MetadataType(typeof(ST_EstatusMetadata))]
     public partial class ST_Estatus
     {
@@ -57,6 +59,23 @@ namespace SMAWeb.Models
     {
 
     }
+
+    [MetadataType(typeof(CON_ContactenosMetadata))]
+    public partial class CON_Contactenos
+    {
+
+    }
+
+    [MetadataType (typeof(COM_CompañiaMetadata))]
+    public partial class COM_Compañia
+    {
+
+    }
+    #endregion
+
+
+    #region PartialClass
+
 
     public partial class ST_EstatusMetadata
     {
@@ -149,8 +168,10 @@ namespace SMAWeb.Models
         [Required]
         [Display(Name = "Código Categoría")]
         public int CD_Id { get; set; }
+
         [Display(Name = "Descripción de la Categoría")]
         public string CD_Descripcion { get; set; }
+
         [JsonIgnore]
         public virtual ICollection<SBS_SubCategoriaServicio> SBS_SubCategoriaServicio { get; set; }
     }
@@ -263,8 +284,81 @@ namespace SMAWeb.Models
         public virtual ICollection<webpages_Roles> webpages_Roles { get; set; }
     }
 
+    public partial class CON_ContactenosMetadata
+    {
+        [Required]
+        [Display(Name = "Código Contacto")]
+        public int CON_Id { get; set; }
+
+        [Required]
+        [Display(Name = "Nombre")]
+        public string CON_Nombre { get; set; }
+
+        [Required]
+        [Display(Name = "Teléfono")]
+        public string CON_Telefono { get; set; }
+
+        [Required]
+        [Display(Name = "Celular")]
+        public string CON_Celular { get; set; }
+
+        [Required]
+        [Display(Name = "Correo Electrónico")]
+        public string CON_Email { get; set; }
+
+        [Required]
+        [Display(Name = "Mensaje")]
+        public string CON_Mensaje { get; set; }
+
+        [Required]
+        [Display(Name = "Fecha de Contacto")]
+        public System.DateTime CON_Fecha { get; set; }
+    }
+
+    public partial class COM_CompañiaMetadata
+    {
+        [Required]
+        [Display (Name= "Código de Compañía")]
+        public int COM_Id { get; set; }
+
+        [Required]
+        [Display(Name = "Nombre de Compañía")]
+        public string COM_Nombre { get; set; }
+
+        [Required]
+        [Display(Name = "Dirección")]
+        public string COM_Direccion { get; set; }
+
+        [Required]
+        [Display(Name = "Teléfono")]
+        public string COM_Telefono { get; set; }
+
+        [Required]
+        [Display(Name = "Correo")]
+        public string COM_Correo { get; set; }
+
+        [Required]
+        [Display(Name = "Dirección Web")]
+        public string COM_Web { get; set; }
+
+        [Display(Name = "Persona de Contacto")]
+        public string COM_ContactoNombre { get; set; }
+
+        [Display(Name = "Celular de Contacto")]
+        public string COM_ContactoCelular { get; set; }
+
+        [Display(Name = "Email de Contacto")]
+        public string COM_ContactoEmail { get; set; }
+
+        public byte[] COM_Logo { get; set; }
+
+    }
+    
+    #endregion
+
     public class AnunciosViewModel
     {
+
         public AN_Anuncios AnunciosInfo { get; set; }
         public string EstatusDescription { get; set; }
         public string Usuario { get; set; }

@@ -10,47 +10,28 @@
         <div class="nav-collapse collapse">
             <ul class="nav top-2">
                 <li class="active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tus Anuncios
-                               
-                                    <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="active"><a href="@Url.Action("GetAnunciosByUser", "Anuncios", new { UserId = WebSecurity.CurrentUserId})">Anuncios Publicados</a></li>
-                        <li><a href="#">Creación de Anuncios</a></li>
-                        <li><a href="#">Option3: Revolution Slider</a></li>
-                        <li><a href="#">Option4: Amazing Content</a></li>
-                        <li><a href="#">Option5: Mixed Content</a></li>
-                    </ul>
-                    <b class="caret-out"></b>
+                    <a href="@Url.Action("Index", "Home")" >Inicio</a>
                 </li>
                 <li class="">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tus Transacciones
-                               
-                                    <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Option2: Header Option</a></li>
-                        <li><a href="#">Option3: Revolution Slider</a></li>
-                        <li><a href="#">Option4: Amazing Content</a></li>
-                        <li><a href="#">Option5: Mixed Content</a></li>
-                    </ul>
-                    <b class="caret-out"></b>
+                    <a href="#">Blog</a>
                 </li>
                 <li class="">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estadisticas
-                               
-                                    <b class="caret"></b>
+                    <a href="#">FAQ's</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Create", "Contactos")" >Contáctenos</a>
+                </li>
+                <li class="">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mi Service Market                               
+                        <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Option2: Header Option</a></li>
-                        <li><a href="#">Option3: Revolution Slider</a></li>
-                        <li><a href="#">Option4: Amazing Content</a></li>
-                        <li><a href="#">Option5: Mixed Content</a></li>
+                        <li><a href="@Url.Action("GetAnunciosByUser", "Anuncios", new { UserId = WebSecurity.CurrentUserId })">Anuncios Publicados</a></li>
+                        <li><a href="@Url.Action("GetAnunciosByUser", "Anuncios", new { UserId = WebSecurity.CurrentUserId })">Contactos</a></li>
+                        <li><a href="@Url.Action("GetAnunciosByUser", "Anuncios", new { UserId = WebSecurity.CurrentUserId })">Estadísticas</a></li>
                     </ul>
                     <b class="caret-out"></b>
                 </li>
-    
-
                 <li><a class="search"><i class="search-btn icon-search"></i></a></li>
             </ul>
             <div class="search-open" style="display: none;">
@@ -70,8 +51,7 @@
 
 <script>
 
-    function callservicebyuser(userId)
-    {
+    function callservicebyuser(userId) {
 
     }
 
