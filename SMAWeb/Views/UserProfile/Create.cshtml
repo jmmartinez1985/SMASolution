@@ -6,26 +6,22 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>UserProfile</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.UserId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UserId)
-            @Html.ValidationMessageFor(model => model.UserId)
-        </div>
+
+        @Html.HiddenFor(model => model.UserId)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.UserName)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.UserName)
+            @Html.TextBoxFor(model => model.UserName, new { @placeholder = "", @class = "input-xxlarge" })
             @Html.ValidationMessageFor(model => model.UserName)
         </div>
 
@@ -33,7 +29,7 @@
             @Html.LabelFor(model => model.Name)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name, new { @placeholder = "", @class = "input-xxlarge" })
             @Html.ValidationMessageFor(model => model.Name)
         </div>
 
@@ -41,7 +37,7 @@
             @Html.LabelFor(model => model.Details)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Details)
+            @Html.TextBoxFor(model => model.Details, new { @placeholder = "", @class = "input-xxlarge" })
             @Html.ValidationMessageFor(model => model.Details)
         </div>
 
@@ -49,7 +45,7 @@
             @Html.LabelFor(model => model.Address)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Address)
+            @Html.TextBoxFor(model => model.Address, new { @placeholder = "", @class = "input-xxlarge" })
             @Html.ValidationMessageFor(model => model.Address)
         </div>
 
@@ -57,7 +53,7 @@
             @Html.LabelFor(model => model.City)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.City)
+            @Html.TextBoxFor(model => model.City, new { @placeholder = "", @class = "input-xxlarge" })
             @Html.ValidationMessageFor(model => model.City)
         </div>
 

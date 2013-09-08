@@ -25,7 +25,7 @@
                     @Html.LabelFor(model => model.MT_Descripcion)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.MT_Descripcion)
+                    @Html.TextBoxFor(model => model.MT_Descripcion, new { @placeholder = "", @class = "input-xxlarge" })
                     @Html.ValidationMessageFor(model => model.MT_Descripcion)
                 </div>
 

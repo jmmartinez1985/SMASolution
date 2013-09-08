@@ -20,30 +20,16 @@
 
     
 
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.AN_Id)
-                </div>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.AN_Id)
-                    @Html.ValidationMessageFor(model => model.AN_Id)
-                </div>
-
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.UserId, "UserProfile")
-                </div>
-                <div class="editor-field">
-                    @Html.DropDownList("UserId", String.Empty)
-                    @Html.ValidationMessageFor(model => model.UserId)
-                </div>
-
+                @Html.HiddenFor(model => model.AN_Id)
+                @Html.HiddenFor(model => model.UserId, "UserProfile")
                 <div class="editor-label">
                     @Html.LabelFor(model => model.PA_Id)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.PA_Id)
+                    @Html.TextBoxFor(model => model.PA_Id, new { @placeholder = "", @class = "input-xxlarge" })
                     @Html.ValidationMessageFor(model => model.PA_Id)
                 </div>
-
+                
                 <div class="editor-label">
                     @Html.LabelFor(model => model.SBS_Id)
                 </div>
@@ -56,7 +42,7 @@
                     @Html.LabelFor(model => model.AN_Titulo)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.AN_Titulo)
+                    @Html.TextBoxFor(model => model.AN_Titulo, new { @placeholder = "", @class = "input-xxlarge" })
                     @Html.ValidationMessageFor(model => model.AN_Titulo)
                 </div>
 
@@ -64,7 +50,7 @@
                     @Html.LabelFor(model => model.AN_Telefono)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.AN_Telefono)
+                    @Html.TextBoxFor(model => model.AN_Telefono, new { @placeholder = "", @class = "input-large" })
                     @Html.ValidationMessageFor(model => model.AN_Telefono)
                 </div>
 
@@ -72,7 +58,7 @@
                     @Html.LabelFor(model => model.AN_Celular)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.AN_Celular)
+                    @Html.TextBoxFor(model => model.AN_Celular, new { @placeholder = "", @class = "input-large" })
                     @Html.ValidationMessageFor(model => model.AN_Celular)
                 </div>
 
@@ -80,33 +66,16 @@
                     @Html.LabelFor(model => model.AN_Descripcion)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.AN_Descripcion)
+                    @Html.TextAreaFor(model => model.AN_Descripcion)
                     @Html.ValidationMessageFor(model => model.AN_Descripcion)
                 </div>
 
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.AN_Fecha)
-                </div>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.AN_Fecha)
-                    @Html.ValidationMessageFor(model => model.AN_Fecha)
-                </div>
-
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.AN_FechaExpiracion)
-                </div>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.AN_FechaExpiracion)
-                    @Html.ValidationMessageFor(model => model.AN_FechaExpiracion)
-                </div>
-
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.ST_Id)
-                </div>
-                <div class="editor-field">
-                    @Html.DropDownList("ST_Id", String.Empty)
-                    @Html.ValidationMessageFor(model => model.ST_Id)
-                </div>
+              
+                @Html.HiddenFor(model => model.AN_Fecha)
+                
+                @Html.HiddenFor(model => model.AN_FechaExpiracion)
+                @Html.HiddenFor(model => model.ST_Id)
+               
 
                 <p>
                     <input type="submit" value="Crear Anuncio" class="btn-u" />

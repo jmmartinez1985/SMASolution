@@ -88,7 +88,7 @@ input[type="checkbox"].input-validation-error {
             </div>
                 <div class="controls">
                     <label>Descripción del Estado</label>
-                    @Html.TextBoxFor(model => model.ST_Descripcion, new { @class = "span12" })
+                    @Html.TextBoxFor(model => model.ST_Descripcion, new { @placeholder = "", @class = "input-xxlarge" })
                     @Html.ValidationMessageFor(model => model.ST_Descripcion)
                 </div>
 

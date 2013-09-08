@@ -99,7 +99,7 @@ namespace SMAWeb.Models
         [Display(Name = "ID")]
         public int PA_Id { get; set; }
 
-        [Display(Name = "Código SubCategoría Usuario")]
+        [Display(Name = "Código SubCategoría")]
         public Nullable<int> SBS_Id { get; set; }
 
         [Display(Name = "Título del Anuncio")]

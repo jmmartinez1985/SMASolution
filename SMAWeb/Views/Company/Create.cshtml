@@ -42,7 +42,7 @@
                     @Html.LabelFor(model => model.COM_Telefono)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.COM_Telefono)
+                    @Html.TextBoxFor(model => model.COM_Telefono, new { @placeholder = "", @class = "input-large" })
                     @Html.ValidationMessageFor(model => model.COM_Telefono)
                 </div>
 
@@ -50,7 +50,7 @@
                     @Html.LabelFor(model => model.COM_Correo)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.COM_Correo)
+                    @Html.TextBoxFor(model => model.COM_Correo, new { @placeholder = "", @class = "input-xxlarge" })
                     @Html.ValidationMessageFor(model => model.COM_Correo)
                 </div>
 
@@ -58,7 +58,7 @@
                     @Html.LabelFor(model => model.COM_Web)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.COM_Web)
+                    @Html.TextBoxFor(model => model.COM_Web, new { @placeholder = "", @class = "input-xxlarge" })
                     @Html.ValidationMessageFor(model => model.COM_Web)
                 </div>
 
@@ -66,7 +66,7 @@
                     @Html.LabelFor(model => model.COM_ContactoNombre)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.COM_ContactoNombre)
+                    @Html.TextBoxFor(model => model.COM_ContactoNombre, new { @placeholder = "", @class = "input-xxlarge" })
                     @Html.ValidationMessageFor(model => model.COM_ContactoNombre)
                 </div>
 
@@ -74,7 +74,7 @@
                     @Html.LabelFor(model => model.COM_ContactoCelular)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.COM_ContactoCelular)
+                    @Html.TextBoxFor(model => model.COM_ContactoCelular, new { @placeholder = "", @class = "input-large" })
                     @Html.ValidationMessageFor(model => model.COM_ContactoCelular)
                 </div>
 
@@ -82,7 +82,7 @@
                     @Html.LabelFor(model => model.COM_ContactoEmail)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.COM_ContactoEmail)
+                    @Html.TextBoxFor(model => model.COM_ContactoEmail, new { @placeholder = "", @class = "input-xxlarge" })
                     @Html.ValidationMessageFor(model => model.COM_ContactoEmail)
                 </div>
 
