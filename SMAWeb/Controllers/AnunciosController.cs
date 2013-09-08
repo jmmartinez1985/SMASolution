@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Models;
 using SMAWeb.Filters;
+using WebMatrix.WebData;
 
 namespace SMAWeb.Controllers
 {
@@ -60,14 +61,14 @@ namespace SMAWeb.Controllers
 
 
         [Authorize(Roles = "Users, Admin")]
-        public ActionResult GetAnunciosByUser(int UserId)
+        public ActionResult GetAnunciosByUser()
         {
             //var an_anuncios = db.AN_Anuncios.Include(a => a.SBS_SubCategoriaServicio).
             //    Include(a => a.ST_Estatus).Include(a => a.UserProfile)
             //    .Where(c => c.UserId == UserId);
            // return View(an_anuncios.ToList());
 
-
+            int UserId = UserId = WebSecurity.CurrentUserId;
 
             var allAnunciosList = new List<AN_Anuncios>();
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();

@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.COM_Nombre, new { @class = "input-xxlarge" })
+                    @Html.TextBoxFor(model => model.COM_Nombre, new { @class = "input-xlarge", @placeholder=" Nombre" })
                     @Html.ValidationMessageFor(model => model.COM_Nombre)
                 </div>
 
@@ -34,7 +34,7 @@
                     @Html.LabelFor(model => model.COM_Direccion)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.COM_Direccion)
+                    @Html.TextBoxFor(model => model.COM_Direccion,new { @class = "input-xxlarge", @placeholder=" Direccion" })
                     @Html.ValidationMessageFor(model => model.COM_Direccion)
                 </div>
 
