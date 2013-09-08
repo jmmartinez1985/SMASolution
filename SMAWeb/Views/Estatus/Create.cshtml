@@ -83,15 +83,17 @@ input[type="checkbox"].input-validation-error {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
 
-                <h3>Register a new Status</h3>
+                <div class="headline">
+                <h3>Formulario de Estatus</h3>
+            </div>
                 <div class="controls">
-                    <label>Status Description</label>
+                    <label>Descripción del Estado</label>
                     @Html.TextBoxFor(model => model.ST_Descripcion, new { @class = "span12" })
                     @Html.ValidationMessageFor(model => model.ST_Descripcion)
                 </div>
 
                 <div class="controls form-inline">
-                    <input class="btn-u pull-right" type="submit" value="Create" />
+                    <input class="btn-u pull-right" type="submit" value="Crear" />
                 </div>
             }
         </div>

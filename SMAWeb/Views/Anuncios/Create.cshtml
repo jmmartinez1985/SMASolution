@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.SBS_Id, "SBS_SubCategoriaServicio")
+                    @Html.LabelFor(model => model.SBS_Id)
                 </div>
                 <div class="editor-field">
                     @Html.DropDownList("SBS_Id", String.Empty)
@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.ST_Id, "ST_Estatus")
+                    @Html.LabelFor(model => model.ST_Id)
                 </div>
                 <div class="editor-field">
                     @Html.DropDownList("ST_Id", String.Empty)
@@ -109,13 +109,13 @@
                 </div>
 
                 <p>
-                    <input type="submit" value="Create" class="btn-u" />
+                    <input type="submit" value="Crear Anuncio" class="btn-u" />
                 </p>
    
             }
 
             <div>
-                @Html.ActionLink("Back to List", "Index")
+                @Html.ActionLink("Regresar", "Index")
             </div>
 
             @section Scripts {
