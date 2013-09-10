@@ -19,17 +19,17 @@
                 
                 <div class="controls">
 
-                    <label>Correo Electrónico<span class="color-red">*</span></label>
-                    @Html.TextBoxFor(m => m.Email, new { @class = "span12" })
+                    <label>Correo Electrónico <span class="color-red">*</span></label>
+                    @Html.TextBoxFor(m => m.Email, new { @placeholder = "Correo Electrónico",  @class = "span12" })
                 </div>
                 <div class="controls">
                     <div class="span6">
                         <label>Contraseña <span class="color-red">*</span></label>
-                        @Html.PasswordFor(m => m.Password, new { @class = "span12" })
+                        @Html.PasswordFor(m => m.Password, new {@placeholder = "Contraseña", @class = "span12" })
                     </div>
                     <div class="span6">
-                        <label>Confirmar Contraseña<span class="color-red">*</span></label>
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "span12" })
+                        <label>Confirmar Contraseña <span class="color-red">*</span></label>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @placeholder = "Confirmar Contraseña", @class = "span12" })
                     </div>
                 </div>
                 <div class="controls form-inline">
@@ -38,7 +38,7 @@
                     <button class="btn-u pull-right" type="submit">Registrarse</button>
                 </div>
                 <hr />
-                <p>¿Ya estas registrado? Clic en <a href="@Url.Action("Login")" class="color-green">Iniciar Sesión</a> para ingresar a tu cuenta.</p>
+                <p>¿Ya está registrado? Clic en <a href="@Url.Action("Login")" class="color-green">Iniciar Sesión</a> para ingresar a tu cuenta.</p>
             }
         </div>
 

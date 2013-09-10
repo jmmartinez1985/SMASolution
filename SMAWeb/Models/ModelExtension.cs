@@ -66,7 +66,7 @@ namespace SMAWeb.Models
 
     }
 
-    [MetadataType (typeof(COM_CompañiaMetadata))]
+    [MetadataType(typeof(COM_CompañiaMetadata))]
     public partial class COM_Compañia
     {
 
@@ -318,7 +318,7 @@ namespace SMAWeb.Models
     public partial class COM_CompañiaMetadata
     {
         [Required]
-        [Display (Name= "Código de Compañía")]
+        [Display(Name = "Código de Compañía")]
         public int COM_Id { get; set; }
 
         [Required]
@@ -353,8 +353,10 @@ namespace SMAWeb.Models
         public byte[] COM_Logo { get; set; }
 
     }
-    
+
     #endregion
+
+    #region ViewModel
 
     public class AnunciosViewModel
     {
@@ -366,6 +368,19 @@ namespace SMAWeb.Models
         public string FirstImage { get; set; }
 
     }
+
+    public class CompanyViewModel
+    {
+        
+        public string Nombre { get; set; }
+        public string Direccion { get; set; }
+        public string Telefono { get; set; }
+        public string Correo { get; set; }
+
+    }
+
+    #endregion
+
 
 
 

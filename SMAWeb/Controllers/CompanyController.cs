@@ -6,12 +6,39 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Models;
+using SMAWeb.Extensions;
 
 namespace SMAWeb.Controllers
 {
     public class CompanyController : Controller
     {
         private Entities db = new Entities();
+
+
+
+
+        public ActionResult GetCompanyInfo()
+        {
+            var Company = new COM_Compañia();
+
+            using (Entities model = new Entities())
+            {
+                Company = model.COM_Compañia.FirstOrDefault();
+            }
+
+            if (Company == null)
+            {
+                return HttpNotFound();
+            }
+
+            return Json(Company.SerializeToJson());
+        }
+
+
+
+
+
+
 
         //
         // GET: /Company/
