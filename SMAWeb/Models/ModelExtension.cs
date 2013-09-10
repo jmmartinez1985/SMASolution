@@ -366,17 +366,6 @@ namespace SMAWeb.Models
         public string Usuario { get; set; }
         public string CategoriaDescripcion { get; set; }
         public string FirstImage { get; set; }
-
-    }
-
-    public class CompanyViewModel
-    {
-        
-        public string Nombre { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
-        public string Correo { get; set; }
-
     }
 
     #endregion

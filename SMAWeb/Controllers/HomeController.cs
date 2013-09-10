@@ -33,7 +33,7 @@ namespace SMAWeb.Controllers
                     string statusDesc = item.ST_Estatus.ST_Descripcion;
                     var categoria = item.SBS_SubCategoriaServicio.CD_CategoriaServicio.CD_Descripcion;
                     var firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
-
+                    
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
                     var formatted = firstImage.Replace("~", "");
                     if (formatted.StartsWith("/"))
@@ -47,7 +47,7 @@ namespace SMAWeb.Controllers
                         EstatusDescription = statusDesc,
                         AnunciosInfo = item,
                         CategoriaDescripcion = categoria,
-                        FirstImage = firstImage
+                        FirstImage = firstImage,
                     });
 
                 }
