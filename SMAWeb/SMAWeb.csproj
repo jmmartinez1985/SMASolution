@@ -189,6 +189,7 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\ContactosController.cs" />
     <Compile Include="Controllers\EstatusController.cs" />
+    <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembresiaController.cs" />
     <Compile Include="Controllers\MultimediaTiposController.cs" />
@@ -542,6 +543,10 @@
     <Content Include="Views\Shared\_LoggedAdminMenu.cshtml" />
     <Content Include="Views\Anuncios\GetAnunciosByUser.cshtml" />
     <Content Include="Views\UserProfile\EditUser.cshtml" />
+    <Content Include="Views\FAQ\Index.cshtml" />
+    <Content Include="Views\FAQ\Details.cshtml" />
+    <Content Include="Views\FAQ\Create.cshtml" />
+    <Content Include="Views\FAQ\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
