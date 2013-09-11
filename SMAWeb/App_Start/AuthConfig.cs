@@ -18,9 +18,11 @@ namespace SMAWeb
             //    clientId: "",
             //    clientSecret: "");
 
+
+            //Se debe actualizar estos credenciales por los reales.
             OAuthWebSecurity.RegisterTwitterClient(
-                consumerKey: "K0Cc1B9ULfy0KWhHn9NQvA",
-                consumerSecret: "jVJJpJ1vahPbb4G9iDQTvAGApe9g5Ca0uXhJ8WAlAY");
+                consumerKey: "nHJFMdJ1sAEFZGP5QAoHDA",
+                consumerSecret: "aRYoXnvom6COSdRA3PQ8Cqot1UkKwB9OyFS6GGr5UC8");
 
             OAuthWebSecurity.RegisterFacebookClient(
                 appId: "261973827175259",
