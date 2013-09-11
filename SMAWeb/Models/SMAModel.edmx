@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ServiceMarketModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ServiceMarketModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ServiceMarketModelStoreContainer">
           <EntitySet Name="AE_AnunciosExtras" EntityType="ServiceMarketModel.Store.AE_AnunciosExtras" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AM_MultimediaAnuncios" EntityType="ServiceMarketModel.Store.AM_MultimediaAnuncios" store:Type="Tables" Schema="dbo" />
@@ -12,6 +12,7 @@
           <EntitySet Name="CD_CategoriaServicio" EntityType="ServiceMarketModel.Store.CD_CategoriaServicio" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="COM_Compañia" EntityType="ServiceMarketModel.Store.COM_Compañia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CON_Contactenos" EntityType="ServiceMarketModel.Store.CON_Contactenos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FAQs" EntityType="ServiceMarketModel.Store.FAQs" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.Store.MB_Membresia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.Store.MT_MultimediaTipos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PA_Paises" EntityType="ServiceMarketModel.Store.PA_Paises" store:Type="Tables" Schema="dbo" />
@@ -50,6 +51,10 @@
           <AssociationSet Name="FK_AN_Anuncios_UserProfile" Association="ServiceMarketModel.Store.FK_AN_Anuncios_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FAQs_ST_Estatus" Association="ServiceMarketModel.Store.FK_FAQs_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="FAQs" EntitySet="FAQs" />
           </AssociationSet>
           <AssociationSet Name="FK_PA_Paises_REG_Region" Association="ServiceMarketModel.Store.FK_PA_Paises_REG_Region">
             <End Role="REG_Region" EntitySet="REG_Region" />
@@ -166,6 +171,15 @@
           <Property Name="CON_Email" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="CON_Mensaje" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="CON_Fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FAQs">
+          <Key>
+            <PropertyRef Name="FAQ_Id" />
+          </Key>
+          <Property Name="FAQ_Id" Type="int" Nullable="false" />
+          <Property Name="FAQ_Question" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="FAQ_Answer" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="FAQ_Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MB_Membresia">
           <Key>
@@ -380,6 +394,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FAQs_ST_Estatus">
+          <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="1" />
+          <End Role="FAQs" Type="ServiceMarketModel.Store.FAQs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ST_Estatus">
+              <PropertyRef Name="ST_Id" />
+            </Principal>
+            <Dependent Role="FAQs">
+              <PropertyRef Name="FAQ_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PA_Paises_REG_Region">
           <End Role="REG_Region" Type="ServiceMarketModel.Store.REG_Region" Multiplicity="1" />
           <End Role="PA_Paises" Type="ServiceMarketModel.Store.PA_Paises" Multiplicity="*" />
@@ -512,8 +538,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ServiceMarketModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -601,6 +626,11 @@
           <AssociationSet Name="webpages_UsersInRoles" Association="ServiceMarketModel.webpages_UsersInRoles">
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <EntitySet Name="FAQs" EntityType="ServiceMarketModel.FAQs" />
+          <AssociationSet Name="FK_FAQs_ST_Estatus" Association="ServiceMarketModel.FK_FAQs_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="FAQs" EntitySet="FAQs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AE_AnunciosExtras">
@@ -775,6 +805,7 @@
           <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AN_Anuncios_ST_Estatus" FromRole="ST_Estatus" ToRole="AN_Anuncios" />
           <NavigationProperty Name="SS_SolicitudServicio" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus" FromRole="ST_Estatus" ToRole="SS_SolicitudServicio" />
           <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_UserProfile_ST_Estatus" FromRole="ST_Estatus" ToRole="UserProfile" />
+          <NavigationProperty Name="FAQs" Relationship="ServiceMarketModel.FK_FAQs_ST_Estatus" FromRole="ST_Estatus" ToRole="FAQs" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1023,6 +1054,28 @@
           <End Role="webpages_Roles" Type="ServiceMarketModel.webpages_Roles" Multiplicity="*" />
           <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="*" />
         </Association>
+        <EntityType Name="FAQs">
+          <Key>
+            <PropertyRef Name="FAQ_Id" />
+          </Key>
+          <Property Type="Int32" Name="FAQ_Id" Nullable="false" />
+          <Property Type="String" Name="FAQ_Question" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FAQ_Answer" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="FAQ_Status" Nullable="false" />
+          <NavigationProperty Name="ST_Estatus" Relationship="ServiceMarketModel.FK_FAQs_ST_Estatus" FromRole="FAQs" ToRole="ST_Estatus" />
+        </EntityType>
+        <Association Name="FK_FAQs_ST_Estatus">
+          <End Type="ServiceMarketModel.ST_Estatus" Role="ST_Estatus" Multiplicity="1" />
+          <End Type="ServiceMarketModel.FAQs" Role="FAQs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ST_Estatus">
+              <PropertyRef Name="ST_Id" />
+            </Principal>
+            <Dependent Role="FAQs">
+              <PropertyRef Name="FAQ_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1260,6 +1313,16 @@
               <ScalarProperty Name="UserId" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="FAQs">
+            <EntityTypeMapping TypeName="ServiceMarketModel.FAQs">
+              <MappingFragment StoreEntitySet="FAQs">
+                <ScalarProperty Name="FAQ_Status" ColumnName="FAQ_Status" />
+                <ScalarProperty Name="FAQ_Answer" ColumnName="FAQ_Answer" />
+                <ScalarProperty Name="FAQ_Question" ColumnName="FAQ_Question" />
+                <ScalarProperty Name="FAQ_Id" ColumnName="FAQ_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -220,6 +220,9 @@
     <Compile Include="Models\CON_Contactenos.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FAQs.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MB_Membresia.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>

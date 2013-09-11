@@ -19,6 +19,7 @@ namespace SMAWeb.Models
             this.AN_Anuncios = new HashSet<AN_Anuncios>();
             this.SS_SolicitudServicio = new HashSet<SS_SolicitudServicio>();
             this.UserProfile = new HashSet<UserProfile>();
+            this.FAQs = new HashSet<FAQs>();
         }
     
         public int ST_Id { get; set; }
@@ -27,5 +28,6 @@ namespace SMAWeb.Models
         public virtual ICollection<AN_Anuncios> AN_Anuncios { get; set; }
         public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         public virtual ICollection<UserProfile> UserProfile { get; set; }
+        public virtual ICollection<FAQs> FAQs { get; set; }
     }
 }
