@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Models;
 using SMAWeb.Extensions;
+using System.IO;
+using WebMatrix.WebData;
 
 namespace SMAWeb.Controllers
 {
@@ -138,7 +140,7 @@ namespace SMAWeb.Controllers
             {
                 return HttpNotFound();
             }
-           ViewBag.MP_MemberShipId = new SelectList(db.MB_Membresia, "MP_MemberShipId", "MP_Descripcion", userprofile.MP_MemberShipId);
+            ViewBag.MP_MemberShipId = new SelectList(db.MB_Membresia, "MP_MemberShipId", "MP_Descripcion", userprofile.MP_MemberShipId);
             ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion", userprofile.PA_Id);
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", userprofile.ST_Id);
             return View(userprofile);
@@ -168,5 +170,59 @@ namespace SMAWeb.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        public FileContentResult GetUserImage(int id)
+        {
+            var image = db.UserProfile.Find(id).Image;
+            return image != null ? new FileContentResult(image, "image/jpg") : null;
+        }
+
+        public ActionResult UploadFiles()
+        {
+            var r = new List<ViewDataUploadFilesResult>();
+
+            foreach (string file in Request.Files)
+            {
+                HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
+                if (hpf.ContentLength == 0)
+                    continue;
+
+                var findUser = db.UserProfile.FirstOrDefault(c => c.UserId == WebSecurity.CurrentUserId);
+                if (findUser != null)
+                {
+                    findUser.Image = ReadFully(hpf.InputStream);
+                    db.Entry(findUser).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("EditUser", "UserProfile", new { id = WebSecurity.CurrentUserId });
+                }
+
+                //string savedFileName = Path.Combine(
+                //   AppDomain.CurrentDomain.BaseDirectory,
+                //   Path.GetFileName(hpf.FileName));
+                //hpf.SaveAs(savedFileName);
+
+                //r.Add(new ViewDataUploadFilesResult()
+                //{
+                //    Name = savedFileName,
+                //    Length = hpf.ContentLength
+                //});
+            }
+            return null;
+            //return View("UploadedFiles", r);
+        }
+
+        public static byte[] ReadFully(Stream input)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                input.CopyTo(ms);
+                return ms.ToArray();
+            }
+        }
+    }
+    public class ViewDataUploadFilesResult
+    {
+        public string Name { get; set; }
+        public int Length { get; set; }
     }
 }

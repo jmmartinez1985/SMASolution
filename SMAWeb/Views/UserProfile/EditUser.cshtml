@@ -13,19 +13,22 @@
                 <h3>Editar Perfil</h3>
             </div>
 
+
+
             <div class="span4">
                 <div class="thumbnail-style">
-                    <a class="fancybox-button zoomer" data-rel="fancybox-button" title="Project #1" href="assets/img/carousel/9.jpg"></a>
+                    <a class="fancybox-button zoomer" data-rel="fancybox-button" title="Project #1" href="~/Images/1.png"></a>
                     <div class="overlay-zoom">
-                        <a class="fancybox-button zoomer" data-rel="fancybox-button" title="Project #1" href="assets/img/carousel/9.jpg">
-                            <img src="assets/img/carousel/9.jpg" alt="">
+                        <a class="fancybox-button zoomer" data-rel="fancybox-button" title="Project #1" href="~/Images/1.png">
+                            <img  src="@Url.Action("GetUserImage", "UserProfile", new { id = WebSecurity.CurrentUserId })" alt="">
                         </a>
                     </div>
-
-                    <h3><a href="#">Our Work</a></h3>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem. <a class="read-more" href="#">Read more</a></p>
-
                 </div>
+                <form action="@Url.Action("UploadFiles", "UserProfile")" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" id="file" />
+
+                    <input type="submit" name="submit" value="Cargar" />
+                </form>
             </div>
             <div class="span6">
 
