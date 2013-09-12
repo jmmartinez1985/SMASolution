@@ -71,6 +71,12 @@ namespace SMAWeb.Models
     {
 
     }
+
+    [MetadataType(typeof(FAQsMetadata))]
+    public partial class FAQs
+    {
+
+    }
     #endregion
 
 
@@ -352,6 +358,28 @@ namespace SMAWeb.Models
 
         public byte[] COM_Logo { get; set; }
 
+    }
+
+    public partial class FAQsMetadata
+    {
+        [Required]
+        [Display(Name = "Código de FAQ")]
+        public int FAQ_Id { get; set; }
+
+        [Required]
+        [Display(Name = "Pregunta")]
+        public string FAQ_Question { get; set; }
+
+        [Required]
+        [Display(Name = "Respuesta")]
+        public string FAQ_Answer { get; set; }
+
+        [Required]
+        [Display(Name = "Estado")]
+        public int FAQ_Status { get; set; }
+
+        [JsonIgnore]
+        public virtual ST_Estatus ST_Estatus { get; set; }
     }
 
     #endregion

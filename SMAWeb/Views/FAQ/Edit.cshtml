@@ -1,0 +1,64 @@
+﻿@model SMAWeb.Models.FAQs
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<br />
+<div class="container">
+    <div class="row-fluid margin-bottom-10">
+
+        <div class="another-page">
+            <div class="headline">
+                <h3>Editar FAQ</h3>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+    
+                
+                @Html.HiddenFor(model => model.FAQ_Id)
+                
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FAQ_Question)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.FAQ_Question, new { @placeholder = "Pregunta", @class = "input-xxlarge" })
+                    @Html.ValidationMessageFor(model => model.FAQ_Question)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FAQ_Answer)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.FAQ_Answer, new { @placeholder = "Respuesta", @class = "input-xxlarge" })
+                    @Html.ValidationMessageFor(model => model.FAQ_Answer)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FAQ_Status)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("FAQ_Status", String.Empty)
+                    @Html.ValidationMessageFor(model => model.FAQ_Status)
+                </div>
+
+                <p>
+                    <input type="submit" value="Guardar" class="btn-u" />
+                </p>
+   
+            }
+
+            <div>
+                @Html.ActionLink("Regresar", "Index")
+            </div>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SMAWeb.Models.MB_Membresia>
+﻿@model IEnumerable<SMAWeb.Models.FAQs>
 
 @{
     ViewBag.Title = "Index";
@@ -10,8 +10,9 @@
 
         <div class="another-page">
             <div class="headline">
-                <h3>Formulario de Membresía</h3>
+                <h3>Formulario de FAQs</h3>
             </div>
+
 
             <p>
                 @Html.ActionLink("Nuevo", "Create")
@@ -20,13 +21,16 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.MP_MemberShipId)
+                            @Html.DisplayNameFor(model => model.FAQ_Id)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.MP_Descripcion)
+                            @Html.DisplayNameFor(model => model.FAQ_Question)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.MP_ExpiracionDays)
+                            @Html.DisplayNameFor(model => model.FAQ_Answer)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ST_Estatus.ST_Descripcion)
                         </th>
                         <th></th>
                     </tr>
@@ -36,20 +40,24 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MP_MemberShipId)
+                                @Html.DisplayFor(modelItem => item.FAQ_Id)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MP_Descripcion)
+                                @Html.DisplayFor(modelItem => item.FAQ_Question)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MP_ExpiracionDays)
+                                @Html.DisplayFor(modelItem => item.FAQ_Answer)
                             </td>
                             <td>
-                                @Html.ActionLink("Editar", "Edit", new {  id=item.MP_MemberShipId  }) |
+                                @Html.DisplayFor(modelItem => item.ST_Estatus.ST_Descripcion)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
                             </td>
                         </tr>
+    
                     }
                 </tbody>
             </table>

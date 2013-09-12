@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SMAWeb.Models.FAQs>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<div class="container">
+    <div class="row-fluid margin-bottom-10">
+
+        <div class="another-page">
+            <div class="headline">
+                <h3>FAQs</h3>
+                <h5>Preguntas y Respuestas Frecuentes de Service Market</h5>
+            </div>
+
+
+
+            <div class="accordion acc-home" id="accordion3">
+                @foreach (var item in Model)
+                {
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne1">@Html.DisplayNameFor(model => model.FAQ_Question)
+                            </a>
+                        </div>
+                        <div id="collapseOne1" class="accordion-body in collapse" style="height: auto;">
+                            <div class="accordion-inner">
+                                <p>@Html.DisplayNameFor(model => model.FAQ_Answer)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/accordion-group-->
+                }
+            </div>
+
+            @*<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
+        </div>
+    </div>
+</div>

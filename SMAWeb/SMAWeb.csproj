@@ -185,10 +185,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnunciosController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CategoriaServicioController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\ContactosController.cs" />
     <Compile Include="Controllers\EstatusController.cs" />
+    <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembresiaController.cs" />
     <Compile Include="Controllers\MultimediaTiposController.cs" />
@@ -268,9 +270,6 @@
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ST_Estatus.cs">
-      <DependentUpon>SMAModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserProfile.cs">
@@ -549,6 +548,11 @@
     <Content Include="Views\Anuncios\GetAnunciosByUser.cshtml" />
     <Content Include="Views\UserProfile\EditUser.cshtml" />
     <Content Include="Views\Anuncios\LoadUplaoder.cshtml" />
+    <Content Include="Views\FAQ\Index.cshtml" />
+    <Content Include="Views\FAQ\Details.cshtml" />
+    <Content Include="Views\FAQ\Create.cshtml" />
+    <Content Include="Views\FAQ\Edit.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
