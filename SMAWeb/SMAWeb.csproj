@@ -201,6 +201,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HttpHandler\FileStatus.cs" />
+    <Compile Include="HttpHandler\UploadHandler.ashx.cs">
+      <DependentUpon>UploadHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AE_AnunciosExtras.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
@@ -457,6 +461,7 @@
       <DependentUpon>SMAModel.edmx</DependentUpon>
       <LastGenOutput>SMAModel.cs</LastGenOutput>
     </Content>
+    <Content Include="HttpHandler\UploadHandler.ashx" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Bootstrap2.3\bootstrap.js" />
     <Content Include="Scripts\Bootstrap2.3\bootstrap.min.js" />
@@ -542,9 +547,11 @@
     <Content Include="Views\Shared\_LoggedAdminMenu.cshtml" />
     <Content Include="Views\Anuncios\GetAnunciosByUser.cshtml" />
     <Content Include="Views\UserProfile\EditUser.cshtml" />
+    <Content Include="Views\Anuncios\LoadUplaoder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\FileUpload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

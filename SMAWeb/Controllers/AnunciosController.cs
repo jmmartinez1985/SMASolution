@@ -213,6 +213,11 @@ namespace SMAWeb.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult LoadUplaoder()
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
