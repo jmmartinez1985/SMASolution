@@ -472,6 +472,7 @@
     <Content Include="Scripts\CustomScript\jquery.flexslider-min.js" />
     <Content Include="Scripts\CustomScript\modernizr.custom.js" />
     <Content Include="Scripts\CustomScript\modernizr.js" />
+    <Content Include="Scripts\FileUpload\modernizr-2.6.2.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -551,7 +552,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\FileUpload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
