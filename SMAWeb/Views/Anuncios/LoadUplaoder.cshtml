@@ -94,33 +94,39 @@
 {% } %}
 </script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/jquery.min.js")"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/jquery-ui.min.js")"></script>
 <!-- The Templates plugin is included to render the upload/download listings -->
-<script src="http://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/tmpl.min.js")"></script>
 <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-<script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/load-image.min.js")"></script>
 <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-<script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/canvas-to-blob.min.js")"></script>
 <!-- blueimp Gallery script -->
-<script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/jquery.blueimp-gallery.min.js")"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<script src="@Url.Content("~/js/jquery.iframe-transport.js")"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/jquery.iframe-transport.js")"></script>
 <!-- The basic File Upload plugin -->
-<script src="js/jquery.fileupload.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/js/jquery.fileupload.js")"></script>
 <!-- The File Upload processing plugin -->
-<script src="js/jquery.fileupload-process.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-process.js")"></script>
 <!-- The File Upload image preview & resize plugin -->
-<script src="js/jquery.fileupload-image.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-image.js")"></script>
 <!-- The File Upload audio preview plugin -->
-<script src="js/jquery.fileupload-audio.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-audio.js")"></script>
 <!-- The File Upload video preview plugin -->
-<script src="js/jquery.fileupload-video.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-video.js")"></script>
 <!-- The File Upload validation plugin -->
-<script src="js/jquery.fileupload-validate.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-validate.js")"></script>
 <!-- The File Upload user interface plugin -->
-<script src="js/jquery.fileupload-ui.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-ui.js")"></script>
 <!-- The File Upload jQuery UI plugin -->
-<script src="js/jquery.fileupload-jquery-ui.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-jquery-ui.js")"></script>
 <!-- The main application script -->
-<script src="js/main.js"></script>
+<script src="@Url.Content("~/Scripts/FileUpload/main.js")"></script>
+
+
+<link href="@Url.Content("~/Content/FileUpload/blueimp-gallery.min.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/FileUpload/demo.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/FileUpload/jquery-ui.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/FileUpload/jquery.fileupload-ui.css")" rel="stylesheet" />
