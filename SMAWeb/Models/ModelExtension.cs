@@ -71,6 +71,12 @@ namespace SMAWeb.Models
     {
 
     }
+
+    [MetadataType(typeof(FAQsMetadata))]
+    public partial class FAQs
+    {
+
+    }
     #endregion
 
 
