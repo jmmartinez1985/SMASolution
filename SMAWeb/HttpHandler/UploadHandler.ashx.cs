@@ -141,18 +141,18 @@ namespace SMAWeb.HttpHandler
 
                 string fullName = Path.GetFileName(file.FileName);
 
-                var urlpath = Extensions.Extension.ResolveServerUrl("~/", false);
+                //var urlpath = Extensions.Extension.ResolveServerUrl("~/", false);
 
-                using (Entities db = new Entities())
-                {
-                    db.IMG_Images.Add(new IMG_Images
-                    {
-                        IMG_Name = fullName,
-                        IMG_Path =string.Format("FilesUploaded/{0}", fullName),
-                        IMG_Date = System.DateTime.Now
-                    });
-                    db.SaveChanges();
-                }
+                //using (Entities db = new Entities())
+                //{
+                //    db.IMG_Images.Add(new IMG_Images
+                //    {
+                //        IMG_Name = fullName,
+                //        IMG_Path =string.Format("FilesUploaded/{0}", fullName),
+                //        IMG_Date = System.DateTime.Now
+                //    });
+                //    db.SaveChanges();
+                //}
 
                 statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath));
             }
