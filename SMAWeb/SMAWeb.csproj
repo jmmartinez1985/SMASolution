@@ -267,9 +267,6 @@
     <Compile Include="Models\ST_Estatus.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>SMAModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UserProfile.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>

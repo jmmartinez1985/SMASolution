@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMAWeb", "SMAWeb\SMAWeb.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BD Backup", "BD Backup", "{864F7DB8-9DC2-4ED2-A029-7A01B2DF9074}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL10_50.SQL2K8\MSSQL\Backup\ServiceMarket.bak = ..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL10_50.SQL2K8\MSSQL\Backup\ServiceMarket.bak
+		..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL10_50.SQL2K8\MSSQL\Backup\ServiceMarket.bak = ..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL10_50.SQL2K8\MSSQL\Backup\ServiceMarket.bak
 		..\..\..\SMscript.sql = ..\..\..\SMscript.sql
 	EndProjectSection
 EndProject
