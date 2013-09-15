@@ -2,24 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
-<script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")"></script>
-<link href="@Url.Content("~/Content/Unify/flexslider.css")" rel="stylesheet" />
 
-
-<script src="@Url.Content("~/Scripts/CustomScript/modernizr.custom.js")"></script>
-
-
-<script src="@Url.Content("~/Scripts/CustomScript/jquery.flexslider-min.js")"></script>
-
-<script src="@Url.Content("~/Scripts/CustomScript/modernizr.js")"></script>
-
-<script src="@Url.Content("~/Scripts/CustomScript/jquery.cslider.js")"></script>
-<script src="@Url.Content("~/Scripts/CustomScript/back-to-top.js")"></script>
-
-<script src="@Url.Content("~/Scripts/CustomScript/app.js")"></script>
-
-
-<script src="@Url.Content("~/Scripts/CustomScript/index.js")"></script>
 
 <!--=== Purchase Block ===-->
 <div class="row-fluid purchase margin-bottom-30">
@@ -97,46 +80,24 @@
 
 <br />
 
-<div id="anuncioInfo">
+    <!--Anuncios Table with pagination-->
+<div style="width: 100%">
+    <table class="table-hover">
+        <thead>
+        </thead>
+        <tbody id="anunciosAvailable">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="1">
+                    <div class="holder" style="float: left">
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
 
+    </table>
 </div>
-
-@*<div class="row-fluid">
-    <div class="span12 booking-blocks">
-        <!--   -->
-        <div class="pull-left booking-img">
-            <!--   -->
-            <img src="~/Images/1.png" alt="Nombre del anunciante">
-            <!-- Nombre del Anunciante  -->
-            <ul class="unstyled">
-                <li><i class="icon-briefcase"></i>Categoria</li>
-                <!-- Categorias  -->
-                <li><i class="icon-map-marker"></i>Lugar del anuncio</li>
-                <!-- Lugar del anuncio, agregar campo a la base de datos  -->
-                <li>
-                    <ul class="unstyled inline">
-                        <!-- Calculado basado Review basado en 5  -->
-                        <li><i class="icon-star"></i></li>
-                        <li><i class="icon-star"></i></li>
-                        <li><i class="icon-star"></i></li>
-                        <li><i class="icon-star"></i></li>
-                        <li><i class="icon-star-empty"></i></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div style="overflow: hidden;">
-            <h2><a href="#">Titulo del anuncio</a></h2>
-            <!-- Titulo Anuncio  -->
-
-            <p>Esta es la descripcion del servicio que se ofrece, At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.  </p>
-            <!-- Descripcion de anuncio, basado en 200 caracteres -->
-            <button class="btn-u btn-u-orange">Leer Más</button>
-            <!-- Nombre del Anunciante  -->
-        </div>
-    </div>
-</div>*@
-
 
 
 <!--/slider-->
@@ -144,59 +105,65 @@
 <script type="text/javascript">
     jQuery(document).ready(function () {
         Index.initParallaxSlider();
+
+
     });
-
-    var $jq = jQuery.noConflict();
-
-    $jq(function () {
-
-
+    var $ki = jQuery.noConflict();
+    $ki(function () {
         jQuery.ajax(
-               {
-                   type: 'post',
-                   url: '@Url.Action("GetServices", "Home")',
-                   success: function (data) {
-                       var result = JSON.parse(data);
+        {
+        type: 'post',
+        url: '@Url.Action("GetServices", "Home")',
+               success: function (data) {
+                   debugger;
+                   var result = JSON.parse(data);
+                   var htmldata = '';
+                   jQuery.each(result.$values, function (val, anuncio) {
+                       debugger;
+                       htmldata += '<tr><td><div class="row-fluid">';
+                       htmldata += '<div class="span12 booking-blocks"> ';
+                       htmldata += '<div class="pull-left booking-img">';
+                       htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
+                       htmldata += '<ul class="unstyled">';
+                       htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
+                       htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
+                       htmldata += '<li>';
+                       htmldata += '<ul class="unstyled inline"> ';
+                       htmldata += ' <li><i class="icon-star"></i></li>';
+                       htmldata += '<li><i class="icon-star"></i></li>';
+                       htmldata += '<li><i class="icon-star"></i></li>';
+                       htmldata += '<li><i class="icon-star"></i></li>';
+                       htmldata += '<li><i class="icon-star-empty"></i></li>';
+                       htmldata += '</ul>';
+                       htmldata += '</li>';
+                       htmldata += '</ul>';
+                       htmldata += '</div>';
+                       htmldata += '<div style="overflow: hidden;">';
+                       htmldata += '<h2><a href="#">' + anuncio.AnunciosInfo.AN_Titulo + '</a></h2> ';
+                       htmldata += '<b>' + anuncio.Usuario + '</b>';
+                       htmldata += '<p>' + anuncio.AnunciosInfo.AN_Descripcion + '</p>';
+                       htmldata += '<button class="btn-u btn-u-orange">Leer Más</button>';
+                       htmldata += '</div>';
+                       htmldata += '</div>';
+                       htmldata += '</div></td> </tr>';
+                   });
+                   jQuery('#anunciosAvailable').append(htmldata);
+                   $ki("div.holder").jPages({
+                       containerID: "anunciosAvailable",
+                       //              previous: "←",
+                       //              next: "→",
+                       first: "first",
+                       previous: "previous",
+                       next: "next",
+                       last: "last",
+                       perPage: 7,
+                       delay: 20
+                   });
+               },
+               error: function (a, b, c) {
+                   alert(a);
+               }
+           });
+        });
 
-                       var htmldata = '';
-
-                       $jq.each(result.$values, function (val, anuncio) {
-                           
-                           htmldata += '<div class="row-fluid">';
-                           htmldata += '<div class="span12 booking-blocks"> ';
-                           htmldata += '<div class="pull-left booking-img">';
-                           htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
-                           htmldata += '<ul class="unstyled">';
-                           htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
-                           htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
-                           htmldata += '<li>';
-                           htmldata += '<ul class="unstyled inline"> ';
-                           htmldata += ' <li><i class="icon-star"></i></li>';
-                           htmldata += '<li><i class="icon-star"></i></li>';
-                           htmldata += '<li><i class="icon-star"></i></li>';
-                           htmldata += '<li><i class="icon-star"></i></li>';
-                           htmldata += '<li><i class="icon-star-empty"></i></li>';
-                           htmldata += '</ul>';
-                           htmldata += '</li>';
-                           htmldata += '</ul>';
-                           htmldata += '</div>';
-                           htmldata += '<div style="overflow: hidden;">';
-                           htmldata += '<h2><a href="#">' + anuncio.AnunciosInfo.AN_Titulo + '</a></h2> ';
-                           htmldata += '<b>' + anuncio.Usuario + '</b>';
-                           htmldata += '<p>' + anuncio.AnunciosInfo.AN_Descripcion + '</p>';
-                           htmldata += '<button class="btn-u btn-u-orange">Leer Más</button>';
-                           htmldata += '</div>';
-                           htmldata += '</div>';
-                           htmldata += '</div>';
-
-                       });
-
-                       $jq('#anuncioInfo').append(htmldata);
-
-                   },
-                   error: function (a, b, c) {
-
-                   }
-               });
-    });
 </script>

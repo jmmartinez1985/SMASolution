@@ -12,18 +12,14 @@ namespace SMAWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class FAQs
+    public partial class CONF_Parametros
     {
-        public FAQs()
-        {
-            this.FAQ_Status = 1;
-        }
-    
-        public int FAQ_Id { get; set; }
-        public string FAQ_Question { get; set; }
-        public string FAQ_Answer { get; set; }
-        public int FAQ_Status { get; set; }
-    
-        public virtual ST_Estatus ST_Estatus { get; set; }
+        public int CONG_Id { get; set; }
+        public Nullable<int> CONF_QtyAnuncios { get; set; }
+        public Nullable<int> CONF_DayBlocked { get; set; }
+        public Nullable<int> CONF_Comments { get; set; }
+        public Nullable<int> CONF_Alerts { get; set; }
+        public Nullable<int> CONF_InactivityDay { get; set; }
+        public Nullable<int> CONF_DayEnabled { get; set; }
     }
 }

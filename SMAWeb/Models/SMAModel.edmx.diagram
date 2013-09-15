@@ -42,6 +42,7 @@
         <AssociationConnector Association="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus" ManuallyRouted="false" />
         <AssociationConnector Association="ServiceMarketModel.FK_UserProfile_ST_Estatus" ManuallyRouted="false" />
         <AssociationConnector Association="ServiceMarketModel.webpages_UsersInRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ServiceMarketModel.CONF_Parametros" Width="1.5" PointX="8.74007205699574" PointY="16.955683462766782" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

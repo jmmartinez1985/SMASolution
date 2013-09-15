@@ -32,7 +32,11 @@ namespace SMAWeb.Controllers
                     string username = item.UserProfile.Name;
                     string statusDesc = item.ST_Estatus.ST_Descripcion;
                     var categoria = item.SBS_SubCategoriaServicio.CD_CategoriaServicio.CD_Descripcion;
-                    var firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
+                    var firstImage = string.Empty;
+                    if (item.AE_AnunciosExtras.FirstOrDefault() != null)
+                    {
+                        firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
+                    }
 
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
                     var formatted = firstImage.Replace("~", "");
@@ -81,7 +85,11 @@ namespace SMAWeb.Controllers
                     string username = item.UserProfile.Name;
                     string statusDesc = item.ST_Estatus.ST_Descripcion;
                     var categoria = item.SBS_SubCategoriaServicio.CD_CategoriaServicio.CD_Descripcion;
-                    var firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
+                    var firstImage = string.Empty;
+                    if (item.AE_AnunciosExtras.FirstOrDefault() != null)
+                    {
+                        firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
+                    }
 
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
                     var formatted = firstImage.Replace("~", "");

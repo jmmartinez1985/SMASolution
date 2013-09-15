@@ -37,7 +37,7 @@ namespace SMAWeb.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.Email, model.Password, persistCookie: model.RememberMe))
             {
-                return RedirectToLocal(returnUrl);
+                return RedirectToLocal(returnUrl, model.Email);
             }
 
             // If we got this far, something failed, redisplay form
@@ -227,14 +227,14 @@ namespace SMAWeb.Controllers
 
             if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
             {
-                return RedirectToLocal(returnUrl);
+                return RedirectToLocal(returnUrl, string.Empty);
             }
 
             if (User.Identity.IsAuthenticated)
             {
                 // If the current user is logged in add the new account
                 OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
-                return RedirectToLocal(returnUrl);
+                return RedirectToLocal(returnUrl, string.Empty);
             }
             else
             {
@@ -278,7 +278,7 @@ namespace SMAWeb.Controllers
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
                         OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
 
-                        return RedirectToLocal(returnUrl);
+                        return RedirectToLocal(returnUrl, string.Empty);
                     }
                     else
                     {
@@ -331,7 +331,7 @@ namespace SMAWeb.Controllers
         }
 
         #region Helpers
-        private ActionResult RedirectToLocal(string returnUrl)
+        private ActionResult RedirectToLocal(string returnUrl, string Username)
         {
             if (Url.IsLocalUrl(returnUrl))
             {
@@ -339,7 +339,7 @@ namespace SMAWeb.Controllers
             }
             else
             {
-                if (Roles.IsUserInRole("Admin"))
+                if (Roles.FindUsersInRole("Admin", Username).Count() > 0)
                     return RedirectToAction("Index", "Home");
                 else
                     return RedirectToAction("GetAnunciosByUser", "Anuncios");
