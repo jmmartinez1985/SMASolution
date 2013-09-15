@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ServiceMarketModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ServiceMarketModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ServiceMarketModelStoreContainer">
           <EntitySet Name="AE_AnunciosExtras" EntityType="ServiceMarketModel.Store.AE_AnunciosExtras" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AM_MultimediaAnuncios" EntityType="ServiceMarketModel.Store.AM_MultimediaAnuncios" store:Type="Tables" Schema="dbo" />
@@ -12,6 +12,7 @@
           <EntitySet Name="CD_CategoriaServicio" EntityType="ServiceMarketModel.Store.CD_CategoriaServicio" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="COM_Compañia" EntityType="ServiceMarketModel.Store.COM_Compañia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CON_Contactenos" EntityType="ServiceMarketModel.Store.CON_Contactenos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CONF_Parametros" EntityType="ServiceMarketModel.Store.CONF_Parametros" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FAQs" EntityType="ServiceMarketModel.Store.FAQs" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.Store.MB_Membresia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.Store.MT_MultimediaTipos" store:Type="Tables" Schema="dbo" />
@@ -170,6 +171,18 @@
           <Property Name="CON_Email" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="CON_Mensaje" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="CON_Fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONF_Parametros">
+          <Key>
+            <PropertyRef Name="CONG_Id" />
+          </Key>
+          <Property Name="CONG_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CONF_QtyAnuncios" Type="int" />
+          <Property Name="CONF_DayBlocked" Type="int" />
+          <Property Name="CONF_Comments" Type="int" />
+          <Property Name="CONF_Alerts" Type="int" />
+          <Property Name="CONF_InactivityDay" Type="int" />
+          <Property Name="CONF_DayEnabled" Type="int" />
         </EntityType>
         <EntityType Name="FAQs">
           <Key>
@@ -527,8 +540,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ServiceMarketModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -621,6 +633,7 @@
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
+          <EntitySet Name="CONF_Parametros" EntityType="ServiceMarketModel.CONF_Parametros" />
         </EntityContainer>
         <EntityType Name="AE_AnunciosExtras">
           <Key>
@@ -710,7 +723,7 @@
           <Property Name="FAQ_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="FAQ_Question" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
           <Property Name="FAQ_Answer" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="FAQ_Status" Type="Int32" Nullable="false" />
+          <Property Name="FAQ_Status" Type="Int32" Nullable="false" DefaultValue="1" />
           <NavigationProperty Name="ST_Estatus" Relationship="ServiceMarketModel.FK_FAQs_ST_Estatus" FromRole="FAQs" ToRole="ST_Estatus" />
         </EntityType>
         <EntityType Name="MB_Membresia">
@@ -1055,6 +1068,18 @@
           <End Role="webpages_Roles" Type="ServiceMarketModel.webpages_Roles" Multiplicity="*" />
           <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="*" />
         </Association>
+        <EntityType Name="CONF_Parametros">
+          <Key>
+            <PropertyRef Name="CONG_Id" />
+          </Key>
+          <Property Type="Int32" Name="CONG_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CONF_QtyAnuncios" />
+          <Property Type="Int32" Name="CONF_DayBlocked" />
+          <Property Type="Int32" Name="CONF_Comments" />
+          <Property Type="Int32" Name="CONF_Alerts" />
+          <Property Type="Int32" Name="CONF_InactivityDay" />
+          <Property Type="Int32" Name="CONF_DayEnabled" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1291,6 +1316,19 @@
               <ScalarProperty Name="UserId" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="CONF_Parametros">
+            <EntityTypeMapping TypeName="ServiceMarketModel.CONF_Parametros">
+              <MappingFragment StoreEntitySet="CONF_Parametros">
+                <ScalarProperty Name="CONF_DayEnabled" ColumnName="CONF_DayEnabled" />
+                <ScalarProperty Name="CONF_InactivityDay" ColumnName="CONF_InactivityDay" />
+                <ScalarProperty Name="CONF_Alerts" ColumnName="CONF_Alerts" />
+                <ScalarProperty Name="CONF_Comments" ColumnName="CONF_Comments" />
+                <ScalarProperty Name="CONF_DayBlocked" ColumnName="CONF_DayBlocked" />
+                <ScalarProperty Name="CONF_QtyAnuncios" ColumnName="CONF_QtyAnuncios" />
+                <ScalarProperty Name="CONG_Id" ColumnName="CONG_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

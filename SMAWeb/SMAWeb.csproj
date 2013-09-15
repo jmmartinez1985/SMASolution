@@ -223,6 +223,9 @@
     <Compile Include="Models\COM_Compañia.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CONF_Parametros.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CON_Contactenos.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
@@ -337,6 +340,9 @@
     <Content Include="Content\Images\vadafone_grey.png" />
     <Content Include="Content\Images\walmart.png" />
     <Content Include="Content\Images\walmart_grey.png" />
+    <Content Include="Content\jpages\animate.css" />
+    <Content Include="Content\jpages\jPages.css" />
+    <Content Include="Content\jpages\style.css" />
     <Content Include="Content\Unify\flexslider.css" />
     <Content Include="Content\Unify\header1-orange.css" />
     <Content Include="Content\Unify\header1.css" />
@@ -466,6 +472,7 @@
     </Content>
     <Content Include="HttpHandler\UploadHandler.ashx" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\Bootstrap2.3\bootstrap-paginator.js" />
     <Content Include="Scripts\Bootstrap2.3\bootstrap.js" />
     <Content Include="Scripts\Bootstrap2.3\bootstrap.min.js" />
     <Content Include="Scripts\CustomScript\app.js" />
@@ -475,6 +482,7 @@
     <Content Include="Scripts\CustomScript\jquery.flexslider-min.js" />
     <Content Include="Scripts\CustomScript\modernizr.custom.js" />
     <Content Include="Scripts\CustomScript\modernizr.js" />
+    <Content Include="Scripts\FileUpload\bootstrap.min.js" />
     <Content Include="Scripts\FileUpload\canvas-to-blob.min.js" />
     <Content Include="Scripts\FileUpload\jquery-ui.min.js" />
     <Content Include="Scripts\FileUpload\jquery.blueimp-gallery.min.js" />
@@ -490,9 +498,11 @@
     <Content Include="Scripts\FileUpload\jquery.min.js" />
     <Content Include="Scripts\FileUpload\load-image.min.js" />
     <Content Include="Scripts\FileUpload\main.js" />
-    <Content Include="Scripts\FileUpload\modernizr-2.6.2.js" />
     <Content Include="Scripts\FileUpload\show_ads.js" />
     <Content Include="Scripts\FileUpload\tmpl.min.js" />
+    <Content Include="Scripts\jpage\jPages.js" />
+    <Content Include="Scripts\jpage\jPages.min.js" />
+    <Content Include="Scripts\jpage\jquery.lazyload.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -577,6 +587,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="FilesUploaded\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -598,7 +609,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>5735</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
