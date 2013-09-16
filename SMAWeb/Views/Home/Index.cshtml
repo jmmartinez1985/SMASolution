@@ -86,7 +86,7 @@
         <div class="span6">
             <div class="form-inline">
 
-                <input name="txtSearchHome" class="span5" type="text" placeholder="Location: City, State, Zip">
+                <input id="txtSearchHome" class="span5" type="text" placeholder="Location: City, State, Zip">
                 <button type="submit" class="btn btn-u"><i class="icon-search icon-white"></i></button>
             </div>
         </div>
@@ -216,6 +216,8 @@
             });
             setTimeout('CheckVisibleProjects();', 300);
         });
+
+
     });
     var $ki = jQuery.noConflict();
     $ki(function () {
