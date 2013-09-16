@@ -340,6 +340,8 @@
     <Content Include="Content\Images\vadafone_grey.png" />
     <Content Include="Content\Images\walmart.png" />
     <Content Include="Content\Images\walmart_grey.png" />
+    <Content Include="Content\img\icons\social\facebook.png" />
+    <Content Include="Content\img\icons\social\twitter.png" />
     <Content Include="Content\jpages\animate.css" />
     <Content Include="Content\jpages\jPages.css" />
     <Content Include="Content\jpages\style.css" />
