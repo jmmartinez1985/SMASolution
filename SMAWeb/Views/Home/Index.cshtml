@@ -80,7 +80,97 @@
 
 <br />
 
-    <!--Anuncios Table with pagination-->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="span6">
+            <div class="form-inline">
+
+                <input name="loc" class="span5" type="text" placeholder="Location: City, State, Zip">
+                <button type="submit" class="btn btn-u"><i class="icon-search icon-white"></i></button>
+            </div>
+        </div>
+
+        <div class="span4">
+            <a href="#advanced" role="button" data-toggle="modal" class="btn btn-warning">Advanced Sort</a>
+        </div>
+    </div>
+</div>
+<br />
+
+<div id="advanced" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="advancedSort" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <ul class="nav nav-pills pull-right">
+            <li class="active">
+                <a href="#date" data-toggle="pill">Date</a>
+            </li>
+            <li><a href="#relevance" data-toggle="pill">Relevance</a></li>
+            <li><a href="#dealership" data-toggle="pill">Dealership</a></li>
+        </ul>
+        <h4>Advanced Sort</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row-fluid">
+            <div class="tab-content">
+                <div class="tab-pane active" id="date">
+                    <form>
+                        <div class="controls controls-row">
+                            <select>
+                                <option>Date</option>
+                                <option>Today</option>
+                                <option>Yesterday</option>
+                                <option>Last Week</option>
+                                <option>Last Month</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Sort</button>
+                    </form>
+                </div>
+                <div class="tab-pane" id="relevance">
+                    <form>
+                     
+                            <div class="controls controls-row">
+                                <select class="span6">
+                                    <option value="">Relevance Factor</option>
+                                    <option value="">Containing</option>
+                                    <option value="">Starting with</option>
+                                    <option value="">Enging with</option>
+                                </select>
+                                <select class="span6">
+                                    <option value="">Sorting</option>
+                                    <option value="">Relevant on top</option>
+                                    <option value="">Relevant on bottom</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-warning">Sort</button>
+                       
+                    </form>
+                </div>
+                <div class="tab-pane" id="dealership">
+                    <form>
+                        
+                            <div class="controls controls-row">
+                                <input type="text" class="span8" placeholder="Location">
+                                <select class="span4">
+                                    <option>City</option>
+                                    <option>Los Angeles</option>
+                                    <option>Tokyo</option>
+                                    <option>New York</option>
+                                    <option>London</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-warning">Sort</button>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Anuncios Table with pagination-->
 <div style="width: 100%">
     <table class="table-hover">
         <thead>
@@ -112,58 +202,58 @@
     $ki(function () {
         jQuery.ajax(
         {
-        type: 'post',
-        url: '@Url.Action("GetServices", "Home")',
-               success: function (data) {
-                   debugger;
-                   var result = JSON.parse(data);
-                   var htmldata = '';
-                   jQuery.each(result.$values, function (val, anuncio) {
-                       debugger;
-                       htmldata += '<tr><td><div class="row-fluid">';
-                       htmldata += '<div class="span12 booking-blocks"> ';
-                       htmldata += '<div class="pull-left booking-img">';
-                       htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
-                       htmldata += '<ul class="unstyled">';
-                       htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
-                       htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
-                       htmldata += '<li>';
-                       htmldata += '<ul class="unstyled inline"> ';
-                       htmldata += ' <li><i class="icon-star"></i></li>';
-                       htmldata += '<li><i class="icon-star"></i></li>';
-                       htmldata += '<li><i class="icon-star"></i></li>';
-                       htmldata += '<li><i class="icon-star"></i></li>';
-                       htmldata += '<li><i class="icon-star-empty"></i></li>';
-                       htmldata += '</ul>';
-                       htmldata += '</li>';
-                       htmldata += '</ul>';
-                       htmldata += '</div>';
-                       htmldata += '<div style="overflow: hidden;">';
-                       htmldata += '<h2><a href="#">' + anuncio.AnunciosInfo.AN_Titulo + '</a></h2> ';
-                       htmldata += '<b>' + anuncio.Usuario + '</b>';
-                       htmldata += '<p>' + anuncio.AnunciosInfo.AN_Descripcion + '</p>';
-                       htmldata += '<button class="btn-u btn-u-orange">Leer Más</button>';
-                       htmldata += '</div>';
-                       htmldata += '</div>';
-                       htmldata += '</div></td> </tr>';
-                   });
-                   jQuery('#anunciosAvailable').append(htmldata);
-                   $ki("div.holder").jPages({
-                       containerID: "anunciosAvailable",
-                       //              previous: "←",
-                       //              next: "→",
-                       first: "first",
-                       previous: "previous",
-                       next: "next",
-                       last: "last",
-                       perPage: 7,
-                       delay: 20
-                   });
-               },
-               error: function (a, b, c) {
-                   alert(a);
-               }
-           });
+            type: 'post',
+            url: '@Url.Action("GetServices", "Home")',
+            success: function (data) {
+                
+                var result = JSON.parse(data);
+                var htmldata = '';
+                jQuery.each(result.$values, function (val, anuncio) {
+                    
+                    htmldata += '<tr><td><div class="row-fluid">';
+                    htmldata += '<div class="span12 booking-blocks"> ';
+                    htmldata += '<div class="pull-left booking-img">';
+                    htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
+                    htmldata += '<ul class="unstyled">';
+                    htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
+                    htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
+                    htmldata += '<li>';
+                    htmldata += '<ul class="unstyled inline"> ';
+                    htmldata += ' <li><i class="icon-star"></i></li>';
+                    htmldata += '<li><i class="icon-star"></i></li>';
+                    htmldata += '<li><i class="icon-star"></i></li>';
+                    htmldata += '<li><i class="icon-star"></i></li>';
+                    htmldata += '<li><i class="icon-star-empty"></i></li>';
+                    htmldata += '</ul>';
+                    htmldata += '</li>';
+                    htmldata += '</ul>';
+                    htmldata += '</div>';
+                    htmldata += '<div style="overflow: hidden;">';
+                    htmldata += '<h2><a href="#">' + anuncio.AnunciosInfo.AN_Titulo + '</a></h2> ';
+                    htmldata += '<b>' + anuncio.Usuario + '</b>';
+                    htmldata += '<p>' + anuncio.AnunciosInfo.AN_Descripcion + '</p>';
+                    htmldata += '<button class="btn-u btn-u-orange">Leer Más</button>';
+                    htmldata += '</div>';
+                    htmldata += '</div>';
+                    htmldata += '</div></td> </tr>';
+                });
+                jQuery('#anunciosAvailable').append(htmldata);
+                $ki("div.holder").jPages({
+                    containerID: "anunciosAvailable",
+                    //              previous: "←",
+                    //              next: "→",
+                    first: "first",
+                    previous: "previous",
+                    next: "next",
+                    last: "last",
+                    perPage: 7,
+                    delay: 20
+                });
+            },
+            error: function (a, b, c) {
+                alert(a);
+            }
         });
+    });
 
 </script>
