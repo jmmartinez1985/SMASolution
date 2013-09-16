@@ -86,7 +86,7 @@
         <div class="span6">
             <div class="form-inline">
 
-                <input name="loc" class="span5" type="text" placeholder="Location: City, State, Zip">
+                <input name="txtSearchHome" class="span5" type="text" placeholder="Location: City, State, Zip">
                 <button type="submit" class="btn btn-u"><i class="icon-search icon-white"></i></button>
             </div>
         </div>
@@ -129,39 +129,39 @@
                 </div>
                 <div class="tab-pane" id="relevance">
                     <form>
-                     
-                            <div class="controls controls-row">
-                                <select class="span6">
-                                    <option value="">Relevance Factor</option>
-                                    <option value="">Containing</option>
-                                    <option value="">Starting with</option>
-                                    <option value="">Enging with</option>
-                                </select>
-                                <select class="span6">
-                                    <option value="">Sorting</option>
-                                    <option value="">Relevant on top</option>
-                                    <option value="">Relevant on bottom</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-warning">Sort</button>
-                       
+
+                        <div class="controls controls-row">
+                            <select class="span6">
+                                <option value="">Relevance Factor</option>
+                                <option value="">Containing</option>
+                                <option value="">Starting with</option>
+                                <option value="">Enging with</option>
+                            </select>
+                            <select class="span6">
+                                <option value="">Sorting</option>
+                                <option value="">Relevant on top</option>
+                                <option value="">Relevant on bottom</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Sort</button>
+
                     </form>
                 </div>
                 <div class="tab-pane" id="dealership">
                     <form>
-                        
-                            <div class="controls controls-row">
-                                <input type="text" class="span8" placeholder="Location">
-                                <select class="span4">
-                                    <option>City</option>
-                                    <option>Los Angeles</option>
-                                    <option>Tokyo</option>
-                                    <option>New York</option>
-                                    <option>London</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-warning">Sort</button>
-                       
+
+                        <div class="controls controls-row">
+                            <input type="text" class="span8" placeholder="Location">
+                            <select class="span4">
+                                <option>City</option>
+                                <option>Los Angeles</option>
+                                <option>Tokyo</option>
+                                <option>New York</option>
+                                <option>London</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Sort</button>
+
                     </form>
                 </div>
             </div>
@@ -189,6 +189,10 @@
     </table>
 </div>
 
+<div id="divNoAnunciosFound" class="bold large span12" style="padding: 5px; display: none;">
+    No se obtuvieron resultados.
+</div>
+
 
 <!--/slider-->
 <!--=== End Slider ===-->
@@ -196,7 +200,22 @@
     jQuery(document).ready(function () {
         Index.initParallaxSlider();
 
+        jQuery('#txtSearchHome').keyup(function () {
+            debugger;
+            var text = jQuery('#txtSearchHome').val();
+            var rows = jQuery('#anunciosAvailable > tr');
 
+            rows.each(function (idx, elem) {
+                var rowText = $(elem).text().toLowerCase();
+                if (rowText.indexOf(text.toLowerCase()) < 0) {
+                    jQuery(elem).hide();
+                }
+                else {
+                    jQuery(elem).show();
+                }
+            });
+            setTimeout('CheckVisibleProjects();', 300);
+        });
     });
     var $ki = jQuery.noConflict();
     $ki(function () {
@@ -205,11 +224,10 @@
             type: 'post',
             url: '@Url.Action("GetServices", "Home")',
             success: function (data) {
-                
+                debugger;
                 var result = JSON.parse(data);
                 var htmldata = '';
                 jQuery.each(result.$values, function (val, anuncio) {
-                    
                     htmldata += '<tr><td><div class="row-fluid">';
                     htmldata += '<div class="span12 booking-blocks"> ';
                     htmldata += '<div class="pull-left booking-img">';
@@ -255,5 +273,16 @@
             }
         });
     });
+
+
+    function CheckVisibleProjects() {
+        var rows = jQuery('#anunciosAvailable > tr');
+        if (rows.filter(':hidden').size() == rows.length) {
+            jQuery('#divNoAnunciosFound').fadeIn(1000);
+        }
+        else {
+            jQuery('#divNoAnunciosFound').hide();
+        }
+    }
 
 </script>
