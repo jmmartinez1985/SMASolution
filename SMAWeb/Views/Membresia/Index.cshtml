@@ -4,6 +4,10 @@
     ViewBag.Title = "Index";
 }
 
+<link href="@Url.Content("~/Content/jpages/jPages.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/jpages/animate.css")" rel="stylesheet" type="text/css" />
+@*<link href="@Url.Content("~/Content/jpages/style.css")" rel="stylesheet" type="text/css" />*@
+<script src="@Url.Content("~/Scripts/jpage/jPages.min.js")" type="text/javascript"></script>
 <br />
 <div class="container">
     <div class="row-fluid margin-bottom-10">
@@ -31,7 +35,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="divBody">
                     @foreach (var item in Model)
                     {
                         <tr>
@@ -45,14 +49,40 @@
                                 @Html.DisplayFor(modelItem => item.MP_ExpiracionDays)
                             </td>
                             <td>
-                                @Html.ActionLink("Editar", "Edit", new {  id=item.MP_MemberShipId  }) |
+                                @Html.ActionLink("Editar", "Edit", new { id = item.MP_MemberShipId }) |
             @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
                             </td>
                         </tr>
                     }
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="1">
+                            <div class="holder" style="float: left">
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
 </div>
+
+<script>
+
+    var $jpage = jQuery.noConflict();
+    $jpage(function () {
+        $jpage("div.holder").jPages({
+            containerID: "divBody",
+            //              previous: "?",
+            //              next: "?",
+            first: "first",
+            previous: "previous",
+            next: "next",
+            last: "last",
+            perPage: 5,
+            delay: 20
+        });
+    });
+</script>

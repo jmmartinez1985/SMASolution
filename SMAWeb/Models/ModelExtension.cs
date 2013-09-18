@@ -362,7 +362,11 @@ namespace SMAWeb.Models
 
     public partial class FAQsMetadata
     {
-        [Required]
+        public FAQsMetadata()
+        {
+            this.FAQ_Status = 1;
+        }
+
         [Display(Name = "Código de FAQ")]
         public int FAQ_Id { get; set; }
 
@@ -374,7 +378,7 @@ namespace SMAWeb.Models
         [Display(Name = "Respuesta")]
         public string FAQ_Answer { get; set; }
 
-        [Required]
+        
         [Display(Name = "Estado")]
         public int FAQ_Status { get; set; }
 

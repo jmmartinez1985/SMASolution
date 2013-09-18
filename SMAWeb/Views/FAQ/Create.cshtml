@@ -19,9 +19,15 @@
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
 
-   
-
-                @Html.HiddenFor(model => model.FAQ_Id)
+                
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FAQ_Id)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.FAQ_Id, new { @placeholder = "Código FAQ", @class = "input-xxlarge" })
+                    @Html.ValidationMessageFor(model => model.FAQ_Id)
+                </div>
+                
                 
                 <div class="editor-label">
                     @Html.LabelFor(model => model.FAQ_Question)
@@ -39,8 +45,13 @@
                     @Html.ValidationMessageFor(model => model.FAQ_Answer)
                 </div>
 
-                    @Html.HiddenFor(model => model.FAQ_Status, "ST_Estatus")
-                
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FAQ_Status)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("FAQ_Status", String.Empty)
+                    @Html.ValidationMessageFor(model => model.FAQ_Status)
+                </div>
                 <p>
                     <input type="submit" value="Crear" class="btn-u" />
                 </p>
