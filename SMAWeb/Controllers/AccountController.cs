@@ -41,7 +41,7 @@ namespace SMAWeb.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            ModelState.AddModelError("", "El usuario o contraseña ingresados es incorrecto.");
             return View(model);
         }
 
@@ -130,9 +130,9 @@ namespace SMAWeb.Controllers
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Su contraseña ha sido cambiada."
+                : message == ManageMessageId.SetPasswordSuccess ? "Su contraseña se ha agregado."
+                : message == ManageMessageId.RemoveLoginSuccess ? "Se ha desvinculado su cuenta a Service Market."
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");
@@ -170,7 +170,7 @@ namespace SMAWeb.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                        ModelState.AddModelError("", "La actual contraseña es incorrecta o la nueva contraseña es inválida.");
                     }
                 }
             }
@@ -193,7 +193,7 @@ namespace SMAWeb.Controllers
                     }
                     catch (Exception)
                     {
-                        ModelState.AddModelError("", String.Format("Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
+                        ModelState.AddModelError("", String.Format("No pudimos registrarle en Service Market. Puede que ya exista una cuenta con el correo \"{0}\".", User.Identity.Name));
                     }
                 }
             }
@@ -282,7 +282,7 @@ namespace SMAWeb.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                        ModelState.AddModelError("UserName", "Ya existe una cuenta con esta cuenta de correo. Por favor ingrese un correo diferente.");
                     }
                 }
             }
@@ -377,34 +377,34 @@ namespace SMAWeb.Controllers
             switch (createStatus)
             {
                 case MembershipCreateStatus.DuplicateUserName:
-                    return "User name already exists. Please enter a different user name.";
+                    return "Ya existe una cuenta con esta cuenta de correo. Por favor ingrese un correo diferente.";
 
                 case MembershipCreateStatus.DuplicateEmail:
-                    return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
+                    return "Ya existe una cuenta con esta cuenta de correo. Por favor ingrese un correo diferente.";
 
                 case MembershipCreateStatus.InvalidPassword:
-                    return "The password provided is invalid. Please enter a valid password value.";
+                    return "La contraseña ingresa no es válida. Por favor ingrese una contraseña válida.";
 
                 case MembershipCreateStatus.InvalidEmail:
-                    return "The e-mail address provided is invalid. Please check the value and try again.";
+                    return "El correo electrónico ingresado no es válido. Por favor verifique y vuelva a intentarlo.";
 
                 case MembershipCreateStatus.InvalidAnswer:
-                    return "The password retrieval answer provided is invalid. Please check the value and try again.";
+                    return "La respuesta secreta no es válida. Por favor verifique y vuelva a intentarlo.";
 
                 case MembershipCreateStatus.InvalidQuestion:
-                    return "The password retrieval question provided is invalid. Please check the value and try again.";
+                    return "La pregunta secreta no es válida. Por favor verifique y vuelva a intentarlo.";
 
                 case MembershipCreateStatus.InvalidUserName:
-                    return "The user name provided is invalid. Please check the value and try again.";
+                    return "El nombre de usuario ingresado no es válida. Por favor verifique y vuelva a intentarlo.";
 
                 case MembershipCreateStatus.ProviderError:
-                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return "Error con el proveedor de autentificación. Por favor verifique sus datos y vuelva a intentarlo. Si los problemas continuan por favor contactenos.";
 
                 case MembershipCreateStatus.UserRejected:
-                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return "La creación del usuario ha sido cancelada. Por favor verifique sus datos y vuelva a intentarlo. Si los problemas continuan por favor contactenos.";
 
                 default:
-                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return "Ha ocurrido un error. Por favor verifique los datos ingresados y vuelva a intentarlo. Si los problemas continuan por favor contactenos.";
             }
         }
         #endregion

@@ -51,6 +51,7 @@ namespace SMAWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                con_contactenos.CON_Fecha = DateTime.Now;
                 db.CON_Contactenos.Add(con_contactenos);
                 db.SaveChanges();
                 return RedirectToAction("Index");

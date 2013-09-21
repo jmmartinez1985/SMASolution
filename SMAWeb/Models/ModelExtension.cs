@@ -85,6 +85,7 @@ namespace SMAWeb.Models
 
     public partial class ST_EstatusMetadata
     {
+        [Required]
         [Display(Name = "Código de Estado")]
         public int ST_Id { get; set; }
 
@@ -96,28 +97,34 @@ namespace SMAWeb.Models
 
     public partial class AN_AnunciosMetadata
     {
+        [Required]
         [Display(Name = "Código Anuncio")]
         public int AN_Id { get; set; }
 
+        [Required]
         [Display(Name = "ID Usuario")]
         public int UserId { get; set; }
 
-        [Display(Name = "ID")]
+        [Required]
+        [Display(Name = "País")]
         public int PA_Id { get; set; }
 
-        [Display(Name = "Código SubCategoría")]
+        [Display(Name = "SubCategoría")]
         public Nullable<int> SBS_Id { get; set; }
 
+        [Required]
         [Display(Name = "Título del Anuncio")]
         public string AN_Titulo { get; set; }
 
-        [Display(Name = "Teléfono")]
+        [Required]
+        [Display(Name = "Teléfono 1")]
         public string AN_Telefono { get; set; }
 
-        [Display(Name = "Celular")]
+        [Display(Name = "Teléfono 2")]
         public string AN_Celular { get; set; }
 
-        [Display(Name = "Descripción del Anuncio")]
+        [Required]
+        [Display(Name = "Descripción")]
         public string AN_Descripcion { get; set; }
 
         [Display(Name = "Fecha de Publicación")]
@@ -129,6 +136,7 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Estado")]
         public int ST_Id { get; set; }
 
+        [Required]
         [Display(Name = "Lugar del Anuncio")]
         public string AN_Area { get; set; }
 
@@ -175,6 +183,7 @@ namespace SMAWeb.Models
         [Display(Name = "Código Categoría")]
         public int CD_Id { get; set; }
 
+        [Required]
         [Display(Name = "Descripción de la Categoría")]
         public string CD_Descripcion { get; set; }
 
@@ -188,9 +197,11 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Membresía")]
         public int MP_MemberShipId { get; set; }
 
+        [Required]
         [Display(Name = "Descripción de Membresía")]
         public string MP_Descripcion { get; set; }
 
+        [Required]
         [Display(Name = "Días de Expiración")]
         [Range(0, Int32.MaxValue, ErrorMessage = "No es un número válido o no está en el rango permitido.")]
         public Nullable<int> MP_ExpiracionDays { get; set; }
@@ -218,9 +229,11 @@ namespace SMAWeb.Models
         [Display(Name = "Código de País")]
         public int PA_Id { get; set; }
 
+        [Required]
         [Display(Name = "Descripción de País")]
         public string PA_Descripcion { get; set; }
 
+        [Required]
         [Display(Name = "Código de Región")]
         public int REG_Id { get; set; }
 
@@ -234,6 +247,7 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Región")]
         public int REG_Id { get; set; }
 
+        [Required]
         [Display(Name = "Descripción de Región")]
         public string REG_Descripcion { get; set; }
 
@@ -249,7 +263,7 @@ namespace SMAWeb.Models
         public int UserId { get; set; }
 
         [Required]
-        [Display(Name = "Correo")]
+        [Display(Name = "Correo Electrónico")]
         public string UserName { get; set; }
 
         [Required]
@@ -300,11 +314,9 @@ namespace SMAWeb.Models
         [Display(Name = "Nombre")]
         public string CON_Nombre { get; set; }
 
-        [Required]
         [Display(Name = "Teléfono")]
         public string CON_Telefono { get; set; }
 
-        [Required]
         [Display(Name = "Celular")]
         public string CON_Celular { get; set; }
 
@@ -343,7 +355,6 @@ namespace SMAWeb.Models
         [Display(Name = "Correo")]
         public string COM_Correo { get; set; }
 
-        [Required]
         [Display(Name = "Dirección Web")]
         public string COM_Web { get; set; }
 
@@ -378,7 +389,7 @@ namespace SMAWeb.Models
         [Display(Name = "Respuesta")]
         public string FAQ_Answer { get; set; }
 
-        
+        [Required]
         [Display(Name = "Estado")]
         public int FAQ_Status { get; set; }
 

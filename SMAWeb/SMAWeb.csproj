@@ -586,6 +586,7 @@
     <Content Include="Views\FAQ\Create.cshtml" />
     <Content Include="Views\FAQ\Edit.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Anuncios\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

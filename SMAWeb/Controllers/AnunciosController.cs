@@ -70,7 +70,7 @@ namespace SMAWeb.Controllers
             //var an_anuncios = db.AN_Anuncios.Include(a => a.SBS_SubCategoriaServicio).
             //    Include(a => a.ST_Estatus).Include(a => a.UserProfile)
             //    .Where(c => c.UserId == UserId);
-           // return View(an_anuncios.ToList());
+            // return View(an_anuncios.ToList());
 
             int UserId = UserId = WebSecurity.CurrentUserId;
 
@@ -114,7 +114,7 @@ namespace SMAWeb.Controllers
                 return HttpNotFound();
             }
             return View(viewModelAnuncios);
-            
+
         }
         //
         // GET: /Anuncios/Details/5
@@ -136,6 +136,7 @@ namespace SMAWeb.Controllers
         {
             ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion");
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion");
+            ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion");
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName");
             return View();
         }
@@ -173,6 +174,7 @@ namespace SMAWeb.Controllers
             ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id);
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName", an_anuncios.UserId);
+            ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion");
             return View(an_anuncios);
         }
 
