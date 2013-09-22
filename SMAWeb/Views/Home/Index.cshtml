@@ -226,7 +226,6 @@
             type: 'post',
             url: '@Url.Action("GetServices", "Home")',
             success: function (data) {
-                debugger;
                 var result = JSON.parse(data);
                 var htmldata = '';
                 jQuery.each(result.$values, function (val, anuncio) {
