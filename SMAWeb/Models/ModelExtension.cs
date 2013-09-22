@@ -77,9 +77,16 @@ namespace SMAWeb.Models
     {
 
     }
+
+    [MetadataType(typeof(SS_SolicitudServicioMetadata))]
+    public partial class SS_SolicitudServicio
+    {
+
+    }
+
+
     #endregion
-
-
+    
     #region PartialClass
 
 
@@ -397,6 +404,50 @@ namespace SMAWeb.Models
         public virtual ST_Estatus ST_Estatus { get; set; }
     }
 
+    public partial class SS_SolicitudServicioMetadata
+    {
+        public SS_SolicitudServicioMetadata()
+        {
+            this.RW_Reviews = new HashSet<RW_Reviews>();
+        }
+
+        [Display(Name = "Código de Solicitud de Servicio")]
+        public int SS_Id { get; set; }
+
+        [Display(Name = "Código de Anuncio")]
+        public int AN_Id { get; set; }
+
+        [Display(Name = "Fecha")]
+        public System.DateTime SS_Fecha { get; set; }
+
+        [Display(Name = "Nombre")]
+        public string SS_Nombre { get; set; }
+
+        [Display(Name = "Correo Electrónico")]
+        public string SS_Mail { get; set; }
+
+        [Display(Name = "Teléfono")]
+        public string SS_Telefono { get; set; }
+
+        [Display(Name = "Celular")]
+        public string SS_Celular { get; set; }
+
+        [Display(Name = "Descripción")]
+        public string SS_Descripcion { get; set; }
+
+        [Display(Name = "Estado")]
+        public int ST_Id { get; set; }
+
+        [JsonIgnore]
+        public virtual AN_Anuncios AN_Anuncios { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<RW_Reviews> RW_Reviews { get; set; }
+
+        [JsonIgnore]
+        public virtual ST_Estatus ST_Estatus { get; set; }
+    }
+    
     #endregion
 
     #region ViewModel
