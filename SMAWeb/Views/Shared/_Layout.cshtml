@@ -62,7 +62,7 @@
                     <li>@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "login-btn", title = "Manage" })!</li>
                     <li>
 
-                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "LoginFormAuth" }))
                         {
                             @Html.AntiForgeryToken()
                    
