@@ -196,6 +196,7 @@
     <Compile Include="Controllers\MultimediaTiposController.cs" />
     <Compile Include="Controllers\PaisesController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
+    <Compile Include="Controllers\SolicitudServicioController.cs" />
     <Compile Include="Controllers\SubCategoriaServicioController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Extensions\ExtensionHelper.cs" />
@@ -587,6 +588,7 @@
     <Content Include="Views\FAQ\Edit.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Anuncios\Details.cshtml" />
+    <Content Include="Views\SolicitudServicio\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,46 +1,49 @@
-﻿@model IEnumerable<SMAWeb.Models.UserProfile>
+﻿@model IEnumerable<SMAWeb.Models.SS_SolicitudServicio>
 
 @{
     ViewBag.Title = "Index";
 }
+
 <link href="@Url.Content("~/Content/jpages/jPages.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Content/jpages/animate.css")" rel="stylesheet" type="text/css" />
 @*<link href="@Url.Content("~/Content/jpages/style.css")" rel="stylesheet" type="text/css" />*@
 <script src="@Url.Content("~/Scripts/jpage/jPages.min.js")" type="text/javascript"></script>
+
+
 <br />
 <div class="container">
     <div class="row-fluid margin-bottom-10">
 
         <div class="another-page">
             <div class="headline">
-                <h3>Formulario de Usuarios</h3>
+                <h3>Formulario Solicitud de Servicio</h3>
             </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.UserId)
+                            @Html.DisplayNameFor(model => model.SS_Id)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.UserName)
+                            @Html.DisplayNameFor(model => model.AN_Anuncios.AN_Titulo)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Name)
+                            @Html.DisplayNameFor(model => model.SS_Fecha)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Details)
+                            @Html.DisplayNameFor(model => model.SS_Nombre)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Address)
+                            @Html.DisplayNameFor(model => model.SS_Mail)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.City)
+                            @Html.DisplayNameFor(model => model.SS_Telefono)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.PA_Paises.PA_Descripcion)
+                            @Html.DisplayNameFor(model => model.SS_Celular)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.MB_Membresia.MP_Descripcion)
+                            @Html.DisplayNameFor(model => model.SS_Descripcion)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.ST_Estatus.ST_Descripcion)
@@ -49,57 +52,58 @@
                     </tr>
                 </thead>
                 <tbody id="divBody">
+
+
                     @foreach (var item in Model)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.UserId)
+                                @Html.DisplayFor(modelItem => item.SS_Id)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.UserName)
+                                @Html.DisplayFor(modelItem => item.AN_Anuncios.AN_Titulo)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Name)
+                                @Html.DisplayFor(modelItem => item.SS_Fecha)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Details)
+                                @Html.DisplayFor(modelItem => item.SS_Nombre)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Address)
+                                @Html.DisplayFor(modelItem => item.SS_Mail)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.City)
+                                @Html.DisplayFor(modelItem => item.SS_Telefono)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.PA_Paises.PA_Descripcion)
+                                @Html.DisplayFor(modelItem => item.SS_Celular)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MB_Membresia.MP_Descripcion)
+                                @Html.DisplayFor(modelItem => item.SS_Descripcion)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.ST_Estatus.ST_Descripcion)
                             </td>
                             <td>
-                                @Html.ActionLink("Editar", "Edit", new { id = item.UserId }) |
-            @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ })
-           @* | @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                             </td>
                         </tr>
                     }
                 </tbody>
                 <tfoot>
-            <tr>
-                <td colspan="1">
-                    <div class="holder" style="float: left">
-                    </div>
-                </td>
-            </tr>
-        </tfoot>
+                    <tr>
+                        <td colspan="1">
+                            <div class="holder" style="float: left">
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
 </div>
-
 <script>
     var $jpage = jQuery.noConflict();
     $jpage(function () {
