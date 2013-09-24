@@ -339,10 +339,10 @@ namespace SMAWeb.Controllers
             }
             else
             {
-                if (Roles.FindUsersInRole("Admin", Username).Count() > 0)
-                    return RedirectToAction("Index", "Home");
-                else
-                    return RedirectToAction("GetAnunciosByUser", "Anuncios");
+                //if (Roles.FindUsersInRole("Admin", Username).Count() > 0)
+                return RedirectToAction("Index", "Home");
+                //else
+                //    return RedirectToAction("GetAnunciosByUser", "Anuncios");
             }
         }
 

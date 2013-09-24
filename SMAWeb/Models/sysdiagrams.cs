@@ -12,13 +12,12 @@ namespace SMAWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class FAQs
+    public partial class sysdiagrams
     {
-        public int FAQ_Id { get; set; }
-        public string FAQ_Question { get; set; }
-        public string FAQ_Answer { get; set; }
-        public Nullable<int> FAQ_Status { get; set; }
-    
-        public virtual ST_Estatus ST_Estatus { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

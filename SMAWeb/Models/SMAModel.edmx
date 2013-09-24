@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ServiceMarketModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ServiceMarketModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ServiceMarketModelStoreContainer">
           <EntitySet Name="AE_AnunciosExtras" EntityType="ServiceMarketModel.Store.AE_AnunciosExtras" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AM_MultimediaAnuncios" EntityType="ServiceMarketModel.Store.AM_MultimediaAnuncios" store:Type="Tables" Schema="dbo" />
@@ -13,6 +13,16 @@
           <EntitySet Name="COM_Compañia" EntityType="ServiceMarketModel.Store.COM_Compañia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CON_Contactenos" EntityType="ServiceMarketModel.Store.CON_Contactenos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CONF_Parametros" EntityType="ServiceMarketModel.Store.CONF_Parametros" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CR_ComentarioReview" EntityType="ServiceMarketModel.Store.CR_ComentarioReview" store:Type="Tables" store:Schema="dbo" store:Name="CR_ComentarioReview">
+            <DefiningQuery>SELECT 
+      [CR_ComentarioReview].[CR_Id] AS [CR_Id], 
+      [CR_ComentarioReview].[UserIdContratado] AS [UserIdContratado], 
+      [CR_ComentarioReview].[UserIdSolicitante] AS [UserIdSolicitante], 
+      [CR_ComentarioReview].[SS_Id] AS [SS_Id], 
+      [CR_ComentarioReview].[CR_Comentario] AS [CR_Comentario], 
+      [CR_ComentarioReview].[ST_Id] AS [ST_Id]
+      FROM [dbo].[CR_ComentarioReview] AS [CR_ComentarioReview]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="FAQs" EntityType="ServiceMarketModel.Store.FAQs" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.Store.MB_Membresia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.Store.MT_MultimediaTipos" store:Type="Tables" Schema="dbo" />
@@ -23,6 +33,7 @@
           <EntitySet Name="SBS_SubCategoriaServicio" EntityType="ServiceMarketModel.Store.SBS_SubCategoriaServicio" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SS_SolicitudServicio" EntityType="ServiceMarketModel.Store.SS_SolicitudServicio" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ST_Estatus" EntityType="ServiceMarketModel.Store.ST_Estatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="ServiceMarketModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserProfile" EntityType="ServiceMarketModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="webpages_Membership" EntityType="ServiceMarketModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="webpages_OAuthMembership" EntityType="ServiceMarketModel.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
@@ -51,6 +62,22 @@
           <AssociationSet Name="FK_AN_Anuncios_UserProfile" Association="ServiceMarketModel.Store.FK_AN_Anuncios_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CR_ComentarioReview_SS_SolicitudServicio" Association="ServiceMarketModel.Store.FK_CR_ComentarioReview_SS_SolicitudServicio">
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CR_ComentarioReview_ST_Estatus" Association="ServiceMarketModel.Store.FK_CR_ComentarioReview_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CR_ComentarioReview_UserProfile" Association="ServiceMarketModel.Store.FK_CR_ComentarioReview_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CR_ComentarioReview_UserProfile1" Association="ServiceMarketModel.Store.FK_CR_ComentarioReview_UserProfile1">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
           </AssociationSet>
           <AssociationSet Name="FK_FAQs_ST_Estatus" Association="ServiceMarketModel.Store.FK_FAQs_ST_Estatus">
             <End Role="ST_Estatus" EntitySet="ST_Estatus" />
@@ -82,6 +109,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_SS_SolicitudServicio_ST_Estatus" Association="ServiceMarketModel.Store.FK_SS_SolicitudServicio_ST_Estatus">
             <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SS_SolicitudServicio_UserProfile" Association="ServiceMarketModel.Store.FK_SS_SolicitudServicio_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
           </AssociationSet>
           <AssociationSet Name="fk_UserId" Association="ServiceMarketModel.Store.fk_UserId">
@@ -184,6 +215,25 @@
           <Property Name="CONF_InactivityDay" Type="int" />
           <Property Name="CONF_DayEnabled" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'ServiceMarket.dbo.CR_ComentarioReview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="CR_ComentarioReview">
+          <Key>
+            <PropertyRef Name="CR_Id" />
+            <PropertyRef Name="UserIdContratado" />
+            <PropertyRef Name="UserIdSolicitante" />
+            <PropertyRef Name="SS_Id" />
+            <PropertyRef Name="CR_Comentario" />
+            <PropertyRef Name="ST_Id" />
+          </Key>
+          <Property Name="CR_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserIdContratado" Type="int" Nullable="false" />
+          <Property Name="UserIdSolicitante" Type="int" Nullable="false" />
+          <Property Name="SS_Id" Type="int" Nullable="false" />
+          <Property Name="CR_Comentario" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="ST_Id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="FAQs">
           <Key>
             <PropertyRef Name="FAQ_Id" />
@@ -191,7 +241,7 @@
           <Property Name="FAQ_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="FAQ_Question" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="FAQ_Answer" Type="varchar" Nullable="false" MaxLength="500" />
-          <Property Name="FAQ_Status" Type="int" Nullable="false" />
+          <Property Name="FAQ_Status" Type="int" />
         </EntityType>
         <EntityType Name="MB_Membresia">
           <Key>
@@ -255,19 +305,25 @@
           <Property Name="SS_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="AN_Id" Type="int" Nullable="false" />
           <Property Name="SS_Fecha" Type="datetime" Nullable="false" />
-          <Property Name="SS_Nombre" Type="varchar" Nullable="false" MaxLength="200" />
-          <Property Name="SS_Mail" Type="nchar" Nullable="false" MaxLength="10" />
-          <Property Name="SS_Telefono" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="SS_Celular" Type="varchar" MaxLength="20" />
-          <Property Name="SS_Descripcion" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="ST_Id" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ST_Estatus">
           <Key>
             <PropertyRef Name="ST_Id" />
           </Key>
-          <Property Name="ST_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ST_Id" Type="int" Nullable="false" />
           <Property Name="ST_Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -396,8 +452,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FAQs_ST_Estatus">
+        <Association Name="FK_CR_ComentarioReview_SS_SolicitudServicio">
+          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.Store.SS_SolicitudServicio" Multiplicity="1" />
+          <End Role="CR_ComentarioReview" Type="ServiceMarketModel.Store.CR_ComentarioReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SS_SolicitudServicio">
+              <PropertyRef Name="SS_Id" />
+            </Principal>
+            <Dependent Role="CR_ComentarioReview">
+              <PropertyRef Name="SS_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CR_ComentarioReview_ST_Estatus">
           <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="1" />
+          <End Role="CR_ComentarioReview" Type="ServiceMarketModel.Store.CR_ComentarioReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ST_Estatus">
+              <PropertyRef Name="ST_Id" />
+            </Principal>
+            <Dependent Role="CR_ComentarioReview">
+              <PropertyRef Name="ST_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CR_ComentarioReview_UserProfile">
+          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="CR_ComentarioReview" Type="ServiceMarketModel.Store.CR_ComentarioReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CR_ComentarioReview">
+              <PropertyRef Name="UserIdContratado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CR_ComentarioReview_UserProfile1">
+          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="CR_ComentarioReview" Type="ServiceMarketModel.Store.CR_ComentarioReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CR_ComentarioReview">
+              <PropertyRef Name="UserIdSolicitante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FAQs_ST_Estatus">
+          <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="0..1" />
           <End Role="FAQs" Type="ServiceMarketModel.Store.FAQs" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ST_Estatus">
@@ -492,6 +596,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SS_SolicitudServicio_UserProfile">
+          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.Store.SS_SolicitudServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SS_SolicitudServicio">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_UserId">
           <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="1" />
           <End Role="webpages_UsersInRoles" Type="ServiceMarketModel.Store.webpages_UsersInRoles" Multiplicity="*" />
@@ -540,7 +656,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ServiceMarketModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -551,6 +668,8 @@
           <EntitySet Name="CD_CategoriaServicio" EntityType="ServiceMarketModel.CD_CategoriaServicio" />
           <EntitySet Name="COM_Compañia" EntityType="ServiceMarketModel.COM_Compañia" />
           <EntitySet Name="CON_Contactenos" EntityType="ServiceMarketModel.CON_Contactenos" />
+          <EntitySet Name="CONF_Parametros" EntityType="ServiceMarketModel.CONF_Parametros" />
+          <EntitySet Name="CR_ComentarioReview" EntityType="ServiceMarketModel.CR_ComentarioReview" />
           <EntitySet Name="FAQs" EntityType="ServiceMarketModel.FAQs" />
           <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.MB_Membresia" />
           <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.MT_MultimediaTipos" />
@@ -561,6 +680,7 @@
           <EntitySet Name="SBS_SubCategoriaServicio" EntityType="ServiceMarketModel.SBS_SubCategoriaServicio" />
           <EntitySet Name="SS_SolicitudServicio" EntityType="ServiceMarketModel.SS_SolicitudServicio" />
           <EntitySet Name="ST_Estatus" EntityType="ServiceMarketModel.ST_Estatus" />
+          <EntitySet Name="sysdiagrams" EntityType="ServiceMarketModel.sysdiagrams" />
           <EntitySet Name="UserProfile" EntityType="ServiceMarketModel.UserProfile" />
           <EntitySet Name="webpages_Membership" EntityType="ServiceMarketModel.webpages_Membership" />
           <EntitySet Name="webpages_OAuthMembership" EntityType="ServiceMarketModel.webpages_OAuthMembership" />
@@ -597,6 +717,22 @@
             <End Role="CD_CategoriaServicio" EntitySet="CD_CategoriaServicio" />
             <End Role="SBS_SubCategoriaServicio" EntitySet="SBS_SubCategoriaServicio" />
           </AssociationSet>
+          <AssociationSet Name="FK_CR_ComentarioReview_SS_SolicitudServicio" Association="ServiceMarketModel.FK_CR_ComentarioReview_SS_SolicitudServicio">
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CR_ComentarioReview_ST_Estatus" Association="ServiceMarketModel.FK_CR_ComentarioReview_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CR_ComentarioReview_UserProfile" Association="ServiceMarketModel.FK_CR_ComentarioReview_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CR_ComentarioReview_UserProfile1" Association="ServiceMarketModel.FK_CR_ComentarioReview_UserProfile1">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
+          </AssociationSet>
           <AssociationSet Name="FK_FAQs_ST_Estatus" Association="ServiceMarketModel.FK_FAQs_ST_Estatus">
             <End Role="ST_Estatus" EntitySet="ST_Estatus" />
             <End Role="FAQs" EntitySet="FAQs" />
@@ -625,6 +761,10 @@
             <End Role="ST_Estatus" EntitySet="ST_Estatus" />
             <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
           </AssociationSet>
+          <AssociationSet Name="FK_SS_SolicitudServicio_UserProfile" Association="ServiceMarketModel.FK_SS_SolicitudServicio_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserProfile_ST_Estatus" Association="ServiceMarketModel.FK_UserProfile_ST_Estatus">
             <End Role="ST_Estatus" EntitySet="ST_Estatus" />
             <End Role="UserProfile" EntitySet="UserProfile" />
@@ -633,7 +773,6 @@
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
-          <EntitySet Name="CONF_Parametros" EntityType="ServiceMarketModel.CONF_Parametros" />
         </EntityContainer>
         <EntityType Name="AE_AnunciosExtras">
           <Key>
@@ -716,6 +855,38 @@
           <Property Name="CON_Mensaje" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="CON_Fecha" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
+        <EntityType Name="CONF_Parametros">
+          <Key>
+            <PropertyRef Name="CONG_Id" />
+          </Key>
+          <Property Name="CONG_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CONF_QtyAnuncios" Type="Int32" />
+          <Property Name="CONF_DayBlocked" Type="Int32" />
+          <Property Name="CONF_Comments" Type="Int32" />
+          <Property Name="CONF_Alerts" Type="Int32" />
+          <Property Name="CONF_InactivityDay" Type="Int32" />
+          <Property Name="CONF_DayEnabled" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CR_ComentarioReview">
+          <Key>
+            <PropertyRef Name="CR_Id" />
+            <PropertyRef Name="UserIdContratado" />
+            <PropertyRef Name="UserIdSolicitante" />
+            <PropertyRef Name="SS_Id" />
+            <PropertyRef Name="CR_Comentario" />
+            <PropertyRef Name="ST_Id" />
+          </Key>
+          <Property Name="CR_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserIdContratado" Type="Int32" Nullable="false" />
+          <Property Name="UserIdSolicitante" Type="Int32" Nullable="false" />
+          <Property Name="SS_Id" Type="Int32" Nullable="false" />
+          <Property Name="CR_Comentario" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="ST_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SS_SolicitudServicio" Relationship="ServiceMarketModel.FK_CR_ComentarioReview_SS_SolicitudServicio" FromRole="CR_ComentarioReview" ToRole="SS_SolicitudServicio" />
+          <NavigationProperty Name="ST_Estatus" Relationship="ServiceMarketModel.FK_CR_ComentarioReview_ST_Estatus" FromRole="CR_ComentarioReview" ToRole="ST_Estatus" />
+          <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_CR_ComentarioReview_UserProfile" FromRole="CR_ComentarioReview" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile1" Relationship="ServiceMarketModel.FK_CR_ComentarioReview_UserProfile1" FromRole="CR_ComentarioReview" ToRole="UserProfile" />
+        </EntityType>
         <EntityType Name="FAQs">
           <Key>
             <PropertyRef Name="FAQ_Id" />
@@ -723,7 +894,7 @@
           <Property Name="FAQ_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="FAQ_Question" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
           <Property Name="FAQ_Answer" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="FAQ_Status" Type="Int32" Nullable="false" DefaultValue="1" />
+          <Property Name="FAQ_Status" Type="Int32" />
           <NavigationProperty Name="ST_Estatus" Relationship="ServiceMarketModel.FK_FAQs_ST_Estatus" FromRole="FAQs" ToRole="ST_Estatus" />
         </EntityType>
         <EntityType Name="MB_Membresia">
@@ -798,26 +969,35 @@
           <Property Name="SS_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="AN_Id" Type="Int32" Nullable="false" />
           <Property Name="SS_Fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="SS_Nombre" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="SS_Mail" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
-          <Property Name="SS_Telefono" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="SS_Celular" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="SS_Descripcion" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
           <Property Name="ST_Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_AN_Anuncios" FromRole="SS_SolicitudServicio" ToRole="AN_Anuncios" />
+          <NavigationProperty Name="CR_ComentarioReview" Relationship="ServiceMarketModel.FK_CR_ComentarioReview_SS_SolicitudServicio" FromRole="SS_SolicitudServicio" ToRole="CR_ComentarioReview" />
           <NavigationProperty Name="RW_Reviews" Relationship="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio" FromRole="SS_SolicitudServicio" ToRole="RW_Reviews" />
           <NavigationProperty Name="ST_Estatus" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus" FromRole="SS_SolicitudServicio" ToRole="ST_Estatus" />
+          <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_UserProfile" FromRole="SS_SolicitudServicio" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="ST_Estatus">
           <Key>
             <PropertyRef Name="ST_Id" />
           </Key>
-          <Property Name="ST_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ST_Id" Type="Int32" Nullable="false" />
           <Property Name="ST_Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AN_Anuncios_ST_Estatus" FromRole="ST_Estatus" ToRole="AN_Anuncios" />
+          <NavigationProperty Name="CR_ComentarioReview" Relationship="ServiceMarketModel.FK_CR_ComentarioReview_ST_Estatus" FromRole="ST_Estatus" ToRole="CR_ComentarioReview" />
           <NavigationProperty Name="FAQs" Relationship="ServiceMarketModel.FK_FAQs_ST_Estatus" FromRole="ST_Estatus" ToRole="FAQs" />
           <NavigationProperty Name="SS_SolicitudServicio" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus" FromRole="ST_Estatus" ToRole="SS_SolicitudServicio" />
           <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_UserProfile_ST_Estatus" FromRole="ST_Estatus" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -834,8 +1014,11 @@
           <Property Name="MP_MemberShipId" Type="Int32" Nullable="false" />
           <Property Name="ST_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AN_Anuncios_UserProfile" FromRole="UserProfile" ToRole="AN_Anuncios" />
+          <NavigationProperty Name="CR_ComentarioReview" Relationship="ServiceMarketModel.FK_CR_ComentarioReview_UserProfile" FromRole="UserProfile" ToRole="CR_ComentarioReview" />
+          <NavigationProperty Name="CR_ComentarioReview1" Relationship="ServiceMarketModel.FK_CR_ComentarioReview_UserProfile1" FromRole="UserProfile" ToRole="CR_ComentarioReview" />
           <NavigationProperty Name="MB_Membresia" Relationship="ServiceMarketModel.FK_UserProfile_MB_Membresia" FromRole="UserProfile" ToRole="MB_Membresia" />
           <NavigationProperty Name="PA_Paises" Relationship="ServiceMarketModel.FK_UserProfile_PA_Paises" FromRole="UserProfile" ToRole="PA_Paises" />
+          <NavigationProperty Name="SS_SolicitudServicio" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_UserProfile" FromRole="UserProfile" ToRole="SS_SolicitudServicio" />
           <NavigationProperty Name="ST_Estatus" Relationship="ServiceMarketModel.FK_UserProfile_ST_Estatus" FromRole="UserProfile" ToRole="ST_Estatus" />
           <NavigationProperty Name="webpages_Roles" Relationship="ServiceMarketModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
         </EntityType>
@@ -968,8 +1151,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FAQs_ST_Estatus">
+        <Association Name="FK_CR_ComentarioReview_SS_SolicitudServicio">
+          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.SS_SolicitudServicio" Multiplicity="1" />
+          <End Role="CR_ComentarioReview" Type="ServiceMarketModel.CR_ComentarioReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SS_SolicitudServicio">
+              <PropertyRef Name="SS_Id" />
+            </Principal>
+            <Dependent Role="CR_ComentarioReview">
+              <PropertyRef Name="SS_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CR_ComentarioReview_ST_Estatus">
           <End Role="ST_Estatus" Type="ServiceMarketModel.ST_Estatus" Multiplicity="1" />
+          <End Role="CR_ComentarioReview" Type="ServiceMarketModel.CR_ComentarioReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ST_Estatus">
+              <PropertyRef Name="ST_Id" />
+            </Principal>
+            <Dependent Role="CR_ComentarioReview">
+              <PropertyRef Name="ST_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CR_ComentarioReview_UserProfile">
+          <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="1" />
+          <End Role="CR_ComentarioReview" Type="ServiceMarketModel.CR_ComentarioReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CR_ComentarioReview">
+              <PropertyRef Name="UserIdContratado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CR_ComentarioReview_UserProfile1">
+          <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="1" />
+          <End Role="CR_ComentarioReview" Type="ServiceMarketModel.CR_ComentarioReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CR_ComentarioReview">
+              <PropertyRef Name="UserIdSolicitante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FAQs_ST_Estatus">
+          <End Role="ST_Estatus" Type="ServiceMarketModel.ST_Estatus" Multiplicity="0..1" />
           <End Role="FAQs" Type="ServiceMarketModel.FAQs" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ST_Estatus">
@@ -1052,6 +1283,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SS_SolicitudServicio_UserProfile">
+          <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="1" />
+          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.SS_SolicitudServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SS_SolicitudServicio">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserProfile_ST_Estatus">
           <End Role="ST_Estatus" Type="ServiceMarketModel.ST_Estatus" Multiplicity="1" />
           <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="*" />
@@ -1068,18 +1311,6 @@
           <End Role="webpages_Roles" Type="ServiceMarketModel.webpages_Roles" Multiplicity="*" />
           <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="*" />
         </Association>
-        <EntityType Name="CONF_Parametros">
-          <Key>
-            <PropertyRef Name="CONG_Id" />
-          </Key>
-          <Property Type="Int32" Name="CONG_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="CONF_QtyAnuncios" />
-          <Property Type="Int32" Name="CONF_DayBlocked" />
-          <Property Type="Int32" Name="CONF_Comments" />
-          <Property Type="Int32" Name="CONF_Alerts" />
-          <Property Type="Int32" Name="CONF_InactivityDay" />
-          <Property Type="Int32" Name="CONF_DayEnabled" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1163,6 +1394,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CONF_Parametros">
+            <EntityTypeMapping TypeName="ServiceMarketModel.CONF_Parametros">
+              <MappingFragment StoreEntitySet="CONF_Parametros">
+                <ScalarProperty Name="CONG_Id" ColumnName="CONG_Id" />
+                <ScalarProperty Name="CONF_QtyAnuncios" ColumnName="CONF_QtyAnuncios" />
+                <ScalarProperty Name="CONF_DayBlocked" ColumnName="CONF_DayBlocked" />
+                <ScalarProperty Name="CONF_Comments" ColumnName="CONF_Comments" />
+                <ScalarProperty Name="CONF_Alerts" ColumnName="CONF_Alerts" />
+                <ScalarProperty Name="CONF_InactivityDay" ColumnName="CONF_InactivityDay" />
+                <ScalarProperty Name="CONF_DayEnabled" ColumnName="CONF_DayEnabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CR_ComentarioReview">
+            <EntityTypeMapping TypeName="ServiceMarketModel.CR_ComentarioReview">
+              <MappingFragment StoreEntitySet="CR_ComentarioReview">
+                <ScalarProperty Name="CR_Id" ColumnName="CR_Id" />
+                <ScalarProperty Name="UserIdContratado" ColumnName="UserIdContratado" />
+                <ScalarProperty Name="UserIdSolicitante" ColumnName="UserIdSolicitante" />
+                <ScalarProperty Name="SS_Id" ColumnName="SS_Id" />
+                <ScalarProperty Name="CR_Comentario" ColumnName="CR_Comentario" />
+                <ScalarProperty Name="ST_Id" ColumnName="ST_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="FAQs">
             <EntityTypeMapping TypeName="ServiceMarketModel.FAQs">
               <MappingFragment StoreEntitySet="FAQs">
@@ -1241,12 +1497,8 @@
                 <ScalarProperty Name="SS_Id" ColumnName="SS_Id" />
                 <ScalarProperty Name="AN_Id" ColumnName="AN_Id" />
                 <ScalarProperty Name="SS_Fecha" ColumnName="SS_Fecha" />
-                <ScalarProperty Name="SS_Nombre" ColumnName="SS_Nombre" />
-                <ScalarProperty Name="SS_Mail" ColumnName="SS_Mail" />
-                <ScalarProperty Name="SS_Telefono" ColumnName="SS_Telefono" />
-                <ScalarProperty Name="SS_Celular" ColumnName="SS_Celular" />
-                <ScalarProperty Name="SS_Descripcion" ColumnName="SS_Descripcion" />
                 <ScalarProperty Name="ST_Id" ColumnName="ST_Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1255,6 +1507,17 @@
               <MappingFragment StoreEntitySet="ST_Estatus">
                 <ScalarProperty Name="ST_Id" ColumnName="ST_Id" />
                 <ScalarProperty Name="ST_Descripcion" ColumnName="ST_Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ServiceMarketModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1316,19 +1579,6 @@
               <ScalarProperty Name="UserId" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="CONF_Parametros">
-            <EntityTypeMapping TypeName="ServiceMarketModel.CONF_Parametros">
-              <MappingFragment StoreEntitySet="CONF_Parametros">
-                <ScalarProperty Name="CONF_DayEnabled" ColumnName="CONF_DayEnabled" />
-                <ScalarProperty Name="CONF_InactivityDay" ColumnName="CONF_InactivityDay" />
-                <ScalarProperty Name="CONF_Alerts" ColumnName="CONF_Alerts" />
-                <ScalarProperty Name="CONF_Comments" ColumnName="CONF_Comments" />
-                <ScalarProperty Name="CONF_DayBlocked" ColumnName="CONF_DayBlocked" />
-                <ScalarProperty Name="CONF_QtyAnuncios" ColumnName="CONF_QtyAnuncios" />
-                <ScalarProperty Name="CONG_Id" ColumnName="CONG_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

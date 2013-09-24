@@ -16,21 +16,20 @@ namespace SMAWeb.Models
     {
         public SS_SolicitudServicio()
         {
+            this.CR_ComentarioReview = new HashSet<CR_ComentarioReview>();
             this.RW_Reviews = new HashSet<RW_Reviews>();
         }
     
         public int SS_Id { get; set; }
         public int AN_Id { get; set; }
         public System.DateTime SS_Fecha { get; set; }
-        public string SS_Nombre { get; set; }
-        public string SS_Mail { get; set; }
-        public string SS_Telefono { get; set; }
-        public string SS_Celular { get; set; }
-        public string SS_Descripcion { get; set; }
         public int ST_Id { get; set; }
+        public int UserId { get; set; }
     
         public virtual AN_Anuncios AN_Anuncios { get; set; }
+        public virtual ICollection<CR_ComentarioReview> CR_ComentarioReview { get; set; }
         public virtual ICollection<RW_Reviews> RW_Reviews { get; set; }
         public virtual ST_Estatus ST_Estatus { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
     }
 }

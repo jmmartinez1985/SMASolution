@@ -17,6 +17,9 @@ namespace SMAWeb.Models
         public UserProfile()
         {
             this.AN_Anuncios = new HashSet<AN_Anuncios>();
+            this.CR_ComentarioReview = new HashSet<CR_ComentarioReview>();
+            this.CR_ComentarioReview1 = new HashSet<CR_ComentarioReview>();
+            this.SS_SolicitudServicio = new HashSet<SS_SolicitudServicio>();
             this.webpages_Roles = new HashSet<webpages_Roles>();
         }
     
@@ -32,8 +35,11 @@ namespace SMAWeb.Models
         public int ST_Id { get; set; }
     
         public virtual ICollection<AN_Anuncios> AN_Anuncios { get; set; }
+        public virtual ICollection<CR_ComentarioReview> CR_ComentarioReview { get; set; }
+        public virtual ICollection<CR_ComentarioReview> CR_ComentarioReview1 { get; set; }
         public virtual MB_Membresia MB_Membresia { get; set; }
         public virtual PA_Paises PA_Paises { get; set; }
+        public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         public virtual ST_Estatus ST_Estatus { get; set; }
         public virtual ICollection<webpages_Roles> webpages_Roles { get; set; }
     }

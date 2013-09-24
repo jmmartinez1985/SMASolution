@@ -230,6 +230,9 @@
     <Compile Include="Models\CON_Contactenos.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CR_ComentarioReview.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\FAQs.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
@@ -274,6 +277,9 @@
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ST_Estatus.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserProfile.cs">
@@ -456,6 +462,7 @@
     <Content Include="Images\vadafone_grey.png" />
     <Content Include="Images\walmart.png" />
     <Content Include="Images\walmart_grey.png" />
+    <Content Include="HttpHandler\UploadHandler.ashx" />
     <EntityDeploy Include="Models\SMAModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SMAModel.Designer.cs</LastGenOutput>
@@ -473,7 +480,6 @@
       <DependentUpon>SMAModel.edmx</DependentUpon>
       <LastGenOutput>SMAModel.cs</LastGenOutput>
     </Content>
-    <Content Include="HttpHandler\UploadHandler.ashx" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Bootstrap2.3\bootstrap-paginator.js" />
     <Content Include="Scripts\Bootstrap2.3\bootstrap.js" />
@@ -487,19 +493,24 @@
     <Content Include="Scripts\CustomScript\modernizr.js" />
     <Content Include="Scripts\FileUpload\bootstrap.min.js" />
     <Content Include="Scripts\FileUpload\canvas-to-blob.min.js" />
+    <Content Include="Scripts\FileUpload\jquery-ui-1.8.21.full.min.js" />
     <Content Include="Scripts\FileUpload\jquery-ui.min.js" />
     <Content Include="Scripts\FileUpload\jquery.blueimp-gallery.min.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload-audio.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload-image.js" />
+    <Content Include="Scripts\FileUpload\jquery.fileupload-ip.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload-jquery-ui.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload-process.js" />
+    <Content Include="Scripts\FileUpload\jquery.fileupload-ui.css" />
     <Content Include="Scripts\FileUpload\jquery.fileupload-ui.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload-validate.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload-video.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload.js" />
     <Content Include="Scripts\FileUpload\jquery.iframe-transport.js" />
     <Content Include="Scripts\FileUpload\jquery.min.js" />
+    <Content Include="Scripts\FileUpload\jquery.ui.widget.js" />
     <Content Include="Scripts\FileUpload\load-image.min.js" />
+    <Content Include="Scripts\FileUpload\locale.js" />
     <Content Include="Scripts\FileUpload\main.js" />
     <Content Include="Scripts\FileUpload\show_ads.js" />
     <Content Include="Scripts\FileUpload\tmpl.min.js" />

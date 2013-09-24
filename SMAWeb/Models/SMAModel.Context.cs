@@ -31,6 +31,8 @@ namespace SMAWeb.Models
         public DbSet<CD_CategoriaServicio> CD_CategoriaServicio { get; set; }
         public DbSet<COM_Compañia> COM_Compañia { get; set; }
         public DbSet<CON_Contactenos> CON_Contactenos { get; set; }
+        public DbSet<CONF_Parametros> CONF_Parametros { get; set; }
+        public DbSet<CR_ComentarioReview> CR_ComentarioReview { get; set; }
         public DbSet<FAQs> FAQs { get; set; }
         public DbSet<MB_Membresia> MB_Membresia { get; set; }
         public DbSet<MT_MultimediaTipos> MT_MultimediaTipos { get; set; }
@@ -41,10 +43,10 @@ namespace SMAWeb.Models
         public DbSet<SBS_SubCategoriaServicio> SBS_SubCategoriaServicio { get; set; }
         public DbSet<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         public DbSet<ST_Estatus> ST_Estatus { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<UserProfile> UserProfile { get; set; }
         public DbSet<webpages_Membership> webpages_Membership { get; set; }
         public DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
         public DbSet<webpages_Roles> webpages_Roles { get; set; }
-        public DbSet<CONF_Parametros> CONF_Parametros { get; set; }
     }
 }

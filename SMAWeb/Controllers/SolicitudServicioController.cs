@@ -22,6 +22,13 @@ namespace SMAWeb.Controllers
             return View(ss_solicitudservicio.ToList());
         }
 
+        [HttpPost]
+        public ActionResult TakeService(FormCollection form)
+        {
+
+            return null;
+        }
+
         //
         // GET: /SolicitudServicio/Details/5
 

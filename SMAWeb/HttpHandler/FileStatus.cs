@@ -9,7 +9,7 @@ namespace SMAWeb.HttpHandler
 
     public class FilesStatus
     {
-        public const string HandlerPath = "/Upload/";
+        public const string HandlerPath = "/HttpHandler/";
 
         public string group { get; set; }
         public string name { get; set; }

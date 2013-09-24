@@ -17,6 +17,7 @@ namespace SMAWeb.Models
         public ST_Estatus()
         {
             this.AN_Anuncios = new HashSet<AN_Anuncios>();
+            this.CR_ComentarioReview = new HashSet<CR_ComentarioReview>();
             this.FAQs = new HashSet<FAQs>();
             this.SS_SolicitudServicio = new HashSet<SS_SolicitudServicio>();
             this.UserProfile = new HashSet<UserProfile>();
@@ -26,6 +27,7 @@ namespace SMAWeb.Models
         public string ST_Descripcion { get; set; }
     
         public virtual ICollection<AN_Anuncios> AN_Anuncios { get; set; }
+        public virtual ICollection<CR_ComentarioReview> CR_ComentarioReview { get; set; }
         public virtual ICollection<FAQs> FAQs { get; set; }
         public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         public virtual ICollection<UserProfile> UserProfile { get; set; }

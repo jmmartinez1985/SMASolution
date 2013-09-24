@@ -12,13 +12,18 @@ namespace SMAWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class FAQs
+    public partial class CR_ComentarioReview
     {
-        public int FAQ_Id { get; set; }
-        public string FAQ_Question { get; set; }
-        public string FAQ_Answer { get; set; }
-        public Nullable<int> FAQ_Status { get; set; }
+        public int CR_Id { get; set; }
+        public int UserIdContratado { get; set; }
+        public int UserIdSolicitante { get; set; }
+        public int SS_Id { get; set; }
+        public string CR_Comentario { get; set; }
+        public int ST_Id { get; set; }
     
+        public virtual SS_SolicitudServicio SS_SolicitudServicio { get; set; }
         public virtual ST_Estatus ST_Estatus { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
+        public virtual UserProfile UserProfile1 { get; set; }
     }
 }
