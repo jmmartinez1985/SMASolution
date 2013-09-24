@@ -420,20 +420,20 @@ namespace SMAWeb.Models
         [Display(Name = "Fecha")]
         public System.DateTime SS_Fecha { get; set; }
 
-        [Display(Name = "Nombre")]
-        public string SS_Nombre { get; set; }
+        //[Display(Name = "Nombre")]
+        //public string SS_Nombre { get; set; }
 
-        [Display(Name = "Correo Electrónico")]
-        public string SS_Mail { get; set; }
+        //[Display(Name = "Correo Electrónico")]
+        //public string SS_Mail { get; set; }
 
-        [Display(Name = "Teléfono")]
-        public string SS_Telefono { get; set; }
+        //[Display(Name = "Teléfono")]
+        //public string SS_Telefono { get; set; }
 
-        [Display(Name = "Celular")]
-        public string SS_Celular { get; set; }
+        //[Display(Name = "Celular")]
+        //public string SS_Celular { get; set; }
 
-        [Display(Name = "Descripción")]
-        public string SS_Descripcion { get; set; }
+        //[Display(Name = "Descripción")]
+        //public string SS_Descripcion { get; set; }
 
         [Display(Name = "Estado")]
         public int ST_Id { get; set; }

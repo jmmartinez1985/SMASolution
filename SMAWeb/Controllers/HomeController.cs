@@ -64,6 +64,8 @@ namespace SMAWeb.Controllers
             return Json(anuncios);
         }
 
+        [HttpGet]
+        [ActionName("GetServiceById")]
         public ActionResult GetServices(FormCollection form)
         {
 

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WebMatrix.WebData;
 using SMAWeb.Models;
 using System.Web.Security;
+using System.Web.Routing;
 
 namespace SMAWeb.Filters
 {
@@ -77,5 +78,32 @@ namespace SMAWeb.Filters
         }
 
 
+    }
+
+    public class AjaxAuthorizeAttribute : AuthorizeAttribute
+    {
+        protected override void HandleUnauthorizedRequest(AuthorizationContext context)
+        {
+            if (context.HttpContext.Request.IsAjaxRequest())
+            {
+                //var url = System.Web.HttpUtility.HtmlEncode(context.HttpContext.Request.RawUrl);
+                var urlHelper = new UrlHelper(context.RequestContext);
+                context.HttpContext.Response.StatusCode = 403;
+
+                context.Result = new JsonResult
+                {
+                    Data = new
+                    {
+                        Error = "NotAuthorized",
+                        LogOnUrl = urlHelper.Action("Login", "Account")
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            else
+            {
+                base.HandleUnauthorizedRequest(context);
+            }
+        }
     }
 }

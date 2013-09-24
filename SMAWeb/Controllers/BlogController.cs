@@ -10,7 +10,7 @@ namespace SMAWeb.Controllers
     {
         //
         // GET: /Blog/
-
+        [Authorize(Roles="Admin")]
         public ActionResult Index()
         {
             return View();

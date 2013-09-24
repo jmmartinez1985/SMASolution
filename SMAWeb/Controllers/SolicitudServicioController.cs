@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Models;
+using WebMatrix.WebData;
+using SMAWeb.Filters;
 
 namespace SMAWeb.Controllers
 {
@@ -22,9 +24,28 @@ namespace SMAWeb.Controllers
             return View(ss_solicitudservicio.ToList());
         }
 
+
+
         [HttpPost]
+        [AjaxAuthorizeAttribute(Roles = "Admin, Users")]
         public ActionResult TakeService(FormCollection form)
         {
+            if (form[0] != null)
+            {
+                int anuncioId = int.Parse(form[0]);
+                using (var db = new Entities())
+                {
+                    var solicitud = db.SS_SolicitudServicio.Add(new SS_SolicitudServicio
+                    {
+                        AN_Id = anuncioId,
+                        ST_Id = 1,
+                        SS_Fecha = System.DateTime.Now,
+                        UserId = WebSecurity.CurrentUserId
+                    });
+                    db.SaveChanges();
+                }
+            }
+
 
             return null;
         }

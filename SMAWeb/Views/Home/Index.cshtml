@@ -316,7 +316,10 @@
                  alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
              },
              error: function (xhr) {
-                 alert(xhr.responseText, 'An error has ocurred');
+                 if (xhr.status == 403) {
+                     var response = $.parseJSON(xhr.responseText);
+                     window.location = response.LogOnUrl;
+                 }
              }
          });
 
