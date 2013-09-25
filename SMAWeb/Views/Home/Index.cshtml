@@ -229,7 +229,6 @@
                 var result = JSON.parse(data);
                 var htmldata = '';
                 jQuery.each(result.$values, function (val, anuncio) {
-                    debugger;
                     htmldata += '<tr><td><div class="row-fluid">';
                     htmldata += '<div class="span12 booking-blocks"> ';
                     htmldata += '<div class="pull-left booking-img">';
@@ -258,7 +257,7 @@
                     htmldata += '</div>';
                     htmldata += '</div></td> </tr>';
                 });
-                jQuery('#anunciosAvailable').append(htmldata);
+                jQuery('#anunciosAvailable').prepend(htmldata);
                 $ki("div.holder").jPages({
                     containerID: "anunciosAvailable",
                     //              previous: "←",
@@ -296,7 +295,6 @@
 
     function TakeService(anuncioid)
     {
-        debugger;
         var data = new FormData();
         data.append("Anuncio", anuncioid);
         $.ajax({
@@ -313,7 +311,11 @@
                 // hideProgress();
              },
              success: function (data) {
-                 alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
+                 debugger;
+                 $("#anunciosAvailable").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
+                 $('.alert').alert();
+                 $('.alert').fadeOut(3000)
+               //  alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
              },
              error: function (xhr) {
                  if (xhr.status == 403) {

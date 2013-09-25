@@ -157,9 +157,8 @@
                     <!-- /Columna2 -->
                 </div>
             </div>
-            <p>
+            <p class="message">
                 <a href="@Url.Action("Index", "Home")">Volver</a>
-                @Html.ActionLink("Regresar", "Index")
             </p>
         </div>
     </div>
@@ -209,7 +208,9 @@
                 // hideProgress();
             },
             success: function (data) {
-                alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
+                $(".message").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
+                $('.alert').alert();
+                $('.alert').fadeOut(3000)
             },
             error: function (xhr) {
                 alert(xhr.responseText, 'An error has ocurred');

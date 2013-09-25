@@ -45,8 +45,6 @@ namespace SMAWeb.Controllers
                     db.SaveChanges();
                 }
             }
-
-
             return null;
         }
 
