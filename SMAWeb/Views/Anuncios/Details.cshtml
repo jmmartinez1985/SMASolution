@@ -202,10 +202,10 @@
             contentType: false,
             processData: false,
             beforeSend: function () {
-                //showProgress('../Styles/images/loading.gif');
+                showProgress('../images/loading.gif');
             },
             complete: function (data) {
-                // hideProgress();
+                hideProgress();
             },
             success: function (data) {
                 $(".message").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
@@ -217,5 +217,26 @@
             }
         });
 
+    }
+    var $ki = jQuery.noConflict();
+    function showProgress(loadingImgSrc) {
+        $ki.blockUI({
+            message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
+            css: {
+                width: '450px',
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#fafafa',
+                'border-radius': '10px',
+                opacity: .95,
+                color: '#000',
+                'font-size': '18px',
+                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)'
+            }
+        });
+    }
+
+    function hideProgress() {
+        $ki.unblockUI();
     }
 </script>

@@ -462,6 +462,15 @@ namespace SMAWeb.Models
         public string FirstImage { get; set; }
     }
 
+    public class SolicitudViewModel
+    {
+        public int Solicitud { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public string Solicitante { get; set; }
+        public string EmailSolicitante { get; set; }
+        public string TelefonoSolicitante { get; set; }
+    }
+
     #endregion
 
 

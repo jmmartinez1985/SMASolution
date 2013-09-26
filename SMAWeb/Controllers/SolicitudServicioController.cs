@@ -8,6 +8,11 @@ using System.Web.Mvc;
 using SMAWeb.Models;
 using WebMatrix.WebData;
 using SMAWeb.Filters;
+using System.Xml.Xsl;
+using System.IO;
+using System.Xml;
+using System.Xml.XPath;
+using SMAWeb.Extensions;
 
 namespace SMAWeb.Controllers
 {
@@ -42,7 +47,11 @@ namespace SMAWeb.Controllers
                         SS_Fecha = System.DateTime.Now,
                         UserId = WebSecurity.CurrentUserId
                     });
-                    db.SaveChanges();
+                    var solicitudcreada = db.SaveChanges<SS_SolicitudServicio>(solicitud);
+                    if (solicitudcreada != null)
+                    {
+                        SendEmailNotification(solicitudcreada);
+                    }
                 }
             }
             return null;
@@ -153,6 +162,50 @@ namespace SMAWeb.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+
+        private void SendEmailNotification(SS_SolicitudServicio solicitud)
+        {
+            string pXml = string.Empty;
+            var ppEmailTemplate = new Notification();
+
+            pXml = ppEmailTemplate.Serialize<Notification>();
+            var userName = WebSecurity.CurrentUserName;
+
+            using (db = new Entities())
+            {
+                var soli = db.SS_SolicitudServicio.Where(c => c.SS_Id == solicitud.SS_Id);
+                ppEmailTemplate.CustomerName = soli.FirstOrDefault().UserProfile.Name;
+                ppEmailTemplate.ProviderName = soli.FirstOrDefault().AN_Anuncios.UserProfile.Name;
+                ppEmailTemplate.SolicitudId = soli.FirstOrDefault().SS_Id;
+                ppEmailTemplate.AnuncioId = soli.FirstOrDefault().AN_Anuncios.AN_Id;
+                ppEmailTemplate.EmailCliente = soli.FirstOrDefault().UserProfile.UserName;
+                ppEmailTemplate.EmailProveedor = soli.FirstOrDefault().AN_Anuncios.UserProfile.UserName;
+            }
+
+            string serverPath = string.Empty;
+            serverPath = base.Server.MapPath("~");
+            string body = string.Empty;
+            body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioRequestClient.xslt"));
+            Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailCliente, "Solicitud de Servicio", body);
+
+
+            body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioRequestProved.xslt"));
+            Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailProveedor, "Solicitud de Servicio", body);
+
+        }
+
+
+
+        public class Notification
+        {
+            public string CustomerName { get; set; }
+            public string ProviderName { get; set; }
+            public int AnuncioId { get; set; }
+            public int SolicitudId { get; set; }
+            public string EmailCliente { get; set; }
+            public string EmailProveedor { get; set; }
         }
     }
 }

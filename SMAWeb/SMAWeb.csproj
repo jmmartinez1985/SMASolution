@@ -414,6 +414,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="EmailTemplates\ServicioRequestProved.xslt" />
+    <Content Include="EmailTemplates\ServicioRequestClient.xslt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
@@ -447,6 +449,7 @@
     <Content Include="Images\html5andcss3.png" />
     <Content Include="Images\igneus.png" />
     <Content Include="Images\igneus_grey.png" />
+    <Content Include="Images\loading.gif" />
     <Content Include="Images\logo1-blue.png" />
     <Content Include="Images\logo1-blue1.png" />
     <Content Include="Images\logo2-blue.png" />
@@ -522,6 +525,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -600,6 +604,7 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Anuncios\Details.cshtml" />
     <Content Include="Views\SolicitudServicio\Index.cshtml" />
+    <Content Include="Views\Blog\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -98,4 +98,13 @@ namespace SMAWeb.Models
         public string ProviderDisplayName { get; set; }
         public string ProviderUserId { get; set; }
     }
+
+    public class PersonalDetail
+    {
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Email { get; set; }
+    } 
 }

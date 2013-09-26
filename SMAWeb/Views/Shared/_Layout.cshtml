@@ -10,6 +10,7 @@
 
 
     <script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")"></script>
+    <script src="~/Scripts/jquery.blockUI.js"></script>
     <link href="@Url.Content("~/Content/Unify/flexslider.css")" rel="stylesheet" />
     <script src="@Url.Content("~/Scripts/CustomScript/modernizr.custom.js")"></script>
     <script src="@Url.Content("~/Scripts/CustomScript/jquery.flexslider-min.js")"></script>
@@ -243,7 +244,7 @@
     <!--/slider-->
     <!--=== End Slider ===-->
     <script type="text/javascript">
-
+        var imageUp = '@Url.Content("~/images/up.png")';
       
         jQuery.ajax(
                {
@@ -274,7 +275,10 @@
                        error: function (a, b, c) {
 
                        }
-                   });
+               });
+
+       
+
 
     </script>
 
