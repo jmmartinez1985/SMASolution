@@ -15,12 +15,11 @@ namespace SMAWeb.Models
     public partial class RW_Reviews
     {
         public int RW_Id { get; set; }
-        public int RT_Id { get; set; }
         public int SS_Id { get; set; }
         public string RW_Comentario { get; set; }
         public System.DateTime RW_Fecha { get; set; }
+        public Nullable<byte> RW_Rate { get; set; }
     
-        public virtual RT_TipoReview RT_TipoReview { get; set; }
         public virtual SS_SolicitudServicio SS_SolicitudServicio { get; set; }
     }
 }

@@ -38,8 +38,6 @@ namespace SMAWeb.Models
         public DbSet<MT_MultimediaTipos> MT_MultimediaTipos { get; set; }
         public DbSet<PA_Paises> PA_Paises { get; set; }
         public DbSet<REG_Region> REG_Region { get; set; }
-        public DbSet<RT_TipoReview> RT_TipoReview { get; set; }
-        public DbSet<RW_Reviews> RW_Reviews { get; set; }
         public DbSet<SBS_SubCategoriaServicio> SBS_SubCategoriaServicio { get; set; }
         public DbSet<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         public DbSet<ST_Estatus> ST_Estatus { get; set; }
@@ -48,5 +46,6 @@ namespace SMAWeb.Models
         public DbSet<webpages_Membership> webpages_Membership { get; set; }
         public DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
         public DbSet<webpages_Roles> webpages_Roles { get; set; }
+        public DbSet<RW_Reviews> RW_Reviews { get; set; }
     }
 }

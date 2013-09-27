@@ -28,8 +28,8 @@ namespace SMAWeb.Models
     
         public virtual AN_Anuncios AN_Anuncios { get; set; }
         public virtual ICollection<CR_ComentarioReview> CR_ComentarioReview { get; set; }
-        public virtual ICollection<RW_Reviews> RW_Reviews { get; set; }
         public virtual ST_Estatus ST_Estatus { get; set; }
         public virtual UserProfile UserProfile { get; set; }
+        public virtual ICollection<RW_Reviews> RW_Reviews { get; set; }
     }
 }

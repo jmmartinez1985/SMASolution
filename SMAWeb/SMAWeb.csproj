@@ -249,9 +249,6 @@
     <Compile Include="Models\REG_Region.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RT_TipoReview.cs">
-      <DependentUpon>SMAModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\RW_Reviews.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
