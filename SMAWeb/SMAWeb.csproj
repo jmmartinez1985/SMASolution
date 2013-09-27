@@ -196,6 +196,7 @@
     <Compile Include="Controllers\MultimediaTiposController.cs" />
     <Compile Include="Controllers\PaisesController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\SolicitudServicioController.cs" />
     <Compile Include="Controllers\SubCategoriaServicioController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
@@ -349,6 +350,7 @@
     <Content Include="Content\jpages\animate.css" />
     <Content Include="Content\jpages\jPages.css" />
     <Content Include="Content\jpages\style.css" />
+    <Content Include="Content\Rating.css" />
     <Content Include="Content\Unify\flexslider.css" />
     <Content Include="Content\Unify\header1-orange.css" />
     <Content Include="Content\Unify\header1.css" />
@@ -532,6 +534,45 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\raty-2.5.2\demo\css\application.css" />
+    <Content Include="Scripts\raty-2.5.2\demo\css\common.css" />
+    <Content Include="Scripts\raty-2.5.2\demo\css\demo.css" />
+    <Content Include="Scripts\raty-2.5.2\demo\css\font-awesome.css" />
+    <Content Include="Scripts\raty-2.5.2\demo\css\normalize.css" />
+    <Content Include="Scripts\raty-2.5.2\demo\css\pygments.css" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\0.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\1.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\2.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\3.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\4.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\5.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\cancel-custom-off.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\cancel-custom-on.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\cancel-off-big.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\cancel-on-big.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\cookie-half.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\cookie-off.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\cookie-on.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\off.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\on.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\star-half-big.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\star-off-big.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\img\star-on-big.png" />
+    <Content Include="Scripts\raty-2.5.2\demo\js\jquery.min.js" />
+    <Content Include="Scripts\raty-2.5.2\index.html" />
+    <Content Include="Scripts\raty-2.5.2\lib\img\cancel-off.png" />
+    <Content Include="Scripts\raty-2.5.2\lib\img\cancel-on.png" />
+    <Content Include="Scripts\raty-2.5.2\lib\img\star-half.png" />
+    <Content Include="Scripts\raty-2.5.2\lib\img\star-off.png" />
+    <Content Include="Scripts\raty-2.5.2\lib\img\star-on.png" />
+    <Content Include="Scripts\raty-2.5.2\lib\jquery.raty.js" />
+    <Content Include="Scripts\raty-2.5.2\lib\jquery.raty.min.js" />
+    <Content Include="Scripts\raty-2.5.2\spec\lib\jasmine-html.js" />
+    <Content Include="Scripts\raty-2.5.2\spec\lib\jasmine-jquery.js" />
+    <Content Include="Scripts\raty-2.5.2\spec\lib\jasmine.css" />
+    <Content Include="Scripts\raty-2.5.2\spec\lib\jasmine.js" />
+    <Content Include="Scripts\raty-2.5.2\spec\run.html" />
+    <Content Include="Scripts\raty-2.5.2\spec\spec.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -602,6 +643,15 @@
     <Content Include="Views\Anuncios\Details.cshtml" />
     <Content Include="Views\SolicitudServicio\Index.cshtml" />
     <Content Include="Views\Blog\Create.cshtml" />
+    <Content Include="Views\Review\Index.cshtml" />
+    <Content Include="Views\Review\Details.cshtml" />
+    <Content Include="Views\Review\Create.cshtml" />
+    <Content Include="Views\Review\Edit.cshtml" />
+    <Content Include="Views\Review\Delete.cshtml" />
+    <Content Include="Scripts\raty-2.5.2\.gitignore" />
+    <Content Include="Scripts\raty-2.5.2\changelog.md" />
+    <Content Include="Scripts\raty-2.5.2\demo\font\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\raty-2.5.2\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
