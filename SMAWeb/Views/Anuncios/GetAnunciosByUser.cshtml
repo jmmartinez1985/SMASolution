@@ -124,11 +124,10 @@
                     <form>
                         <div class="controls controls-row">
                             <select>
-                                <option>Date</option>
-                                <option>Today</option>
-                                <option>Yesterday</option>
-                                <option>Last Week</option>
-                                <option>Last Month</option>
+                                @foreach (var item in  ViewBag.Categories)
+                                {
+                                    <option>@item.CatDesc</option>
+                                }
                             </select>
                         </div>
                         <button type="submit" class="btn btn-warning">Sort</button>

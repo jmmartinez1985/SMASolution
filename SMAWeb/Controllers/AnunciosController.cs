@@ -73,12 +73,31 @@ namespace SMAWeb.Controllers
             // return View(an_anuncios.ToList());
 
             int UserId = UserId = WebSecurity.CurrentUserId;
-
             var allAnunciosList = new List<AN_Anuncios>();
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
             using (Entities model = new Entities())
             {
                 allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.ST_Id == 1 && acc.UserId == UserId).ToList();
+
+
+                var categoriasList = new List<Categoria>();
+                db.CD_CategoriaServicio.ToList().ForEach(c =>
+                {
+                    var subCatList = new List<SubCategorias>();
+
+                    c.SBS_SubCategoriaServicio.ToList().ForEach(sb =>
+                    {
+                        subCatList.Add(new SubCategorias { SubCatId = sb.SBS_Id, SubCatDesc = sb.SBS_Descripcion });
+                    });
+                    categoriasList.Add(new Categoria 
+                    {
+                        CatId = c.CD_Id,
+                        CatDesc = c.CD_Descripcion,
+                        SubCatCollection = subCatList
+                    });
+                });
+
+                ViewBag.Categories = categoriasList;
 
                 foreach (var item in allAnunciosList)
                 {
@@ -118,6 +137,21 @@ namespace SMAWeb.Controllers
         }
         //
         // GET: /Anuncios/Details/5
+
+
+        public ActionResult GetInformationAnuncios(FormCollection form)
+        {
+            using (var db = new Entities())
+            {
+
+                var Anuncio = db.sp_SEL_BusquedaAvanzada(null, null, null, null);
+
+            }
+
+
+            return null;
+
+        }
 
         public ActionResult Details(int id = 0)
         {

@@ -17,11 +17,13 @@ namespace SMAWeb.Models
         public CD_CategoriaServicio()
         {
             this.SBS_SubCategoriaServicio = new HashSet<SBS_SubCategoriaServicio>();
+            this.AN_Anuncios = new HashSet<AN_Anuncios>();
         }
     
         public int CD_Id { get; set; }
         public string CD_Descripcion { get; set; }
     
         public virtual ICollection<SBS_SubCategoriaServicio> SBS_SubCategoriaServicio { get; set; }
+        public virtual ICollection<AN_Anuncios> AN_Anuncios { get; set; }
     }
 }

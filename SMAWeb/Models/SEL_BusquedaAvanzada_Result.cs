@@ -10,17 +10,9 @@
 namespace SMAWeb.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class AN_Anuncios
+    public partial class SEL_BusquedaAvanzada_Result
     {
-        public AN_Anuncios()
-        {
-            this.AE_AnunciosExtras = new HashSet<AE_AnunciosExtras>();
-            this.AM_MultimediaAnuncios = new HashSet<AM_MultimediaAnuncios>();
-            this.SS_SolicitudServicio = new HashSet<SS_SolicitudServicio>();
-        }
-    
         public int AN_Id { get; set; }
         public int UserId { get; set; }
         public int PA_Id { get; set; }
@@ -34,13 +26,5 @@ namespace SMAWeb.Models
         public Nullable<System.DateTime> AN_FechaExpiracion { get; set; }
         public int ST_Id { get; set; }
         public Nullable<int> CD_Id { get; set; }
-    
-        public virtual ICollection<AE_AnunciosExtras> AE_AnunciosExtras { get; set; }
-        public virtual ICollection<AM_MultimediaAnuncios> AM_MultimediaAnuncios { get; set; }
-        public virtual SBS_SubCategoriaServicio SBS_SubCategoriaServicio { get; set; }
-        public virtual ST_Estatus ST_Estatus { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
-        public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
-        public virtual CD_CategoriaServicio CD_CategoriaServicio { get; set; }
     }
 }
