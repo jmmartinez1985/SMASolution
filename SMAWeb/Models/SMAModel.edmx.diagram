@@ -18,8 +18,6 @@
         <EntityTypeShape EntityType="ServiceMarketModel.MT_MultimediaTipos" Width="1.5" PointX="6" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.PA_Paises" Width="1.5" PointX="3.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.REG_Region" Width="1.5" PointX="1.5" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServiceMarketModel.RT_TipoReview" Width="1.5" PointX="14.25" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServiceMarketModel.RW_Reviews" Width="1.5" PointX="16.5" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.SBS_SubCategoriaServicio" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.SS_SolicitudServicio" Width="1.5" PointX="11.25" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.ST_Estatus" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
@@ -44,12 +42,12 @@
         <AssociationConnector Association="ServiceMarketModel.FK_UserProfile_MB_Membresia" ManuallyRouted="false" />
         <AssociationConnector Association="ServiceMarketModel.FK_PA_Paises_REG_Region" ManuallyRouted="false" />
         <AssociationConnector Association="ServiceMarketModel.FK_UserProfile_PA_Paises" ManuallyRouted="false" />
-        <AssociationConnector Association="ServiceMarketModel.FK_RW_Reviews_RT_TipoReview" ManuallyRouted="false" />
-        <AssociationConnector Association="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio" ManuallyRouted="false" />
         <AssociationConnector Association="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus" ManuallyRouted="false" />
         <AssociationConnector Association="ServiceMarketModel.FK_SS_SolicitudServicio_UserProfile" ManuallyRouted="false" />
         <AssociationConnector Association="ServiceMarketModel.FK_UserProfile_ST_Estatus" ManuallyRouted="false" />
         <AssociationConnector Association="ServiceMarketModel.webpages_UsersInRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ServiceMarketModel.RW_Reviews" Width="1.5" PointX="12.875" PointY="15" />
+        <AssociationConnector Association="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ServiceMarketModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ServiceMarketModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ServiceMarketModelStoreContainer">
           <EntitySet Name="AE_AnunciosExtras" EntityType="ServiceMarketModel.Store.AE_AnunciosExtras" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AM_MultimediaAnuncios" EntityType="ServiceMarketModel.Store.AM_MultimediaAnuncios" store:Type="Tables" Schema="dbo" />
@@ -28,7 +28,6 @@
           <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.Store.MT_MultimediaTipos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PA_Paises" EntityType="ServiceMarketModel.Store.PA_Paises" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="REG_Region" EntityType="ServiceMarketModel.Store.REG_Region" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RT_TipoReview" EntityType="ServiceMarketModel.Store.RT_TipoReview" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RW_Reviews" EntityType="ServiceMarketModel.Store.RW_Reviews" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SBS_SubCategoriaServicio" EntityType="ServiceMarketModel.Store.SBS_SubCategoriaServicio" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SS_SolicitudServicio" EntityType="ServiceMarketModel.Store.SS_SolicitudServicio" store:Type="Tables" Schema="dbo" />
@@ -63,10 +62,6 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
           </AssociationSet>
-          <AssociationSet Name="FK_CR_ComentarioReview_SS_SolicitudServicio" Association="ServiceMarketModel.Store.FK_CR_ComentarioReview_SS_SolicitudServicio">
-            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
-            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
-          </AssociationSet>
           <AssociationSet Name="FK_CR_ComentarioReview_ST_Estatus" Association="ServiceMarketModel.Store.FK_CR_ComentarioReview_ST_Estatus">
             <End Role="ST_Estatus" EntitySet="ST_Estatus" />
             <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
@@ -90,10 +85,6 @@
           <AssociationSet Name="fk_RoleId" Association="ServiceMarketModel.Store.fk_RoleId">
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RW_Reviews_RT_TipoReview" Association="ServiceMarketModel.Store.FK_RW_Reviews_RT_TipoReview">
-            <End Role="RT_TipoReview" EntitySet="RT_TipoReview" />
-            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
           </AssociationSet>
           <AssociationSet Name="FK_RW_Reviews_SS_SolicitudServicio" Association="ServiceMarketModel.Store.FK_RW_Reviews_SS_SolicitudServicio">
             <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
@@ -273,22 +264,15 @@
           <Property Name="REG_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="REG_Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
-        <EntityType Name="RT_TipoReview">
-          <Key>
-            <PropertyRef Name="RT_Id" />
-          </Key>
-          <Property Name="RT_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="RT_Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
-        </EntityType>
         <EntityType Name="RW_Reviews">
           <Key>
             <PropertyRef Name="RW_Id" />
           </Key>
           <Property Name="RW_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="RT_Id" Type="int" Nullable="false" />
           <Property Name="SS_Id" Type="int" Nullable="false" />
           <Property Name="RW_Comentario" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="RW_Fecha" Type="datetime" Nullable="false" />
+          <Property Name="RW_Rate" Type="tinyint" />
         </EntityType>
         <EntityType Name="SBS_SubCategoriaServicio">
           <Key>
@@ -452,18 +436,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CR_ComentarioReview_SS_SolicitudServicio">
-          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.Store.SS_SolicitudServicio" Multiplicity="1" />
-          <End Role="CR_ComentarioReview" Type="ServiceMarketModel.Store.CR_ComentarioReview" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SS_SolicitudServicio">
-              <PropertyRef Name="SS_Id" />
-            </Principal>
-            <Dependent Role="CR_ComentarioReview">
-              <PropertyRef Name="SS_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CR_ComentarioReview_ST_Estatus">
           <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="1" />
           <End Role="CR_ComentarioReview" Type="ServiceMarketModel.Store.CR_ComentarioReview" Multiplicity="*" />
@@ -533,18 +505,6 @@
             </Principal>
             <Dependent Role="webpages_UsersInRoles">
               <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RW_Reviews_RT_TipoReview">
-          <End Role="RT_TipoReview" Type="ServiceMarketModel.Store.RT_TipoReview" Multiplicity="1" />
-          <End Role="RW_Reviews" Type="ServiceMarketModel.Store.RW_Reviews" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RT_TipoReview">
-              <PropertyRef Name="RT_Id" />
-            </Principal>
-            <Dependent Role="RW_Reviews">
-              <PropertyRef Name="RT_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -656,8 +616,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ServiceMarketModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -675,8 +634,6 @@
           <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.MT_MultimediaTipos" />
           <EntitySet Name="PA_Paises" EntityType="ServiceMarketModel.PA_Paises" />
           <EntitySet Name="REG_Region" EntityType="ServiceMarketModel.REG_Region" />
-          <EntitySet Name="RT_TipoReview" EntityType="ServiceMarketModel.RT_TipoReview" />
-          <EntitySet Name="RW_Reviews" EntityType="ServiceMarketModel.RW_Reviews" />
           <EntitySet Name="SBS_SubCategoriaServicio" EntityType="ServiceMarketModel.SBS_SubCategoriaServicio" />
           <EntitySet Name="SS_SolicitudServicio" EntityType="ServiceMarketModel.SS_SolicitudServicio" />
           <EntitySet Name="ST_Estatus" EntityType="ServiceMarketModel.ST_Estatus" />
@@ -749,14 +706,6 @@
             <End Role="PA_Paises" EntitySet="PA_Paises" />
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
-          <AssociationSet Name="FK_RW_Reviews_RT_TipoReview" Association="ServiceMarketModel.FK_RW_Reviews_RT_TipoReview">
-            <End Role="RT_TipoReview" EntitySet="RT_TipoReview" />
-            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RW_Reviews_SS_SolicitudServicio" Association="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio">
-            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
-            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
-          </AssociationSet>
           <AssociationSet Name="FK_SS_SolicitudServicio_ST_Estatus" Association="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus">
             <End Role="ST_Estatus" EntitySet="ST_Estatus" />
             <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
@@ -772,6 +721,11 @@
           <AssociationSet Name="webpages_UsersInRoles" Association="ServiceMarketModel.webpages_UsersInRoles">
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <EntitySet Name="RW_Reviews" EntityType="ServiceMarketModel.RW_Reviews" />
+          <AssociationSet Name="FK_RW_Reviews_SS_SolicitudServicio" Association="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio">
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AE_AnunciosExtras">
@@ -932,26 +886,6 @@
           <Property Name="REG_Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="PA_Paises" Relationship="ServiceMarketModel.FK_PA_Paises_REG_Region" FromRole="REG_Region" ToRole="PA_Paises" />
         </EntityType>
-        <EntityType Name="RT_TipoReview">
-          <Key>
-            <PropertyRef Name="RT_Id" />
-          </Key>
-          <Property Name="RT_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="RT_Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="RW_Reviews" Relationship="ServiceMarketModel.FK_RW_Reviews_RT_TipoReview" FromRole="RT_TipoReview" ToRole="RW_Reviews" />
-        </EntityType>
-        <EntityType Name="RW_Reviews">
-          <Key>
-            <PropertyRef Name="RW_Id" />
-          </Key>
-          <Property Name="RW_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="RT_Id" Type="Int32" Nullable="false" />
-          <Property Name="SS_Id" Type="Int32" Nullable="false" />
-          <Property Name="RW_Comentario" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="RW_Fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="RT_TipoReview" Relationship="ServiceMarketModel.FK_RW_Reviews_RT_TipoReview" FromRole="RW_Reviews" ToRole="RT_TipoReview" />
-          <NavigationProperty Name="SS_SolicitudServicio" Relationship="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio" FromRole="RW_Reviews" ToRole="SS_SolicitudServicio" />
-        </EntityType>
         <EntityType Name="SBS_SubCategoriaServicio">
           <Key>
             <PropertyRef Name="SBS_Id" />
@@ -973,9 +907,9 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_AN_Anuncios" FromRole="SS_SolicitudServicio" ToRole="AN_Anuncios" />
           <NavigationProperty Name="CR_ComentarioReview" Relationship="ServiceMarketModel.FK_CR_ComentarioReview_SS_SolicitudServicio" FromRole="SS_SolicitudServicio" ToRole="CR_ComentarioReview" />
-          <NavigationProperty Name="RW_Reviews" Relationship="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio" FromRole="SS_SolicitudServicio" ToRole="RW_Reviews" />
           <NavigationProperty Name="ST_Estatus" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus" FromRole="SS_SolicitudServicio" ToRole="ST_Estatus" />
           <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_UserProfile" FromRole="SS_SolicitudServicio" ToRole="UserProfile" />
+          <NavigationProperty Name="RW_Reviews" Relationship="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio" FromRole="SS_SolicitudServicio" ToRole="RW_Reviews" />
         </EntityType>
         <EntityType Name="ST_Estatus">
           <Key>
@@ -1247,30 +1181,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RW_Reviews_RT_TipoReview">
-          <End Role="RT_TipoReview" Type="ServiceMarketModel.RT_TipoReview" Multiplicity="1" />
-          <End Role="RW_Reviews" Type="ServiceMarketModel.RW_Reviews" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RT_TipoReview">
-              <PropertyRef Name="RT_Id" />
-            </Principal>
-            <Dependent Role="RW_Reviews">
-              <PropertyRef Name="RT_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RW_Reviews_SS_SolicitudServicio">
-          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.SS_SolicitudServicio" Multiplicity="1" />
-          <End Role="RW_Reviews" Type="ServiceMarketModel.RW_Reviews" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SS_SolicitudServicio">
-              <PropertyRef Name="SS_Id" />
-            </Principal>
-            <Dependent Role="RW_Reviews">
-              <PropertyRef Name="SS_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SS_SolicitudServicio_ST_Estatus">
           <End Role="ST_Estatus" Type="ServiceMarketModel.ST_Estatus" Multiplicity="1" />
           <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.SS_SolicitudServicio" Multiplicity="*" />
@@ -1310,6 +1220,29 @@
         <Association Name="webpages_UsersInRoles">
           <End Role="webpages_Roles" Type="ServiceMarketModel.webpages_Roles" Multiplicity="*" />
           <End Role="UserProfile" Type="ServiceMarketModel.UserProfile" Multiplicity="*" />
+        </Association>
+        <EntityType Name="RW_Reviews">
+          <Key>
+            <PropertyRef Name="RW_Id" />
+          </Key>
+          <Property Type="Int32" Name="RW_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SS_Id" Nullable="false" />
+          <Property Type="String" Name="RW_Comentario" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="RW_Fecha" Nullable="false" Precision="3" />
+          <Property Type="Byte" Name="RW_Rate" />
+          <NavigationProperty Name="SS_SolicitudServicio" Relationship="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio" FromRole="RW_Reviews" ToRole="SS_SolicitudServicio" />
+        </EntityType>
+        <Association Name="FK_RW_Reviews_SS_SolicitudServicio">
+          <End Type="ServiceMarketModel.SS_SolicitudServicio" Role="SS_SolicitudServicio" Multiplicity="1" />
+          <End Type="ServiceMarketModel.RW_Reviews" Role="RW_Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SS_SolicitudServicio">
+              <PropertyRef Name="SS_Id" />
+            </Principal>
+            <Dependent Role="RW_Reviews">
+              <PropertyRef Name="SS_Id" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1463,25 +1396,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RT_TipoReview">
-            <EntityTypeMapping TypeName="ServiceMarketModel.RT_TipoReview">
-              <MappingFragment StoreEntitySet="RT_TipoReview">
-                <ScalarProperty Name="RT_Id" ColumnName="RT_Id" />
-                <ScalarProperty Name="RT_Descripcion" ColumnName="RT_Descripcion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RW_Reviews">
-            <EntityTypeMapping TypeName="ServiceMarketModel.RW_Reviews">
-              <MappingFragment StoreEntitySet="RW_Reviews">
-                <ScalarProperty Name="RW_Id" ColumnName="RW_Id" />
-                <ScalarProperty Name="RT_Id" ColumnName="RT_Id" />
-                <ScalarProperty Name="SS_Id" ColumnName="SS_Id" />
-                <ScalarProperty Name="RW_Comentario" ColumnName="RW_Comentario" />
-                <ScalarProperty Name="RW_Fecha" ColumnName="RW_Fecha" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SBS_SubCategoriaServicio">
             <EntityTypeMapping TypeName="ServiceMarketModel.SBS_SubCategoriaServicio">
               <MappingFragment StoreEntitySet="SBS_SubCategoriaServicio">
@@ -1579,6 +1493,17 @@
               <ScalarProperty Name="UserId" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="RW_Reviews">
+            <EntityTypeMapping TypeName="ServiceMarketModel.RW_Reviews">
+              <MappingFragment StoreEntitySet="RW_Reviews">
+                <ScalarProperty Name="RW_Rate" ColumnName="RW_Rate" />
+                <ScalarProperty Name="RW_Fecha" ColumnName="RW_Fecha" />
+                <ScalarProperty Name="RW_Comentario" ColumnName="RW_Comentario" />
+                <ScalarProperty Name="SS_Id" ColumnName="SS_Id" />
+                <ScalarProperty Name="RW_Id" ColumnName="RW_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
