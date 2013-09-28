@@ -534,12 +534,15 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\raty-2.5.2\.gitignore" />
+    <Content Include="Scripts\raty-2.5.2\changelog.md" />
     <Content Include="Scripts\raty-2.5.2\demo\css\application.css" />
     <Content Include="Scripts\raty-2.5.2\demo\css\common.css" />
     <Content Include="Scripts\raty-2.5.2\demo\css\demo.css" />
     <Content Include="Scripts\raty-2.5.2\demo\css\font-awesome.css" />
     <Content Include="Scripts\raty-2.5.2\demo\css\normalize.css" />
     <Content Include="Scripts\raty-2.5.2\demo\css\pygments.css" />
+    <Content Include="Scripts\raty-2.5.2\demo\font\fontawesome-webfont.ttf" />
     <Content Include="Scripts\raty-2.5.2\demo\img\0.png" />
     <Content Include="Scripts\raty-2.5.2\demo\img\1.png" />
     <Content Include="Scripts\raty-2.5.2\demo\img\2.png" />
@@ -560,13 +563,18 @@
     <Content Include="Scripts\raty-2.5.2\demo\img\star-on-big.png" />
     <Content Include="Scripts\raty-2.5.2\demo\js\jquery.min.js" />
     <Content Include="Scripts\raty-2.5.2\index.html" />
+    <Content Include="Scripts\raty-2.5.2\lib\img\cancel-off-big.png" />
     <Content Include="Scripts\raty-2.5.2\lib\img\cancel-off.png" />
+    <Content Include="Scripts\raty-2.5.2\lib\img\cancel-on-big.png" />
     <Content Include="Scripts\raty-2.5.2\lib\img\cancel-on.png" />
     <Content Include="Scripts\raty-2.5.2\lib\img\star-half.png" />
+    <Content Include="Scripts\raty-2.5.2\lib\img\star-off-big.png" />
     <Content Include="Scripts\raty-2.5.2\lib\img\star-off.png" />
+    <Content Include="Scripts\raty-2.5.2\lib\img\star-on-big.png" />
     <Content Include="Scripts\raty-2.5.2\lib\img\star-on.png" />
     <Content Include="Scripts\raty-2.5.2\lib\jquery.raty.js" />
     <Content Include="Scripts\raty-2.5.2\lib\jquery.raty.min.js" />
+    <Content Include="Scripts\raty-2.5.2\README.md" />
     <Content Include="Scripts\raty-2.5.2\spec\lib\jasmine-html.js" />
     <Content Include="Scripts\raty-2.5.2\spec\lib\jasmine-jquery.js" />
     <Content Include="Scripts\raty-2.5.2\spec\lib\jasmine.css" />
@@ -648,10 +656,6 @@
     <Content Include="Views\Review\Create.cshtml" />
     <Content Include="Views\Review\Edit.cshtml" />
     <Content Include="Views\Review\Delete.cshtml" />
-    <Content Include="Scripts\raty-2.5.2\.gitignore" />
-    <Content Include="Scripts\raty-2.5.2\changelog.md" />
-    <Content Include="Scripts\raty-2.5.2\demo\font\fontawesome-webfont.ttf" />
-    <Content Include="Scripts\raty-2.5.2\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
