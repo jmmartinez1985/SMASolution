@@ -12,6 +12,9 @@ namespace SMAWeb.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class Entities : DbContext
     {
@@ -47,5 +50,68 @@ namespace SMAWeb.Models
         public DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
         public DbSet<webpages_Roles> webpages_Roles { get; set; }
         public DbSet<RW_Reviews> RW_Reviews { get; set; }
+    
+        public virtual ObjectResult<SEL_BusquedaAvanzada_Result> SEL_BusquedaAvanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar)
+        {
+            var categoriaParameter = categoria.HasValue ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(int));
+    
+            var subCategoriaParameter = subCategoria.HasValue ?
+                new ObjectParameter("SubCategoria", subCategoria) :
+                new ObjectParameter("SubCategoria", typeof(int));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var lugarParameter = lugar != null ?
+                new ObjectParameter("Lugar", lugar) :
+                new ObjectParameter("Lugar", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SEL_BusquedaAvanzada_Result>("SEL_BusquedaAvanzada", categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
+        }
+    
+        public virtual ObjectResult<AN_Anuncios> sp_SEL_BusquedaAvanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar)
+        {
+            var categoriaParameter = categoria.HasValue ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(int));
+    
+            var subCategoriaParameter = subCategoria.HasValue ?
+                new ObjectParameter("SubCategoria", subCategoria) :
+                new ObjectParameter("SubCategoria", typeof(int));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var lugarParameter = lugar != null ?
+                new ObjectParameter("Lugar", lugar) :
+                new ObjectParameter("Lugar", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("sp_SEL_BusquedaAvanzada", categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
+        }
+    
+        public virtual ObjectResult<AN_Anuncios> sp_SEL_BusquedaAvanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar, MergeOption mergeOption)
+        {
+            var categoriaParameter = categoria.HasValue ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(int));
+    
+            var subCategoriaParameter = subCategoria.HasValue ?
+                new ObjectParameter("SubCategoria", subCategoria) :
+                new ObjectParameter("SubCategoria", typeof(int));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var lugarParameter = lugar != null ?
+                new ObjectParameter("Lugar", lugar) :
+                new ObjectParameter("Lugar", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("sp_SEL_BusquedaAvanzada", mergeOption, categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using SMAWeb.Models;
 using SMAWeb.Filters;
 using WebMatrix.WebData;
+using SMAWeb.Extensions;
 
 namespace SMAWeb.Controllers
 {
@@ -73,12 +74,31 @@ namespace SMAWeb.Controllers
             // return View(an_anuncios.ToList());
 
             int UserId = UserId = WebSecurity.CurrentUserId;
-
             var allAnunciosList = new List<AN_Anuncios>();
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
             using (Entities model = new Entities())
             {
                 allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.ST_Id == 1 && acc.UserId == UserId).ToList();
+
+
+                var categoriasList = new List<Categoria>();
+                db.CD_CategoriaServicio.ToList().ForEach(c =>
+                {
+                    var subCatList = new List<SubCategorias>();
+
+                    c.SBS_SubCategoriaServicio.ToList().ForEach(sb =>
+                    {
+                        subCatList.Add(new SubCategorias { SubCatId = sb.SBS_Id, SubCatDesc = sb.SBS_Descripcion });
+                    });
+                    categoriasList.Add(new Categoria 
+                    {
+                        CatId = c.CD_Id,
+                        CatDesc = c.CD_Descripcion,
+                        SubCatCollection = subCatList
+                    });
+                });
+
+                ViewBag.Categories = categoriasList;
 
                 foreach (var item in allAnunciosList)
                 {
@@ -118,6 +138,56 @@ namespace SMAWeb.Controllers
         }
         //
         // GET: /Anuncios/Details/5
+
+
+   
+
+        [HttpGet]
+        public ActionResult GetInformationAnuncios(FormCollection form)
+        {
+            var allAnunciosList = new List<AN_Anuncios>();
+            List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
+            using (Entities model = new Entities())
+            {
+
+                allAnunciosList = db.sp_SEL_BusquedaAvanzada(null, null, null, null).ToList();
+
+                foreach (var item in allAnunciosList)
+                {
+                    string username = item.UserProfile.Name;
+                    string statusDesc = item.ST_Estatus.ST_Descripcion;
+                    var categoria = item.SBS_SubCategoriaServicio.CD_CategoriaServicio.CD_Descripcion;
+                    var firstImage = string.Empty;
+                    if (item.AE_AnunciosExtras.FirstOrDefault() != null)
+                    {
+                        firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
+                    }
+
+                    string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
+                    var formatted = firstImage.Replace("~", "");
+                    if (formatted.StartsWith("/"))
+                        formatted = formatted.Remove(0, 1);
+                    firstImage = urlimg + formatted;
+
+
+                    viewModelAnuncios.Add(new AnunciosViewModel
+                    {
+                        Usuario = username,
+                        EstatusDescription = statusDesc,
+                        AnunciosInfo = item,
+                        CategoriaDescripcion = categoria,
+                        FirstImage = firstImage,
+                    });
+
+                }
+            }
+            if (viewModelAnuncios == null || viewModelAnuncios.Count == 0)
+            {
+                return HttpNotFound();
+            }
+            var anuncios = viewModelAnuncios.SerializeToJson();
+            return Json(anuncios);
+        }
 
         public ActionResult Details(int id = 0)
         {

@@ -33,6 +33,7 @@ namespace SMAWeb.Models
         public string AN_Area { get; set; }
         public Nullable<System.DateTime> AN_FechaExpiracion { get; set; }
         public int ST_Id { get; set; }
+        public Nullable<int> CD_Id { get; set; }
     
         public virtual ICollection<AE_AnunciosExtras> AE_AnunciosExtras { get; set; }
         public virtual ICollection<AM_MultimediaAnuncios> AM_MultimediaAnuncios { get; set; }
@@ -40,5 +41,6 @@ namespace SMAWeb.Models
         public virtual ST_Estatus ST_Estatus { get; set; }
         public virtual UserProfile UserProfile { get; set; }
         public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
+        public virtual CD_CategoriaServicio CD_CategoriaServicio { get; set; }
     }
 }

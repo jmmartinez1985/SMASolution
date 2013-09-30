@@ -462,6 +462,34 @@ namespace SMAWeb.Models
         public string FirstImage { get; set; }
     }
 
+    public class CategoriaSubCategoriaViewModel
+    {
+        public CategoriaSubCategoriaViewModel()
+        {
+            SubCategorias = new List<SBS_SubCategoriaServicio>();
+        }
+        public CD_CategoriaServicio Categoria { get; set; }
+        public ICollection<SBS_SubCategoriaServicio> SubCategorias { get; set; }
+    }
+
+    public class Categoria 
+    {
+        public Categoria() 
+        {
+            SubCatCollection = new List<SubCategorias>();
+        }
+        public int CatId { get; set; }
+        public string CatDesc { get; set; }
+        public ICollection<SubCategorias> SubCatCollection { get; set; }
+
+    }
+    public class SubCategorias 
+    {
+        public int SubCatId { get; set; }
+        public string SubCatDesc { get; set; }
+
+    }
+
     public class SolicitudViewModel
     {
         public int Solicitud { get; set; }

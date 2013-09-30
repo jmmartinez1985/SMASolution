@@ -124,7 +124,7 @@
                                 <option>Last Month</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-warning">Sort</button>
+                        <button type="submit" onclick="CallFilter()" class="btn btn-warning">Sort A</button>
                     </form>
                 </div>
                 <div class="tab-pane" id="relevance">
@@ -143,7 +143,7 @@
                                 <option value="">Relevant on bottom</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-warning">Sort</button>
+                        <button type="submit" class="btn btn-warning">Sort B</button>
 
                     </form>
                 </div>
@@ -160,7 +160,7 @@
                                 <option>London</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-warning">Sort</button>
+                        <button type="submit" class="btn btn-warning">Sort C</button>
 
                     </form>
                 </div>
@@ -276,6 +276,31 @@
         });
     });
 
+
+    function CallFilter()
+    {
+        var data = new FormData();
+        $.ajax({
+            url: '@Url.Action("GetInformationAnuncios", "Anuncios")',
+            type: 'post',
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function () {
+                showProgress('../images/loading.gif');
+            },
+            complete: function (data) {
+                hideProgress();
+            },
+            success: function (data) {
+                
+            },
+            error: function (xhr) {
+                
+            }
+        });
+    }
 
     function CheckVisibleProjects() {
         var rows = jQuery('#anunciosAvailable > tr');

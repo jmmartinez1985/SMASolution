@@ -256,6 +256,9 @@
     <Compile Include="Models\SBS_SubCategoriaServicio.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SEL_BusquedaAvanzada_Result.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SMAModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

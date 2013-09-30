@@ -45,6 +45,8 @@ namespace SMAWeb.Controllers
             return View(model);
         }
 
+     
+
         //
         // POST: /Account/LogOff
 
