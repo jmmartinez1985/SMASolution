@@ -27,7 +27,13 @@ namespace SMAWeb.Controllers
             var sbs_subcategoriaservicio = db.SBS_SubCategoriaServicio.Include(s => s.CD_CategoriaServicio).Where(c=> c.CD_Id == Cat);
             return View(sbs_subcategoriaservicio.ToList());
         }
-        
+
+
+        public JsonResult GetSubCategories(int Cat)
+        {
+            var sbs_subcategoriaservicio = db.SBS_SubCategoriaServicio.Include(s => s.CD_CategoriaServicio).Where(c => c.CD_Id == Cat);
+            return Json(sbs_subcategoriaservicio.ToList());
+        }
 
         //
         // GET: /SubCategoriaServicio/Details/5

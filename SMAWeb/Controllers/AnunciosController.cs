@@ -9,6 +9,7 @@ using SMAWeb.Models;
 using SMAWeb.Filters;
 using WebMatrix.WebData;
 using SMAWeb.Extensions;
+using Newtonsoft.Json.Linq;
 
 namespace SMAWeb.Controllers
 {
@@ -140,17 +141,21 @@ namespace SMAWeb.Controllers
         // GET: /Anuncios/Details/5
 
 
-   
-
-        [HttpGet]
         public ActionResult GetInformationAnuncios(FormCollection form)
         {
             var allAnunciosList = new List<AN_Anuncios>();
+
+            var category = string.IsNullOrEmpty(form["Categoria"]) ? default(int) : int.Parse(form["Categoria"].ToString());
+            var subcategoria = string.IsNullOrEmpty(form["SubCategoria"]) ? default(int) : int.Parse(form["SubCategoria"].ToString());
+            var lugar = string.IsNullOrEmpty(form["Lugar"]) ? default(string) : form["Lugar"].ToString();
+            var descripcion =  string.IsNullOrEmpty(form["Descripcion"]) ? default(string) : form["Descripcion"].ToString(); 
+
+
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
             using (Entities model = new Entities())
             {
 
-                allAnunciosList = db.sp_SEL_BusquedaAvanzada(null, null, null, null).ToList();
+                allAnunciosList = db.sp_SEL_BusquedaAvanzada(category, subcategoria, descripcion, lugar).ToList();
 
                 foreach (var item in allAnunciosList)
                 {
@@ -183,7 +188,7 @@ namespace SMAWeb.Controllers
             }
             if (viewModelAnuncios == null || viewModelAnuncios.Count == 0)
             {
-                return HttpNotFound();
+                return Json(new { Error = "No se encontraron registros" });
             }
             var anuncios = viewModelAnuncios.SerializeToJson();
             return Json(anuncios);

@@ -15,6 +15,16 @@ namespace SMAWeb.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            using (var db = new Entities())
+            {
+                var ListCategorias =  db.CD_CategoriaServicio.ToList();
+                var firstCategoria = ListCategorias.FirstOrDefault().CD_Id;
+                var ListSubCategory = db.SBS_SubCategoriaServicio.Where(c => c.CD_Id == firstCategoria).ToList();
+
+                ViewBag.Categories = new SelectList(ListCategorias, "CD_Id", "CD_Descripcion");
+                ViewBag.SubCategories = new SelectList(ListSubCategory, "SBS_Id", "SBS_Descripcion");
+            }
+
             return View();
         }
 
@@ -60,6 +70,8 @@ namespace SMAWeb.Controllers
             {
                 return HttpNotFound();
             }
+
+
             var anuncios = viewModelAnuncios.SerializeToJson();
             return Json(anuncios);
         }

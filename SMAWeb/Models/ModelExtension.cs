@@ -86,7 +86,7 @@ namespace SMAWeb.Models
 
 
     #endregion
-    
+
     #region PartialClass
 
 
@@ -159,6 +159,8 @@ namespace SMAWeb.Models
         public virtual UserProfile UserProfile { get; set; }
         [JsonIgnore]
         public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
+        [JsonIgnore]
+        public virtual CD_CategoriaServicio CD_CategoriaServicio { get; set; }
     }
 
     public partial class SBS_SubCategoriaServicioMetadata
@@ -447,7 +449,7 @@ namespace SMAWeb.Models
         [JsonIgnore]
         public virtual ST_Estatus ST_Estatus { get; set; }
     }
-    
+
     #endregion
 
     #region ViewModel
@@ -472,9 +474,9 @@ namespace SMAWeb.Models
         public ICollection<SBS_SubCategoriaServicio> SubCategorias { get; set; }
     }
 
-    public class Categoria 
+    public class Categoria
     {
-        public Categoria() 
+        public Categoria()
         {
             SubCatCollection = new List<SubCategorias>();
         }
@@ -483,7 +485,7 @@ namespace SMAWeb.Models
         public ICollection<SubCategorias> SubCatCollection { get; set; }
 
     }
-    public class SubCategorias 
+    public class SubCategorias
     {
         public int SubCatId { get; set; }
         public string SubCatDesc { get; set; }
