@@ -202,8 +202,7 @@
             var text = jQuery('#txtSearchHome').val();
             var rows = jQuery('#anunciosAvailable > tr');
             var isVisible = $('#firstSearch').is(':visible');
-            if (!isVisible)
-            {
+            if (!isVisible) {
                 rows = jQuery('#SearchData > tr');
             }
             rows.each(function (idx, elem) {
@@ -216,6 +215,33 @@
                 }
             });
             setTimeout('CheckVisibleProjects();', 300);
+        });
+
+        jQuery("#CAT_Id").change(function () {
+            $.ajax({
+                dataType: "json",
+                type: 'post',
+                url: '@Url.Action("GetSubCategories", "SubCategoriaServicio")',
+                data: { Cat: parseInt(jQuery("#CAT_Id").val()) },
+                success: function (data) {
+                    var result = JSON.parse(data);
+                    var select = $('#SBS_Id');
+                    if (select.prop) {
+                        var options = select.prop('options');
+                    }
+                    else {
+                        var options = select.attr('options');
+                    }
+                    $('option', select).remove();
+                    $.each(result.$values, function (key, val) {
+                        options[options.length] = new Option(val.SBS_Descripcion, val.SBS_Id);
+                    });
+                },
+                error: function (a, b, c) {
+
+                },
+            });
+
         });
 
     });
@@ -395,16 +421,17 @@
             jQuery('#divNoAnunciosFound').hide();
         }
     }
+
     function SeeAnuncios(anuncioid) {
         var url = '@Url.Action("Details", "Anuncios")' + "/" + anuncioid;
-            window.location = url;
-        }
+        window.location = url;
+    }
 
-        function TakeService(anuncioid) {
-            var data = new FormData();
-            data.append("Anuncio", anuncioid);
-            $.ajax({
-                url: '@Url.Action("TakeService", "SolicitudServicio")',
+    function TakeService(anuncioid) {
+        var data = new FormData();
+        data.append("Anuncio", anuncioid);
+        $.ajax({
+            url: '@Url.Action("TakeService", "SolicitudServicio")',
             type: 'post',
             data: data,
             cache: false,

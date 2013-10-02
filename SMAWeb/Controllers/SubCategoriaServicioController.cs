@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Models;
+using SMAWeb.Extensions;
 
 namespace SMAWeb.Controllers
 {
@@ -32,7 +33,10 @@ namespace SMAWeb.Controllers
         public JsonResult GetSubCategories(int Cat)
         {
             var sbs_subcategoriaservicio = db.SBS_SubCategoriaServicio.Include(s => s.CD_CategoriaServicio).Where(c => c.CD_Id == Cat);
-            return Json(sbs_subcategoriaservicio.ToList());
+
+            var subcat = sbs_subcategoriaservicio.SerializeToJson();
+
+            return Json(subcat);
         }
 
         //
