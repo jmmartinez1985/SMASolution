@@ -113,5 +113,14 @@ namespace SMAWeb.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("sp_SEL_BusquedaAvanzada", mergeOption, categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> SEL_ValoracionAnuncios(Nullable<int> aN_Id)
+        {
+            var aN_IdParameter = aN_Id.HasValue ?
+                new ObjectParameter("AN_Id", aN_Id) :
+                new ObjectParameter("AN_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SEL_ValoracionAnuncios", aN_IdParameter);
+        }
     }
 }

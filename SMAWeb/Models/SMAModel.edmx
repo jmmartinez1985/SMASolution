@@ -639,6 +639,9 @@
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="Lugar" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SEL_ValoracionAnuncios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AN_Id" Type="int" Mode="In" />
+        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -765,6 +768,12 @@
             <Parameter Name="SubCategoria" Mode="In" Type="Int32" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
             <Parameter Name="Lugar" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SEL_ValoracionAnuncios" ReturnType="Collection(Int32)">
+            <Parameter Name="AN_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_Anuncio_Rating" ReturnType="Collection(Int16)">
+            <Parameter Name="AN_Id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="AE_AnunciosExtras">
@@ -1594,6 +1603,8 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_SEL_BusquedaAvanzada" FunctionName="ServiceMarketModel.Store.SEL_BusquedaAvanzada" />
+          <FunctionImportMapping FunctionImportName="SEL_ValoracionAnuncios" FunctionName="ServiceMarketModel.Store.SEL_ValoracionAnuncios" />
+          <FunctionImportMapping FunctionImportName="Get_Anuncio_Rating" FunctionName="ServiceMarketModel.Store.SEL_ValoracionAnuncios" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<SMAWeb.Models.SolicitudViewModel>
+
+@{
+    ViewBag.Title = "Tus solicitudes";
+}
+
+<h2>MySolicitudRequest</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Solicitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Solicitante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailSolicitante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelefonoSolicitante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Solicitud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Solicitante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailSolicitante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefonoSolicitante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @if (item.StatusId == 1)
+                {
+
+                    @Ajax.ActionLink("Iniciar Tarea", "ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 6 }, new AjaxOptions { HttpMethod = "POST", OnSuccess="success", UpdateTargetId="message" }); 
+                    @Ajax.ActionLink("Cancelar Tarea", "ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 2 }, new AjaxOptions { HttpMethod = "POST", OnSuccess="success" });
+                }
+
+                else if (item.StatusId == 6)
+                {
+                    @Ajax.ActionLink("Tarea Realizada", "ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 3 }, new AjaxOptions { HttpMethod = "POST", OnSuccess="success" });
+                }
+            </td>
+        </tr>
+    }
+
+    
+
+</table>
+<div id="message"></div>
+
+<script>
+    function success(data)
+    {
+        var result = JSON.parse(data);
+        alert(result.Message);
+    }
+
+</script>

@@ -13,6 +13,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.XPath;
 using SMAWeb.Extensions;
+using System.Dynamic;
 
 namespace SMAWeb.Controllers
 {
@@ -55,6 +56,54 @@ namespace SMAWeb.Controllers
                 }
             }
             return null;
+        }
+
+
+        public ActionResult SolicitudRequest()
+        {
+            var mysol = new List<SolicitudViewModel>();
+            using (var db = new Entities())
+            {
+                var solicitudes = db.SS_SolicitudServicio.Where(c => c.AN_Anuncios.UserId == WebSecurity.CurrentUserId);
+                Func<int, string> x = value =>
+                {
+                    switch (value)
+                    {
+                        case 1: return "Activo";
+                        case 3: return "Realizado";
+                        case 5: return "En espera de Review";
+                        case 6: return "Iniciar Tarea";
+                        default: return "Cancelado";
+                    }
+                };
+                solicitudes.ToList().ForEach((sol) =>
+                {
+                    mysol.Add(new SolicitudViewModel
+                    {
+                        Solicitante = sol.UserProfile.Name,
+                        EmailSolicitante = sol.UserProfile.UserName,
+                        FechaCreacion = sol.SS_Fecha,
+                        Solicitud = sol.SS_Id,
+                        Status = x.Invoke(sol.ST_Id),
+                        TelefonoSolicitante = "No Telefono",
+                        StatusId = sol.ST_Id
+                    });
+                });
+            }
+            return View(mysol);
+        }
+
+        internal class Updating
+        {
+            public string Message { get; set; }
+        
+        }
+
+        [HttpGet]
+        public ActionResult ChangeStatus(int Solicitud, int Status)
+        {
+            Updating update = new Updating() { Message = "Proceso de Actualización Exitosa." };
+            return Json(update.SerializeToJson(), JsonRequestBehavior.AllowGet);
         }
 
         //

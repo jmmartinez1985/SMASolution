@@ -168,6 +168,8 @@ namespace SMAWeb.Controllers
                         firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
                     }
 
+                    var getRating = model.SEL_ValoracionAnuncios(item.AN_Id).FirstOrDefault();
+
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
                     var formatted = firstImage.Replace("~", "");
                     if (formatted.StartsWith("/"))
@@ -181,7 +183,7 @@ namespace SMAWeb.Controllers
                         EstatusDescription = statusDesc,
                         AnunciosInfo = item,
                         CategoriaDescripcion = categoria,
-                        FirstImage = firstImage,
+                        FirstImage = firstImage, Rating = getRating
                     });
 
                 }

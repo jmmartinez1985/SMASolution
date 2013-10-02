@@ -462,6 +462,7 @@ namespace SMAWeb.Models
         public string Usuario { get; set; }
         public string CategoriaDescripcion { get; set; }
         public string FirstImage { get; set; }
+        public int? Rating { get; set; }
     }
 
     public class CategoriaSubCategoriaViewModel
@@ -485,6 +486,7 @@ namespace SMAWeb.Models
         public ICollection<SubCategorias> SubCatCollection { get; set; }
 
     }
+    
     public class SubCategorias
     {
         public int SubCatId { get; set; }
@@ -499,6 +501,8 @@ namespace SMAWeb.Models
         public string Solicitante { get; set; }
         public string EmailSolicitante { get; set; }
         public string TelefonoSolicitante { get; set; }
+        public int StatusId { get; set; }
+        public string Status { get; set; }
     }
 
     #endregion

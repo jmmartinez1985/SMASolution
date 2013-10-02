@@ -191,7 +191,8 @@
     No se obtuvieron resultados.
 </div>
 
-
+<script src="~/Scripts/raty-2.5.2/lib/jquery.raty.min.js"></script>
+<link href="~/Content/Rating.css" rel="stylesheet" />
 <!--/slider-->
 <!--=== End Slider ===-->
 <script type="text/javascript">
@@ -245,8 +246,16 @@
         });
 
     });
-
     var $ki = jQuery.noConflict();
+
+
+
+    $ki(function () {
+        $ki.fn.raty.defaults.path = '/Scripts/raty-2.5.2/lib/img';
+    });
+
+
+
     $ki(function () {
         jQuery.ajax(
         {
@@ -265,15 +274,7 @@
                     htmldata += '<ul class="unstyled">';
                     htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
                     htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
-                    htmldata += '<li>';
-                    htmldata += '<ul class="unstyled inline"> ';
-                    htmldata += ' <li><i class="icon-star"></i></li>';
-                    htmldata += '<li><i class="icon-star"></i></li>';
-                    htmldata += '<li><i class="icon-star"></i></li>';
-                    htmldata += '<li><i class="icon-star"></i></li>';
-                    htmldata += '<li><i class="icon-star-empty"></i></li>';
-                    htmldata += '</ul>';
-                    htmldata += '</li>';
+                    htmldata += '<li><ul class="unstyled inline"><li><div class="ratyclass" id=' + "toraty" + val + '  ratyval= ' + anuncio.Rating + ' style="width:20px;" ></div </li></ul></li>'
                     htmldata += '</ul>';
                     htmldata += '</div>';
                     htmldata += '<div style="overflow: hidden;">';
@@ -287,6 +288,10 @@
                     htmldata += '</div></td> </tr>';
                 });
                 jQuery('#anunciosAvailable').prepend(htmldata);
+                jQuery('.ratyclass').each(function (i, elem) {
+                    var ratyvalue = $(this).attr('ratyval');
+                    $ki(this).raty({ readOnly: true, score: ratyvalue });
+                });
                 $ki("div.holder").jPages({
                     containerID: "anunciosAvailable",
                     //              previous: "←",
@@ -368,15 +373,7 @@
                     htmldata += '<ul class="unstyled">';
                     htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
                     htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
-                    htmldata += '<li>';
-                    htmldata += '<ul class="unstyled inline"> ';
-                    htmldata += ' <li><i class="icon-star"></i></li>';
-                    htmldata += '<li><i class="icon-star"></i></li>';
-                    htmldata += '<li><i class="icon-star"></i></li>';
-                    htmldata += '<li><i class="icon-star"></i></li>';
-                    htmldata += '<li><i class="icon-star-empty"></i></li>';
-                    htmldata += '</ul>';
-                    htmldata += '</li>';
+                    htmldata += '<li><ul class="unstyled inline"><li><div class="ratyclass" id=' + "toraty" + val + '  ratyval= ' + anuncio.Rating + ' style="width:20px;" ></div </li></ul></li>'
                     htmldata += '</ul>';
                     htmldata += '</div>';
                     htmldata += '<div style="overflow: hidden;">';
@@ -389,7 +386,6 @@
                     htmldata += '</div>';
                     htmldata += '</div></td> </tr>';
                 });
-
                 jQuery('#SearchData').prepend(htmldata);
                 $ki("div.holder").jPages({
                     containerID: "SearchData",
@@ -401,6 +397,10 @@
                     last: "Última",
                     perPage: 7,
                     delay: 20
+                });
+                jQuery('.ratyclass').each(function (i, elem) {
+                    var ratyvalue = $(this).attr('ratyval');
+                    $ki(this).raty({ readOnly: true, score: ratyvalue });
                 });
                 hideProgress();
                 jQuery('#advanced').modal('hide');
