@@ -660,6 +660,7 @@
     <Content Include="Views\Review\Delete.cshtml" />
     <Content Include="Views\SolicitudServicio\SolicitudRequest.cshtml" />
     <Content Include="Views\Review\ReviewSubmitted.cshtml" />
+    <Content Include="Views\Review\NoReviewAllowed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

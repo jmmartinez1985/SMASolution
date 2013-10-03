@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Models;
 using SMAWeb.Filters;
+using System.Transactions;
 
 namespace SMAWeb.Controllers
 {
@@ -38,7 +39,9 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Review/Create
+        
         [HttpGet]
+        [Authorize(Roles = "Users")]
         [IsValidReviewFilter]
         public ActionResult Create(int id = 0)
         {
@@ -55,13 +58,24 @@ namespace SMAWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Users")]
         public ActionResult Create(RW_Reviews rw_reviews)
         {
             if (ModelState.IsValid)
             {
-                db.RW_Reviews.Add(rw_reviews);
-                db.SaveChanges();
-                return RedirectToAction("Index","Home");
+                using (db)
+                {
+                    using (TransactionScope tr = new TransactionScope())
+                    {
+                        db.RW_Reviews.Add(rw_reviews);
+                        var solicitud = db.SS_SolicitudServicio.Find(rw_reviews.SS_Id);
+                        solicitud.ST_Id = 5;
+                        db.Entry(solicitud).State = EntityState.Modified;
+                        db.SaveChanges();
+                        tr.Complete();
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
             }
 
             ViewBag.SS_Id = new SelectList(db.SS_SolicitudServicio, "SS_Id", "SS_Id", rw_reviews.SS_Id);
@@ -69,6 +83,11 @@ namespace SMAWeb.Controllers
         }
 
         public ActionResult ReviewSubmitted()
+        {
+            return View();
+        }
+
+        public ActionResult NoReviewAllowed()
         {
             return View();
         }
