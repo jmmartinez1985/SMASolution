@@ -84,12 +84,16 @@ namespace SMAWeb.Models
 
     }
 
+    [MetadataType(typeof(RW_ReviewsMetadata ))]
+    public partial class RW_Review
+    {
+
+    }
 
     #endregion
 
     #region PartialClass
-
-
+    
     public partial class ST_EstatusMetadata
     {
         [Required]
@@ -147,6 +151,10 @@ namespace SMAWeb.Models
         [Display(Name = "Lugar del Anuncio")]
         public string AN_Area { get; set; }
 
+        [Display(Name="Categoría")]
+        public Nullable<int> CD_Id { get; set; }
+    
+
         [JsonIgnore]
         public virtual ICollection<AE_AnunciosExtras> AE_AnunciosExtras { get; set; }
         [JsonIgnore]
@@ -161,6 +169,7 @@ namespace SMAWeb.Models
         public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         [JsonIgnore]
         public virtual CD_CategoriaServicio CD_CategoriaServicio { get; set; }
+    
     }
 
     public partial class SBS_SubCategoriaServicioMetadata
@@ -448,6 +457,32 @@ namespace SMAWeb.Models
 
         [JsonIgnore]
         public virtual ST_Estatus ST_Estatus { get; set; }
+    }
+
+    public partial class RW_ReviewsMetadata
+    {
+        [Required]
+        [Display(Name = "Código Comentario")]
+        public int RW_Id { get; set; }
+
+        [Required]
+        [Display(Name = "Código de Solicitud de Servicio")]
+        public int SS_Id { get; set; }
+
+        [Required]
+        [Display(Name = "Comentario")]
+        public string RW_Comentario { get; set; }
+
+        [Required]
+        [Display(Name = "Fecha")]
+        public System.DateTime RW_Fecha { get; set; }
+
+        [Required]
+        [Display(Name = "Calificación")]
+        public Nullable<byte> RW_Rate { get; set; }
+
+        [JsonIgnore]
+        public virtual SS_SolicitudServicio SS_SolicitudServicio { get; set; }
     }
 
     #endregion

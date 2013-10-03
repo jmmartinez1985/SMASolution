@@ -46,12 +46,18 @@
                                 @Html.DropDownList("PA_Id", (IEnumerable<SelectListItem>)ViewBag.PA_Id, "Selecione el país", new { @class = "input-block-level" })
                                 @Html.ValidationMessageFor(model => model.PA_Id)
                             </div>
-
-                            <div class="controls form-inline">
-                                @Html.LabelFor(model => model.SBS_Id)<span class="color-red"> *</span>
+                             <div class="controls form-inline">
+                                @Html.LabelFor(model => model.CD_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id, "Selecione la categoría", new { @class = "input-block-level" })
+                                @Html.DropDownList("CD_Id", (IEnumerable<SelectListItem>)ViewBag.CD_Id, "Selecione la categoría", new { @class = "input-block-level" })
+                                @Html.ValidationMessageFor(model => model.CD_Id)
+                            </div>
+                            <div class="controls form-inline">
+                                @Html.LabelFor(model => model.SBS_Id)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id, "Selecione la subcategoría", new { @class = "input-block-level" })
                                 @Html.ValidationMessageFor(model => model.SBS_Id)
                             </div>
                             <div class="controls form-inline">
@@ -66,7 +72,7 @@
                                 @Html.LabelFor(model => model.AN_Celular)
                             </div>
                             <div class="editor-field">
-                                @Html.TextBoxFor(model => model.AN_Celular, new { @placeholder = "Celular", @class = "input-block-level" })
+                                @Html.TextBoxFor(model => model.AN_Celular, new { @placeholder = "Teléfono 2", @class = "input-block-level" })
                                 @Html.ValidationMessageFor(model => model.AN_Celular)
                             </div>
 
@@ -76,7 +82,7 @@
                                 @Html.LabelFor(model => model.AN_Descripcion)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.TextAreaFor(model => model.AN_Descripcion, new { @placeholder = "Descripción del Anuncio", @class = "input-block-level", @rows = "11" })
+                                @Html.TextAreaFor(model => model.AN_Descripcion, new { @placeholder = "Descripción del Anuncio", @class = "input-block-level", @rows = "14" })
                                 @Html.ValidationMessageFor(model => model.AN_Descripcion)
                             </div>
 

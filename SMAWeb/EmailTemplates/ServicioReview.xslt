@@ -163,79 +163,19 @@
           </b>
         </p>
         <p>
-          Le estamos informando que a una persona le interesa contactarlo por una solicitud de servicio, el cual tiene
-          el número de Anuncio #<xsl:value-of select="AnuncioId" />
-          <br />
-          <br />
-
-          <p>Los datos de contacto se los estamos enviando a continuacion</p>
-          <div class="CSSTableGenerator" >
-            <table >
-              <tr>
-                <td>
-                  Title 1
-                </td>
-                <td >
-                  Title 2
-                </td>
-                <td>
-                  Title 3
-                </td>
-              </tr>
-              <tr>
-                <td >
-                  Row 1
-                </td>
-                <td>
-                  Row 1
-                </td>
-                <td>
-                  Row 1
-                </td>
-              </tr>
-              <tr>
-                <td >
-                  Row 2
-                </td>
-                <td>
-                  Row 2
-                </td>
-                <td>
-                  Row 2
-                </td>
-              </tr>
-              <tr>
-                <td >
-                  Row 2
-                </td>
-                <td>
-                  Row 2
-                </td>
-                <td>
-                  Row 2
-                </td>
-              </tr>
-              <tr>
-                <td >
-                  Row 3
-                </td>
-                <td>
-                  Row 3
-                </td>
-                <td>
-                  Row 3
-                </td>
-              </tr>
-            </table>
-          </div>
+          Le solicitamos cordialmente nos dé su opinión acerca del servicio "<xsl:value-of select="AnuncioDescripcion" />" que fue solicitado por usted al usuario <xsl:value-of select="UsuarioNombre" />
         </p>
+        <p>
+          Para calificar el servicio y dejar sus comentarios haga clic <a href="<xsl:value-of select="LinkReview" />">aquí</a>
+        </p>
+        <br />
+        <br />
+        <p>Le recordamos la importancia de sus comentarios pues permitiran a otros usuarios tener una referencia de este servicio.</p>
 
-        <br>
-          
-        </br><br>
-          
-        </br>
-        <p>Le pedimos atender solicitud, en caso de no atenderla notificar al solicitante</p>
+
+        <br />
+        <br />
+        <p>Gracias por contar con nosotros</p>
         <br />
         Atentamente,
         <br />

@@ -91,7 +91,7 @@ namespace SMAWeb.Controllers
                     {
                         subCatList.Add(new SubCategorias { SubCatId = sb.SBS_Id, SubCatDesc = sb.SBS_Descripcion });
                     });
-                    categoriasList.Add(new Categoria 
+                    categoriasList.Add(new Categoria
                     {
                         CatId = c.CD_Id,
                         CatDesc = c.CD_Descripcion,
@@ -148,7 +148,7 @@ namespace SMAWeb.Controllers
             var category = string.IsNullOrEmpty(form["Categoria"]) ? default(int) : int.Parse(form["Categoria"].ToString());
             var subcategoria = string.IsNullOrEmpty(form["SubCategoria"]) ? default(int) : int.Parse(form["SubCategoria"].ToString());
             var lugar = string.IsNullOrEmpty(form["Lugar"]) ? default(string) : form["Lugar"].ToString();
-            var descripcion =  string.IsNullOrEmpty(form["Descripcion"]) ? default(string) : form["Descripcion"].ToString(); 
+            var descripcion = string.IsNullOrEmpty(form["Descripcion"]) ? default(string) : form["Descripcion"].ToString();
 
 
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
@@ -183,7 +183,8 @@ namespace SMAWeb.Controllers
                         EstatusDescription = statusDesc,
                         AnunciosInfo = item,
                         CategoriaDescripcion = categoria,
-                        FirstImage = firstImage, Rating = getRating
+                        FirstImage = firstImage,
+                        Rating = getRating
                     });
 
                 }
@@ -211,11 +212,20 @@ namespace SMAWeb.Controllers
 
         public ActionResult Create()
         {
+            //Agregar correo del usuario
+            //string directorio = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["ContenidoMultimedia"];
+
+            //if (!System.IO.Directory.Exists(directorio))
+            //    System.IO.Directory.CreateDirectory(directorio);
+
+
             ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion");
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion");
             ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion");
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName");
+            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion");
             return View();
+
         }
 
         //
@@ -231,6 +241,11 @@ namespace SMAWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            string directorio = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["ContenidoMultimedia"] + "/" + an_anuncios.AN_Id;
+
+            if (!System.IO.Directory.Exists(Server.MapPath(directorio)))
+                System.IO.Directory.CreateDirectory(Server.MapPath(directorio));
 
             ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id);
@@ -252,6 +267,7 @@ namespace SMAWeb.Controllers
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id);
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName", an_anuncios.UserId);
             ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion");
+            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion");
             return View(an_anuncios);
         }
 
@@ -271,6 +287,7 @@ namespace SMAWeb.Controllers
             ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id);
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName", an_anuncios.UserId);
+            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion", an_anuncios.CD_Id);
             return View(an_anuncios);
         }
 

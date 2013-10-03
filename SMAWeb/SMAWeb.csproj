@@ -418,6 +418,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="EmailTemplates\ServicioRequestProved.xslt" />
     <Content Include="EmailTemplates\ServicioRequestClient.xslt" />
+    <Content Include="EmailTemplates\ServicioReview.xslt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
@@ -661,6 +662,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Extra\" />
     <Folder Include="FilesUploaded\" />
   </ItemGroup>
   <ItemGroup>
@@ -683,8 +685,8 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>5735</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/SMAWeb</IISUrl>

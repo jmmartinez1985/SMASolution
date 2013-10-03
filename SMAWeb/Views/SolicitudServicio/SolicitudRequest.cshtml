@@ -1,84 +1,120 @@
 ﻿@model IEnumerable<SMAWeb.Models.SolicitudViewModel>
 
 @{
-    ViewBag.Title = "Tus solicitudes";
+    ViewBag.Title = "Tus Solicitudes de Servicios";
 }
 
-<h2>MySolicitudRequest</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Solicitud)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Solicitante)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmailSolicitante)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TelefonoSolicitante)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
+<link href="@Url.Content("~/Content/jpages/jPages.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/jpages/animate.css")" rel="stylesheet" type="text/css" />
+@*<link href="@Url.Content("~/Content/jpages/style.css")" rel="stylesheet" type="text/css" />*@
+<script src="@Url.Content("~/Scripts/jpage/jPages.min.js")" type="text/javascript"></script>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Solicitud)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Solicitante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmailSolicitante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelefonoSolicitante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @if (item.StatusId == 1)
-                {
 
-                    @Ajax.ActionLink("Iniciar Tarea", "ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 6 }, new AjaxOptions { HttpMethod = "POST", OnSuccess="success", UpdateTargetId="message" }); 
-                    @Ajax.ActionLink("Cancelar Tarea", "ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 2 }, new AjaxOptions { HttpMethod = "POST", OnSuccess="success" });
-                }
+<br />
+<div class="container">
+    <div class="row-fluid margin-bottom-10">
 
-                else if (item.StatusId == 6)
-                {
-                    @Ajax.ActionLink("Tarea Realizada", "ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 3 }, new AjaxOptions { HttpMethod = "POST", OnSuccess="success" });
-                }
-            </td>
-        </tr>
-    }
+        <div class="another-page">
+            <div class="headline">
+                <h3>Tus Solicitudes de Servicios</h3>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Solicitud)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaCreacion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Solicitante)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EmailSolicitante)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TelefonoSolicitante)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="divBody">
 
-    
 
-</table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Solicitud)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaCreacion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Solicitante)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmailSolicitante)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TelefonoSolicitante)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @if (item.StatusId == 1)
+                                {
+
+                                    @Ajax.ActionLink("Iniciar Tarea", "ChangeStatus", "SolicitudServicio", new {@Class = "btn-u", Solicitud = item.Solicitud, Status = 6 }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "success", UpdateTargetId = "message" }); 
+                                    @Ajax.ActionLink("Cancelar Tarea", "ChangeStatus", "SolicitudServicio", new {@Class = "btn-u", Solicitud = item.Solicitud, Status = 2 }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "success" });
+                                }
+
+                                else if (item.StatusId == 6)
+                                {
+                                    @Ajax.ActionLink("Tarea Realizada", "ChangeStatus", "SolicitudServicio", new {@Class = "btn-u", Solicitud = item.Solicitud, Status = 3 }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "success" });
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="1">
+                            <div class="holder" style="float: left">
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
 <div id="message"></div>
-
 <script>
-    function success(data)
-    {
+    var $jpage = jQuery.noConflict();
+    $jpage(function () {
+        $jpage("div.holder").jPages({
+            containerID: "divBody",
+            //              previous: "?",
+            //              next: "?",
+            first: "Primera",
+            previous: "Anterior",
+            next: "Siguiente",
+            last: "Última",
+            perPage: 5,
+            delay: 20
+        });
+    });
+
+    function success(data) {
         var result = JSON.parse(data);
         alert(result.Message);
     }
-
 </script>
