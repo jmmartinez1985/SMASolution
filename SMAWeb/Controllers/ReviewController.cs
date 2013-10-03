@@ -61,12 +61,18 @@ namespace SMAWeb.Controllers
         [Authorize(Roles = "Users")]
         public ActionResult Create(RW_Reviews rw_reviews)
         {
+            bool wasNotApproved = false;
             if (ModelState.IsValid)
             {
                 using (db)
                 {
                     using (TransactionScope tr = new TransactionScope())
                     {
+                        wasNotApproved = NotApproved(rw_reviews.RW_Comentario);
+                        if (wasNotApproved)
+                        {
+                            rw_reviews.ST_Id = 7;
+                        }
                         db.RW_Reviews.Add(rw_reviews);
                         var solicitud = db.SS_SolicitudServicio.Find(rw_reviews.SS_Id);
                         solicitud.ST_Id = 5;
@@ -74,7 +80,10 @@ namespace SMAWeb.Controllers
                         db.SaveChanges();
                         tr.Complete();
                     }
-                    return RedirectToAction("Index", "Home");
+                    if(!wasNotApproved)
+                        return RedirectToAction("Index", "Home");
+                    else
+                        return RedirectToAction("ReviewNotApproved", "Review");
                 }
             }
 
@@ -82,12 +91,43 @@ namespace SMAWeb.Controllers
             return View(rw_reviews);
         }
 
+
+        [NonAction]
+        private bool NotApproved(string ReviewText)
+        {
+            List<string> wordNotAllowed = new List<string>();
+
+            wordNotAllowed.Add("puto");
+            wordNotAllowed.Add("desgra");
+            wordNotAllowed.Add("puta");
+            wordNotAllowed.Add("desgraciado");
+            wordNotAllowed.Add("desgraciada");
+            wordNotAllowed.Add("estupido");
+            wordNotAllowed.Add("imbesil");
+            wordNotAllowed.Add("aww");
+            wordNotAllowed.Add("maricon");
+            wordNotAllowed.Add("marica");
+            wordNotAllowed.Add("gay");
+            wordNotAllowed.Add("homosexual");
+            wordNotAllowed.Add("motherfucker");
+            wordNotAllowed.Add("mierda");
+            wordNotAllowed.Add("shit");
+            var q = wordNotAllowed.Any(w => ReviewText.Contains(w));
+            return q;
+        }
+
+
         public ActionResult ReviewSubmitted()
         {
             return View();
         }
 
         public ActionResult NoReviewAllowed()
+        {
+            return View();
+        }
+
+        public ActionResult ReviewNotApproved()
         {
             return View();
         }
@@ -109,7 +149,6 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Review/Edit/5
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(RW_Reviews rw_reviews)
@@ -126,7 +165,6 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Review/Delete/5
-
         public ActionResult Delete(int id = 0)
         {
             RW_Reviews rw_reviews = db.RW_Reviews.Find(id);
@@ -139,7 +177,6 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Review/Delete/5
-
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

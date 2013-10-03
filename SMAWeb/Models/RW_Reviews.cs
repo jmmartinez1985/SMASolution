@@ -19,7 +19,9 @@ namespace SMAWeb.Models
         public string RW_Comentario { get; set; }
         public System.DateTime RW_Fecha { get; set; }
         public Nullable<byte> RW_Rate { get; set; }
+        public Nullable<int> ST_Id { get; set; }
     
         public virtual SS_SolicitudServicio SS_SolicitudServicio { get; set; }
+        public virtual ST_Estatus ST_Estatus { get; set; }
     }
 }

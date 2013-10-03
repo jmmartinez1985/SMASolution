@@ -21,6 +21,7 @@ namespace SMAWeb.Models
             this.FAQs = new HashSet<FAQs>();
             this.SS_SolicitudServicio = new HashSet<SS_SolicitudServicio>();
             this.UserProfile = new HashSet<UserProfile>();
+            this.RW_Reviews = new HashSet<RW_Reviews>();
         }
     
         public int ST_Id { get; set; }
@@ -31,5 +32,6 @@ namespace SMAWeb.Models
         public virtual ICollection<FAQs> FAQs { get; set; }
         public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         public virtual ICollection<UserProfile> UserProfile { get; set; }
+        public virtual ICollection<RW_Reviews> RW_Reviews { get; set; }
     }
 }

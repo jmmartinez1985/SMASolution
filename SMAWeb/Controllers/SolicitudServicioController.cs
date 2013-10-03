@@ -75,6 +75,7 @@ namespace SMAWeb.Controllers
                         case 4: return "En espera de Review";
                         case 5: return "Completado";
                         case 6: return "Iniciar Tarea";
+                        case 7: return "A revisión";
                         default: return "";
                     }
                 };
