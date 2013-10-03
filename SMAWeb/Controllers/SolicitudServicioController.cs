@@ -103,6 +103,13 @@ namespace SMAWeb.Controllers
         public ActionResult ChangeStatus(int Solicitud, int Status)
         {
             Updating update = new Updating() { Message = "Proceso de Actualización Exitosa." };
+            using (var db = new Entities())
+            {
+                var solicitud = db.SS_SolicitudServicio.Find(Solicitud);
+                solicitud.ST_Id = Status;
+                db.Entry(solicitud).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             return Json(update.SerializeToJson(), JsonRequestBehavior.AllowGet);
         }
 

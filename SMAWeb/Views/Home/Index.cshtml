@@ -247,11 +247,8 @@
 
     });
     var $ki = jQuery.noConflict();
-
-
-
     $ki(function () {
-        $ki.fn.raty.defaults.path = '/Scripts/raty-2.5.2/lib/img';
+        $ki.fn.raty.defaults.path = '@Url.Content("~/Scripts/raty-2.5.2/lib/img")';
     });
 
 

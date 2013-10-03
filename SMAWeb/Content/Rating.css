@@ -17,6 +17,10 @@
 div.ratyclass {
     width:300px !important;
 }
+
+div#targetKeep-demo {
+    width:190px !important;
+}
 div.ratyclass img {
     width: auto !important;
 }
