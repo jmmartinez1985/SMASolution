@@ -7,6 +7,7 @@ using WebMatrix.WebData;
 using SMAWeb.Models;
 using System.Web.Security;
 using System.Web.Routing;
+using System.Linq;
 
 namespace SMAWeb.Filters
 {
@@ -78,6 +79,22 @@ namespace SMAWeb.Filters
         }
 
 
+    }
+
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    public class IsValidReviewFilter : ActionFilterAttribute
+    {
+
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var db = new Entities();
+            int solicitud = int.Parse(filterContext.ActionParameters.Values.FirstOrDefault().ToString());
+            if (db.RW_Reviews.Any(c => c.SS_Id == solicitud))
+            {
+                filterContext.Result = new RedirectResult("~/Review/ReviewSubmitted");
+                return;
+            }
+        }
     }
 
     public class AjaxAuthorizeAttribute : AuthorizeAttribute

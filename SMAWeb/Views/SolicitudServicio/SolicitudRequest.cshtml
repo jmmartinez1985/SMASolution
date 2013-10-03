@@ -134,11 +134,11 @@
                 success: function (data) {
                     alert('Solicitud Actualizada');
                     setTimeout(3000);
-                    window.location = '@Url.Action("SolicitudRequest","SolicitudServicio")';
+                    window.location = '@Url.Action("SolicitudRequest", "SolicitudServicio")';
                 },
                 error: function (xhr) {
                     if (xhr.status == 403) {
-                        
+
                     }
                 }
             });

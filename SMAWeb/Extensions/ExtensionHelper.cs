@@ -44,6 +44,7 @@ namespace SMAWeb.Extensions
             context.SaveChanges();
             return recordAdded;
         }
+
         public static string ConvertXML(this string pXml, string pXslFilePath)
         {
             XmlDocument document = new XmlDocument();

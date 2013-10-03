@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Models;
+using SMAWeb.Filters;
 
 namespace SMAWeb.Controllers
 {
@@ -37,11 +38,16 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Review/Create
-
-        public ActionResult Create()
+        [HttpGet]
+        [IsValidReviewFilter]
+        public ActionResult Create(int id = 0)
         {
-            ViewBag.SS_Id = new SelectList(db.SS_SolicitudServicio, "SS_Id", "SS_Id");
-            return View();
+            RW_Reviews rw_reviews = new RW_Reviews();
+            rw_reviews.RW_Fecha = System.DateTime.Now;
+            rw_reviews.RW_Id = 0;
+            rw_reviews.SS_Id = id;
+            rw_reviews.RW_Rate = 0;
+            return View(rw_reviews);
         }
 
         //
@@ -55,12 +61,18 @@ namespace SMAWeb.Controllers
             {
                 db.RW_Reviews.Add(rw_reviews);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
 
             ViewBag.SS_Id = new SelectList(db.SS_SolicitudServicio, "SS_Id", "SS_Id", rw_reviews.SS_Id);
             return View(rw_reviews);
         }
+
+        public ActionResult ReviewSubmitted()
+        {
+            return View();
+        }
+
 
         //
         // GET: /Review/Edit/5
