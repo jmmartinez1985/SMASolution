@@ -85,7 +85,7 @@ namespace SMAWeb.Models
     }
 
     [MetadataType(typeof(RW_ReviewsMetadata ))]
-    public partial class RW_Review
+    public partial class RW_Reviews
     {
 
     }
@@ -531,12 +531,25 @@ namespace SMAWeb.Models
 
     public class SolicitudViewModel
     {
+        [Display(Name = "Solicitud")]
         public int Solicitud { get; set; }
+
+        [Display(Name = "Fecha")]
         public DateTime FechaCreacion { get; set; }
+
+        [Display(Name = "Solicitante")]
         public string Solicitante { get; set; }
+
+        [Display(Name = "Correo")]
         public string EmailSolicitante { get; set; }
+
+        [Display(Name = "Teléfono")]
         public string TelefonoSolicitante { get; set; }
+
+        [Display(Name = "Código Estado")]
         public int StatusId { get; set; }
+
+        [Display(Name = "Estado")]
         public string Status { get; set; }
     }
 

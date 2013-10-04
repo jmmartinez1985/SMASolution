@@ -4,7 +4,6 @@
     ViewBag.Title = "Tus Solicitudes de Servicios";
 }
 
-
 <link href="@Url.Content("~/Content/jpages/jPages.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Content/jpages/animate.css")" rel="stylesheet" type="text/css" />
 @*<link href="@Url.Content("~/Content/jpages/style.css")" rel="stylesheet" type="text/css" />*@
@@ -19,28 +18,35 @@
             <div class="headline">
                 <h3>Tus Solicitudes de Servicios</h3>
             </div>
-            <table class="table table-bordered">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>
+
                             @Html.DisplayNameFor(model => model.Solicitud)
                         </th>
                         <th>
+
                             @Html.DisplayNameFor(model => model.FechaCreacion)
                         </th>
                         <th>
+
                             @Html.DisplayNameFor(model => model.Solicitante)
                         </th>
                         <th>
+
                             @Html.DisplayNameFor(model => model.EmailSolicitante)
                         </th>
                         <th>
+
                             @Html.DisplayNameFor(model => model.TelefonoSolicitante)
                         </th>
                         <th>
+
                             @Html.DisplayNameFor(model => model.Status)
                         </th>
-                        <th></th>
+                        <th>Acción
+                        </th>
                     </tr>
                 </thead>
                 <tbody id="divBody">
@@ -92,7 +98,7 @@
 
                 <tfoot>
                     <tr>
-                        <td colspan="6">
+                        <td colspan="7">
                             <div class="holder" style="float: left">
                             </div>
                         </td>
@@ -134,11 +140,11 @@
                 success: function (data) {
                     alert('Solicitud Actualizada');
                     setTimeout(3000);
-                    window.location = '@Url.Action("SolicitudRequest","SolicitudServicio")';
+                    window.location = '@Url.Action("SolicitudRequest", "SolicitudServicio")';
                 },
                 error: function (xhr) {
                     if (xhr.status == 403) {
-                        
+
                     }
                 }
             });
