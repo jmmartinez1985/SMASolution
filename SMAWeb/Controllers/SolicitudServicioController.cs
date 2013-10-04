@@ -51,7 +51,7 @@ namespace SMAWeb.Controllers
                     var solicitudcreada = db.SaveChanges<SS_SolicitudServicio>(solicitud);
                     if (solicitudcreada != null)
                     {
-                        SendEmailNotification(solicitudcreada);
+                        SendEmailNotification(solicitudcreada, false);
                     }
                 }
             }
@@ -70,10 +70,13 @@ namespace SMAWeb.Controllers
                     switch (value)
                     {
                         case 1: return "Activo";
+                        case 2: return "Cancelado";
                         case 3: return "Realizado";
-                        case 5: return "En espera de Review";
+                        case 4: return "En espera de Review";
+                        case 5: return "Completado";
                         case 6: return "Iniciar Tarea";
-                        default: return "Cancelado";
+                        case 7: return "A revisión";
+                        default: return "";
                     }
                 };
                 solicitudes.ToList().ForEach((sol) =>
@@ -96,7 +99,7 @@ namespace SMAWeb.Controllers
         internal class Updating
         {
             public string Message { get; set; }
-        
+
         }
 
         [HttpGet]
@@ -109,6 +112,10 @@ namespace SMAWeb.Controllers
                 solicitud.ST_Id = Status;
                 db.Entry(solicitud).State = EntityState.Modified;
                 db.SaveChanges();
+                if (Status == 3)
+                {
+                    SendEmailNotification(solicitud, true);
+                }
             }
             return Json(update.SerializeToJson(), JsonRequestBehavior.AllowGet);
         }
@@ -221,14 +228,11 @@ namespace SMAWeb.Controllers
         }
 
 
-        private void SendEmailNotification(SS_SolicitudServicio solicitud)
+        private void SendEmailNotification(SS_SolicitudServicio solicitud, bool isReview)
         {
             string pXml = string.Empty;
             var ppEmailTemplate = new Notification();
-
-            pXml = ppEmailTemplate.Serialize<Notification>();
             var userName = WebSecurity.CurrentUserName;
-
             using (db = new Entities())
             {
                 var soli = db.SS_SolicitudServicio.Where(c => c.SS_Id == solicitud.SS_Id);
@@ -238,18 +242,36 @@ namespace SMAWeb.Controllers
                 ppEmailTemplate.AnuncioId = soli.FirstOrDefault().AN_Anuncios.AN_Id;
                 ppEmailTemplate.EmailCliente = soli.FirstOrDefault().UserProfile.UserName;
                 ppEmailTemplate.EmailProveedor = soli.FirstOrDefault().AN_Anuncios.UserProfile.UserName;
+                string link = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/") + "Review/Create/" + solicitud.SS_Id;
+                ppEmailTemplate.LinkReview = link;
+
+                pXml = ppEmailTemplate.Serialize<Notification>();
+                string serverPath = string.Empty;
+                serverPath = base.Server.MapPath("~");
+                string body = string.Empty;
+
+                if (isReview)
+                {
+                    body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioReview.xslt"));
+                    Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailCliente, "Informanos de como te fue en el servicio", body);
+
+                    var soliupdate = db.SS_SolicitudServicio.Find(solicitud.SS_Id);
+                    soliupdate.ST_Id = 4;
+                    db.Entry(soliupdate).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                }
+
+                else
+                {
+                    body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioRequestClient.xslt"));
+                    Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailCliente, "Solicitud de Servicio", body);
+
+
+                    body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioRequestProved.xslt"));
+                    Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailProveedor, "Solicitud de Servicio", body);
+                }
             }
-
-            string serverPath = string.Empty;
-            serverPath = base.Server.MapPath("~");
-            string body = string.Empty;
-            body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioRequestClient.xslt"));
-            Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailCliente, "Solicitud de Servicio", body);
-
-
-            body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioRequestProved.xslt"));
-            Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailProveedor, "Solicitud de Servicio", body);
-
         }
 
 
@@ -262,6 +284,9 @@ namespace SMAWeb.Controllers
             public int SolicitudId { get; set; }
             public string EmailCliente { get; set; }
             public string EmailProveedor { get; set; }
+            public string LinkReview { get; set; }
+            public string AnuncioDescripcion { get; set; }
+
         }
     }
 }

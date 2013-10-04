@@ -122,5 +122,14 @@ namespace SMAWeb.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SEL_ValoracionAnuncios", aN_IdParameter);
         }
+    
+        public virtual ObjectResult<Nullable<short>> Get_Anuncio_Rating(Nullable<int> aN_Id)
+        {
+            var aN_IdParameter = aN_Id.HasValue ?
+                new ObjectParameter("AN_Id", aN_Id) :
+                new ObjectParameter("AN_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<short>>("Get_Anuncio_Rating", aN_IdParameter);
+        }
     }
 }

@@ -7,6 +7,7 @@ using WebMatrix.WebData;
 using SMAWeb.Models;
 using System.Web.Security;
 using System.Web.Routing;
+using System.Linq;
 
 namespace SMAWeb.Filters
 {
@@ -76,8 +77,34 @@ namespace SMAWeb.Filters
                 return;
             }
         }
+    }
 
-
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    public class IsValidReviewFilter : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            using (var db = new Entities())
+            {
+                int solicitud = int.Parse(filterContext.ActionParameters.Values.FirstOrDefault().ToString());
+                if (db.RW_Reviews.Any(c => c.SS_Id == solicitud))
+                {
+                    filterContext.Result = new RedirectResult("~/Review/ReviewSubmitted");
+                    return;
+                }
+                var soli = db.SS_SolicitudServicio.FirstOrDefault(c => c.SS_Id == solicitud && c.ST_Id == 4);
+                if (soli == null)
+                {
+                    filterContext.Result = new RedirectResult("~/Review/NoReviewAllowed");
+                    return;
+                }
+                if (soli.UserId != WebSecurity.CurrentUserId)
+                {
+                    filterContext.Result = new RedirectResult("~/Review/NoReviewAllowed");
+                    return;
+                }
+            }
+        }
     }
 
     public class AjaxAuthorizeAttribute : AuthorizeAttribute
@@ -86,10 +113,8 @@ namespace SMAWeb.Filters
         {
             if (context.HttpContext.Request.IsAjaxRequest())
             {
-                //var url = System.Web.HttpUtility.HtmlEncode(context.HttpContext.Request.RawUrl);
                 var urlHelper = new UrlHelper(context.RequestContext);
                 context.HttpContext.Response.StatusCode = 403;
-
                 context.Result = new JsonResult
                 {
                     Data = new
