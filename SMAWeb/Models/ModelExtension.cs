@@ -550,6 +550,7 @@ namespace SMAWeb.Models
         public int StatusId { get; set; }
 
         [Display(Name = "Estado")]
+        [JsonIgnore]
         public string Status { get; set; }
     }
 

@@ -4,77 +4,107 @@
     ViewBag.Title = "Index";
 }
 
+<link href="@Url.Content("~/Content/jpages/jPages.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/jpages/animate.css")" rel="stylesheet" type="text/css" />
+@*<link href="@Url.Content("~/Content/jpages/style.css")" rel="stylesheet" type="text/css" />*@
+<script src="@Url.Content("~/Scripts/jpage/jPages.min.js")" type="text/javascript"></script>
+
 <br />
 <div class="container">
     <div class="row-fluid margin-bottom-10">
 
         <div class="another-page">
             <div class="headline">
-                <h3>Formulario de Compañia</h3>
+                <h3>Formulario de Contactos</h3>
             </div>
-
-            <p>
-                @Html.ActionLink("Nuevo", "Create")
-            </p>
-            <table>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CON_Id)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CON_Nombre)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CON_Telefono)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CON_Celular)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CON_Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CON_Mensaje)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CON_Fecha)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CON_Id)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CON_Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CON_Telefono)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CON_Celular)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CON_Email)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CON_Mensaje)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CON_Fecha)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        <th>
+                            @Html.DisplayNameFor(model => model.CON_Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CON_Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CON_Telefono)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CON_Celular)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CON_Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CON_Mensaje)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CON_Fecha)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="divBody">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CON_Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CON_Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CON_Telefono)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CON_Celular)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CON_Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CON_Mensaje)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CON_Fecha)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="1">
+                            <div class="holder" style="float: left">
+                            </div>
                         </td>
                     </tr>
-                }
+                </tfoot>
 
             </table>
         </div>
     </div>
 </div>
+
+<script>
+
+    var $jpage = jQuery.noConflict();
+    $jpage(function () {
+        $jpage("div.holder").jPages({
+            containerID: "divBody",
+            //              previous: "←",
+            //              next: "→",
+            first: "Primera",
+            previous: "Anterior",
+            next: "Siguiente",
+            last: "Última",
+            perPage: 5,
+            delay: 20
+        });
+    });
+</script>

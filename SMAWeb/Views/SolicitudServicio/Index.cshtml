@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SMAWeb.Models.SS_SolicitudServicio>
+﻿@model IEnumerable<SMAWeb.Models.SolicitudViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -22,33 +22,31 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.SS_Id)
+
+                            @Html.DisplayNameFor(model => model.Solicitud)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.AN_Anuncios.AN_Titulo)
+
+                            @Html.DisplayNameFor(model => model.FechaCreacion)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.SS_Fecha)
+
+                            @Html.DisplayNameFor(model => model.Solicitante)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.SS_Nombre)
+
+                            @Html.DisplayNameFor(model => model.EmailSolicitante)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.SS_Mail)
+
+                            @Html.DisplayNameFor(model => model.TelefonoSolicitante)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.SS_Telefono)
+
+                            @Html.DisplayNameFor(model => model.Status)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.SS_Celular)
+                        <th>Acción
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.SS_Descripcion)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ST_Estatus.ST_Descripcion)
-                        </th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="divBody">
@@ -56,45 +54,56 @@
 
                     @foreach (var item in Model)
                     {
+
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SS_Id)
+                                @Html.DisplayFor(modelItem => item.Solicitud)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.AN_Anuncios.AN_Titulo)
+                                @Html.DisplayFor(modelItem => item.FechaCreacion)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SS_Fecha)
+                                @Html.DisplayFor(modelItem => item.Solicitante)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SS_Nombre)
+                                @Html.DisplayFor(modelItem => item.EmailSolicitante)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SS_Mail)
+                                @Html.DisplayFor(modelItem => item.TelefonoSolicitante)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SS_Telefono)
+                                @Html.DisplayFor(modelItem => item.Status)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SS_Celular)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.SS_Descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ST_Estatus.ST_Descripcion)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+
+                                @if (item.StatusId == 1)
+                                {
+
+                                    <a class="btn-u" attrurl="@Url.Action("ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 6 })" id="starttask">Iniciar Tarea</a>
+
+                                    <a class="btn-u" attrurl="@Url.Action("ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 2 })" id="canceltask">Cancelar Tarea</a>
+                                }
+
+                                else if (item.StatusId == 6)
+                                {
+
+                                    <a class="btn-u" attrurl="@Url.Action("ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 3 })" id="processtask">Tarea Completada</a>
+                                }
+
+                                else if (item.StatusId == 2)
+                                {
+
+                                    <a class="btn-u">Tarea Cancelada</a>
+                                }
+
                             </td>
                         </tr>
                     }
                 </tbody>
+
                 <tfoot>
                     <tr>
-                        <td colspan="1">
+                        <td colspan="7">
                             <div class="holder" style="float: left">
                             </div>
                         </td>
