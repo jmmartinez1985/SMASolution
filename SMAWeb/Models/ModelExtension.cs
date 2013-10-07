@@ -498,6 +498,8 @@ namespace SMAWeb.Models
         public string CategoriaDescripcion { get; set; }
         public string FirstImage { get; set; }
         public int? Rating { get; set; }
+        public int Comments { get; set; }
+
     }
 
     public class CategoriaSubCategoriaViewModel

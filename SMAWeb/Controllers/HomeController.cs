@@ -17,7 +17,7 @@ namespace SMAWeb.Controllers
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
             using (var db = new Entities())
             {
-                var ListCategorias =  db.CD_CategoriaServicio.ToList();
+                var ListCategorias = db.CD_CategoriaServicio.ToList();
                 var firstCategoria = ListCategorias.FirstOrDefault().CD_Id;
                 var ListSubCategory = db.SBS_SubCategoriaServicio.Where(c => c.CD_Id == firstCategoria).ToList();
 
@@ -48,7 +48,7 @@ namespace SMAWeb.Controllers
                         firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
                     }
 
-                    var getRating =  model.SEL_ValoracionAnuncios(item.AN_Id).FirstOrDefault();
+                    var getRating = model.SEL_ValoracionAnuncios(item.AN_Id).FirstOrDefault();
 
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
                     var formatted = firstImage.Replace("~", "");
@@ -56,14 +56,20 @@ namespace SMAWeb.Controllers
                         formatted = formatted.Remove(0, 1);
                     firstImage = urlimg + formatted;
 
-
+                    var number = 0;
+                    item.SS_SolicitudServicio.ToList().ForEach((counter) =>
+                    {
+                        number += counter.RW_Reviews.Count;
+                    });
                     viewModelAnuncios.Add(new AnunciosViewModel
                     {
                         Usuario = username,
                         EstatusDescription = statusDesc,
                         AnunciosInfo = item,
                         CategoriaDescripcion = categoria,
-                        FirstImage = firstImage, Rating = getRating
+                        FirstImage = firstImage,
+                        Rating = getRating,
+                        Comments = number
                     });
 
                 }
@@ -78,7 +84,7 @@ namespace SMAWeb.Controllers
             return Json(anuncios);
         }
 
-        
+
 
 
         public ActionResult About()
