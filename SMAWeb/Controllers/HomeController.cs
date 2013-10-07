@@ -61,7 +61,7 @@ namespace SMAWeb.Controllers
                     {
                         number += counter.RW_Reviews.Count;
                     });
-                    viewModelAnuncios.Add(new AnunciosViewModel
+                    viewModelAnuncios.Add(new AnunciosViewModel 
                     {
                         Usuario = username,
                         EstatusDescription = statusDesc,
