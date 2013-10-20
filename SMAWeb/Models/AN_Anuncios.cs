@@ -39,8 +39,8 @@ namespace SMAWeb.Models
         public virtual ICollection<AM_MultimediaAnuncios> AM_MultimediaAnuncios { get; set; }
         public virtual SBS_SubCategoriaServicio SBS_SubCategoriaServicio { get; set; }
         public virtual ST_Estatus ST_Estatus { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
         public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         public virtual CD_CategoriaServicio CD_CategoriaServicio { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
     }
 }

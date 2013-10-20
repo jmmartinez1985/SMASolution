@@ -187,6 +187,7 @@
     <Compile Include="Controllers\AnunciosController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CategoriaServicioController.cs" />
+    <Compile Include="Controllers\ComentariosController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\ContactosController.cs" />
     <Compile Include="Controllers\EstatusController.cs" />
@@ -217,6 +218,9 @@
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AN_Anuncios.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BL_BlackList.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CD_CategoriaServicio.cs">
@@ -662,11 +666,17 @@
     <Content Include="Views\Review\ReviewSubmitted.cshtml" />
     <Content Include="Views\Review\NoReviewAllowed.cshtml" />
     <Content Include="Views\Review\ReviewNotApproved.cshtml" />
+    <Content Include="Views\Comentarios\Index.cshtml" />
+    <Content Include="Views\Comentarios\Details.cshtml" />
+    <Content Include="Views\Comentarios\Create.cshtml" />
+    <Content Include="Views\Comentarios\Edit.cshtml" />
+    <Content Include="Views\Comentarios\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Extra\" />
-    <Folder Include="FilesUploaded\" />
+    <Folder Include="FilesUploaded\Admin\" />
+    <Folder Include="FilesUploaded\Profiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

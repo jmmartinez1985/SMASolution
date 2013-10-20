@@ -12,16 +12,9 @@ namespace SMAWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CR_ComentarioReview
+    public partial class BL_BlackList
     {
-        public int CR_Id { get; set; }
-        public int RW_Id { get; set; }
-        public string CR_Comentario { get; set; }
-        public int UserId { get; set; }
-        public int ST_Id { get; set; }
-    
-        public virtual RW_Reviews RW_Reviews { get; set; }
-        public virtual ST_Estatus ST_Estatus { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
+        public int BL_Id { get; set; }
+        public string BL_Descripcion { get; set; }
     }
 }

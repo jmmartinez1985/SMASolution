@@ -238,14 +238,22 @@ namespace SMAWeb.Controllers
             if (ModelState.IsValid)
             {
                 db.AN_Anuncios.Add(an_anuncios);
-                db.SaveChanges();
+
+
+                var Anuncio = db.SaveChanges<AN_Anuncios>(an_anuncios);
+                if (Anuncio != null)
+                {
+                    string directorio = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["ContenidoMultimedia"] + "/" + Anuncio.AN_Id;
+                    if (!System.IO.Directory.Exists(Server.MapPath(directorio)))
+                        System.IO.Directory.CreateDirectory(Server.MapPath(directorio));
+                }
+
+
+
                 return RedirectToAction("Index");
             }
 
-            string directorio = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["ContenidoMultimedia"] + "/" + an_anuncios.AN_Id;
 
-            if (!System.IO.Directory.Exists(Server.MapPath(directorio)))
-                System.IO.Directory.CreateDirectory(Server.MapPath(directorio));
 
             ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id);

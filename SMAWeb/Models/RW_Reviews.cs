@@ -14,6 +14,11 @@ namespace SMAWeb.Models
     
     public partial class RW_Reviews
     {
+        public RW_Reviews()
+        {
+            this.CR_ComentarioReview = new HashSet<CR_ComentarioReview>();
+        }
+    
         public int RW_Id { get; set; }
         public int SS_Id { get; set; }
         public string RW_Comentario { get; set; }
@@ -23,5 +28,6 @@ namespace SMAWeb.Models
     
         public virtual SS_SolicitudServicio SS_SolicitudServicio { get; set; }
         public virtual ST_Estatus ST_Estatus { get; set; }
+        public virtual ICollection<CR_ComentarioReview> CR_ComentarioReview { get; set; }
     }
 }

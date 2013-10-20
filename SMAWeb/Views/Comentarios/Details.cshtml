@@ -1,0 +1,50 @@
+﻿@model SMAWeb.Models.CR_ComentarioReview
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CR_ComentarioReview</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CR_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CR_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RW_Reviews.RW_Comentario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RW_Reviews.RW_Comentario)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CR_Comentario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CR_Comentario)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserProfile.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserProfile.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ST_Estatus.ST_Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ST_Estatus.ST_Descripcion)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

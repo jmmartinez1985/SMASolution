@@ -1,34 +1,239 @@
 ﻿@{
     ViewBag.Title = "About";
 }
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=es"></script>
+<style>
+    .page {
+        background: none repeat scroll 0 0 white;
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
+        /*margin: 70px 0 0;*/
+        padding: 30px 12% 80px;
+    }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>@ViewBag.Message</h2>
-</hgroup>
+    #map-canvas {
+        height: 400px;
+    }
+</style>
+<div class="breadcrumbs margin-bottom-50">
+    <div class="container">
+        <ul class="pull-right breadcrumb">
+            <li><a href="#">Inicio</a> <span class="divider">/</span></li>
+            <li><a href="@Url.Action("Index", "Home")" >Página</a> <span class="divider">/</span></li>
+            <li class="active">Nosotros</li>
+        </ul>
+    </div>
+    <!--/container-->
+</div>
 
-<article>
-    <p>
-        Use this area to provide additional information.
-    </p>
 
-    <p>
-        Use this area to provide additional information.
-    </p>
 
-    <p>
-        Use this area to provide additional information.
-    </p>
-</article>
+<!--=== Content Part ===-->
+<div class="container">
+    <div class="row-fluid">
+        <div class="span3">
+            <!-- Our Mission -->
+            <div class="margin-bottom-20">
+                <div class="headline">
+                    <h3>Nuestro Objetivo</h3>
+                </div>
+                <p>Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus.</p>
+            </div>
 
-<aside>
-    <h3>Aside Title</h3>
-    <p>
-        Use this area to provide additional information.
-    </p>
-    <ul>
-        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>@Html.ActionLink("About", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-    </ul>
-</aside>
+        </div>
+        <!--/span3-->
+
+        <div class="span9">
+            <div class="headline">
+                <h3>Nuestro Atractivo</h3>
+            </div>
+            <ul class="thumbnails">
+                <li class="span3">
+                    <div class="thumbnail-style thumbnail-kenburn">
+                        <div class="thumbnail-img">
+                            <div class="overflow-hidden">
+                                <img src="~/Images/10.jpg" alt="" />
+                            </div>
+                            <a class="btn-more hover-effect" href="#">read more +</a>
+                        </div>
+                        <h3><a href="#">Our Work</a></h3>
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+                    </div>
+                </li>
+                <li class="span3">
+                    <div class="thumbnail-style thumbnail-kenburn">
+                        <div class="thumbnail-img">
+                            <div class="overflow-hidden">
+                                <img src="~/Images/10.jpg" alt="" />
+                            </div>
+                            <a class="btn-more hover-effect" href="#">read more +</a>
+                        </div>
+                        <h3><a href="#">One More Work</a></h3>
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+                    </div>
+                </li>
+                <li class="span3">
+                    <div class="thumbnail-style thumbnail-kenburn">
+                        <div class="thumbnail-img">
+                            <div class="overflow-hidden">
+                                <img src="~/Images/10.jpg" alt="" />
+                            </div>
+                            <a class="btn-more hover-effect" href="#">read more +</a>
+                        </div>
+                        <h3><a href="#">Another Work</a></h3>
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+                    </div>
+                </li>
+                <li class="span3">
+                    <div class="thumbnail-style  thumbnail-kenburn">
+                        <div class="thumbnail-img">
+                            <div class="overflow-hidden">
+                                <img src="~/Images/10.jpg" alt="" />
+                            </div>
+                            <a class="btn-more hover-effect" href="#">read more +</a>
+                        </div>
+                        <h3><a href="#">Huge Work</a></h3>
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+                    </div>
+                </li>
+            </ul>
+            <!--/thumbnails-->
+
+            <div class="headline">
+                <h3>Nuestra Ubicación</h3>
+            </div>
+            <div id="map-canvas"></div>
+            <br>
+
+            <!-- Blockquotes -->
+            <blockquote class="hero-unify">
+                <p>Award winning digital agency. We bring a personal and effective consectetur and effective approach adipiscing elit approach to every project we work on, which is why our clients love us and why they.</p>
+                <small>Isrrael Espinoza, General Manager</small>
+            </blockquote>
+        </div>
+        <!--/span9-->
+    </div>
+
+
+
+    <!--/row-fluid-->
+</div>
+<script>
+    var map = null;
+    var markersArray = [];
+    var marker;
+    //default load position
+
+    function initialize() {
+
+       
+        var latlng = new google.maps.LatLng(39.4881, -75.0000);
+
+        var mapOptions = {
+            zoom: 15,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        debugger;
+        var image = 'favicon.ico';
+        var urlHelper = new UrlHelper();
+        image = urlHelper.urlImage(image);
+
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+
+            animation: google.maps.Animation.DROP,
+            map: map,
+            title: "Service Market Panamá",
+            icon: image
+        });
+
+
+
+
+        //showRoutePath_1();
+    }
+    // End initialize function
+    //remove all markers from map
+    function clearOverlays() {
+        if (markersArray) {
+            for (var i in markersArray) {
+                markersArray[i].setMap(null);
+            }
+        }
+    }
+
+    //remove specific marker from map
+    function removeMarker(myMark) {
+        if (markersArray) {
+            for (var i in markersArray) {
+                if (myMark == markersArray[i]['number']) {
+                    console.log(markersArray[i]['number']);
+                    markersArray[i].setMap(null);
+                    markersArray.splice(i, 1); //removes marker from array
+                    break;
+                }
+            }
+        }
+    }
+
+    //check if marker already exist on map
+    function checkMarker(number) {
+        if (markersArray) {
+            for (var i in markersArray) {
+                if (markersArray[i]['number'] == number)
+                    return true;
+            }
+        } else
+            return false;
+    }
+
+    // Mapping variables
+    var global_strokeColor = "#ED00FF";
+    var global_strokeOpacity = 0.7;
+    var global_strokeWeight = 6;
+
+    //Route 1
+    function showRoutePath_1() {
+        //check if marker1 already on map if true do nothing
+        if (checkMarker(1))
+            return;
+        position = new google.maps.LatLng(8.43581, -82.43475);
+        var infowindow = new google.maps.InfoWindow({
+            content: "Service Market Panamá"
+        });
+        marker = new google.maps.Marker({
+            animation: google.maps.Animation.DROP,
+            position: position,
+            map: map
+        });
+
+        marker['number'] = 1;
+        //google.maps.event.addListener(marker, 'click', toggleBounce);
+        google.maps.event.addListener(marker, 'click', function () {
+            infowindow.open(map, marker);
+        });
+
+        markersArray.push(marker);
+
+        //open infowWindow with marker
+        infowindow.open(map, marker);
+        //setTimeout(function () { infowindow.close(); }, 5000);
+
+
+    }
+
+    function toggleBounce() {
+
+        if (marker.getAnimation() != null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+
+</script>
