@@ -37,7 +37,7 @@ namespace SMAWeb.Controllers
                     var firstImage = string.Empty;
                     if (item.AE_AnunciosExtras.FirstOrDefault() != null)
                     {
-                        firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
+                        firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_ImagenUrl;
                     }
 
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
@@ -109,7 +109,7 @@ namespace SMAWeb.Controllers
                     var firstImage = string.Empty;
                     if (item.AE_AnunciosExtras.FirstOrDefault() != null)
                     {
-                        firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
+                        firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_ImagenUrl;
                     }
 
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
@@ -155,7 +155,7 @@ namespace SMAWeb.Controllers
             using (Entities model = new Entities())
             {
 
-                allAnunciosList = db.sp_SEL_BusquedaAvanzada(category, subcategoria, descripcion, lugar).ToList();
+                allAnunciosList = db.get_Busqueda_Avanzada(category, subcategoria, descripcion, lugar).ToList();
 
                 foreach (var item in allAnunciosList)
                 {
@@ -165,11 +165,10 @@ namespace SMAWeb.Controllers
                     var firstImage = string.Empty;
                     if (item.AE_AnunciosExtras.FirstOrDefault() != null)
                     {
-                        firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
+                        firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_ImagenUrl;
                     }
 
                     var getRating = model.SEL_ValoracionAnuncios(item.AN_Id).FirstOrDefault();
-
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
                     var formatted = firstImage.Replace("~", "");
                     if (formatted.StartsWith("/"))
@@ -212,19 +211,17 @@ namespace SMAWeb.Controllers
 
         public ActionResult Create()
         {
-            //Agregar correo del usuario
-            //string directorio = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["ContenidoMultimedia"];
-
-            //if (!System.IO.Directory.Exists(directorio))
-            //    System.IO.Directory.CreateDirectory(directorio);
-
-
+            AN_Anuncios an = new AN_Anuncios();
+            an.ST_Id = 1;
+            an.UserId = WebSecurity.CurrentUserId;
+            an.AN_Fecha = System.DateTime.Now;
+            an.AN_FechaExpiracion = System.DateTime.Now.AddMonths(3);
             ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion");
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion");
             ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion");
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName");
             ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion");
-            return View();
+            return View(an);
 
         }
 
@@ -243,21 +240,19 @@ namespace SMAWeb.Controllers
                 var Anuncio = db.SaveChanges<AN_Anuncios>(an_anuncios);
                 if (Anuncio != null)
                 {
-                    string directorio = AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.AppSettings["ContenidoMultimedia"] + "/" + Anuncio.AN_Id;
-                    if (!System.IO.Directory.Exists(Server.MapPath(directorio)))
-                        System.IO.Directory.CreateDirectory(Server.MapPath(directorio));
+                    string directorio = System.Configuration.ConfigurationManager.AppSettings["ContenidoMultimedia"];
+                    if (!System.IO.Directory.Exists(Server.MapPath(directorio  + Anuncio.AN_Id)))
+                        System.IO.Directory.CreateDirectory(Server.MapPath(directorio + Anuncio.AN_Id));
                 }
-
-
-
-                return RedirectToAction("Index");
+                HttpContext.Session["Anuncio"] = Anuncio.AN_Id;
+                return PartialView("LoadUplaoder");
             }
-
-
 
             ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id);
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName", an_anuncios.UserId);
+            ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion", an_anuncios.PA_Id);
+            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion", an_anuncios.CD_Id);
             return View(an_anuncios);
         }
 

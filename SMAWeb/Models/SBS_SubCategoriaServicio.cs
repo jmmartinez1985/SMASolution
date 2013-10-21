@@ -23,7 +23,7 @@ namespace SMAWeb.Models
         public Nullable<int> CD_Id { get; set; }
         public string SBS_Descripcion { get; set; }
     
-        public virtual ICollection<AN_Anuncios> AN_Anuncios { get; set; }
         public virtual CD_CategoriaServicio CD_CategoriaServicio { get; set; }
+        public virtual ICollection<AN_Anuncios> AN_Anuncios { get; set; }
     }
 }

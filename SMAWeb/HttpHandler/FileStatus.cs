@@ -21,14 +21,18 @@ namespace SMAWeb.HttpHandler
         public string delete_url { get; set; }
         public string delete_type { get; set; }
         public string error { get; set; }
+        public string UrlPath { get; set; }
 
         public FilesStatus() { }
 
-        public FilesStatus(FileInfo fileInfo) { SetValues(fileInfo.Name, (int)fileInfo.Length, fileInfo.FullName); }
+        public FilesStatus(FileInfo fileInfo) { SetValues(fileInfo.Name, (int)fileInfo.Length, fileInfo.FullName, null); }
 
-        public FilesStatus(string fileName, int fileLength, string fullPath) { SetValues(fileName, fileLength, fullPath); }
+        public FilesStatus(string fileName, int fileLength, string fullPath, string NewPath)
+        {
+            SetValues(fileName, fileLength, fullPath, NewPath);
+        }
 
-        private void SetValues(string fileName, int fileLength, string fullPath)
+        private void SetValues(string fileName, int fileLength, string fullPath, string NewPath)
         {
             name = fileName;
             type = "image/png";
@@ -37,6 +41,7 @@ namespace SMAWeb.HttpHandler
             url = HandlerPath + "UploadHandler.ashx?f=" + fileName;
             delete_url = HandlerPath + "UploadHandler.ashx?f=" + fileName;
             delete_type = "DELETE";
+            UrlPath = NewPath;
 
             var ext = Path.GetExtension(fullPath);
 

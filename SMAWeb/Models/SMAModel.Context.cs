@@ -28,9 +28,7 @@ namespace SMAWeb.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<AE_AnunciosExtras> AE_AnunciosExtras { get; set; }
         public DbSet<AM_MultimediaAnuncios> AM_MultimediaAnuncios { get; set; }
-        public DbSet<AN_Anuncios> AN_Anuncios { get; set; }
         public DbSet<CD_CategoriaServicio> CD_CategoriaServicio { get; set; }
         public DbSet<COM_Compañia> COM_Compañia { get; set; }
         public DbSet<CON_Contactenos> CON_Contactenos { get; set; }
@@ -51,6 +49,8 @@ namespace SMAWeb.Models
         public DbSet<BL_BlackList> BL_BlackList { get; set; }
         public DbSet<CR_ComentarioReview> CR_ComentarioReview { get; set; }
         public DbSet<UserProfile> UserProfile { get; set; }
+        public DbSet<AN_Anuncios> AN_Anuncios { get; set; }
+        public DbSet<AE_AnunciosExtras> AE_AnunciosExtras { get; set; }
     
         public virtual ObjectResult<SEL_BusquedaAvanzada_Result> SEL_BusquedaAvanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar)
         {
@@ -73,7 +73,7 @@ namespace SMAWeb.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SEL_BusquedaAvanzada_Result>("SEL_BusquedaAvanzada", categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
         }
     
-        public virtual ObjectResult<AN_Anuncios> sp_SEL_BusquedaAvanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar)
+        public virtual int sp_SEL_BusquedaAvanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar)
         {
             var categoriaParameter = categoria.HasValue ?
                 new ObjectParameter("Categoria", categoria) :
@@ -91,28 +91,7 @@ namespace SMAWeb.Models
                 new ObjectParameter("Lugar", lugar) :
                 new ObjectParameter("Lugar", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("sp_SEL_BusquedaAvanzada", categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
-        }
-    
-        public virtual ObjectResult<AN_Anuncios> sp_SEL_BusquedaAvanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar, MergeOption mergeOption)
-        {
-            var categoriaParameter = categoria.HasValue ?
-                new ObjectParameter("Categoria", categoria) :
-                new ObjectParameter("Categoria", typeof(int));
-    
-            var subCategoriaParameter = subCategoria.HasValue ?
-                new ObjectParameter("SubCategoria", subCategoria) :
-                new ObjectParameter("SubCategoria", typeof(int));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var lugarParameter = lugar != null ?
-                new ObjectParameter("Lugar", lugar) :
-                new ObjectParameter("Lugar", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("sp_SEL_BusquedaAvanzada", mergeOption, categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SEL_BusquedaAvanzada", categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SEL_ValoracionAnuncios(Nullable<int> aN_Id)
@@ -131,6 +110,48 @@ namespace SMAWeb.Models
                 new ObjectParameter("AN_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<short>>("Get_Anuncio_Rating", aN_IdParameter);
+        }
+    
+        public virtual ObjectResult<AN_Anuncios> get_Busqueda_Avanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar)
+        {
+            var categoriaParameter = categoria.HasValue ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(int));
+    
+            var subCategoriaParameter = subCategoria.HasValue ?
+                new ObjectParameter("SubCategoria", subCategoria) :
+                new ObjectParameter("SubCategoria", typeof(int));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var lugarParameter = lugar != null ?
+                new ObjectParameter("Lugar", lugar) :
+                new ObjectParameter("Lugar", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("get_Busqueda_Avanzada", categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
+        }
+    
+        public virtual ObjectResult<AN_Anuncios> get_Busqueda_Avanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar, MergeOption mergeOption)
+        {
+            var categoriaParameter = categoria.HasValue ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(int));
+    
+            var subCategoriaParameter = subCategoria.HasValue ?
+                new ObjectParameter("SubCategoria", subCategoria) :
+                new ObjectParameter("SubCategoria", typeof(int));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var lugarParameter = lugar != null ?
+                new ObjectParameter("Lugar", lugar) :
+                new ObjectParameter("Lugar", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("get_Busqueda_Avanzada", mergeOption, categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
         }
     }
 }

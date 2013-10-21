@@ -16,9 +16,8 @@ namespace SMAWeb.Models
     {
         public int AE_Id { get; set; }
         public int AN_Id { get; set; }
-        public string AN_Titulo { get; set; }
-        public string AN_Imagen { get; set; }
-        public byte[] AN_ImagenBinary { get; set; }
+        public string AN_Nombre { get; set; }
+        public string AN_ImagenUrl { get; set; }
     
         public virtual AN_Anuncios AN_Anuncios { get; set; }
     }

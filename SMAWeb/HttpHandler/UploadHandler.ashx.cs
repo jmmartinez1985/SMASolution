@@ -8,20 +8,31 @@ using System.Web.Http.Routing;
 using System.Web.Script.Serialization;
 using System.Web.WebPages.Html;
 using System.Web.Mvc;
+using System.Web.SessionState;
+using System.Transactions;
 
 namespace SMAWeb.HttpHandler
 {
     /// <summary>
     /// Summary description for UploadHandler
     /// </summary>
-    public class UploadHandler : IHttpHandler
+    public class UploadHandler : IHttpHandler, IRequiresSessionState
     {
 
         private readonly JavaScriptSerializer js;
 
+        string _StorageRoot, _ExtraRoot;
+
+
         private string StorageRoot
         {
             get { return Path.Combine(System.Web.HttpContext.Current.Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["FilesUploaded"].ToString())); } //Path should! always end with '/'
+            set { _StorageRoot = value; }
+        }
+        private string ExtraRoot
+        {
+            get { return Path.Combine(System.Web.HttpContext.Current.Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["ContenidoMultimedia"].ToString())); } //Path should! always end with '/'
+            set { _ExtraRoot = value; }
         }
 
         public UploadHandler()
@@ -43,6 +54,9 @@ namespace SMAWeb.HttpHandler
         // Handle request based on method
         private void HandleMethod(HttpContext context)
         {
+
+
+
             switch (context.Request.HttpMethod)
             {
                 case "HEAD":
@@ -85,6 +99,7 @@ namespace SMAWeb.HttpHandler
             {
                 File.Delete(filePath);
             }
+
         }
 
         // Upload file to the server
@@ -134,6 +149,25 @@ namespace SMAWeb.HttpHandler
             for (int i = 0; i < context.Request.Files.Count; i++)
             {
                 var file = context.Request.Files[i];
+                var path = string.Empty;
+
+                if (HttpContext.Current.Session["Anuncio"] != null)
+                {
+                    StorageRoot = ExtraRoot + HttpContext.Current.Session["Anuncio"];
+                    path = System.Configuration.ConfigurationManager.AppSettings["FilesUploaded"].ToString() + HttpContext.Current.Session["Anuncio"] + Path.GetFileName(file.FileName);
+
+                }
+                if (HttpContext.Current.Session["AdminResource"] != null)
+                {
+                    StorageRoot = string.Format(ExtraRoot + "Admin/");
+                    path = System.Configuration.ConfigurationManager.AppSettings["ContenidoMultimedia"].ToString() + "Admin/" + Path.GetFileName(file.FileName);
+                }
+
+                if (HttpContext.Current.Session["Anuncio"] == null || HttpContext.Current.Session["AdminResource"] == null)
+                {
+                    path = System.Configuration.ConfigurationManager.AppSettings["FilesUploaded"].ToString() + Path.GetFileName(file.FileName);
+                }
+
 
                 var fullPath = StorageRoot + Path.GetFileName(file.FileName);
 
@@ -141,22 +175,36 @@ namespace SMAWeb.HttpHandler
 
                 string fullName = Path.GetFileName(file.FileName);
 
-                //var urlpath = Extensions.Extension.ResolveServerUrl("~/", false);
+                statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath, path));
 
-                //using (Entities db = new Entities())
-                //{
-                //    db.IMG_Images.Add(new IMG_Images
-                //    {
-                //        IMG_Name = fullName,
-                //        IMG_Path =string.Format("FilesUploaded/{0}", fullName),
-                //        IMG_Date = System.DateTime.Now
-                //    });
-                //    db.SaveChanges();
-                //}
-
-                statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath));
+                if (HttpContext.Current.Session["Anuncio"] != null)
+                    SaveContent(statuses);
             }
         }
+
+        private void SaveContent(List<FilesStatus> files)
+        {
+            using (var tran = new TransactionScope())
+            {
+                using (var db = new Entities())
+                {
+                    files.ForEach(c =>
+                    {
+                        db.AE_AnunciosExtras.Add(new AE_AnunciosExtras
+                        {
+                            AN_Id = int.Parse(HttpContext.Current.Session["Anuncio"].ToString()),
+                            AN_ImagenUrl = c.UrlPath,
+                            AN_Nombre = Path.GetFileName(c.UrlPath)
+                        });
+
+                    });
+                    db.SaveChanges();
+                }
+                tran.Complete();
+            }
+
+        }
+
 
         private void WriteJsonIframeSafe(HttpContext context, List<FilesStatus> statuses)
         {

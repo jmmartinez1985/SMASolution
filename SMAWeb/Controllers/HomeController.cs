@@ -45,7 +45,7 @@ namespace SMAWeb.Controllers
                     var firstImage = string.Empty;
                     if (item.AE_AnunciosExtras.FirstOrDefault() != null)
                     {
-                        firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_Imagen;
+                        firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_ImagenUrl;
                     }
 
                     var getRating = model.SEL_ValoracionAnuncios(item.AN_Id).FirstOrDefault();

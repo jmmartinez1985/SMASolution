@@ -173,9 +173,14 @@ namespace SMAWeb.Controllers
 
         public FileContentResult GetUserImage(int id)
         {
-            //var image = db.UserProfile.Find(id).Image;
-            //return image != null ? new FileContentResult(image, "image/jpg") : null;
-            return new FileContentResult(new byte[1024], "image/jpg");
+            var image = db.UserProfile.Find(id).Image;
+            var bytes = new byte[1024];
+            using (FileStream fs = new FileStream(Server.MapPath(image), FileMode.Open))
+            {
+                bytes = ReadFully(fs);
+            }
+            return bytes != null ? new FileContentResult(bytes, "image/jpg") : null;
+            
         }
 
         public ActionResult UploadFiles()
@@ -196,7 +201,7 @@ namespace SMAWeb.Controllers
                        AppDomain.CurrentDomain.BaseDirectory, "FilesUploaded", "Profiles",
                        Path.GetFileName(hpf.FileName));
                     hpf.SaveAs(savedFileName);
-                    findUser.Image = savedFileName;
+                    findUser.Image = "~/FilesUploaded/Profiles/" + Path.GetFileName(hpf.FileName);
                     db.Entry(findUser).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("EditUser", "UserProfile", new { id = WebSecurity.CurrentUserId });

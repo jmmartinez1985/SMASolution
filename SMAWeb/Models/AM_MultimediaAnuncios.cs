@@ -20,7 +20,7 @@ namespace SMAWeb.Models
         public string AM_MultimediaUrl { get; set; }
         public int MT_Id { get; set; }
     
-        public virtual AN_Anuncios AN_Anuncios { get; set; }
         public virtual MT_MultimediaTipos MT_MultimediaTipos { get; set; }
+        public virtual AN_Anuncios AN_Anuncios { get; set; }
     }
 }
