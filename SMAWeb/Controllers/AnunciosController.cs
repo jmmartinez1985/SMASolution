@@ -208,7 +208,6 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Anuncios/Create
-
         public ActionResult Create()
         {
             AN_Anuncios an = new AN_Anuncios();
@@ -227,7 +226,6 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Anuncios/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(AN_Anuncios an_anuncios)

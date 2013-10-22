@@ -496,6 +496,7 @@
     <Content Include="Scripts\Bootstrap2.3\bootstrap.min.js" />
     <Content Include="Scripts\CustomScript\app.js" />
     <Content Include="Scripts\CustomScript\back-to-top.js" />
+    <Content Include="Scripts\CustomScript\behavior.js" />
     <Content Include="Scripts\CustomScript\index.js" />
     <Content Include="Scripts\CustomScript\jquery.cslider.js" />
     <Content Include="Scripts\CustomScript\jquery.flexslider-min.js" />
