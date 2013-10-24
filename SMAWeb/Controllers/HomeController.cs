@@ -48,6 +48,7 @@ namespace SMAWeb.Controllers
                         firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_ImagenUrl;
                     }
 
+                
                     var getRating = model.SEL_ValoracionAnuncios(item.AN_Id).FirstOrDefault();
 
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
@@ -57,10 +58,10 @@ namespace SMAWeb.Controllers
                     firstImage = urlimg + formatted;
 
                     var number = 0;
-                    item.SS_SolicitudServicio.ToList().ForEach((counter) =>
-                    {
-                        number += counter.RW_Reviews.Count;
-                    });
+                    //item.SS_SolicitudServicio.ToList().ForEach((counter) =>
+                    //{
+                    //    number += counter.RW_Reviews.Count;
+                    //});
                     viewModelAnuncios.Add(new AnunciosViewModel 
                     {
                         Usuario = username,
@@ -69,7 +70,7 @@ namespace SMAWeb.Controllers
                         CategoriaDescripcion = categoria,
                         FirstImage = firstImage,
                         Rating = getRating,
-                        Comments = number
+                        Comments = number,
                     });
 
                 }

@@ -15,6 +15,20 @@ namespace SMAWeb.Controllers
     {
         private Entities db = new Entities();
 
+        [HttpGet]
+        [Authorize(Roles = "Users, Admin")]
+        [ChildActionOnly]
+        public ActionResult GetReviewByAnunciosId(int AN_Id)
+        {
+            var allReviewList = new List<RW_Reviews>();
+            //using (Entities model = new Entities())
+            //{
+            //    allReviewList = model.RW_Reviews.OrderBy(c => c.RW_Fecha).Where(acc => acc.ST_Id == 1 && acc. == AN_Id).ToList();
+            //}
+            return View(allReviewList);
+        }
+
+
         //
         // GET: /Review/
 
@@ -39,7 +53,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Review/Create
-        
+
         [HttpGet]
         [Authorize(Roles = "Users")]
         [IsValidReviewFilter]
@@ -80,7 +94,7 @@ namespace SMAWeb.Controllers
                         db.SaveChanges();
                         tr.Complete();
                     }
-                    if(!wasNotApproved)
+                    if (!wasNotApproved)
                         return RedirectToAction("Index", "Home");
                     else
                         return RedirectToAction("ReviewNotApproved", "Review");

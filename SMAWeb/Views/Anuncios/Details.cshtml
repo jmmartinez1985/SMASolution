@@ -156,6 +156,13 @@
                     </div>
                     <!-- /Columna2 -->
                 </div>
+
+                <div class="span12">
+
+                   
+                        @Html.Action("GetReviewByAnunciosId", "Review", new { AN_Id = @Model.AN_Id });
+                    
+                </div>
             </div>
             <p class="message">
                 <a href="@Url.Action("Index", "Home")">Volver</a>

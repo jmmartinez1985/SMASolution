@@ -33,14 +33,14 @@
     <link href="@Url.Content("~/Content/Unify/parallax-slider.css")" rel="stylesheet" />
 
 
-     <script type="text/javascript">
+    <script type="text/javascript">
 
-         function UrlHelper() {
-             this.urlImage = function (img) {
-                 var ROOT = '@Url.Content("~/")';
-                 return ROOT + img;
-             }
-             }
+        function UrlHelper() {
+            this.urlImage = function (img) {
+                var ROOT = '@Url.Content("~/")';
+                return ROOT + img;
+            }
+            }
     </script>
 
 
@@ -66,13 +66,18 @@
                 @if (Request.IsAuthenticated)
                 {
                    
+
+
                     <li>@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "login-btn", title = "Manage" })!</li>
+
                     <li>
 
                         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "LoginFormAuth" }))
                         {
-                            @Html.AntiForgeryToken()
+ @Html.AntiForgeryToken()
                    
+
+
                             <a class="login-btn" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
                         }
 
@@ -82,8 +87,12 @@
                 else
                 {
                   
+
+
                     <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "login-btn" })</li>
+
                     <li class="devider">&nbsp;</li>
+
                     <li>@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "login-btn" })</li>
                   
                 }
@@ -111,21 +120,21 @@
                 if (Roles.IsUserInRole("Admin"))
                 {
              
-                <text>
+ <text>
                 @Html.Partial("_LoggedAdminMenu")
                 </text>
          
                 }
                 else
                 {
-                <text>
+ <text>
                 @Html.Partial("_LoggedMenu")
                 </text>}
             }
             else
             {
          
-                <text>
+ <text>
                 @Html.Partial("_NotLoggedMenu")
                 </text>
             }
@@ -170,27 +179,33 @@
                         <div class="headline">
                             <h3>Entradas Recientes</h3>
                         </div>
-                        <dl class="dl-horizontal">
-                            <dt><a href="#">
-                                <img src="@Url.Content("~/Images/6(1).jpg")" alt=""></a></dt>
-                            <dd>
-                                <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
-                            </dd>
-                        </dl>
-                        <dl class="dl-horizontal">
-                            <dt><a href="#">
-                                <img src="@Url.Content("~/Images/10(1).jpg")"alt=""></a></dt>
-                            <dd>
-                                <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
-                            </dd>
-                        </dl>
-                        <dl class="dl-horizontal">
-                            <dt><a href="#">
-                                <img src="@Url.Content("~/Images/11.jpg")" alt=""></a></dt>
-                            <dd>
-                                <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
-                            </dd>
-                        </dl>
+                        <div id="UltimosAnuncios">
+
+
+                            @*<dl class="dl-horizontal">
+                                <dt><a href="#">
+                                    <img src="@Url.Content("~/Images/6(1).jpg")" alt=""></a></dt>
+                                <dd>
+                                    <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+                                </dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dt><a href="#">
+                                    <img src="@Url.Content("~/Images/10(1).jpg")"alt=""></a></dt>
+                                <dd>
+                                    <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+                                </dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dt><a href="#">
+                                    <img src="@Url.Content("~/Images/11.jpg")" alt=""></a></dt>
+                                <dd>
+                                    <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+                                </dd>
+                            </dl>*@
+
+
+                        </div>
                     </div>
                 </div>
                 <!--/span4-->
@@ -209,10 +224,10 @@
                         <h3>Manténgase Conectado</h3>
                     </div>
                     <ul class="social-icons">
-                        
+
                         <li><a href="https://www.facebook.com/IsrraBanton12" target="_blank" data-original-title="Facebook" class="social_facebook"></a></li>
                         <li><a href="https://www.twitter.com/IsrraBanton" target="_blank" data-original-title="Twitter" class="social_twitter"></a></li>
-                        
+
                     </ul>
                 </div>
                 <!--/span4-->
@@ -259,20 +274,21 @@
                    success: function (data) {
 
 
-                       var company = JSON.parse(data);
-
+                       var Anuncio = JSON.parse(data);
                        var htmldata = '';
 
-                       htmldata += '<address>';
-                       htmldata += company.COM_Nombre;
-                       htmldata += '<br>';
-                       htmldata += company.COM_Direccion;
-                       htmldata += '<br>';
-                       htmldata += 'Teléfono: ' + company.COM_Telefono;
-                       htmldata += '<br>';
-                       htmldata += 'Correo: <a href="mailto:' + company.COM_Correo + '">' + company.COM_Correo + '</a>';
-                       htmldata += '</address>';
-
+                       jQuery.each(result.$values, function (val, Anuncio) {
+                           htmldata +=
+                           htmldata += '<address>';
+                           htmldata += company.COM_Nombre;
+                           htmldata += '<br>';
+                           htmldata += company.COM_Direccion;
+                           htmldata += '<br>';
+                           htmldata += 'Teléfono: ' + company.COM_Telefono;
+                           htmldata += '<br>';
+                           htmldata += 'Correo: <a href="mailto:' + company.COM_Correo + '">' + company.COM_Correo + '</a>';
+                           htmldata += '</address>';
+                       });
 
 
                        jQuery('#divAddress').append(htmldata);
@@ -283,6 +299,32 @@
                    }
                });
 
+
+
+
+               jQuery.ajax(
+                       {
+                           type: 'post',
+                           url: '@Url.Action("GetLastAnuncios", "Anuncios")',
+                          success: function (data) {
+
+
+                              var result = JSON.parse(data);
+                              var htmldata = '';
+                              debugger;
+                              jQuery.each(result.$values, function (val, anuncio) {
+                                  htmldata += '<dl class="dl-horizontal"><dt><a href="#"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="#">';
+                                  htmldata += anuncio.AnunciosInfo.AN_Descripcion;
+                                  htmldata += '</a></p></dd></dl>';
+                              });
+
+                              jQuery('#UltimosAnuncios').append(htmldata);
+
+                          },
+                          error: function (a, b, c) {
+
+                          }
+                      });
 
 
 

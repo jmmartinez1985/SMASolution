@@ -84,7 +84,7 @@ namespace SMAWeb.Models
 
     }
 
-    [MetadataType(typeof(RW_ReviewsMetadata ))]
+    [MetadataType(typeof(RW_ReviewsMetadata))]
     public partial class RW_Reviews
     {
 
@@ -93,7 +93,7 @@ namespace SMAWeb.Models
     #endregion
 
     #region PartialClass
-    
+
     public partial class ST_EstatusMetadata
     {
         [Required]
@@ -151,9 +151,9 @@ namespace SMAWeb.Models
         [Display(Name = "Lugar del Anuncio")]
         public string AN_Area { get; set; }
 
-        [Display(Name="Categoría")]
+        [Display(Name = "Categoría")]
         public Nullable<int> CD_Id { get; set; }
-    
+
 
         [JsonIgnore]
         public virtual ICollection<AE_AnunciosExtras> AE_AnunciosExtras { get; set; }
@@ -169,7 +169,7 @@ namespace SMAWeb.Models
         public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         [JsonIgnore]
         public virtual CD_CategoriaServicio CD_CategoriaServicio { get; set; }
-    
+
     }
 
     public partial class SBS_SubCategoriaServicioMetadata
@@ -483,6 +483,9 @@ namespace SMAWeb.Models
 
         [JsonIgnore]
         public virtual SS_SolicitudServicio SS_SolicitudServicio { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<CR_ComentarioReview> CR_ComentarioReview { get; set; }
     }
 
     #endregion
@@ -493,6 +496,7 @@ namespace SMAWeb.Models
     {
 
         public AN_Anuncios AnunciosInfo { get; set; }
+        public List<RW_Reviews> ReviewList { get; set; }
         public string EstatusDescription { get; set; }
         public string Usuario { get; set; }
         public string CategoriaDescripcion { get; set; }
@@ -523,7 +527,7 @@ namespace SMAWeb.Models
         public ICollection<SubCategorias> SubCatCollection { get; set; }
 
     }
-    
+
     public class SubCategorias
     {
         public int SubCatId { get; set; }

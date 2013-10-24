@@ -137,6 +137,87 @@ namespace SMAWeb.Controllers
             return View(viewModelAnuncios);
 
         }
+
+
+        public ActionResult GetLastAnuncios()
+        {
+            //var an_anuncios = db.AN_Anuncios.Include(a => a.SBS_SubCategoriaServicio).
+            //    Include(a => a.ST_Estatus).Include(a => a.UserProfile)
+            //    .Where(c => c.UserId == UserId);
+            // return View(an_anuncios.ToList());
+
+            var allAnunciosList = new List<AN_Anuncios>();
+            List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
+            using (Entities model = new Entities())
+            {
+                allAnunciosList = model.AN_Anuncios.OrderByDescending(day => day.AN_Fecha).Where(acc => acc.ST_Id == 1).Take(3).ToList();
+
+                var categoriasList = new List<Categoria>();
+                db.CD_CategoriaServicio.ToList().ForEach(c =>
+                {
+                    var subCatList = new List<SubCategorias>();
+
+                    c.SBS_SubCategoriaServicio.ToList().ForEach(sb =>
+                    {
+                        subCatList.Add(new SubCategorias { SubCatId = sb.SBS_Id, SubCatDesc = sb.SBS_Descripcion });
+                    });
+                    categoriasList.Add(new Categoria
+                    {
+                        CatId = c.CD_Id,
+                        CatDesc = c.CD_Descripcion,
+                        SubCatCollection = subCatList
+                    });
+                });
+
+                ViewBag.Categories = categoriasList;
+
+                foreach (var item in allAnunciosList)
+                {
+                    string username = item.UserProfile.Name;
+                    string statusDesc = item.ST_Estatus.ST_Descripcion;
+                    var categoria = item.SBS_SubCategoriaServicio.CD_CategoriaServicio.CD_Descripcion;
+                    var firstImage = string.Empty;
+                    if (item.AE_AnunciosExtras.FirstOrDefault() != null)
+                    {
+                        firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_ImagenUrl;
+                    }
+
+                    string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
+                    var formatted = firstImage.Replace("~", "");
+                    if (formatted.StartsWith("/"))
+                        formatted = formatted.Remove(0, 1);
+                    firstImage = urlimg + formatted;
+
+                    string descripcion = string.Empty;
+                    descripcion = item.AN_Descripcion.Substring(0, item.AN_Descripcion.Length < 112 ? item.AN_Descripcion.Length : 112);
+                    if (descripcion.LastIndexOf(' ') > 0)
+                        descripcion = descripcion.Substring(0, descripcion.LastIndexOf(' '));
+
+                    descripcion += "...";
+
+                    item.AN_Descripcion = descripcion;
+
+                    viewModelAnuncios.Add(new AnunciosViewModel
+                    {
+                        Usuario = username,
+                        EstatusDescription = statusDesc,
+                        AnunciosInfo = item,
+                        CategoriaDescripcion = categoria,
+                        FirstImage = firstImage
+                    });
+
+                }
+            }
+            if (viewModelAnuncios == null || viewModelAnuncios.Count == 0)
+            {
+                return HttpNotFound();
+            }
+            return Json((viewModelAnuncios).SerializeToJson());
+
+        }
+
+
+
         //
         // GET: /Anuncios/Details/5
 
@@ -175,6 +256,14 @@ namespace SMAWeb.Controllers
                         formatted = formatted.Remove(0, 1);
                     firstImage = urlimg + formatted;
 
+                    List<RW_Reviews> rvList = new List<RW_Reviews>();
+                    model.SS_SolicitudServicio.Where(c => c.AN_Id == item.AN_Id).AsParallel().ToList().ForEach(
+                        c =>
+                        {
+                            c.RW_Reviews.AsParallel().ToList().ForEach(i => rvList.Add(i));
+                        }); 
+
+
 
                     viewModelAnuncios.Add(new AnunciosViewModel
                     {
@@ -183,7 +272,7 @@ namespace SMAWeb.Controllers
                         AnunciosInfo = item,
                         CategoriaDescripcion = categoria,
                         FirstImage = firstImage,
-                        Rating = getRating
+                        Rating = getRating, ReviewList = rvList
                     });
 
                 }
@@ -239,7 +328,7 @@ namespace SMAWeb.Controllers
                 if (Anuncio != null)
                 {
                     string directorio = System.Configuration.ConfigurationManager.AppSettings["ContenidoMultimedia"];
-                    if (!System.IO.Directory.Exists(Server.MapPath(directorio  + Anuncio.AN_Id)))
+                    if (!System.IO.Directory.Exists(Server.MapPath(directorio + Anuncio.AN_Id)))
                         System.IO.Directory.CreateDirectory(Server.MapPath(directorio + Anuncio.AN_Id));
                 }
                 HttpContext.Session["Anuncio"] = Anuncio.AN_Id;
