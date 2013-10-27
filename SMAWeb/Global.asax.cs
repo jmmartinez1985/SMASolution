@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Elmah;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,11 +26,27 @@ namespace SMAWeb
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            Initialize();
         }
         protected void Application_End()
         {
    
-        } 
+        }
+
+        public static void Initialize()
+        {
+            if (!WebSecurity.Initialized)
+            {
+                WebSecurity.InitializeDatabaseConnection(
+                   "DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: false);
+            }
+        }
+
+        protected void ErrorMail_Filtering(object sender, ExceptionFilterEventArgs e)
+        {
+            if (e.Exception.GetBaseException() is HttpRequestValidationException)
+                e.Dismiss();
+        }
 
     }
 }

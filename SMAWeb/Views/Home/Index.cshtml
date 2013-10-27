@@ -190,8 +190,7 @@
     No se obtuvieron resultados.
 </div>
 
-<script src="~/Scripts/raty-2.5.2/lib/jquery.raty.min.js"></script>
-<link href="~/Content/Rating.css" rel="stylesheet" />
+
 <!--/slider-->
 <!--=== End Slider ===-->
 <script type="text/javascript">
@@ -245,10 +244,7 @@
         });
 
     });
-    var $ki = jQuery.noConflict();
-    $ki(function () {
-        $ki.fn.raty.defaults.path = '@Url.Content("~/Scripts/raty-2.5.2/lib/img")';
-    });
+ 
 
 
 
@@ -305,8 +301,8 @@
                     delay: 20
                 });
             },
-            error: function (a, b, c) {
-                alert('Here');
+            error: function (xhr) {
+                alert('An error has ocurred loading data: ' + xhr.responseText, 'Error');
             }
         });
     });

@@ -33,6 +33,9 @@
     <link href="@Url.Content("~/Content/Unify/parallax-slider.css")" rel="stylesheet" />
 
 
+    <script src="@Url.Content("~/Scripts/raty-2.5.2/lib/jquery.raty.min.js")"></script>
+    <link href="@Url.Content("~/Content/Rating.css")" rel="stylesheet" />
+
     <script type="text/javascript">
 
         function UrlHelper() {
@@ -41,7 +44,14 @@
                 return ROOT + img;
             }
             }
+
+
+            var $ki = jQuery.noConflict();
+            $ki(function () {
+                $ki.fn.raty.defaults.path = '@Url.Content("~/Scripts/raty-2.5.2/lib/img")';
+            });
     </script>
+
 
 
 </head>
@@ -74,7 +84,7 @@
 
                         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "LoginFormAuth" }))
                         {
- @Html.AntiForgeryToken()
+                            @Html.AntiForgeryToken()
                    
 
 
@@ -120,21 +130,21 @@
                 if (Roles.IsUserInRole("Admin"))
                 {
              
- <text>
+                <text>
                 @Html.Partial("_LoggedAdminMenu")
                 </text>
          
                 }
                 else
                 {
- <text>
+                <text>
                 @Html.Partial("_LoggedMenu")
                 </text>}
             }
             else
             {
          
- <text>
+                <text>
                 @Html.Partial("_NotLoggedMenu")
                 </text>
             }
@@ -274,21 +284,21 @@
                    success: function (data) {
 
 
-                       var Anuncio = JSON.parse(data);
+                       var result = JSON.parse(data);
                        var htmldata = '';
 
-                       jQuery.each(result.$values, function (val, Anuncio) {
-                           htmldata +=
-                           htmldata += '<address>';
-                           htmldata += company.COM_Nombre;
-                           htmldata += '<br>';
-                           htmldata += company.COM_Direccion;
-                           htmldata += '<br>';
-                           htmldata += 'Teléfono: ' + company.COM_Telefono;
-                           htmldata += '<br>';
-                           htmldata += 'Correo: <a href="mailto:' + company.COM_Correo + '">' + company.COM_Correo + '</a>';
-                           htmldata += '</address>';
-                       });
+                       //jQuery.each(result.$values, function (val, Anuncio) {
+                       htmldata +=
+                       htmldata += '<address>';
+                       htmldata += result.COM_Nombre;
+                       htmldata += '<br>';
+                       htmldata += result.COM_Direccion;
+                       htmldata += '<br>';
+                       htmldata += 'Teléfono: ' + result.COM_Telefono;
+                       htmldata += '<br>';
+                       htmldata += 'Correo: <a href="mailto:' + result.COM_Correo + '">' + result.COM_Correo + '</a>';
+                       htmldata += '</address>';
+                       //});
 
 
                        jQuery('#divAddress').append(htmldata);
@@ -300,31 +310,26 @@
                });
 
 
-
-
                jQuery.ajax(
                        {
                            type: 'post',
                            url: '@Url.Action("GetLastAnuncios", "Anuncios")',
-                          success: function (data) {
+                           success: function (data) {
+                               var result = JSON.parse(data);
+                               var htmldata = '';
+                               jQuery.each(result.$values, function (val, anuncio) {
+                                   htmldata += '<dl class="dl-horizontal"><dt><a href="#"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="#">';
+                                   htmldata += anuncio.AnunciosInfo.AN_Descripcion;
+                                   htmldata += '</a></p></dd></dl>';
+                               });
 
+                               jQuery('#UltimosAnuncios').append(htmldata);
 
-                              var result = JSON.parse(data);
-                              var htmldata = '';
-                              debugger;
-                              jQuery.each(result.$values, function (val, anuncio) {
-                                  htmldata += '<dl class="dl-horizontal"><dt><a href="#"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="#">';
-                                  htmldata += anuncio.AnunciosInfo.AN_Descripcion;
-                                  htmldata += '</a></p></dd></dl>';
-                              });
+                           },
+                           error: function (a, b, c) {
 
-                              jQuery('#UltimosAnuncios').append(htmldata);
-
-                          },
-                          error: function (a, b, c) {
-
-                          }
-                      });
+                           }
+                       });
 
 
 

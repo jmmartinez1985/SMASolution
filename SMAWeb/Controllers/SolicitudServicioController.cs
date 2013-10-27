@@ -17,7 +17,7 @@ using System.Dynamic;
 
 namespace SMAWeb.Controllers
 {
-    public class SolicitudServicioController : Controller
+    public class SolicitudServicioController : BaseController
     {
         private Entities db = new Entities();
 

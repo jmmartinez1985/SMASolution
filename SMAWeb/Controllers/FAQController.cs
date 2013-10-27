@@ -9,7 +9,7 @@ using SMAWeb.Models;
 
 namespace SMAWeb.Controllers
 {
-    public class FAQController : Controller
+    public class FAQController : BaseController
     {
         private Entities db = new Entities();
 

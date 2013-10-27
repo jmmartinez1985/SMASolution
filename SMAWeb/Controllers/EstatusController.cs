@@ -9,7 +9,7 @@ using SMAWeb.Models;
 
 namespace SMAWeb.Controllers
 {
-    public class EstatusController : Controller
+    public class EstatusController : BaseController
     {
         private Entities db = new Entities();
 

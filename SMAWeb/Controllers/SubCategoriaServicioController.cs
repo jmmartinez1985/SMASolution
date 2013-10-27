@@ -10,7 +10,7 @@ using SMAWeb.Extensions;
 
 namespace SMAWeb.Controllers
 {
-    public class SubCategoriaServicioController : Controller
+    public class SubCategoriaServicioController : BaseController
     {
         private Entities db = new Entities();
 

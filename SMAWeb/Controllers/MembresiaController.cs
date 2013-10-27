@@ -9,7 +9,7 @@ using SMAWeb.Models;
 
 namespace SMAWeb.Controllers
 {
-    public class MembresiaController : Controller
+    public class MembresiaController : BaseController
     {
         private Entities db = new Entities();
 

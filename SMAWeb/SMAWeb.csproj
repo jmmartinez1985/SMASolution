@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc">
+      <HintPath>..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -185,6 +191,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnunciosController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CategoriaServicioController.cs" />
     <Compile Include="Controllers\ComentariosController.cs" />
@@ -588,6 +595,15 @@
     <Content Include="Scripts\raty-2.5.2\spec\lib\jasmine.js" />
     <Content Include="Scripts\raty-2.5.2\spec\run.html" />
     <Content Include="Scripts\raty-2.5.2\spec\spec.js" />
+    <Content Include="Content\Images\cancel-off-big.png" />
+    <Content Include="Content\Images\cancel-off.png" />
+    <Content Include="Content\Images\cancel-on-big.png" />
+    <Content Include="Content\Images\cancel-on.png" />
+    <Content Include="Content\Images\star-half.png" />
+    <Content Include="Content\Images\star-off-big.png" />
+    <Content Include="Content\Images\star-off.png" />
+    <Content Include="Content\Images\star-on-big.png" />
+    <Content Include="Content\Images\star-on.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

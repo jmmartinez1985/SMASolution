@@ -12,7 +12,7 @@ using WebMatrix.WebData;
 
 namespace SMAWeb.Controllers
 {
-    public class UserProfileController : Controller
+    public class UserProfileController : BaseController
     {
         private Entities db = new Entities();
 

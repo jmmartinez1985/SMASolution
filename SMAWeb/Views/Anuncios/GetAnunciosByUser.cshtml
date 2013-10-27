@@ -54,16 +54,13 @@
                                                     <!-- Categorias  -->
                                                     <li><i class="icon-map-marker"></i>@item.AnunciosInfo.AN_Area</li>
                                                     <!-- Lugar del anuncio, agregar campo a la base de datos  -->
-                                                    <li>
-                                                        <ul class="unstyled inline">
-                                                            <!-- Calculado basado Review basado en 5  -->
-                                                            <li><i class="icon-star"></i></li>
-                                                            <li><i class="icon-star"></i></li>
-                                                            <li><i class="icon-star"></i></li>
-                                                            <li><i class="icon-star"></i></li>
-                                                            <li><i class="icon-star-empty"></i></li>
-                                                        </ul>
-                                                    </li>
+                                                <li>
+                                                    <ul class="unstyled inline">
+                                                        <li><div class="ratyclass" id='@item.AnunciosInfo.AN_Id'  ratyval='@item.Rating' style="width:20px;" ></div </li>
+
+                                                    </ul>
+
+                                                </li>
                                                 </ul>
                                             </div>
                                             <div style="overflow: hidden;">
@@ -121,7 +118,7 @@
                     <form>
                         <div class="controls controls-row">
                             <select>
-                                @foreach (var item in  ViewBag.Categories)
+                                @foreach (var item in ViewBag.Categories)
                                 {
                                     <option>@item.CatDesc</option>
                                 }
@@ -194,10 +191,18 @@
             delay: 20
         });
     });
+
+
+
+
+    jQuery('.ratyclass').each(function (i, elem) {
+        var ratyvalue = jQuery(this).attr('ratyval');
+        $ki(this).raty({ readOnly: true, score: ratyvalue });
+    });
+
     jQuery(document).ready(function () {
 
         jQuery('#txtSearchHome').keyup(function () {
-            debugger;
             var text = jQuery('#txtSearchHome').val();
             var rows = jQuery('#anunciosAvailable > tr');
 

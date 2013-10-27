@@ -13,7 +13,7 @@ using Newtonsoft.Json.Linq;
 
 namespace SMAWeb.Controllers
 {
-    public class AnunciosController : Controller
+    public class AnunciosController : BaseController
     {
         private Entities db = new Entities();
 

@@ -9,7 +9,7 @@ using SMAWeb.Models;
 
 namespace SMAWeb.Controllers
 {
-    public class MultimediaTiposController : Controller
+    public class MultimediaTiposController : BaseController
     {
         private Entities db = new Entities();
 

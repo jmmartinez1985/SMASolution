@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SMAWeb.Controllers
 {
-    public class BlogController : Controller
+    public class BlogController : BaseController
     {
         //
         // GET: /Blog/

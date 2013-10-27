@@ -11,7 +11,7 @@ using System.Transactions;
 
 namespace SMAWeb.Controllers
 {
-    public class ReviewController : Controller
+    public class ReviewController : BaseController
     {
         private Entities db = new Entities();
 
