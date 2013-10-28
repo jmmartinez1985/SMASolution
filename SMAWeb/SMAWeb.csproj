@@ -309,6 +309,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\Bootstrap2.3\bootstrap-responsive.css" />
     <Content Include="Content\Bootstrap2.3\bootstrap-responsive.min.css" />
     <Content Include="Content\Bootstrap2.3\bootstrap.css" />
