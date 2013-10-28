@@ -13,7 +13,7 @@
                 <h3>Crear Anuncio</h3>
             </div>
 
-            @using (Ajax.BeginForm("Create", "Anuncios", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content", OnSuccess = "Success" }))
+            @using (Ajax.BeginForm("Create", "Anuncios", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content", OnSuccess = "Success"  }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
