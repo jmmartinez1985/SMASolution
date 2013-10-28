@@ -130,10 +130,10 @@ namespace SMAWeb.Controllers
 
                 }
             }
-            if (viewModelAnuncios == null || viewModelAnuncios.Count == 0)
-            {
-                return HttpNotFound();
-            }
+            //if (viewModelAnuncios == null || viewModelAnuncios.Count == 0)
+            //{
+            //    return HttpNotFound();
+            //}
             return View(viewModelAnuncios);
 
         }
@@ -261,7 +261,7 @@ namespace SMAWeb.Controllers
                         c =>
                         {
                             c.RW_Reviews.AsParallel().ToList().ForEach(i => rvList.Add(i));
-                        }); 
+                        });
 
 
 
@@ -272,7 +272,8 @@ namespace SMAWeb.Controllers
                         AnunciosInfo = item,
                         CategoriaDescripcion = categoria,
                         FirstImage = firstImage,
-                        Rating = getRating, ReviewList = rvList
+                        Rating = getRating,
+                        ReviewList = rvList
                     });
 
                 }
@@ -398,15 +399,33 @@ namespace SMAWeb.Controllers
         // POST: /Anuncios/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
             db.AN_Anuncios.Remove(an_anuncios);
             db.SaveChanges();
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { redirectToUrl = Url.Action("GetAnunciosByUser", "Anuncios") });
+            }
             return RedirectToAction("Index");
         }
 
+        [HttpPost, ActionName("Inactivate")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult InactivateAnuncio(int id)
+        {
+            AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
+            an_anuncios.ST_Id = 2;
+            db.Entry(an_anuncios).State = EntityState.Modified;
+            db.SaveChanges();
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { redirectToUrl = Url.Action("GetAnunciosByUser", "Anuncios") });
+            }
+            return RedirectToAction("Index");
+        }
 
         public ActionResult LoadUplaoder()
         {

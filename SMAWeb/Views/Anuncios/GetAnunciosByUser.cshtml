@@ -13,7 +13,7 @@
 
 
 <div class="container">
-    <div class="row-fluid purchase">
+  @*  <div class="row-fluid purchase">
         <span>Búsqueda de Servicios</span>
         <div class="form-inline">
             <div class="input-append">
@@ -23,7 +23,7 @@
             <a href="#advanced" role="button" data-toggle="modal" class="btn-u btn-u-orange btn-large">Búsqueda Avanzada</a>
         </div>
 
-    </div>
+    </div>*@
 
     <br />
     <div class="row-fluid margin-bottom-10">
@@ -69,11 +69,13 @@
 
                                                 <p>@item.AnunciosInfo.AN_Descripcion</p>
                                                 <!-- Descripcion de anuncio, basado en 200 caracteres -->
-                                                <button class="btn-u btn-u-orange">Leer Más</button>
-                                                <!-- Nombre del Anunciante  -->
-                                                <button class="btn-u btn-u-orange">Editar</button> 
-                                                <button class="btn-u btn-u-orange">Eliminar</button>
-                                                <button class="btn-u btn-u-orange">Desactivar</button>
+
+                                                @Html.ActionLink("Preliminar", "Details", "Anuncios", new { id = item.AnunciosInfo.AN_Id }, new { @class = "btn-u btn-u-orange" })
+                                                @Html.ActionLink("Editar", "Edit", "Anuncios", new { id = item.AnunciosInfo.AN_Id }, new { @class = "btn-u btn-u-orange" })
+
+                                        
+                                                <a class="btn-u btn-u-orange" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id')" >Eliminar</a>
+                                                <a class="btn-u btn-u-orange" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id')" >Desactivar</a>
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +101,7 @@
 
 </div>
 
-<div id="advanced" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="advancedSort" aria-hidden="true">
+@*<div id="advanced" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="advancedSort" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <ul class="nav nav-pills pull-right">
@@ -167,7 +169,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 <div id="divNoAnunciosFound" class="bold large span12" style="padding: 5px; display: none;">
     No se obtuvieron resultados.
@@ -230,4 +232,45 @@
         }
     }
 
+    function DeleteAnuncio(id) {
+        jConfirm('Desea borrar el anuncio publicado?', 'Borrar anuncio existente', function (confirmed) {
+            if (confirmed) {
+                jQuery.ajax(
+               {
+                   type: 'post',
+                   url: '@Url.Content("~/Anuncios/Delete/")',
+                   data: { id: id },
+                   success: function (data) {
+                       jAlert('Registro borrado satistafactoriamente.');
+                       window.location = data.redirectToUrl;
+
+                   },
+                   error: function (a, b, c) {
+                       alert(a);
+                   }
+               });
+           }
+        });
+   }
+
+   function InactivateAnuncio(id) {
+       jConfirm('Desea desahilitar el anuncio publicado?', 'Desahilitar anuncio existente', function (confirmed) {
+           if (confirmed) {
+               jQuery.ajax(
+              {
+                  type: 'post',
+                  url: '@Url.Content("~/Anuncios/Inactivate/")',
+                   data: { id: id },
+                   success: function (data) {
+                       jAlert('Registro desahilitado satistafactoriamente.');
+                       window.location = data.redirectToUrl;
+
+                   },
+                   error: function (a, b, c) {
+                       alert(a);
+                   }
+               });
+           }
+        });
+   }
 </script>
