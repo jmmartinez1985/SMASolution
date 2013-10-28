@@ -39,7 +39,9 @@ namespace SMAWeb.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            MB_Membresia mem = new MB_Membresia();
+            mem.MP_MemberShipId = 1;
+            return View(mem);
         }
 
         //
