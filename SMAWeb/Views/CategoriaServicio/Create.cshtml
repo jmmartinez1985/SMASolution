@@ -13,8 +13,10 @@
                 <h3>Crear Categoría</h3>
             </div>
 
+              <div class="message">
+            </div>
 
-            @using (Html.BeginForm())
+            @using (Ajax.BeginForm("Create", "CategoriaServicio", new AjaxOptions { HttpMethod = "Post", OnSuccess = "CreateCategoria" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
@@ -27,12 +29,17 @@
                 </div>
                 <div class="editor-field">
                     @Html.TextBoxFor(model => model.CD_Descripcion, new { @placeholder = "Descripción de la Categoría", @class = "input-xxlarge" })
-                    @Html.ValidationMessageFor(model => model.CD_Descripcion)
+
                 </div>
 
                 <p>
                     <input type="submit" value="Crear" class="btn-u" />
                 </p>
+                
+                <ul style="list-style: none;">
+                    <li>@Html.ValidationMessageFor(model => model.CD_Descripcion)
+                    </li>
+                </ul>
                
             }
 
@@ -47,3 +54,24 @@
         </div>
     </div>
 </div>
+<script>
+    function CreateCategoria(data) {
+        var Titulo = 'Creación de Categoría';
+        var Mensaje = '';
+        var TipoAlerta = '';
+        debugger;
+        if (data.wasSuccess) {
+            Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
+            TipoAlerta = 'alert-success';
+        }
+        else {
+            Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
+            TipoAlerta = 'alert-error';
+        }
+
+        $(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+        $('.alert').alert();
+        $('.alert').fadeOut(3000);
+
+    };
+</script>

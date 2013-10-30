@@ -55,9 +55,19 @@ namespace SMAWeb.Controllers
             {
                 db.MB_Membresia.Add(mb_membresia);
                 db.SaveChanges();
+
+                if (Request.IsAjaxRequest()) 
+                {
+
+                    return Json(new { wasSuccess = true });
+                }
+
                 return RedirectToAction("Index");
             }
-
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { wasSuccess = false});
+            }
             return View(mb_membresia);
         }
 

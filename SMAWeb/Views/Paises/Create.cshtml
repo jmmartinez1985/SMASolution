@@ -13,7 +13,10 @@
                 <h3>Crear País</h3>
             </div>
 
-            @using (Html.BeginForm())
+            <div class="message">
+            </div>
+
+            @using (Ajax.BeginForm("Create", "Paises", new AjaxOptions { HttpMethod = "Post", OnSuccess = "CreatePaises" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
@@ -25,7 +28,7 @@
                 </div>
                 <div class="editor-field">
                     @Html.TextBoxFor(model => model.PA_Descripcion, new { @placeholder = "Nombre del País", @class = "input-large" })
-                    @Html.ValidationMessageFor(model => model.PA_Descripcion)
+
                 </div>
 
                 <div class="editor-label">
@@ -33,12 +36,21 @@
                 </div>
                 <div class="editor-field">
                     @Html.DropDownList("REG_Id", String.Empty)
-                    @Html.ValidationMessageFor(model => model.REG_Id)
+
                 </div>
 
                 <p>
                     <input type="submit" value="Crear" class="btn-u" />
                 </p>
+                
+                <ul style="list-style: none;">
+                    <li>
+                        @Html.ValidationMessageFor(model => model.PA_Descripcion)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.REG_Id)
+                    </li>
+                </ul>
     
             }
 
@@ -52,3 +64,23 @@
         </div>
     </div>
 </div>
+<script>
+    function CreatePaises(data) {
+        var Titulo = 'Creación de Países';
+        var Mensaje = '';
+        var TipoAlerta = '';
+        if (data.wasSuccess) {
+            Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
+            TipoAlerta = 'alert-success';
+        }
+        else {
+            Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
+            TipoAlerta = 'alert-error';
+        }
+
+        $(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+        $('.alert').alert();
+        $('.alert').fadeOut(3000);
+
+    };
+</script>

@@ -38,7 +38,9 @@ namespace SMAWeb.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            CD_CategoriaServicio cat = new CD_CategoriaServicio();
+            cat.CD_Id = 1;
+            return View(cat);
         }
 
         //
@@ -52,11 +54,21 @@ namespace SMAWeb.Controllers
             {
                 db.CD_CategoriaServicio.Add(cd_categoriaservicio);
                 db.SaveChanges();
+
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(new { wasSuccess = true });
+                }
                 return RedirectToAction("Index");
             }
-
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { wasSuccess = false });
+            }
             return View(cd_categoriaservicio);
         }
+
+
 
         //
         // GET: /CategoriaServicio/Edit/5

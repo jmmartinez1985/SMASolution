@@ -35,7 +35,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody  id="divBody">
                     @foreach (var item in Model)
                     {
                         <tr>
@@ -60,7 +60,31 @@
     
                     }
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <div class="holder" style="float: left">
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
 </div>
+<script>
+    var $jpage = jQuery.noConflict();
+    $jpage(function () {
+        $jpage("div.holder").jPages({
+            containerID: "divBody",
+            //              previous: "?",
+            //              next: "?",
+            first: "Primera",
+            previous: "Anterior",
+            next: "Siguiente",
+            last: "Última",
+            perPage: 5,
+            delay: 20
+        });
+    });
+</script>

@@ -39,6 +39,15 @@
                 <p>
                     <input type="submit" value="Guardar" class="btn-u" />
                 </p>
+                
+                 <ul style=" list-style:none; " >
+                    <li>
+                        @Html.ValidationMessageFor(model => model.MP_Descripcion)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.MP_ExpiracionDays)
+                    </li>
+                </ul>
             }
 
             <div>

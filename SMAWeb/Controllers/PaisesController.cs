@@ -40,8 +40,10 @@ namespace SMAWeb.Controllers
 
         public ActionResult Create()
         {
+            PA_Paises pais = new PA_Paises();
+            pais.PA_Id = 1;
             ViewBag.REG_Id = new SelectList(db.REG_Region, "REG_Id", "REG_Descripcion");
-            return View();
+            return View(pais);
         }
 
         //
@@ -53,12 +55,22 @@ namespace SMAWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.PA_Paises.Add(pa_paises);
                 db.SaveChanges();
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(new { wasSuccess = true });
+                }
                 return RedirectToAction("Index");
             }
 
             ViewBag.REG_Id = new SelectList(db.REG_Region, "REG_Id", "REG_Descripcion", pa_paises.REG_Id);
+
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { wasSuccess = false });
+            }
             return View(pa_paises);
         }
 
