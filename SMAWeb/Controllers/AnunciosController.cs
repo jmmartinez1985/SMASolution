@@ -150,7 +150,8 @@ namespace SMAWeb.Controllers
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
             using (Entities model = new Entities())
             {
-                allAnunciosList = model.AN_Anuncios.OrderByDescending(day => day.AN_Fecha).Where(acc => acc.ST_Id == 1).Take(3).ToList();
+                allAnunciosList = model.AN_Anuncios.OrderByDescending(day => day.AN_Fecha).Where(acc => acc.ST_Id == 1 & (acc.UserProfile.Image != null )).Take(3).ToList();
+                //allAnunciosList = model.AN_Anuncios.OrderByDescending(day => day.AN_Fecha).Where(acc => acc.ST_Id == 1).Take(3).ToList();
 
                 var categoriasList = new List<Categoria>();
                 db.CD_CategoriaServicio.ToList().ForEach(c =>
@@ -180,6 +181,10 @@ namespace SMAWeb.Controllers
                     if (item.AE_AnunciosExtras.FirstOrDefault() != null)
                     {
                         firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_ImagenUrl;
+                    }
+                    else
+                    {
+                        firstImage = item.UserProfile.Image;
                     }
 
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");

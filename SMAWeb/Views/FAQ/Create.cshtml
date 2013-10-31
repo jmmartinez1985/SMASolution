@@ -4,7 +4,6 @@
     ViewBag.Title = "Create";
 }
 
-
 <br />
 <div class="container">
     <div class="row-fluid margin-bottom-10">
@@ -14,47 +13,60 @@
                 <h3>Crear FAQ</h3>
             </div>
 
-            @using (Html.BeginForm())
+
+            
+            <div class="message">
+            </div>
+
+            @using (Ajax.BeginForm("Create", "FAQ", new AjaxOptions { HttpMethod = "Post", OnSuccess = "CreateFAQ" }))
             {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true)
+                 @Html.AntiForgeryToken()
+                 @Html.ValidationSummary(true)
 
                 
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.FAQ_Id)
-                </div>
-                <div class="editor-field">
-                    @Html.TextBoxFor(model => model.FAQ_Id, new { @placeholder = "Código FAQ", @class = "input-xxlarge" })
-                    @Html.ValidationMessageFor(model => model.FAQ_Id)
-                </div>
-                
-                
+
+
+                     
+                @Html.HiddenFor(model => model.FAQ_Id)
                 <div class="editor-label">
                     @Html.LabelFor(model => model.FAQ_Question)
                 </div>
+
                 <div class="editor-field">
                     @Html.TextBoxFor(model => model.FAQ_Question, new { @placeholder = "Pregunta", @class = "input-xxlarge" })
-                    @Html.ValidationMessageFor(model => model.FAQ_Question)
+
                 </div>
+
+
 
                 <div class="editor-label">
                     @Html.LabelFor(model => model.FAQ_Answer)
                 </div>
+
                 <div class="editor-field">
                     @Html.TextAreaFor(model => model.FAQ_Answer, new { @placeholder = "Respuesta", @class = "input-xxlarge" })
-                    @Html.ValidationMessageFor(model => model.FAQ_Answer)
+                   
                 </div>
 
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.FAQ_Status)
-                </div>
-                <div class="editor-field">
-                    @Html.DropDownList("FAQ_Status", String.Empty)
-                    @Html.ValidationMessageFor(model => model.FAQ_Status)
-                </div>
+
+                @Html.HiddenFor(model => model.FAQ_Status)
                 <p>
                     <input type="submit" value="Crear" class="btn-u" />
                 </p>
+                
+
+
+                <ul style="list-style: none;">
+                    <li>
+                        @Html.ValidationMessageFor(model => model.FAQ_Question)
+                    </li>
+                    <li> 
+                        @Html.ValidationMessageFor(model => model.FAQ_Answer)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.FAQ_Status)
+                    </li>
+                </ul>
    
             }
 
@@ -68,3 +80,23 @@
         </div>
     </div>
 </div>
+<script>
+    function CreateFAQ(data) {
+        var Titulo = 'Creación de FAQ';
+        var Mensaje = '';
+        var TipoAlerta = '';
+        debugger;
+        if (data.wasSuccess) {
+            Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
+            TipoAlerta = 'alert-success';
+        }
+        else {
+            Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
+            TipoAlerta = 'alert-error';
+        }
+
+        $(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+        $('.alert').alert();
+        $('.alert').fadeOut(3000);
+    };
+</script>

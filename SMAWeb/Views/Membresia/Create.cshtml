@@ -13,7 +13,10 @@
                 <h3>Crear Membresía</h3>
             </div>
 
-            @using (Html.BeginForm())
+            <div class="message">
+            </div>
+
+            @using (Ajax.BeginForm("Create", "Membresia", new AjaxOptions { HttpMethod = "Post", OnSuccess = "CreateMembresia" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
@@ -25,20 +28,29 @@
                 </div>
                 <div class="editor-field">
                     @Html.TextBoxFor(model => model.MP_Descripcion, new { @placeholder = "Descripción", @class = "input-xxlarge" })
-                    @Html.ValidationMessageFor(model => model.MP_Descripcion)
+
                 </div>
 
                 <div class="editor-label">
                     @Html.LabelFor(model => model.MP_ExpiracionDays)
                 </div>
                 <div class="editor-field">
-                    @Html.TextBoxFor(model => model.MP_ExpiracionDays, new { @placeholder = "Días de Expiración", @class = "input-small" })
-                    @Html.ValidationMessageFor(model => model.MP_ExpiracionDays)
+                    @Html.TextBoxFor(model => model.MP_ExpiracionDays, new { @placeholder = "Días de Expiración", @class = "input" })
+
                 </div>
 
                 <p>
                     <input type="submit" value="Crear" class="btn-u" />
-                </p>
+                </p> 
+                
+                <ul style="list-style: none;">
+                    <li>
+                        @Html.ValidationMessageFor(model => model.MP_Descripcion)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.MP_ExpiracionDays)
+                    </li>
+                </ul>
                
             }
 
@@ -52,3 +64,23 @@
         </div>
     </div>
 </div>
+<script>
+    function CreateMembresia(data) {
+        var Titulo = 'Creación de Membresía';
+        var Mensaje = '';
+        var TipoAlerta = '';
+        if (data.wasSuccess) {
+            Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
+            TipoAlerta = 'alert-success';
+        }
+        else {
+            Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
+            TipoAlerta = 'alert-error';
+        }
+
+        $(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+        $('.alert').alert();
+        $('.alert').fadeOut(3000);
+
+    };
+</script>

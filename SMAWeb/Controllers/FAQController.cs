@@ -36,8 +36,11 @@ namespace SMAWeb.Controllers
 
         public ActionResult Create()
         {
+            FAQs faq = new FAQs();
+            faq.FAQ_Id = 1;
+            faq.FAQ_Status = 1;
             ViewBag.FAQ_Status = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion");
-            return View();
+            return View(faq);
         }
 
         //
@@ -51,10 +54,20 @@ namespace SMAWeb.Controllers
             {
                 db.FAQs.Add(faqs);
                 db.SaveChanges();
+                if (Request.IsAjaxRequest())
+                {
+                    //limpiar pantalla
+                    return Json(new { wasSuccess = true });
+                }
                 return RedirectToAction("Index");
             }
 
             ViewBag.FAQ_Status = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", faqs.FAQ_Status);
+            
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { wasSuccess = false });
+            }
             return View(faqs);
         }
 

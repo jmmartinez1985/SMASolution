@@ -39,7 +39,9 @@ namespace SMAWeb.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            REG_Region reg = new REG_Region();
+            reg.REG_Id = 1;
+            return View(reg);
         }
 
         //
@@ -53,9 +55,16 @@ namespace SMAWeb.Controllers
             {
                 db.REG_Region.Add(reg_region);
                 db.SaveChanges();
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(new { wasSuccess = true });
+                }
                 return RedirectToAction("Index");
             }
-
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { wasSuccess = false });
+            }
             return View(reg_region);
         }
 

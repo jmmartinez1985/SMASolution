@@ -179,12 +179,13 @@ namespace SMAWeb.Models
         public int SBS_Id { get; set; }
 
         [Display(Name = "Código de Categoría")]
-        [Required]
+        [Required(ErrorMessage = "Por favor seleccione una categoría.")]
         public Nullable<int> CD_Id { get; set; }
 
 
         [Display(Name = "Descripción")]
-        [Required]
+        [Required(ErrorMessage = "Por favor ingrese la descripción.")]
+        [StringLength(100, ErrorMessage = "Por favor verifique el campo descripción, sólo permite una descripción de hasta 100 dígitos.")]
         public string SBS_Descripcion { get; set; }
 
         [JsonIgnore]
@@ -201,8 +202,10 @@ namespace SMAWeb.Models
         [Display(Name = "Código Categoría")]
         public int CD_Id { get; set; }
 
-        [Required]
+
         [Display(Name = "Descripción de la Categoría")]
+        [Required(ErrorMessage = "Por favor ingrese la descripción de la categoría.")]
+        [StringLength(100, ErrorMessage = "Por favor verifique el campo descripción de la categoría, sólo se permite una descripción de hasta 100 dígitos.")]
         public string CD_Descripcion { get; set; }
 
         [JsonIgnore]
@@ -215,12 +218,15 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Membresía")]
         public int MP_MemberShipId { get; set; }
 
-        [Required]
         [Display(Name = "Descripción de Membresía")]
+        [Required(ErrorMessage = "Por favor ingrese la descripción de la membresía.")]
+        [StringLength(100, ErrorMessage = "Por favor verifique el campo descripción de membresía, sólo se permite una descripción de hasta 100 dígitos.")]
         public string MP_Descripcion { get; set; }
 
-        [Required]
         [Display(Name = "Días de Expiración")]
+        [Required(ErrorMessage = "Por favor ingrese los días de expiración de la membresía.")]
+        [StringLength(4, ErrorMessage = "Por favor verifique el campo días de expiración, sólo se permiten números de hasta 4 dígitos.")]
+        [RegularExpression(@"([1-9][0-9]*)", ErrorMessage = "Por favor revise los datos ingresados para el campo días de expiración.")]
         [Range(0, Int32.MaxValue, ErrorMessage = "No es un número válido o no está en el rango permitido.")]
         public Nullable<int> MP_ExpiracionDays { get; set; }
 
@@ -247,12 +253,13 @@ namespace SMAWeb.Models
         [Display(Name = "Código de País")]
         public int PA_Id { get; set; }
 
-        [Required]
-        [Display(Name = "Descripción de País")]
+        [Display(Name = "País")]
+        [Required(ErrorMessage="Por favor ingrese el país")]
+        [StringLength(50, ErrorMessage = "Por favor verifique el campo país, sólo se permite nombre de países de hasta 50 dígitos.")]
         public string PA_Descripcion { get; set; }
 
-        [Required]
-        [Display(Name = "Código de Región")]
+        [Required(ErrorMessage= "Por favor seleccione la región")]
+        [Display(Name = "Región")]
         public int REG_Id { get; set; }
 
         public virtual REG_Region REG_Region { get; set; }
@@ -265,7 +272,7 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Región")]
         public int REG_Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor ingrese la descripción de la región.")]
         [Display(Name = "Descripción de Región")]
         public string REG_Descripcion { get; set; }
 
@@ -391,23 +398,20 @@ namespace SMAWeb.Models
 
     public partial class FAQsMetadata
     {
-        public FAQsMetadata()
-        {
-            this.FAQ_Status = 1;
-        }
-
         [Display(Name = "Código de FAQ")]
         public int FAQ_Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor ingrese la pregunta.")]
+        [StringLength(200, ErrorMessage = "Por favor verifique el campo pregunta, sólo se permite una pregunta máxima de 200 dígitos.")]
         [Display(Name = "Pregunta")]
         public string FAQ_Question { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Por favor ingrese la respuesta.")]
+        [StringLength(500, ErrorMessage = "Por favor verifique el campo respuesta, sólo se permite una respuesta máxima de 500 dígitos.")]
         [Display(Name = "Respuesta")]
         public string FAQ_Answer { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Por favor seleccione el estado.")]
         [Display(Name = "Estado")]
         public int FAQ_Status { get; set; }
 

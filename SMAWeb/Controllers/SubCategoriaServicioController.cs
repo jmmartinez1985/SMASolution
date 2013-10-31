@@ -22,12 +22,15 @@ namespace SMAWeb.Controllers
             var sbs_subcategoriaservicio = db.SBS_SubCategoriaServicio.Include(s => s.CD_CategoriaServicio);
             return View(sbs_subcategoriaservicio.ToList());
         }
-        // GET: /SubCategoriaServicio/1
-        public ActionResult Index(int Cat)
-        {
-            var sbs_subcategoriaservicio = db.SBS_SubCategoriaServicio.Include(s => s.CD_CategoriaServicio).Where(c=> c.CD_Id == Cat);
-            return View(sbs_subcategoriaservicio.ToList());
-        }
+
+
+        // Creo que esto está demás no encontré donde se utilizaba y veo que el metodo de abajo hace lo mismo que este...!
+        //// GET: /SubCategoriaServicio/1
+        //public ActionResult Index(int Cat)
+        //{
+        //    var sbs_subcategoriaservicio = db.SBS_SubCategoriaServicio.Include(s => s.CD_CategoriaServicio).Where(c=> c.CD_Id == Cat);
+        //    return View(sbs_subcategoriaservicio.ToList());
+        //}
 
 
         public JsonResult GetSubCategories(int Cat)
@@ -57,8 +60,12 @@ namespace SMAWeb.Controllers
 
         public ActionResult Create()
         {
+
+            SBS_SubCategoriaServicio subCat = new SBS_SubCategoriaServicio();
+            subCat.SBS_Id = 1;
+
             ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion");
-            return View();
+            return View(subCat);
         }
 
         //
@@ -72,10 +79,20 @@ namespace SMAWeb.Controllers
             {
                 db.SBS_SubCategoriaServicio.Add(sbs_subcategoriaservicio);
                 db.SaveChanges();
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(new { wasSuccess = true });
+                }
                 return RedirectToAction("Index");
             }
 
             ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion", sbs_subcategoriaservicio.CD_Id);
+
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { wasSuccess = false });
+            }
+
             return View(sbs_subcategoriaservicio);
         }
 
