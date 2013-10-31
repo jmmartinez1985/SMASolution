@@ -166,10 +166,9 @@
                    url: '@Url.Content("~/HttpHandler/UploadHandler.ashx?id=")' + id,
 
                    success: function (data) {
-                       //jAlert('Recurso borrado satistafactoriamente.');
                        var element = jQuery(".thumbnails").find('li[itemid= ' + id + ' ]');
                        element.remove();
-                       EnableLoader();
+                       EnableLoader(); 
                    },
                    error: function (a, b, c) {
                        alert(a);

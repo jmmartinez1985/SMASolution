@@ -445,7 +445,7 @@ namespace SMAWeb.Controllers
         public ActionResult LoadUplaoder()
         {
             if (Request.IsAjaxRequest())
-                return PartialView("LoadUplaoder");
+                return PartialView("LoadUplaoder"); 
             return View();
         }
 
