@@ -473,6 +473,7 @@
     <Content Include="Images\logo2-blue1.png" />
     <Content Include="Images\natural.png" />
     <Content Include="Images\natural_grey.png" />
+    <Content Include="Images\No_Profile.jpg" />
     <Content Include="Images\shell.png" />
     <Content Include="Images\shell_grey.png" />
     <Content Include="Images\spinworkx.png" />

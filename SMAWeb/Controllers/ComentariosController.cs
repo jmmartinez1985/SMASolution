@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Models;
+using SMAWeb.Extensions;
 
 namespace SMAWeb.Controllers
 {
@@ -57,13 +58,24 @@ namespace SMAWeb.Controllers
         // POST: /Comentarios/Create
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create(CR_ComentarioReview cr_comentarioreview)
         {
             if (ModelState.IsValid)
             {
-                db.CR_ComentarioReview.Add(cr_comentarioreview);
-                db.SaveChanges();
+                bool wasNotApproved = Extensions.ExtensionHelper.NotApproved(cr_comentarioreview.CR_Comentario);
+                if (wasNotApproved)
+                {
+                    cr_comentarioreview.ST_Id = 7;
+                }
+                else
+                    cr_comentarioreview.ST_Id = 1;
+                //db.CR_ComentarioReview.Add(cr_comentarioreview);
+                db.SaveChanges<CR_ComentarioReview>(cr_comentarioreview);
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(new { data = cr_comentarioreview }.SerializeToJson());
+                }
                 return RedirectToAction("Index");
             }
 

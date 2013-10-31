@@ -4,6 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
+<link href="~/Content/FileUpload/jquery.fileupload-ui.css" rel="stylesheet" />
 <br />
 <div class="container">
     <div class="row-fluid margin-bottom-10">
@@ -25,9 +26,17 @@
                     </div>
                 </div>
                 <form action="@Url.Action("UploadFiles", "UserProfile")" method="post" enctype="multipart/form-data">
-                    <input type="file" name="file" id="file" />
+                   
 
-                    <input type="submit" name="submit" value="Cargar" />
+                     <span class="btn btn-success fileinput-button" style="margin-top: 5px;">
+                                <i class="icon-plus icon-white"></i>
+                                <span>Cargar Imagen...</span>
+                                 <input type="file" name="file" id="file" />
+                            </span>
+
+
+
+                    <input type="submit" name="submit" class="btn-u" value="Cargar" />
                 </form>
             </div>
             <div class="span6">

@@ -73,7 +73,7 @@ namespace SMAWeb.Extensions
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     Credentials = new System.Net.NetworkCredential(senderID, senderPassword),
                     Timeout = 30000,
-                    
+
 
                 };
 
@@ -87,6 +87,29 @@ namespace SMAWeb.Extensions
             }
 
             return result;
+        }
+
+        public static bool NotApproved(this string ReviewText)
+        {
+            List<string> wordNotAllowed = new List<string>();
+
+            wordNotAllowed.Add("puto");
+            wordNotAllowed.Add("desgra");
+            wordNotAllowed.Add("puta");
+            wordNotAllowed.Add("desgraciado");
+            wordNotAllowed.Add("desgraciada");
+            wordNotAllowed.Add("estupido");
+            wordNotAllowed.Add("imbesil");
+            wordNotAllowed.Add("aww");
+            wordNotAllowed.Add("maricon");
+            wordNotAllowed.Add("marica");
+            wordNotAllowed.Add("gay");
+            wordNotAllowed.Add("homosexual");
+            wordNotAllowed.Add("motherfucker");
+            wordNotAllowed.Add("mierda");
+            wordNotAllowed.Add("shit");
+            var q = wordNotAllowed.Any(w => ReviewText.Contains(w));
+            return q;
         }
 
     }
