@@ -458,6 +458,7 @@
     <Content Include="Images\cocacola_grey.png" />
     <Content Include="Images\everyday.png" />
     <Content Include="Images\everyday_grey.png" />
+    <Content Include="Images\foto-no-disponible.jpg" />
     <Content Include="Images\gamescast.png" />
     <Content Include="Images\gamescast_grey.png" />
     <Content Include="Images\hp.png" />
