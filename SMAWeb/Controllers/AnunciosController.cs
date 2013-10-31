@@ -294,6 +294,10 @@ namespace SMAWeb.Controllers
         public ActionResult Details(int id = 0)
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
+
+            //Crear query con lazyloading
+
+
             if (an_anuncios == null)
             {
                 return HttpNotFound();
