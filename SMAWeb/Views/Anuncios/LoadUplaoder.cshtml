@@ -193,7 +193,7 @@
                     row.append($('<td><div>' + e.name + '</div><div class="font-gray" style="font-size: 8pt;">' + e.type + '</div></td>'));
 
 
-                    var deleteElement = '<td><button data-name="' + e.name + '" class="btn btn-danger" data-url="' + e.url + '" onclick="DeleteFile(this)" value="Delete"> <i class="icon-trash icon-white"></i></button></td>';
+                    var deleteElement = '<td><button data-name="' + e.name + '" class="btn btn-danger" data-url="' + e.url + '" data-idelement="' + e.IdResource + '"  onclick="DeleteFile(this)" value="Delete"> <i class="icon-trash icon-white"></i></button></td>';
                     row.append($(deleteElement));
 
                     $('#imagesColumns').find('tbody').append(row);
@@ -212,7 +212,7 @@
                     row.append($('<td><div>' + e.name + '</div><div class="font-gray" style="font-size: 8pt;">' + e.type + '</div></td>'));
 
 
-                    var deleteElement = '<td><button data-name="' + e.name + '" class="btn btn-danger" data-url="' + e.url + '" onclick="DeleteFile(this)" value="Delete"> <i class="icon-trash icon-white"></i></button></td>';
+                    var deleteElement = '<td><button data-name="' + e.name + '" class="btn btn-danger" data-url="' + e.url + '" data-idelement="' + e.IdResource + '" onclick="DeleteFile(this)" value="Delete"> <i class="icon-trash icon-white"></i></button></td>';
                     row.append($(deleteElement));
 
                     $('#imagesColumns').find('tbody').append(row);
@@ -222,8 +222,9 @@
 
         function DeleteFile(link) {
             var url = $(link).attr('data-url');
+            var idres = $(link).attr('data-idelement');
             debugger;
-            var urldelete = '@Url.Content("~/HttpHandler/UploadHandler.ashx")' + url;
+            var urldelete = '@Url.Content("~/HttpHandler/UploadHandler.ashx")' + url + "&id=" + idres;
 
             jConfirm('Do you want to delete "' + name + '" resource?', 'Delete resource', function (confirm) {
                 if (confirm) {

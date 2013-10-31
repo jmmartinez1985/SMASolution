@@ -34,24 +34,37 @@
                                             <div id="myCarousel" class="carousel slide">
                                                 <!-- Carousel items -->
                                                 <div class="carousel-inner">
-                                                    <div class="active item" data-slide-number="0">
-                                                        <img src="http://placehold.it/770x300&text=one" />
-                                                    </div>
-                                                    <div class="item" data-slide-number="1">
-                                                        <img src="http://placehold.it/770x300&text=two" />
-                                                    </div>
-                                                    <div class="item" data-slide-number="2">
-                                                        <img src="http://placehold.it/770x300&text=three" />
-                                                    </div>
-                                                    <div class="item" data-slide-number="3">
-                                                        <img src="http://placehold.it/770x300&text=four" />
-                                                    </div>
-                                                    <div class="item" data-slide-number="4">
-                                                        <img src="http://placehold.it/770x300&text=five" />
-                                                    </div>
-                                                    <div class="item" data-slide-number="5">
-                                                        <img src="http://placehold.it/770x300&text=six" />
-                                                    </div>
+
+                                                    @{
+                                                        int counter = 0;
+                                                        if (@Model.AE_AnunciosExtras.Count > 0)
+                                                        {
+                                                            foreach (var item in @Model.AE_AnunciosExtras)
+                                                            {
+                                                                if (counter == 0)
+                                                                {
+                                                        <div class="active item" data-slide-number="@counter">
+                                                            <img src="@Url.Content(item.AN_ImagenUrl)" />
+                                                        </div>
+                                                                }
+                                                                else
+                                                                {
+                                                        <div class="item" data-slide-number="@counter">
+                                                            <img src="@Url.Content(item.AN_ImagenUrl)" />
+                                                        </div>
+                                                                }
+
+                                                                counter++;
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                        <div class="active item" data-slide-number="@counter">
+                                                            <img src="@Url.Content("~/Images/foto-no-disponible.jpg")" />
+                                                        </div>
+                                                        }
+                                                    }
+
                                                 </div>
                                                 <!-- Carousel nav -->
                                                 <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
@@ -66,36 +79,31 @@
                                 <div class="span12">
                                     <!-- Bottom switcher of slider -->
                                     <ul class="thumbnails">
-                                        <li class="span2">
-                                            <a class="thumbnail" id="carousel-selector-0">
-                                                <img src="http://placehold.it/170x100&text=one" />
-                                            </a>
-                                        </li>
-                                        <li class="span2">
-                                            <a class="thumbnail" id="carousel-selector-1">
-                                                <img src="http://placehold.it/170x100&text=two" />
-                                            </a>
-                                        </li>
-                                        <li class="span2">
-                                            <a class="thumbnail" id="carousel-selector-2">
-                                                <img src="http://placehold.it/170x100&text=three" />
-                                            </a>
-                                        </li>
-                                        <li class="span2">
-                                            <a class="thumbnail" id="carousel-selector-3">
-                                                <img src="http://placehold.it/170x100&text=four" />
-                                            </a>
-                                        </li>
-                                        <li class="span2">
-                                            <a class="thumbnail" id="carousel-selector-4">
-                                                <img src="http://placehold.it/170x100&text=five" />
-                                            </a>
-                                        </li>
-                                        <li class="span2">
-                                            <a class="thumbnail" id="carousel-selector-5">
-                                                <img src="http://placehold.it/170x100&text=six" />
-                                            </a>
-                                        </li>
+
+                                        @{
+                                            counter = 0;
+                                            if (@Model.AE_AnunciosExtras.Count > 0)
+                                            {
+                                                foreach (var item in @Model.AE_AnunciosExtras)
+                                                {
+                                            <li class="span3">
+                                                <a class="thumbnail" id="carousel-selector-@counter">
+                                                    <img src="@Url.Content(item.AN_ImagenUrl)" />
+                                                </a>
+                                            </li>
+                                                    counter++;
+                                                }
+                                            }
+                                            else
+                                            {
+                                            <li class="span3">
+                                                <a class="thumbnail" id="carousel-selector-@counter">
+                                                    <img src="@Url.Content("~/Images/foto-no-disponible.jpg")" />
+                                                </a>
+                                            </li>
+                                            }
+                                        }
+
                                     </ul>
                                 </div>
                             </div>
@@ -158,263 +166,161 @@
                 </div>
 
                 <div class="span12">
+                </div>
 
-                   
-@*                        @Html.Action("GetReviewByAnunciosId", "Review", new { AN_Id = @Model.AN_Id });*@
+                @{ int counterreview = 0;}
+                @foreach (var item in ViewBag.ReviewFound as List<SMAWeb.Models.RW_Reviews>)
+                {
+
+                    <div class="accordion acc-home margin-bottom-40" id="accordion2-@counterreview">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2-@counterreview" href="#collapse-@counterreview">@item.RW_Comentario
+                                </a>
+                            </div>
+                            <div id="collapse-@counterreview" class="accordion-body in collapse" style="height: auto;">
+                                <div class="accordion-inner">
+
+                                    <div class="span9">
+
+                                        <div class="span2">
+                                            <a href="#" class="thumbnail">
+                                                <img src="http://placehold.it/100x100" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="span10">
+                                            <p>
+                                                <i class="icon-user"></i>by <a href="#">John</a>
+                                                | <i class="icon-calendar"></i>@item.RW_Fecha
+                                            </p>
+                                            <p>
+                                                @item.RW_Comentario
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="span8 offset1">
+
+
+                                        <div class="margin-bottom-40">
+                                            <div id="testimonials-1" class="carousel slide testimonials testimonials-v1">
+                                                <div class="carousel-inner">
+                                                    @{int commentcounter = 0;}
+                                                    @foreach (var itemcomment in item.CR_ComentarioReview)
+                                                    {
+                                                        if (commentcounter == 0)
+                                                        { 
+                                                        <div class="item active">
+                                                            <p>@itemcomment.CR_Comentario</p>
+                                                            <div class="testimonial-info">
+                                                                <img src="@Url.Content(itemcomment.UserProfile.Image)" alt="">
+                                                                <span class="testimonial-author">@itemcomment.UserProfile.Name
+                                                                    <em>Visitor</em>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        }
+                                                        else
+                                                        {
+                                                        <div class="item">
+                                                            <p>@itemcomment.CR_Comentario</p>
+                                                            <div class="testimonial-info">
+                                                                <img src="@Url.Content(itemcomment.UserProfile.Image)" alt="">
+                                                                <span class="testimonial-author">@itemcomment.UserProfile.Name
+                                                                    <em>Visitor</em>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        }
+                                                        commentcounter++;
+                                                    }
+
+                                                </div>
+
+                                                <div class="carousel-arrow">
+                                                    <a class="left carousel-control" href="#testimonials-1" data-slide="prev">
+                                                        <i class="icon-angle-left"></i>
+                                                    </a>
+                                                    <a class="right carousel-control" href="#testimonials-1" data-slide="next">
+                                                        <i class="icon-angle-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="span8 offset1 margin-bottom-20">
+
+                                        @Html.TextArea("Comentario", new { @placeholder = "Agregar Comentario", @class = "input-block-level", @rows = "2" })
+
+                                        <input type="submit" onclick="PostComment(this)" data-val="@item.RW_Id" value="Comentar" class="btn-u pull-right btn-xlarge" />
+                                        <br />
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                     
-                </div>
+                    
+                    
+
+                                                    counterreview++;
+                }
 
 
-
-
-<div class="accordion acc-home margin-bottom-40" id="accordion2">
-                <div class="accordion-group">
-                  <div class="accordion-heading">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                      Anim pariatur cliche reprehenderit bird on it squid single-origin
-                    </a>
-                  </div>
-                  <div id="collapseOne" class="accordion-body in collapse" style="height: auto;">
-                    <div class="accordion-inner">
-
-
-
-                        
-        <div class="span9">
-            
-                <div class="span2">
-                    <a href="#" class="thumbnail">
-                        <img src="http://placehold.it/100x100" alt="">
-                    </a>
-                </div>
-                <div class="span10">
-                    <p>
-                        <i class="icon-user"></i>by <a href="#">John</a>
-                        | <i class="icon-calendar"></i>Sept 16th, 2012
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari conclusionemque, ad nobis propriae quaerendum sea.
-                    </p>
-
-                </div>
-            
-        </div>
-    
-        <div class="span8 offset1">
-            
-
-                <div class="margin-bottom-40">
-                    <div id="testimonials-1" class="carousel slide testimonials testimonials-v1">
-                        <div class="carousel-inner">
-                            <div class="item">
-                                <p>Crasjusto ducimus qui cupiditate non provident, similique sunt in culpaid est anditiis praesentium praesentium blanditiis praesentium non provident, similique sunt in culpaid est anditiis praesentium praesentium..</p>
-                                <div class="testimonial-info">
-                                    <img src="assets/img/testimonials/img1.jpg" alt="">
-                                    <span class="testimonial-author">Jeremy Asigner 
-                                    <em>Web Developer, Unify Theme.</em>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <p>Crasjusto ducimus qui cupiditate non provident, similique sunt in culpaid est anditiis praesentium praesentium blanditiis praesentium non provident, similique sunt in culpaid est anditiis praesentium praesentium..</p>
-                                <div class="testimonial-info">
-                                    <img src="assets/img/testimonials/user.jpg" alt="">
-                                    <span class="testimonial-author">User 
-                                    <em>Java Developer, Htmlstream</em>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="item active">
-                                <p>Crasjusto ducimus qui cupiditate non provident, similique sunt in culpaid est anditiis praesentium praesentium blanditiis praesentium non provident, similique sunt in culpaid est anditiis praesentium praesentium..</p>
-                                <div class="testimonial-info">
-                                    <img src="assets/img/testimonials/img2.jpg" alt="">
-                                    <span class="testimonial-author">Kate Davenport 
-                                    <em>Web Designer, Google Inc.</em>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="carousel-arrow">
-                            <a class="left carousel-control" href="#testimonials-1" data-slide="prev">
-                                <i class="icon-angle-left"></i>
-                            </a>
-                            <a class="right carousel-control" href="#testimonials-1" data-slide="next">
-                                <i class="icon-angle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            
-        </div>
-    
-        <div class="span8 offset1 margin-bottom-20">
-            
-                @Html.TextArea("Comentario", new { @placeholder = "Agregar Comentario", @class = "input-block-level", @rows = "2" })
-                <input type="submit" value="Comentar" class="btn-u pull-right btn-xlarge" />
-           <br /> 
-        </div>
-
-
-                      
-                    </div>
-                  </div>
-                </div><!--/accordion-group-->
-                <div class="accordion-group">
-                  <div class="accordion-heading">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                      Nihil anim keffiyeh helvetica accusamus labore sustainable VHS
-                    </a>
-                  </div>
-                  <div id="collapseTwo" class="accordion-body collapse" style="height: 0px;">
-                    <div class="accordion-inner">
-                     
-
-
-                        
-        <div class="span9">
-            
-                <div class="span2">
-                    <a href="#" class="thumbnail">
-                        <img src="http://placehold.it/100x100" alt="">
-                    </a>
-                </div>
-                <div class="span10">
-                    <p>
-                        <i class="icon-user"></i>by <a href="#">John</a>
-                        | <i class="icon-calendar"></i>Sept 16th, 2012
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari conclusionemque, ad nobis propriae quaerendum sea.
-                    </p>
-
-                </div>
-            
-        </div>
-    
-        <div class="span8 offset1">
-            
-
-                <div class="margin-bottom-40">
-                    <div id="testimonials-1" class="carousel slide testimonials testimonials-v1">
-                        <div class="carousel-inner">
-                            <div class="item">
-                                <p>Crasjusto ducimus qui cupiditate non provident, similique sunt in culpaid est anditiis praesentium praesentium blanditiis praesentium non provident, similique sunt in culpaid est anditiis praesentium praesentium..</p>
-                                <div class="testimonial-info">
-                                    <img src="assets/img/testimonials/img1.jpg" alt="">
-                                    <span class="testimonial-author">Jeremy Asigner 
-                                    <em>Web Developer, Unify Theme.</em>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <p>Crasjusto ducimus qui cupiditate non provident, similique sunt in culpaid est anditiis praesentium praesentium blanditiis praesentium non provident, similique sunt in culpaid est anditiis praesentium praesentium..</p>
-                                <div class="testimonial-info">
-                                    <img src="assets/img/testimonials/user.jpg" alt="">
-                                    <span class="testimonial-author">User 
-                                    <em>Java Developer, Htmlstream</em>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="item active">
-                                <p>Crasjusto ducimus qui cupiditate non provident, similique sunt in culpaid est anditiis praesentium praesentium blanditiis praesentium non provident, similique sunt in culpaid est anditiis praesentium praesentium..</p>
-                                <div class="testimonial-info">
-                                    <img src="assets/img/testimonials/img2.jpg" alt="">
-                                    <span class="testimonial-author">Kate Davenport 
-                                    <em>Web Designer, Google Inc.</em>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="carousel-arrow">
-                            <a class="left carousel-control" href="#testimonials-1" data-slide="prev">
-                                <i class="icon-angle-left"></i>
-                            </a>
-                            <a class="right carousel-control" href="#testimonials-1" data-slide="next">
-                                <i class="icon-angle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            
-        </div>
-    
-        <div class="span8 offset1 margin-bottom-20">
-            
-                @Html.TextArea("Comentario", new { @placeholder = "Agregar Comentario", @class = "input-block-level", @rows = "2" })
-                <input type="submit" value="Comentar" class="btn-u pull-right btn-xlarge" />
-            <br />
-        </div>
-
-
-
-                    </div>
-                  </div>
-                </div><!--/accordion-group-->
+                <p class="message">
+                    <a href="@Url.Action("Index", "Home")">Volver</a>
+                </p>
             </div>
-                
-    
-
-            </div>
-
-
-
-           
-
-
-
-
-
-
-            <p class="message">
-                <a href="@Url.Action("Index", "Home")">Volver</a>
-            </p>
         </div>
     </div>
-</div>
-<script>
-    jQuery(document).ready(function ($) {
+    <script>
+        jQuery(document).ready(function ($) {
 
-        $('#myCarousel').carousel({
-            interval: 5000
+            $('#myCarousel').carousel({
+                interval: 5000
+            });
+
+            $('#carousel-text').html($('#slide-content-0').html());
+
+            //Handles the carousel thumbnails
+            $('[id^=carousel-selector-]').click(function () {
+                var id_selector = $(this).attr("id");
+                var id = id_selector.substr(id_selector.length - 1);
+                var id = parseInt(id);
+                $('#myCarousel').carousel(id);
+            });
+
+
+            // When the carousel slides, auto update the text
+            $('#myCarousel').on('slid', function (e) {
+                var id = $('.item.active').data('slide-number');
+                $('#carousel-text').html($('#slide-content-' + id).html());
+            });
+
+
         });
 
-        $('#carousel-text').html($('#slide-content-0').html());
-
-        //Handles the carousel thumbnails
-        $('[id^=carousel-selector-]').click(function () {
-            var id_selector = $(this).attr("id");
-            var id = id_selector.substr(id_selector.length - 1);
-            var id = parseInt(id);
-            $('#myCarousel').carousel(id);
-        });
-
-
-        // When the carousel slides, auto update the text
-        $('#myCarousel').on('slid', function (e) {
-            var id = $('.item.active').data('slide-number');
-            $('#carousel-text').html($('#slide-content-' + id).html());
-        });
-
-
-    });
-
-    function TakeService() {
-        debugger;
-        var data = new FormData();
-        data.append("Anuncio", $('#AN_Id').val());
-        $.ajax({
-            url: '@Url.Action("TakeService", "SolicitudServicio")',
+        function TakeService() {
+            debugger;
+            var data = new FormData();
+            data.append("Anuncio", $('#AN_Id').val());
+            $.ajax({
+                url: '@Url.Action("TakeService", "SolicitudServicio")',
             type: 'post',
             data: data,
             cache: false,
             contentType: false,
             processData: false,
             beforeSend: function () {
-                showProgress('../images/loading.gif');
+                showProgress('@Url.Content("~/images/loading.gif")');
             },
             complete: function (data) {
                 hideProgress();
@@ -451,4 +357,35 @@
     function hideProgress() {
         $ki.unblockUI();
     }
-</script>
+
+
+    function PostComment(link) {
+        var review = $(link).attr('data-val');
+        var comment = {
+            "UserId": '@WebSecurity.CurrentUserId',
+            "CR_Comentario": $('#Comentario').val(),
+            "RW_Id": review
+        };
+
+        var jsonSerialized = JSON.stringify(comment);
+        $.ajax({
+            url: '@Url.Action("Create", "Comentarios")',
+            type: 'post',
+            data: jsonSerialized,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            beforeSend: function () {
+                showProgress('@Url.Content("~/images/loading.gif")');
+            },
+            complete: function (data) {
+                hideProgress();
+            },
+            success: function (data) {
+                jAlert('Comentario publicado.');
+            },
+            error: function (xhr) {
+                alert(xhr.responseText, 'An error has ocurred');
+            }
+        });
+    }
+    </script>

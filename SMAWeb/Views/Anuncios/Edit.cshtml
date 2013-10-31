@@ -158,40 +158,40 @@
 
 <script>
     function DeleteRecurso(id) {
-        jConfirm('Desea borrar el recurso?', 'Borrar recurso existente', function (confirmed) {
-            if (confirmed) {
-                jQuery.ajax(
-               {
-                   type: 'POST',
-                   url: '@Url.Content("~/HttpHandler/UploadHandler.ashx?id=")' + id,
+        //jConfirm('Desea borrar el recurso?', 'Borrar recurso existente', function (confirmed) {
+        //    if (confirmed) {
+        jQuery.ajax(
+       {
+           type: 'POST',
+           url: '@Url.Content("~/HttpHandler/UploadHandler.ashx?id=")' + id,
 
                    success: function (data) {
                        var element = jQuery(".thumbnails").find('li[itemid= ' + id + ' ]');
                        element.remove();
-                       EnableLoader(); 
+                       EnableLoader();
                    },
                    error: function (a, b, c) {
                        alert(a);
                    }
                });
            }
-        });
-   }
+           //     });
+           //}
 
 
-   function EnableLoader() {
-       jQuery.ajax(
-             {
-                 type: 'GET',
-                 url: '@Url.Action("LoadUplaoder","Anuncios")',
+           function EnableLoader() {
+               jQuery.ajax(
+                     {
+                         type: 'GET',
+                         url: '@Url.Action("LoadUplaoder", "Anuncios")',
 
-                  success: function (data) {
-                      jQuery('.divLoader').html(data);
-                  },
-                  error: function (a, b, c) {
-                      alert(a);
-                  }
-              });
-          }
+                 success: function (data) {
+                     jQuery('.divLoader').html(data);
+                 },
+                 error: function (a, b, c) {
+                     alert(a);
+                 }
+             });
+         }
 
 </script>

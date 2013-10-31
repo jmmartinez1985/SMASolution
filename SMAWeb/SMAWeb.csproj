@@ -458,6 +458,7 @@
     <Content Include="Images\cocacola_grey.png" />
     <Content Include="Images\everyday.png" />
     <Content Include="Images\everyday_grey.png" />
+    <Content Include="Images\foto-no-disponible.jpg" />
     <Content Include="Images\gamescast.png" />
     <Content Include="Images\gamescast_grey.png" />
     <Content Include="Images\hp.png" />
@@ -472,6 +473,7 @@
     <Content Include="Images\logo2-blue1.png" />
     <Content Include="Images\natural.png" />
     <Content Include="Images\natural_grey.png" />
+    <Content Include="Images\No_Profile.jpg" />
     <Content Include="Images\shell.png" />
     <Content Include="Images\shell_grey.png" />
     <Content Include="Images\spinworkx.png" />

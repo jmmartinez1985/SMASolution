@@ -82,7 +82,7 @@ namespace SMAWeb.Controllers
                 {
                     using (TransactionScope tr = new TransactionScope())
                     {
-                        wasNotApproved = NotApproved(rw_reviews.RW_Comentario);
+                        wasNotApproved = Extensions.ExtensionHelper.NotApproved(rw_reviews.RW_Comentario);
                         if (wasNotApproved)
                         {
                             rw_reviews.ST_Id = 7;
@@ -106,29 +106,7 @@ namespace SMAWeb.Controllers
         }
 
 
-        [NonAction]
-        private bool NotApproved(string ReviewText)
-        {
-            List<string> wordNotAllowed = new List<string>();
-
-            wordNotAllowed.Add("puto");
-            wordNotAllowed.Add("desgra");
-            wordNotAllowed.Add("puta");
-            wordNotAllowed.Add("desgraciado");
-            wordNotAllowed.Add("desgraciada");
-            wordNotAllowed.Add("estupido");
-            wordNotAllowed.Add("imbesil");
-            wordNotAllowed.Add("aww");
-            wordNotAllowed.Add("maricon");
-            wordNotAllowed.Add("marica");
-            wordNotAllowed.Add("gay");
-            wordNotAllowed.Add("homosexual");
-            wordNotAllowed.Add("motherfucker");
-            wordNotAllowed.Add("mierda");
-            wordNotAllowed.Add("shit");
-            var q = wordNotAllowed.Any(w => ReviewText.Contains(w));
-            return q;
-        }
+      
 
 
         public ActionResult ReviewSubmitted()

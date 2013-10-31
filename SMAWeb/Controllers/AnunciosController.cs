@@ -138,7 +138,10 @@ namespace SMAWeb.Controllers
 
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult GetLastAnuncios()
         {
             //var an_anuncios = db.AN_Anuncios.Include(a => a.SBS_SubCategoriaServicio).
@@ -150,27 +153,27 @@ namespace SMAWeb.Controllers
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
             using (Entities model = new Entities())
             {
-                allAnunciosList = model.AN_Anuncios.OrderByDescending(day => day.AN_Fecha).Where(acc => acc.ST_Id == 1 & (acc.UserProfile.Image != null )).Take(3).ToList();
+                allAnunciosList = model.AN_Anuncios.OrderByDescending(day => day.AN_Fecha).Where(acc => acc.ST_Id == 1 & (acc.UserProfile.Image != null)).Take(3).ToList();
                 //allAnunciosList = model.AN_Anuncios.OrderByDescending(day => day.AN_Fecha).Where(acc => acc.ST_Id == 1).Take(3).ToList();
 
-                var categoriasList = new List<Categoria>();
-                db.CD_CategoriaServicio.ToList().ForEach(c =>
-                {
-                    var subCatList = new List<SubCategorias>();
+                //var categoriasList = new List<Categoria>();
+                //db.CD_CategoriaServicio.ToList().ForEach(c =>
+                //{
+                //    var subCatList = new List<SubCategorias>();
 
-                    c.SBS_SubCategoriaServicio.ToList().ForEach(sb =>
-                    {
-                        subCatList.Add(new SubCategorias { SubCatId = sb.SBS_Id, SubCatDesc = sb.SBS_Descripcion });
-                    });
-                    categoriasList.Add(new Categoria
-                    {
-                        CatId = c.CD_Id,
-                        CatDesc = c.CD_Descripcion,
-                        SubCatCollection = subCatList
-                    });
-                });
+                //    c.SBS_SubCategoriaServicio.ToList().ForEach(sb =>
+                //    {
+                //        subCatList.Add(new SubCategorias { SubCatId = sb.SBS_Id, SubCatDesc = sb.SBS_Descripcion });
+                //    });
+                //    categoriasList.Add(new Categoria
+                //    {
+                //        CatId = c.CD_Id,
+                //        CatDesc = c.CD_Descripcion,
+                //        SubCatCollection = subCatList
+                //    });
+                //});
 
-                ViewBag.Categories = categoriasList;
+                //ViewBag.Categories = categoriasList;
 
                 foreach (var item in allAnunciosList)
                 {
@@ -221,12 +224,8 @@ namespace SMAWeb.Controllers
 
         }
 
-
-
         //
         // GET: /Anuncios/Details/5
-
-
         public ActionResult GetInformationAnuncios(FormCollection form)
         {
             var allAnunciosList = new List<AN_Anuncios>();
@@ -294,10 +293,14 @@ namespace SMAWeb.Controllers
         public ActionResult Details(int id = 0)
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
+            var ListReview = new List<RW_Reviews>();
+            an_anuncios.SS_SolicitudServicio.ToList().ForEach(
+                an =>
+                { 
+                    ListReview.AddRange(an.RW_Reviews);
+                });
 
-            //Crear query con lazyloading
-
-
+            ViewBag.ReviewFound = ListReview;
             if (an_anuncios == null)
             {
                 return HttpNotFound();
@@ -445,7 +448,7 @@ namespace SMAWeb.Controllers
         public ActionResult LoadUplaoder()
         {
             if (Request.IsAjaxRequest())
-                return PartialView("LoadUplaoder"); 
+                return PartialView("LoadUplaoder");
             return View();
         }
 
