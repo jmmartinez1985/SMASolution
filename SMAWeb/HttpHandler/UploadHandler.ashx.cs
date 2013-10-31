@@ -141,7 +141,7 @@ namespace SMAWeb.HttpHandler
 
             WriteJsonIframeSafe(context, statuses);
         }
-
+         
         // Upload partial file
         private void UploadPartialFile(string fileName, HttpContext context, List<FilesStatus> statuses)
         {

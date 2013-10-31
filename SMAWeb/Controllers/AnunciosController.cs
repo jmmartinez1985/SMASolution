@@ -435,7 +435,7 @@ namespace SMAWeb.Controllers
             an_anuncios.ST_Id = 2;
             db.Entry(an_anuncios).State = EntityState.Modified;
             db.SaveChanges();
-            if (Request.IsAjaxRequest())
+            if (Request.IsAjaxRequest()) 
             {
                 return Json(new { redirectToUrl = Url.Action("GetAnunciosByUser", "Anuncios") });
             }
