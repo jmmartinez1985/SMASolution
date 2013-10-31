@@ -10,6 +10,7 @@ using System.Web.WebPages.Html;
 using System.Web.Mvc;
 using System.Web.SessionState;
 using System.Transactions;
+using SMAWeb.Extensions;
 
 namespace SMAWeb.HttpHandler
 {
@@ -55,8 +56,6 @@ namespace SMAWeb.HttpHandler
         private void HandleMethod(HttpContext context)
         {
 
-
-
             switch (context.Request.HttpMethod)
             {
                 case "HEAD":
@@ -67,7 +66,12 @@ namespace SMAWeb.HttpHandler
 
                 case "POST":
                 case "PUT":
-                    UploadFile(context);
+                    if (context.Request["id"] != null | context.Request["f"] != null)
+                    {
+                        DeleteFile(context);
+                    }
+                    else
+                        UploadFile(context);
                     break;
 
                 case "DELETE":
@@ -94,12 +98,30 @@ namespace SMAWeb.HttpHandler
         // Delete file from the server
         private void DeleteFile(HttpContext context)
         {
-            var filePath = StorageRoot + context.Request["f"];
-            if (File.Exists(filePath))
-            {
-                File.Delete(filePath);
-            }
 
+            if (context.Request["id"] != null)
+            {
+                using (var db = new Entities())
+                {
+                    var extra = db.AE_AnunciosExtras.Find(int.Parse(context.Request["id"].ToString()));
+                    var currentPath = ExtraRoot + extra.AN_Id + @"\" + extra.AN_Nombre;
+                    if (File.Exists(currentPath))
+                    {
+                        File.Delete(currentPath);
+                    }
+                    db.AE_AnunciosExtras.Remove(extra);
+                    db.SaveChanges();
+
+                }
+            }
+            else
+            {
+                var filePath = System.Web.HttpContext.Current.Server.MapPath(context.Request["f"]);
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+            }
         }
 
         // Upload file to the server
@@ -151,25 +173,28 @@ namespace SMAWeb.HttpHandler
                 var file = context.Request.Files[i];
                 var path = string.Empty;
 
+                var currentPath = string.Empty;
+
                 if (HttpContext.Current.Session["Anuncio"] != null)
                 {
-                    StorageRoot = ExtraRoot + HttpContext.Current.Session["Anuncio"];
-                    path = System.Configuration.ConfigurationManager.AppSettings["FilesUploaded"].ToString() + HttpContext.Current.Session["Anuncio"] + Path.GetFileName(file.FileName);
+                    currentPath = ExtraRoot + HttpContext.Current.Session["Anuncio"] + "/";
+                    path = System.Configuration.ConfigurationManager.AppSettings["ContenidoMultimedia"].ToString() + HttpContext.Current.Session["Anuncio"] + @"/" + Path.GetFileName(file.FileName);
 
                 }
-                if (HttpContext.Current.Session["AdminResource"] != null)
+                else if (HttpContext.Current.Session["AdminResource"] != null)
                 {
-                    StorageRoot = string.Format(ExtraRoot + "Admin/");
-                    path = System.Configuration.ConfigurationManager.AppSettings["ContenidoMultimedia"].ToString() + "Admin/" + Path.GetFileName(file.FileName);
+                    currentPath = string.Format(ExtraRoot + "Admin/");
+                    path = System.Configuration.ConfigurationManager.AppSettings["FilesUploaded"].ToString() + "Admin/" + Path.GetFileName(file.FileName);
                 }
 
-                if (HttpContext.Current.Session["Anuncio"] == null || HttpContext.Current.Session["AdminResource"] == null)
+                else if(HttpContext.Current.Session["Anuncio"] == null | HttpContext.Current.Session["AdminResource"] == null)
                 {
+                    currentPath = StorageRoot;
                     path = System.Configuration.ConfigurationManager.AppSettings["FilesUploaded"].ToString() + Path.GetFileName(file.FileName);
                 }
 
 
-                var fullPath = StorageRoot + Path.GetFileName(file.FileName);
+                var fullPath = currentPath + Path.GetFileName(file.FileName);
 
                 file.SaveAs(fullPath);
 
@@ -177,9 +202,11 @@ namespace SMAWeb.HttpHandler
 
                 statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath, path));
 
-                if (HttpContext.Current.Session["Anuncio"] != null)
-                    SaveContent(statuses);
+               
             }
+
+            if (HttpContext.Current.Session["Anuncio"] != null)
+                SaveContent(statuses);
         }
 
         private void SaveContent(List<FilesStatus> files)
@@ -205,7 +232,6 @@ namespace SMAWeb.HttpHandler
 
         }
 
-
         private void WriteJsonIframeSafe(HttpContext context, List<FilesStatus> statuses)
         {
             context.Response.AddHeader("Vary", "Accept");
@@ -221,7 +247,7 @@ namespace SMAWeb.HttpHandler
                 context.Response.ContentType = "text/plain";
             }
 
-            var jsonObj = js.Serialize(statuses.ToArray());
+            var jsonObj = statuses.SerializeToJson();
             context.Response.Write(jsonObj);
         }
 

@@ -154,24 +154,6 @@
     jQuery(document).ready(function () {
         $('.submitback').hide();
     });
-    jQuery(".start").click(function (e) {
-        alert('Hi');
-        debugger;
-        jQuery.ajax({
-            url: '@Url.Content("~/HttpHandler/UploadHandler.ashx")' + '?anuncio= ' + ' @ViewBag.AnuncioId',
-            type: 'POST',
-            dataType: "json",
-            cache: false,
-            success: function (data, textStatus, jqXHR) {
-                alert('was success');
-
-
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-
-            }
-        });
-    });
 
     function Success() {
         $("#content").prepend(' <br /> <br /><div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Recursos! </strong> El anuncio esta habilitado para subir sus recursos.</div>');

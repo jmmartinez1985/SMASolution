@@ -35,11 +35,11 @@ namespace SMAWeb.HttpHandler
         private void SetValues(string fileName, int fileLength, string fullPath, string NewPath)
         {
             name = fileName;
-            type = "image/png";
+            type = System.Web.MimeMapping.GetMimeMapping(fileName);
             size = fileLength;
             progress = "1.0";
-            url = HandlerPath + "UploadHandler.ashx?f=" + fileName;
-            delete_url = HandlerPath + "UploadHandler.ashx?f=" + fileName;
+            url = "?f=" + NewPath;
+            delete_url = HandlerPath + "UploadHandler.ashx?f=" + NewPath;
             delete_type = "DELETE";
             UrlPath = NewPath;
 

@@ -1,137 +1,7 @@
-﻿@*<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<link href="@Url.Content("~/Content/FileUpload/blueimp-gallery.min.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/FileUpload/demo.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/FileUpload/jquery-ui.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/FileUpload/jquery.fileupload-ui.css")" rel="stylesheet" />
-<form id="fileupload" action="~/HttpHandler/UploadHandler.ashx" method="POST" enctype="multipart/form-data">
-    <!-- Redirect browsers with JavaScript disabled to the origin page -->
-    <noscript>
-        <input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/">
-    </noscript>
-    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-    <div class="fileupload-buttonbar">
-        <div class="fileupload-buttons">
-            <!-- The fileinput-button span is used to style the file input field as button -->
-            <span class="fileinput-button">
-                <span>Add files...</span> 
-                <input type="file" name="files[]" id="FilesUploaded" multiple>
-            </span>
-            <button type="submit" class="start">Start upload</button>
-            <button type="reset" class="cancel">Cancel upload</button>
-            <button type="button" class="delete">Delete</button>
-            <input type="checkbox" class="toggle">
-            <!-- The loading indicator is shown during file processing -->
-            <span class="fileupload-loading"></span>
-        </div>
-        <!-- The global progress information -->
-        <div class="fileupload-progress fade" style="display: none">
-            <!-- The global progress bar -->
-            <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-            <!-- The extended global progress information -->
-            <div class="progress-extended">&nbsp;</div>
-        </div>
-    </div>
-    <!-- The table listing the files available for upload/download -->
-    <table role="presentation">
-        <tbody class="files"></tbody>
-    </table>
-</form>
-
-<script id="template-upload" type="text/x-tmpl">
-{% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-upload fade" style="display:none">
-        <td>
-            <span class="preview"></span>
-        </td>
-        <td>
-            <p class="name">{%=file.name%}</p>
-            {% if (file.error) { %}
-                <div><span class="error">Error:</span> {%=file.error%}</div>
-            {% } %}
-        </td>
-        <td>
-            <p class="size">{%=o.formatFileSize(file.size)%}</p>
-            {% if (!o.files.error) { %}
-                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
-            {% } %}
-        </td>
-        <td>
-            {% if (!o.files.error && !i && !o.options.autoUpload) { %}
-                <button class="start">Start</button>
-            {% } %}
-            {% if (!i) { %}
-                <button class="cancel">Cancel</button>
-            {% } %}
-        </td>
-    </tr>
-{% } %}
-</script>
-<!-- The template to display files available for download -->
-<script id="template-download" type="text/x-tmpl">
-{% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-download fade" style="display:none">
-        <td>
-            <span class="preview">
-                {% if (file.thumbnailUrl) { %}
-                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
-                {% } %}
-            </span>
-        </td>
-        <td>
-            <p class="name">
-                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-            </p>
-            {% if (file.error) { %}
-                <div><span class="error">Error</span> {%=file.error%}</div>
-            {% } %}
-        </td>
-        <td>
-            <span class="size">{%=o.formatFileSize(file.size)%}</span>
-        </td>
-        <td>
-            <button class="delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>Delete</button>
-            <input type="checkbox" name="delete" value="1" class="toggle">
-        </td>
-    </tr>
-{% } %}
-</script>
-
-<script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")"></script>
-<script src="@Url.Content("~/Scripts/FileUpload/jquery-ui.min.js")"></script>
-<script src="@Url.Content("~/Scripts/FileUpload/bootstrap.min.js")"></script>
-<!-- The Templates plugin is included to render the upload/download listings -->
-<script src="@Url.Content("~/Scripts/FileUpload/tmpl.min.js")"></script>
-<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-<script src="@Url.Content("~/Scripts/FileUpload/load-image.min.js")"></script>
-<!-- The Canvas to Blob plugin is included for image resizing functionality -->
-<script src="@Url.Content("~/Scripts/FileUpload/canvas-to-blob.min.js")"></script>
-<!-- blueimp Gallery script -->
-<script src="@Url.Content("~/Scripts/FileUpload/jquery.blueimp-gallery.min.js")"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<script src="@Url.Content("~/Scripts/FileUpload/jquery.iframe-transport.js")"></script>
-<!-- The basic File Upload plugin -->
-<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload.js")"></script>
-<!-- The File Upload processing plugin -->
-<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-process.js")"></script>
-<!-- The File Upload image preview & resize plugin -->
-<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-image.js")"></script>
-<!-- The File Upload audio preview plugin -->
-<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-audio.js")"></script>
-<!-- The File Upload video preview plugin -->
-<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-video.js")"></script>
-<!-- The File Upload validation plugin -->
-<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-validate.js")"></script>
-<!-- The File Upload user interface plugin -->
-<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-ui.js")"></script>
-<!-- The File Upload jQuery UI plugin -->
-<script src="@Url.Content("~/Scripts/FileUpload/jquery.fileupload-jquery-ui.js")"></script>
-<!-- The main application script -->
-<script src="@Url.Content("~/Scripts/FileUpload/main.js")"></script>
-*@
-
-
-
+﻿<script src="~/Scripts/jquery.filedrop.js"></script>
 <link href="~/Content/FileUpload/jquery.fileupload-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+@*<link href="~/Content/FileUpload/jquery.fileupload-ui.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.8.2.min.js"></script>
 <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
 <script src="~/Scripts/FileUpload/canvas-to-blob.min.js"></script>
@@ -146,15 +16,8 @@
 <script src="~/Scripts/FileUpload/jquery.fileupload-ui.js"></script>
 <script src="~/Scripts/FileUpload/locale.js"></script>
 <script src="~/Scripts/FileUpload/main.js"></script>
-@*<script src="~/Scripts/FileUpload/jquery.fileupload-audio.js"></script>
-<script src="~/Scripts/FileUpload/jquery.fileupload-validate.js"></script>
-<script src="~/Scripts/FileUpload/jquery.fileupload-process.js"></script>
-<script src="~/Scripts/FileUpload/jquery.fileupload-image.js"></script>
-<script src="~/Scripts/FileUpload/jquery.fileupload-video.js"></script>*@
 
 
-<br />
-<br />
 <br />
 
 <div class="headline">
@@ -296,4 +159,349 @@
 {% } %}
 </script>
 
+*@
 
+
+
+@*<div id="connectionContainer">
+    <div id="connectionContent">*@
+
+
+<div class="headline">
+    <h3>Carga de Archivos</h3>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+
+        <div style="display: table; width: 670px; margin-top: 10px;">
+            <div style="display: table-cell; padding-left: 20px; width: 275px; vertical-align: top;">
+                <form id="fileupload" method="POST" enctype="multipart/form-data">
+                    <div><b>Paso a Seguir:</b></div>
+                    <br />
+                    <ol>
+                        <li>
+                            @*<span class="btn btn-success fileinput-button">
+                                <i class="icon-plus icon-white"></i>
+                                <input type="file" name="files[]" id="filecontrol" multiple>
+                            </span>*@
+
+                            <span class="btn btn-success fileinput-button" style="margin-top: 5px;">
+                                <i class="icon-plus icon-white"></i>
+                                <span>Subir imagenes...</span>
+                                <input type="file" name="files[]" id="filecontrol" multiple>
+                            </span>
+                        </li>
+                        <br />
+                        <li>
+                            <button type="submit" class="btn-u btn-primary start">
+                                <i class="icon-upload icon-white"></i>
+                                <span>Start upload</span>
+                            </button>
+                        </li>
+                    </ol>
+                </form>
+            </div>
+            @*   <div style="display: table-cell; width: 100px; text-align: center; vertical-align: middle;">- OR -</div>
+            <div style="display: table-cell; width: 275px;">
+                <div id="dropzone" style='border: 3px dashed #ccc; width: 150px; height: 80px; margin: 0px auto; text-align: center; display: block'>
+                    <p style="padding: 10px 10px; text-align: center">Drag & drop files here</p>
+                </div>
+            </div>*@
+        </div>
+
+        <div id="imagesResult">
+            <table id="imagesColumns" class="table" style="width: 655px">
+                <thead>
+                    @*  <tr>
+                        <th style="text-align: center; width: 120px;">Preview</th>
+                        <th style="text-align: center; width: 435px;">Resource name</th>
+                        <th></th>
+                    </tr>*@
+                </thead>
+                <tbody>
+
+                    @*   @foreach (var record in @Model)
+                {
+                    <tr>
+                        <td style="padding: 5px 0px;">
+                            <img class="imgPreview" src="@Url.Content(record.Url)" width="50" height="50"/>
+                        </td>
+                        <td>
+                            <div>@record.Name</div>
+                            <div class="font-gray" style="font-size: 8pt;">@record.ContentType</div>
+                        </td>
+                        <td><a data-name="@record.Name" data-url="@record.VirtualPathFile" onclick="DeleteFile(this)"><span class="ui-button-icon-primary ui-icon-dialog ui-icon-delete"></span></a></td>
+                    </tr>
+                }
+
+                @if (@Model.Count() == 0) {
+                    <tr id="imagesColumns_tr_empty">
+                        <td colspan="3" style="text-align: center;">No resources</td>
+                    </tr>
+                }*@
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+@*    </div>
+</div>*@
+
+<script>
+    var url_handler = '@Url.Content("~/HttpHandler/UploadHandler.ashx")';
+    var dropbox = $('#dropzone')
+    dropbox.filedrop({
+        // The name of the $_FILES entry:
+        paramname: 'pic',
+        maxfiles: 4,
+        maxfilesize: 20,
+        url: url_handler,
+        uploadFinished: function (i, file, response, size, targetdiv) {
+            debugger;
+            $('#imagesColumns_tr_empty').remove();
+            LoadNewFilesDrop(response, file.name);
+            hideProgress();
+        },
+        error: function (err, file) {
+            switch (err) {
+                case 'BrowserNotSupported':
+                    showMessage('Your browser does not support HTML5 file uploads!');
+                    break;
+                case 'TooManyFiles':
+                    alert('Too many files! Please select 5 at most!');
+                    break;
+                case 'FileTooLarge':
+                    alert(file.name + ' is too large! Please upload files up to 5mb.');
+                    break;
+                default:
+                    break;
+            }
+            hideProgress();
+        },
+        // Called before each upload is started
+        beforeEach: function (file) {
+            var ext = file.name.split('.').pop().toLowerCase()
+            var typeArr = ['jpg', 'jpeg', 'gif', 'png', 'pdf', 'doc', 'docx', 'ppt', 'pptx', 'mp3', 'mp4', 'mpeg', 'kml'];
+            if (jQuery.inArray(ext, typeArr) == -1) {
+                jAlert('Invalid file type. Please, choose a valid type (ex. "jpg", "jpeg", "gif", "png", "pdf", "doc", "docx", "ppt", "pptx")');
+                return false;
+            }
+        },
+        uploadStarted: function (i, file, len) {
+            // createImage(file);
+            showProgress('@Url.Content("~/images/loading.gif")');
+        },
+    });
+
+        $(document).ready(function () {
+
+            $('#fileupload').submit(function (e) {
+                debugger;
+                var lenght = jQuery(".thumbnails").find('li[itemid]').length;
+                if (lenght == undefined)
+                    lenght = 0;
+                else if (lenght == 0)
+                    lenght = -1;
+
+                e.preventDefault();
+                if (VerifyFiles()) {
+                    return false;
+                }
+                UploadFiles(lenght);
+                return false;
+            });
+        });
+
+        function VerifyFiles() {
+            if ($('#filecontrol').val() == '') {
+                jAlert('No file(s) selected. Please, choose a valid file to upload.');
+                return true;
+            }
+            if ($('#filecontrol').val() != '') {
+                var ext = $('#filecontrol').val().split('.').pop().toLowerCase();
+                var typeArr = ['jpg', 'jpeg', 'gif', 'png', 'pdf', 'doc', 'docx', 'ppt', 'pptx'];
+                if (jQuery.inArray(ext, typeArr) == -1) {
+                    jAlert('Invalid file type. Please, choose a valid type (ex. "jpg", "jpeg", "gif", "png", "pdf", "doc", "docx", "ppt", "pptx")');
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function UploadFiles(lenght) {
+            
+            var formData = new FormData();
+            if (lenght == 0) {
+                $.each($('#filecontrol')[0].files, function (i, file) {
+                    formData.append('uploadFile-' + i, file);
+                });
+            }
+            else {
+                if (lenght == -1) lenght = 0;
+                var counter = 4 - parseInt(lenght);
+                $.each($('#filecontrol')[0].files, function (i, file) {
+                    if (counter == i)
+                        return false;
+                    formData.append('uploadFile-' + i, file);
+                });
+            }
+           
+            formData.append('action', url_handler);
+            showProgress('@Url.Content("~/images/loading.gif")');
+            jQuery.ajax({
+                url: url_handler,
+                type: 'POST',
+                cache: false,
+                contentType: false,
+                processData: false,
+
+                //MODIFIED - From ajaxData to formData
+                data: formData,
+
+                success: function (data, textStatus, jqXHR) {
+
+                    $('#filecontrol').val('');
+                    $('#imagesColumns_tr_empty').remove();
+
+                    LoadNewFiles(data);
+
+                    hideProgress();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    hideProgress();
+                    jAlert('An exception has ocurred when uploading the file: ' + jqXHR.responseText, 'Error');
+                }
+            });
+        }
+
+        function LoadNewFiles(data, fileName) {
+            var result = JSON.parse(data);
+            $.each(result.$values, function (i, e) {
+                debugger;
+                var addNewFile = (fileName == undefined) ? true : (fileName.toLowerCase() == e.name.toLowerCase());
+                if (addNewFile) {
+                    var row = $('<tr/>');
+                    row.append($('<td style="padding: 5px 0px;"><img class="imgPreview" src="' + e.thumbnail_url + '" width="50" height="50"/></td>'));
+                    row.append($('<td><div>' + e.name + '</div><div class="font-gray" style="font-size: 8pt;">' + e.type + '</div></td>'));
+
+
+                    var deleteElement = '<td><button data-name="' + e.name + '" class="btn btn-danger" data-url="' + e.url + '" onclick="DeleteFile(this)" value="Delete"> <i class="icon-trash icon-white"></i></button></td>';
+                    row.append($(deleteElement));
+
+                    $('#imagesColumns').find('tbody').append(row);
+                }
+            });
+        }
+
+
+        function LoadNewFilesDrop(data, fileName) {
+            $.each(data.$values, function (i, e) {
+                debugger;
+                var addNewFile = (fileName == undefined) ? true : (fileName.toLowerCase() == e.name.toLowerCase());
+                if (addNewFile) {
+                    var row = $('<tr/>');
+                    row.append($('<td style="padding: 5px 0px;"><img class="imgPreview" src="' + e.thumbnail_url + '" width="50" height="50"/></td>'));
+                    row.append($('<td><div>' + e.name + '</div><div class="font-gray" style="font-size: 8pt;">' + e.type + '</div></td>'));
+
+
+                    var deleteElement = '<td><button data-name="' + e.name + '" class="btn btn-danger" data-url="' + e.url + '" onclick="DeleteFile(this)" value="Delete"> <i class="icon-trash icon-white"></i></button></td>';
+                    row.append($(deleteElement));
+
+                    $('#imagesColumns').find('tbody').append(row);
+                }
+            });
+        }
+
+        function DeleteFile(link) {
+            var url = $(link).attr('data-url');
+            debugger;
+            var urldelete = '@Url.Content("~/HttpHandler/UploadHandler.ashx")' + url;
+
+            jConfirm('Do you want to delete "' + name + '" resource?', 'Delete resource', function (confirm) {
+                if (confirm) {
+                    showProgress('@Url.Content("~/images/loading.gif")');
+                jQuery.ajax({
+                    url: urldelete,
+                    type: 'POST',
+                    dataType: "json",
+                    cache: false,
+                    success: function (data, textStatus, jqXHR) {
+                        $(link).parents('tr').first().remove();
+                        var rowCount = $('#imagesColumns >tbody >tr').length
+                        if (rowCount == 0) {
+                            var row = $('<tr id="imagesColumns_tr_empty">' +
+                                '<td colspan="3" style="text-align: center;">No resources</td>' +
+                            '</tr>');
+                            $('#imagesColumns').find('tbody').append(row);
+                        }
+
+                        hideProgress();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        hideProgress();
+                        jAlert('An exception has ocurred when uploading the file: ' + jqXHR.responseText, 'Error');
+                    }
+                });
+            }
+        });
+    }
+
+    (function ($) {
+        $.fn.imageResize = function (options) {
+            var that = this;
+            var settings = {
+                width: 50,
+                height: 50
+            };
+            options = $.extend(settings, options);
+
+            if (!that.is('img')) {
+                return;
+            }
+
+            return that.each(function () {
+                var maxWidth = options.width;
+                var maxHeight = options.height;
+                var ratio = 0;
+                var width = $(that).width();
+                var height = $(that).height();
+
+                if (width > maxWidth) {
+                    ratio = maxWidth / width;
+                    $(that).css('width', maxWidth);
+                    $(that).css('height', height * ratio);
+
+                }
+
+                if (height > maxHeight) {
+                    ratio = maxHeight / height;
+                    $(that).css('height', maxHeight);
+                    $(that).css('width', width * ratio);
+
+                }
+            });
+        };
+    })(jQuery);
+
+    function showProgress(loadingImgSrc) {
+        $ki.blockUI({
+            message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
+            css: {
+                width: '450px',
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#fafafa',
+                'border-radius': '10px',
+                opacity: .95,
+                color: '#000',
+                'font-size': '18px',
+                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)'
+            }
+        });
+    }
+
+    function hideProgress() {
+        $ki.unblockUI();
+    }
+</script>
