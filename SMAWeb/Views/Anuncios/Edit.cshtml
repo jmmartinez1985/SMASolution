@@ -54,7 +54,7 @@
                                 @Html.DropDownList("CD_Id", (IEnumerable<SelectListItem>)ViewBag.CD_Id, "Selecione la categoría", new { @class = "input-block-level" })
                                 @Html.ValidationMessageFor(model => model.CD_Id)
                             </div>
-                             <div class="controls form-inline">
+                            <div class="controls form-inline">
                                 @Html.LabelFor(model => model.SBS_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
@@ -136,7 +136,7 @@
                 </div>   
             }
 
-            <div class="span12">
+            <div class="span12 divLoader">
                 @if (ViewBag.ResourcesCount < 4)
                 {
                     @Html.Partial("LoadUplaoder")
@@ -169,6 +169,7 @@
                        //jAlert('Recurso borrado satistafactoriamente.');
                        var element = jQuery(".thumbnails").find('li[itemid= ' + id + ' ]');
                        element.remove();
+                       EnableLoader();
                    },
                    error: function (a, b, c) {
                        alert(a);
@@ -178,5 +179,20 @@
         });
    }
 
+
+   function EnableLoader() {
+       jQuery.ajax(
+             {
+                 type: 'GET',
+                 url: '@Url.Action("LoadUplaoder","Anuncios")',
+
+                  success: function (data) {
+                      jQuery('.divLoader').html(data);
+                  },
+                  error: function (a, b, c) {
+                      alert(a);
+                  }
+              });
+          }
 
 </script>
