@@ -187,22 +187,17 @@ namespace SMAWeb.HttpHandler
                     path = System.Configuration.ConfigurationManager.AppSettings["FilesUploaded"].ToString() + "Admin/" + Path.GetFileName(file.FileName);
                 }
 
-                else if(HttpContext.Current.Session["Anuncio"] == null | HttpContext.Current.Session["AdminResource"] == null)
+                else if (HttpContext.Current.Session["Anuncio"] == null | HttpContext.Current.Session["AdminResource"] == null)
                 {
                     currentPath = StorageRoot;
                     path = System.Configuration.ConfigurationManager.AppSettings["FilesUploaded"].ToString() + Path.GetFileName(file.FileName);
                 }
-
-
-                var fullPath = currentPath + Path.GetFileName(file.FileName);
-
+                var fullPath = currentPath + Path.GetFileName(file.FileName.Replace(" ","_"));
                 file.SaveAs(fullPath);
-
-                string fullName = Path.GetFileName(file.FileName);
-
+                string fullName = Path.GetFileName(file.FileName).Replace(" ","_");
                 statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath, path));
 
-               
+
             }
 
             if (HttpContext.Current.Session["Anuncio"] != null)
@@ -217,19 +212,17 @@ namespace SMAWeb.HttpHandler
                 {
                     files.ForEach(c =>
                     {
-                        db.AE_AnunciosExtras.Add(new AE_AnunciosExtras
-                        {
-                            AN_Id = int.Parse(HttpContext.Current.Session["Anuncio"].ToString()),
-                            AN_ImagenUrl = c.UrlPath,
-                            AN_Nombre = Path.GetFileName(c.UrlPath)
-                        });
-
+                        var anun = new AE_AnunciosExtras();
+                        anun.AN_Id = int.Parse(HttpContext.Current.Session["Anuncio"].ToString());
+                        anun.AN_ImagenUrl = c.UrlPath;
+                        anun.AN_Nombre = Path.GetFileName(c.UrlPath);
+                        var entity =db.SaveChanges<AE_AnunciosExtras>(anun);
+                        c.IdResource = entity.AE_Id;
                     });
-                    db.SaveChanges();
+
                 }
                 tran.Complete();
             }
-
         }
 
         private void WriteJsonIframeSafe(HttpContext context, List<FilesStatus> statuses)

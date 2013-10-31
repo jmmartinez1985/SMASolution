@@ -153,24 +153,24 @@ namespace SMAWeb.Controllers
                 allAnunciosList = model.AN_Anuncios.OrderByDescending(day => day.AN_Fecha).Where(acc => acc.ST_Id == 1 & (acc.UserProfile.Image != null )).Take(3).ToList();
                 //allAnunciosList = model.AN_Anuncios.OrderByDescending(day => day.AN_Fecha).Where(acc => acc.ST_Id == 1).Take(3).ToList();
 
-                var categoriasList = new List<Categoria>();
-                db.CD_CategoriaServicio.ToList().ForEach(c =>
-                {
-                    var subCatList = new List<SubCategorias>();
+                //var categoriasList = new List<Categoria>();
+                //db.CD_CategoriaServicio.ToList().ForEach(c =>
+                //{
+                //    var subCatList = new List<SubCategorias>();
 
-                    c.SBS_SubCategoriaServicio.ToList().ForEach(sb =>
-                    {
-                        subCatList.Add(new SubCategorias { SubCatId = sb.SBS_Id, SubCatDesc = sb.SBS_Descripcion });
-                    });
-                    categoriasList.Add(new Categoria
-                    {
-                        CatId = c.CD_Id,
-                        CatDesc = c.CD_Descripcion,
-                        SubCatCollection = subCatList
-                    });
-                });
+                //    c.SBS_SubCategoriaServicio.ToList().ForEach(sb =>
+                //    {
+                //        subCatList.Add(new SubCategorias { SubCatId = sb.SBS_Id, SubCatDesc = sb.SBS_Descripcion });
+                //    });
+                //    categoriasList.Add(new Categoria
+                //    {
+                //        CatId = c.CD_Id,
+                //        CatDesc = c.CD_Descripcion,
+                //        SubCatCollection = subCatList
+                //    });
+                //});
 
-                ViewBag.Categories = categoriasList;
+                //ViewBag.Categories = categoriasList;
 
                 foreach (var item in allAnunciosList)
                 {

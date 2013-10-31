@@ -22,6 +22,7 @@ namespace SMAWeb.HttpHandler
         public string delete_type { get; set; }
         public string error { get; set; }
         public string UrlPath { get; set; }
+        public int IdResource { get; set; }
 
         public FilesStatus() { }
 
@@ -38,10 +39,10 @@ namespace SMAWeb.HttpHandler
             type = System.Web.MimeMapping.GetMimeMapping(fileName);
             size = fileLength;
             progress = "1.0";
-            url = "?f=" + NewPath;
-            delete_url = HandlerPath + "UploadHandler.ashx?f=" + NewPath;
+            url = "?f=" + NewPath.Replace(" ", "_");
+            delete_url = HandlerPath + "UploadHandler.ashx?f=" + NewPath.Replace(" ", "_");
             delete_type = "DELETE";
-            UrlPath = NewPath;
+            UrlPath = NewPath.Replace(" ", "_");
 
             var ext = Path.GetExtension(fullPath);
 
