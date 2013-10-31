@@ -270,6 +270,7 @@ namespace SMAWeb.Models
     public partial class REG_RegionMetadata
     {
         [Display(Name = "Código de Región")]
+        [Required (ErrorMessage="Por favor seleccione la región.")]
         public int REG_Id { get; set; }
 
         [Required(ErrorMessage = "Por favor ingrese la descripción de la región.")]
@@ -364,33 +365,44 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Compañía")]
         public int COM_Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Por favor ingrese el nombre de la compañía")]
+        [StringLength(100, ErrorMessage = "Por favor verifique el campo nombre de la compañía, sólo se permite nombres de hasta 100 dígitos.")]
         [Display(Name = "Nombre de Compañía")]
         public string COM_Nombre { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor ingrese la dirección de la compañía")]
         [Display(Name = "Dirección")]
+        [StringLength(150, ErrorMessage = "Por favor verifique el campo dirección de la compañía, sólo se permite una dirección de hasta 150 dígitos.")]
         public string COM_Direccion { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor ingrese el teléfono de la compañía")]
         [Display(Name = "Teléfono")]
+        [StringLength(20, ErrorMessage = "Por favor verifique el campo teléfono de la compañía, sólo se permite un número telefónico de hasta 20 dígitos.")]
         public string COM_Telefono { get; set; }
 
-        [Required]
-        [Display(Name = "Correo")]
+        [Required(ErrorMessage = "Por favor ingrese el correo electrónico de la compañía")]
+        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Por favor revise los datos ingresados para el campo correo electrónico.")]
+        [Display(Name = "Correo Electrónico")]
+        [StringLength(50, ErrorMessage = "Por favor verifique el campo correo electrónico, sólo se permite una dirección de correo electrónico de hasta 50 dígitos.")]
         public string COM_Correo { get; set; }
 
         [Display(Name = "Dirección Web")]
+        [StringLength(150, ErrorMessage = "Por favor verifique el campo dirección web, sólo se permite una dirección web de hasta 150 dígitos.")]
         public string COM_Web { get; set; }
 
         [Display(Name = "Persona de Contacto")]
+        [StringLength(50, ErrorMessage = "Por favor verifique el campo persona, sólo se permite un nombre de persona de contacto de hasta 50 dígitos.")]
         public string COM_ContactoNombre { get; set; }
 
-        [Display(Name = "Celular de Contacto")]
+        [Display(Name = "Teléfono de Contacto")]
+        [StringLength(20, ErrorMessage = "Por favor verifique el campo teléfono de contacto, sólo se permite un número telefónico de contacto de hasta 20 dígitos.")]
         public string COM_ContactoCelular { get; set; }
 
-        [Display(Name = "Email de Contacto")]
+        [Display(Name = "Correo Electrónico de Contacto")]
+        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Por favor revise los datos ingresados para el campo correo electrónico de contacto.")]
+        [StringLength(50, ErrorMessage = "Por favor verifique el campo correo electrónico de contacto, sólo se permite una dirección de correo electrónico de hasta 50 dígitos.")]
         public string COM_ContactoEmail { get; set; }
+
 
         public byte[] COM_Logo { get; set; }
 
