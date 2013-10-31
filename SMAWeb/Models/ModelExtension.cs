@@ -116,25 +116,29 @@ namespace SMAWeb.Models
         [Display(Name = "ID Usuario")]
         public int UserId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor seleccione el país del anuncio")]
         [Display(Name = "País")]
         public int PA_Id { get; set; }
 
         [Display(Name = "SubCategoría")]
         public Nullable<int> SBS_Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor ingrese el título del anuncio.")]
+        [StringLength(150, ErrorMessage = "Por favor verifique el título del anuncio, sólo se permite un título de hasta 150 dígitos.")]
         [Display(Name = "Título del Anuncio")]
         public string AN_Titulo { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor ingrese el teléfono 1.")]
+        [StringLength(20, ErrorMessage = "Por favor verifique el campo teléfono 1, sólo se permite un teléfono de hasta 20 dígitos.")]
         [Display(Name = "Teléfono 1")]
         public string AN_Telefono { get; set; }
 
         [Display(Name = "Teléfono 2")]
+        [StringLength(20, ErrorMessage = "Por favor verifique el campo teléfono 2, sólo se permite un teléfono de hasta 20 dígitos.")]
         public string AN_Celular { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor ingrese la descripción del anuncio.")]
+        [StringLength(2000, ErrorMessage = "Por favor verifique el campo descripción del anuncio, sólo se permite una descripción de hasta 2000 dígitos.")]
         [Display(Name = "Descripción")]
         public string AN_Descripcion { get; set; }
 
@@ -147,10 +151,11 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Estado")]
         public int ST_Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor ingrese el lugar del anuncio.")]
         [Display(Name = "Lugar del Anuncio")]
         public string AN_Area { get; set; }
 
+        [Required (ErrorMessage = "Por favor seleccione la categoría del anuncio")]
         [Display(Name = "Categoría")]
         public Nullable<int> CD_Id { get; set; }
 
@@ -485,7 +490,7 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Solicitud de Servicio")]
         public int SS_Id { get; set; }
 
-        [Required]
+        [Required (ErrorMessage = "Por favor ingrese su comentario.")]
         [Display(Name = "Comentario")]
         public string RW_Comentario { get; set; }
 
