@@ -166,23 +166,29 @@
                 </div>
 
                 <div class="span12">
+
+                
                 </div>
 
                 @{int counterreview = 0;}
-                @foreach (var item in ViewBag.ReviewFound as List<SMAWeb.Models.ContentReviews>)
-                {
-                    var userPic = item.SolicitudProfilePic;
-
-                    foreach (var itemRV in item.ReviewsList)
+                <div class="accordion acc-home margin-bottom-40" id="accordion2-gp1">
+                    @foreach (var item in ViewBag.ReviewFound as List<SMAWeb.Models.ContentReviews>)
                     {
+                        var userPic = item.SolicitudProfilePic;
+                        string cssCollapse = "in";
+                        foreach (var itemRV in item.ReviewsList)
+                        {
                          
-                    <div class="accordion acc-home margin-bottom-40" id="accordion2-@itemRV.RW_Id">
+                   
                         <div class="accordion-group">
                             <div class="accordion-heading">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2-@itemRV.RW_Id" href="#collapse-@counterreview">@itemRV.RW_Comentario
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2-gp1" href="#collapse-@itemRV.RW_Id">@itemRV.RW_Comentario
                                 </a>
                             </div>
-                            <div id="collapse-@itemRV.RW_Id" class="accordion-body in collapse" style="height: auto;">
+
+                            @{ if (counterreview > 0) { cssCollapse = ""; }}
+
+                            <div id="collapse-@itemRV.RW_Id" class="accordion-body collapse @cssCollapse ">
                                 <div class="accordion-inner">
 
                                     <div class="span9">
@@ -272,12 +278,12 @@
                             </div>
                         </div>
 
-                    </div> 
+                    
                                                     counterreview++;
+                        }
+
                     }
-
-                }
-
+                </div>
 
                 <p class="message">
                     <a href="@Url.Action("Index", "Home")">Volver</a>

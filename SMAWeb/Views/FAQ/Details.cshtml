@@ -15,22 +15,27 @@
             </div>
 
 
-
             <div class="accordion acc-home" id="accordion3">
+                @{ int counter = 0; string cssClass = "in"; }
                 @foreach (var item in Model)
                 {
+                    if (counter > 0)
+                    {
+                        cssClass = "";
+                    }
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne1">@item.FAQ_Question
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapse-@counter">@item.FAQ_Question
                             </a>
                         </div>
-                        <div id="collapseOne1" class="accordion-body in collapse" style="height: auto;">
+                        <div id="collapse-@counter" class="accordion-body collapse @cssClass">
                             <div class="accordion-inner">
                                 <p>@item.FAQ_Answer</p>
                             </div>
                         </div>
                     </div>
                     <!--/accordion-group-->
+                    counter++;
                 }
             </div>
 
