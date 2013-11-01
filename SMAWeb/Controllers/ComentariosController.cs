@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using SMAWeb.Models;
 using SMAWeb.Extensions;
 using WebMatrix.WebData;
+using SMAWeb.Filters;
 
 namespace SMAWeb.Controllers
 {
@@ -57,9 +58,10 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Comentarios/Create
-
+         
         [HttpPost]
         //[ValidateAntiForgeryToken]
+        [AjaxAuthorizeAttribute(Roles = "Admin, Users")]
         public ActionResult Create(CR_ComentarioReview cr_comentarioreview)
         {
             if (ModelState.IsValid)

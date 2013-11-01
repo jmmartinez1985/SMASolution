@@ -304,7 +304,7 @@
             error: function (xhr) {
                 alert('An error has ocurred loading data: ' + xhr.responseText, 'Error');
             }
-        });
+        }); 
     });
 
 
@@ -450,6 +450,9 @@
                 if (xhr.status == 403) {
                     var response = $.parseJSON(xhr.responseText);
                     window.location = response.LogOnUrl;
+                }
+                else {
+                    alert(xhr.responseText, 'An error has ocurred');
                 }
             }
         });

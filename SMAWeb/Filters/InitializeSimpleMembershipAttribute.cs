@@ -111,7 +111,7 @@ namespace SMAWeb.Filters
             }
         }
     }
-
+     
     public class AjaxAuthorizeAttribute : AuthorizeAttribute
     {
         protected override void HandleUnauthorizedRequest(AuthorizationContext context)
