@@ -389,12 +389,20 @@
                 success: function (data) {
                     debugger;
                     $(commentElement).val('');
-
                     var result = JSON.parse(data);
-
+                    var html='';
+                    var carusel = $("#testimonials-" + review).find('.carousel-inner');
+                    html += '<div class="item">';
+                    html += ' <p>' + result.data.Comments + '</p>';
+                    html+='         <div class="testimonial-info">';
+                    html += '   <img src="' + result.data.Image + '" width="90px" height="60px" alt="">';
+                    html += '      <span class="testimonial-author">' + result.data.Name + '';
+                    html+='         <em>Visitor</em>';
+                    html+= '      </span>';
+                    html+= '   </div>';
+                    html+=' </div>';
+                    carusel.append(html);
                     jAlert('Comentario publicado.');
-
-
                 },
                 error: function (xhr) {
                     alert(xhr.responseText, 'An error has ocurred');

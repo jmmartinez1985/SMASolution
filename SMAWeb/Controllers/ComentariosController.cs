@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Models;
 using SMAWeb.Extensions;
+using WebMatrix.WebData;
 
 namespace SMAWeb.Controllers
 {
@@ -70,11 +71,12 @@ namespace SMAWeb.Controllers
                 }
                 else
                     cr_comentarioreview.ST_Id = 1;
-                //db.CR_ComentarioReview.Add(cr_comentarioreview);
                 db.SaveChanges<CR_ComentarioReview>(cr_comentarioreview);
+                var user = db.UserProfile.Find(WebSecurity.CurrentUserId);
+                CommentReview cmt = new CommentReview { Comments = cr_comentarioreview.CR_Comentario, Image = Url.Content(user.Image), Name = user.Name };
                 if (Request.IsAjaxRequest())
                 {
-                    return Json(new { data = cr_comentarioreview }.SerializeToJson());
+                    return Json(new { data = cmt }.SerializeToJson());
                 }
                 return RedirectToAction("Index");
             }
@@ -154,6 +156,13 @@ namespace SMAWeb.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        internal class CommentReview
+        {
+            public string Comments { get; set; }
+            public string Image { get; set; }
+            public string Name { get; set; }
         }
     }
 }
