@@ -168,33 +168,37 @@
                 <div class="span12">
                 </div>
 
-                @{ int counterreview = 0;}
-                @foreach (var item in ViewBag.ReviewFound as List<SMAWeb.Models.RW_Reviews>)
+                @{int counterreview = 0;}
+                @foreach (var item in ViewBag.ReviewFound as List<SMAWeb.Models.ContentReviews>)
                 {
-
-                    <div class="accordion acc-home margin-bottom-40" id="accordion2-@counterreview">
+                    var userPic = item.SolicitudProfilePic;
+                   
+                    foreach (var itemRV in item.ReviewsList)
+                    {
+                        
+                    <div class="accordion acc-home margin-bottom-40" id="accordion2-@itemRV.RW_Id">
                         <div class="accordion-group">
                             <div class="accordion-heading">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2-@counterreview" href="#collapse-@counterreview">@item.RW_Comentario
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2-@itemRV.RW_Id" href="#collapse-@counterreview">@itemRV.RW_Comentario
                                 </a>
                             </div>
-                            <div id="collapse-@counterreview" class="accordion-body in collapse" style="height: auto;">
+                            <div id="collapse-@itemRV.RW_Id" class="accordion-body in collapse" style="height: auto;">
                                 <div class="accordion-inner">
 
                                     <div class="span9">
 
                                         <div class="span2">
                                             <a href="#" class="thumbnail">
-                                                <img src="http://placehold.it/100x100" alt="">
+                                                <img src="@Url.Content(userPic)" alt="">
                                             </a>
                                         </div>
                                         <div class="span10">
                                             <p>
                                                 <i class="icon-user"></i>by <a href="#">John</a>
-                                                | <i class="icon-calendar"></i>@item.RW_Fecha
+                                                | <i class="icon-calendar"></i>@itemRV.RW_Fecha
                                             </p>
                                             <p>
-                                                @item.RW_Comentario
+                                                @itemRV.RW_Comentario
                                             </p>
 
                                         </div>
@@ -205,17 +209,17 @@
 
 
                                         <div class="margin-bottom-40">
-                                            <div id="testimonials-1" class="carousel slide testimonials testimonials-v1">
+                                            <div id="testimonials-@itemRV.RW_Id" class="carousel slide testimonials testimonials-v1">
                                                 <div class="carousel-inner">
                                                     @{int commentcounter = 0;}
-                                                    @foreach (var itemcomment in item.CR_ComentarioReview)
+                                                    @foreach (var itemcomment in itemRV.CR_ComentarioReview)
                                                     {
                                                         if (commentcounter == 0)
                                                         { 
                                                         <div class="item active">
                                                             <p>@itemcomment.CR_Comentario</p>
                                                             <div class="testimonial-info">
-                                                                <img src="@Url.Content(itemcomment.UserProfile.Image)" alt="">
+                                                                <img  src="@Url.Content(itemcomment.UserProfile.Image)" width="90px" height="60px" alt="">
                                                                 <span class="testimonial-author">@itemcomment.UserProfile.Name
                                                                     <em>Visitor</em>
                                                                 </span>
@@ -227,7 +231,7 @@
                                                         <div class="item">
                                                             <p>@itemcomment.CR_Comentario</p>
                                                             <div class="testimonial-info">
-                                                                <img src="@Url.Content(itemcomment.UserProfile.Image)" alt="">
+                                                                <img src="@Url.Content(itemcomment.UserProfile.Image)" width="90px" height="60px" alt="">
                                                                 <span class="testimonial-author">@itemcomment.UserProfile.Name
                                                                     <em>Visitor</em>
                                                                 </span>
@@ -240,10 +244,10 @@
                                                 </div>
 
                                                 <div class="carousel-arrow">
-                                                    <a class="left carousel-control" href="#testimonials-1" data-slide="prev">
+                                                    <a class="left carousel-control" href="#testimonials-@counterreview" data-slide="prev">
                                                         <i class="icon-angle-left"></i>
                                                     </a>
-                                                    <a class="right carousel-control" href="#testimonials-1" data-slide="next">
+                                                    <a class="right carousel-control" href="#testimonials-@counterreview" data-slide="next">
                                                         <i class="icon-angle-right"></i>
                                                     </a>
                                                 </div>
@@ -255,9 +259,11 @@
 
                                     <div class="span8 offset1 margin-bottom-20">
 
-                                        @Html.TextArea("Comentario", new { @placeholder = "Agregar Comentario", @class = "input-block-level", @rows = "2" })
 
-                                        <input type="submit" onclick="PostComment(this)" data-val="@item.RW_Id" value="Comentar" class="btn-u pull-right btn-xlarge" />
+
+                                        @Html.TextArea("comentario-" + itemRV.RW_Id, new { @placeholder = "Agregar Comentario", @class = "input-block-level", @rows = "2" })
+
+                                        <input type="submit" onclick="PostComment(this)" data-val="@itemRV.RW_Id" value="Comentar" class="btn-u pull-right btn-xlarge" />
                                         <br />
                                     </div>
 
@@ -266,12 +272,10 @@
                             </div>
                         </div>
 
-                    </div>
-                    
-                    
-                    
+                    </div> 
+                       counterreview++;
+                    }
 
-                                                    counterreview++;
                 }
 
 
@@ -314,78 +318,87 @@
             data.append("Anuncio", $('#AN_Id').val());
             $.ajax({
                 url: '@Url.Action("TakeService", "SolicitudServicio")',
-            type: 'post',
-            data: data,
-            cache: false,
-            contentType: false,
-            processData: false,
-            beforeSend: function () {
-                showProgress('@Url.Content("~/images/loading.gif")');
-            },
-            complete: function (data) {
-                hideProgress();
-            },
-            success: function (data) {
-                $(".message").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
-                $('.alert').alert();
-                $('.alert').fadeOut(3000)
-            },
-            error: function (xhr) {
-                alert(xhr.responseText, 'An error has ocurred');
-            }
-        });
+                type: 'post',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    showProgress('@Url.Content("~/images/loading.gif")');
+                },
+                complete: function (data) {
+                    hideProgress();
+                },
+                success: function (data) {
+                    $(".message").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
+                    $('.alert').alert();
+                    $('.alert').fadeOut(3000)
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText, 'An error has ocurred');
+                }
+            });
 
-    }
-    var $ki = jQuery.noConflict();
-    function showProgress(loadingImgSrc) {
-        $ki.blockUI({
-            message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
-            css: {
-                width: '450px',
-                border: 'none',
-                padding: '15px',
-                backgroundColor: '#fafafa',
-                'border-radius': '10px',
-                opacity: .95,
-                color: '#000',
-                'font-size': '18px',
-                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)'
-            }
-        });
-    }
+        }
+        var $ki = jQuery.noConflict();
+        function showProgress(loadingImgSrc) {
+            $ki.blockUI({
+                message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
+                css: {
+                    width: '450px',
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#fafafa',
+                    'border-radius': '10px',
+                    opacity: .95,
+                    color: '#000',
+                    'font-size': '18px',
+                    'box-shadow': '0px 0px 12px rgba(0,0,0,.6)'
+                }
+            });
+        }
 
-    function hideProgress() {
-        $ki.unblockUI();
-    }
+        function hideProgress() {
+            $ki.unblockUI();
+        }
 
 
-    function PostComment(link) {
-        var review = $(link).attr('data-val');
-        var comment = {
-            "UserId": '@WebSecurity.CurrentUserId',
-            "CR_Comentario": $('#Comentario').val(),
-            "RW_Id": review
-        };
+        function PostComment(link) {
+            var review = $(link).attr('data-val');
+            var commentElement = "#comentario-" + review;
 
-        var jsonSerialized = JSON.stringify(comment);
-        $.ajax({
-            url: '@Url.Action("Create", "Comentarios")',
-            type: 'post',
-            data: jsonSerialized,
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            beforeSend: function () {
-                showProgress('@Url.Content("~/images/loading.gif")');
-            },
-            complete: function (data) {
-                hideProgress();
-            },
-            success: function (data) {
-                jAlert('Comentario publicado.');
-            },
-            error: function (xhr) {
-                alert(xhr.responseText, 'An error has ocurred');
-            }
-        });
-    }
+            var comment = {
+                "UserId": '@WebSecurity.CurrentUserId',
+                "CR_Comentario": $(commentElement).val(),
+                "RW_Id": review
+            };
+
+            var jsonSerialized = JSON.stringify(comment);
+            $.ajax({
+                url: '@Url.Action("Create", "Comentarios")',
+                type: 'post',
+                data: jsonSerialized,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    showProgress('@Url.Content("~/images/loading.gif")');
+                },
+                complete: function (data) {
+                    hideProgress();
+                },
+                success: function (data) {
+                    debugger;
+                    $(commentElement).val('');
+
+                    var result = JSON.parse(data);
+
+                    jAlert('Comentario publicado.');
+
+
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText, 'An error has ocurred');
+                }
+            });
+        }
     </script>

@@ -576,6 +576,18 @@ namespace SMAWeb.Models
         public string Status { get; set; }
     }
 
+    public class ContentReviews
+    {
+        public ContentReviews()
+        {
+            ReviewsList = new List<RW_Reviews>();
+        }
+        public string SolicitudProfilePic { get; set; }
+        public ICollection<RW_Reviews> ReviewsList { get; set; }
+
+
+    }
+
     #endregion
 
 

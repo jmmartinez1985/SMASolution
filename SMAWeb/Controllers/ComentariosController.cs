@@ -82,6 +82,10 @@ namespace SMAWeb.Controllers
             ViewBag.RW_Id = new SelectList(db.RW_Reviews, "RW_Id", "RW_Comentario", cr_comentarioreview.RW_Id);
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", cr_comentarioreview.ST_Id);
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName", cr_comentarioreview.UserId);
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { error = true }.SerializeToJson());
+            }
             return View(cr_comentarioreview);
         }
 

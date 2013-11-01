@@ -69,11 +69,6 @@ namespace SMAWeb.Controllers
         [Authorize(Roles = "Users, Admin")]
         public ActionResult GetAnunciosByUser()
         {
-            //var an_anuncios = db.AN_Anuncios.Include(a => a.SBS_SubCategoriaServicio).
-            //    Include(a => a.ST_Estatus).Include(a => a.UserProfile)
-            //    .Where(c => c.UserId == UserId);
-            // return View(an_anuncios.ToList());
-
             int UserId = UserId = WebSecurity.CurrentUserId;
             var allAnunciosList = new List<AN_Anuncios>();
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
@@ -293,11 +288,11 @@ namespace SMAWeb.Controllers
         public ActionResult Details(int id = 0)
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
-            var ListReview = new List<RW_Reviews>();
+            var ListReview = new List<ContentReviews>();
             an_anuncios.SS_SolicitudServicio.ToList().ForEach(
                 an =>
-                { 
-                    ListReview.AddRange(an.RW_Reviews);
+                {
+                    ListReview.Add(new ContentReviews { ReviewsList = an.RW_Reviews, SolicitudProfilePic = an.UserProfile.Image });
                 });
 
             ViewBag.ReviewFound = ListReview;
@@ -458,4 +453,7 @@ namespace SMAWeb.Controllers
             base.Dispose(disposing);
         }
     }
+
+
+  
 }
