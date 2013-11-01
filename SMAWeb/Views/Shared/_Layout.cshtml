@@ -35,10 +35,10 @@
 
     <script src="@Url.Content("~/Scripts/raty-2.5.2/lib/jquery.raty.min.js")"></script>
     <link href="@Url.Content("~/Content/Rating.css")" rel="stylesheet" />
-    
+
     <script src="~/Scripts/jquery.alerts.js"></script>
     <link href="~/Content/jquery.alerts.css" rel="stylesheet" />
-    
+
     <script type="text/javascript">
 
         function UrlHelper() {
@@ -81,14 +81,24 @@
                    
 
 
+
+
+
+
                     <li>@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "login-btn", title = "Manage" })!</li>
+
+
 
                     <li>
 
                         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "LoginFormAuth" }))
                         {
-                            @Html.AntiForgeryToken()
+ @Html.AntiForgeryToken()
                    
+
+
+
+
 
 
                             <a class="login-btn" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
@@ -102,9 +112,17 @@
                   
 
 
+
+
+
+
                     <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "login-btn" })</li>
 
+
+
                     <li class="devider">&nbsp;</li>
+
+
 
                     <li>@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "login-btn" })</li>
                   
@@ -133,21 +151,21 @@
                 if (Roles.IsUserInRole("Admin"))
                 {
              
-                <text>
+ <text>
                 @Html.Partial("_LoggedAdminMenu")
                 </text>
          
                 }
                 else
                 {
-                <text>
+ <text>
                 @Html.Partial("_LoggedMenu")
                 </text>}
             }
             else
             {
          
-                <text>
+ <text>
                 @Html.Partial("_NotLoggedMenu")
                 </text>
             }
@@ -320,9 +338,11 @@
                            success: function (data) {
                                var result = JSON.parse(data);
                                var htmldata = '';
-                               
+                               debugger;
                                jQuery.each(result.$values, function (val, anuncio) {
-                                   htmldata += '<dl class="dl-horizontal"><dt><a href="Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id + '"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id +'">';
+                                   var urlcontent = '@Url.Content("~/Anuncios/Details/")' +anuncio.AnunciosInfo.AN_Id;
+                                   //htmldata += '<dl class="dl-horizontal"><dt><a href="Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id + '"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id + '">';
+                                   htmldata += '<dl class="dl-horizontal"><dt><a href="' + urlcontent + '"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="' + urlcontent + '">';
                                    htmldata += anuncio.AnunciosInfo.AN_Descripcion;
                                    htmldata += '</a></p></dd></dl>';
                                });
