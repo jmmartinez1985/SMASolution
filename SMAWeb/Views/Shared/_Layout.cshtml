@@ -320,8 +320,9 @@
                            success: function (data) {
                                var result = JSON.parse(data);
                                var htmldata = '';
+                               
                                jQuery.each(result.$values, function (val, anuncio) {
-                                   htmldata += '<dl class="dl-horizontal"><dt><a href="#"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="#">';
+                                   htmldata += '<dl class="dl-horizontal"><dt><a href="Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id + '"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id +'">';
                                    htmldata += anuncio.AnunciosInfo.AN_Descripcion;
                                    htmldata += '</a></p></dd></dl>';
                                });
