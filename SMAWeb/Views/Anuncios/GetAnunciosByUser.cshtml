@@ -240,6 +240,12 @@
                    type: 'post',
                    url: '@Url.Content("~/Anuncios/Delete/")',
                    data: { id: id },
+                   beforeSend: function () {
+                       showProgress('@Url.Content("~/images/loading.gif")');
+                    },
+                   complete: function (data) {
+                       hideProgress();
+                   },
                    success: function (data) {
                        jAlert('Registro borrado satistafactoriamente.');
                        window.location = data.redirectToUrl;
@@ -260,7 +266,13 @@
               {
                   type: 'post',
                   url: '@Url.Content("~/Anuncios/Inactivate/")',
-                   data: { id: id },
+                  data: { id: id },
+                  beforeSend: function () {
+                      showProgress('@Url.Content("~/images/loading.gif")');
+                   },
+                  complete: function (data) {
+                      hideProgress();
+                  },
                    success: function (data) {
                        jAlert('Registro desahilitado satistafactoriamente.');
                        window.location = data.redirectToUrl;

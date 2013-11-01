@@ -343,8 +343,8 @@
             contentType: false,
             processData: false,
             beforeSend: function () {
-                showProgress('../images/loading.gif');
-            },
+                showProgress('@Url.Content("~/images/loading.gif")');
+             },
             complete: function (data) {
                 hideProgress();
             },
@@ -435,7 +435,7 @@
             contentType: false,
             processData: false,
             beforeSend: function () {
-                showProgress('../images/loading.gif');
+                showProgress('@Url.Content("~/images/loading.gif")');
             },
             complete: function (data) {
                 hideProgress();

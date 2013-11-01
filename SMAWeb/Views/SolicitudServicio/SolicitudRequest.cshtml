@@ -132,8 +132,8 @@
                 url: url,
                 type: 'get',
                 beforeSend: function () {
-                    showProgress('../images/loading.gif');
-                },
+                    showProgress('@Url.Content("~/images/loading.gif")');
+                 },
                 complete: function (data) {
                     hideProgress();
                 },
