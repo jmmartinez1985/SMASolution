@@ -55,6 +55,7 @@
             });
     </script>
 
+    <script src="@Url.Content("~/Scripts/SMA.js")"></script>
 
 
 </head>
@@ -299,48 +300,47 @@
         var imageUp = '@Url.Content("~/images/up.png")';
 
         jQuery.ajax(
-               {
-                   type: 'post',
-                   url: '@Url.Action("GetCompanyInfo", "Company")',
-                   success: function (data) {
+        {
+            type: 'post',
+            url: '@Url.Action("GetCompanyInfo", "Company")',
+            success: function (data) {
 
 
-                       var result = JSON.parse(data);
-                       var htmldata = '';
+                var result = JSON.parse(data);
+                var htmldata = '';
 
-                       //jQuery.each(result.$values, function (val, Anuncio) {
-                       htmldata +=
-                       htmldata += '<address>';
-                       htmldata += result.COM_Nombre;
-                       htmldata += '<br>';
-                       htmldata += result.COM_Direccion;
-                       htmldata += '<br>';
-                       htmldata += 'Teléfono: ' + result.COM_Telefono;
-                       htmldata += '<br>';
-                       htmldata += 'Correo: <a href="mailto:' + result.COM_Correo + '">' + result.COM_Correo + '</a>';
-                       htmldata += '</address>';
-                       //});
-
-
-                       jQuery('#divAddress').append(htmldata);
-
-                   },
-                   error: function (a, b, c) {
-
-                   }
-               });
+                //jQuery.each(result.$values, function (val, Anuncio) {
+                htmldata +=
+                htmldata += '<address>';
+                htmldata += result.COM_Nombre;
+                htmldata += '<br>';
+                htmldata += result.COM_Direccion;
+                htmldata += '<br>';
+                htmldata += 'Teléfono: ' + result.COM_Telefono;
+                htmldata += '<br>';
+                htmldata += 'Correo: <a href="mailto:' + result.COM_Correo + '">' + result.COM_Correo + '</a>';
+                htmldata += '</address>';
+                //});
 
 
-               jQuery.ajax(
-                       {
-                           type: 'post',
-                           url: '@Url.Action("GetLastAnuncios", "Anuncios")',
+                jQuery('#divAddress').append(htmldata);
+
+            },
+            error: function (a, b, c) {
+
+            }
+        });
+
+
+        jQuery.ajax(
+        {
+            type: 'post',
+            url: '@Url.Action("GetLastAnuncios", "Anuncios")',
                            success: function (data) {
                                var result = JSON.parse(data);
                                var htmldata = '';
-                               debugger;
                                jQuery.each(result.$values, function (val, anuncio) {
-                                   var urlcontent = '@Url.Content("~/Anuncios/Details/")' +anuncio.AnunciosInfo.AN_Id;
+                                   var urlcontent = '@Url.Content("~/Anuncios/Details/")' + anuncio.AnunciosInfo.AN_Id;
                                    //htmldata += '<dl class="dl-horizontal"><dt><a href="Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id + '"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id + '">';
                                    htmldata += '<dl class="dl-horizontal"><dt><a href="' + urlcontent + '"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="' + urlcontent + '">';
                                    htmldata += anuncio.AnunciosInfo.AN_Descripcion;
@@ -350,10 +350,10 @@
                                jQuery('#UltimosAnuncios').append(htmldata);
 
                            },
-                           error: function (a, b, c) {
+                   error: function (a, b, c) {
 
-                           }
-                       });
+                   }
+               });
 
 
 

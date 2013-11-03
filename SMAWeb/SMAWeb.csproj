@@ -360,6 +360,8 @@
     <Content Include="Content\Images\vadafone_grey.png" />
     <Content Include="Content\Images\walmart.png" />
     <Content Include="Content\Images\walmart_grey.png" />
+    <Content Include="Content\img\bg-heading.png" />
+    <Content Include="Content\img\breadcrumbs.png" />
     <Content Include="Content\img\icons\social\facebook.png" />
     <Content Include="Content\img\icons\social\twitter.png" />
     <Content Include="Content\jpages\animate.css" />
@@ -610,6 +612,7 @@
     <Content Include="Content\Images\star-off.png" />
     <Content Include="Content\Images\star-on-big.png" />
     <Content Include="Content\Images\star-on.png" />
+    <Content Include="Scripts\SMA.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

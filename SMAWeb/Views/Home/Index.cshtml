@@ -10,7 +10,7 @@
             <span>Service Market servicios persona a persona.</span>
             <p>Aquí usted podrá buscar los servicios que necesite sin tener que hacer filas, llamadas innecesarias y sobre todo desde cualquier parte del mundo y en el horario que le sea más conveniente.</p>
         </div>
-        <a href="@Url.Content("~/Home/About")" class="btn-buy hover-effect">Conozca más</a>
+        <a href="@Url.Content("~/Home/About")" class="btn-u btn-buy hover-effect">Conozca más</a>
     </div>
 </div>
 <!--/row-fluid-->
@@ -120,7 +120,7 @@
                             @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SubCategories, "Selecione la Subcategoría", new { @class = "span6" })
 
                         </div>
-                        <input type="button" value="Buscar" onclick="CallFilter(1)" class="btn btn-warning" />
+                        <input type="button" value="Buscar" onclick="CallFilter(1)" class="btn-u btn btn-warning" />
 
                     </form>
                 </div>
@@ -129,7 +129,7 @@
                         <div class="controls controls-row">
                             <input type="text" id="descriptioninput" class="span12" placeholder="Descripcion, Palabras Clave, Otros">
                         </div>
-                        <input type="button" value="Buscar" onclick="CallFilter(2)" class="btn btn-warning" />
+                        <input type="button" value="Buscar" onclick="CallFilter(2)" class="btn-u btn btn-warning" />
                     </form>
                 </div>
                 <div class="tab-pane" id="dealership">
@@ -138,7 +138,7 @@
                         <div class="controls controls-row">
                             <input type="text" id="placeinput" class="span12" placeholder="Lugar, Ciudad , Ubicación">
                         </div>
-                        <input type="button" value="Buscar" onclick="CallFilter(3)" class="btn btn-warning" />
+                        <input type="button" value="Buscar" onclick="CallFilter(3)" class="btn-u btn btn-warning" />
 
                     </form>
                 </div>
