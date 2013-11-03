@@ -132,6 +132,12 @@
                                 </div>
                             </div>
                             <div class="control-group" style="margin-bottom: 0px;">
+                                <label class="control-label"><strong>@Html.DisplayNameFor(model => model.CD_Id)</strong></label>
+                                <div class="controls">
+                                    @Html.DisplayFor(model => model.CD_Id)
+                                </div>
+                            </div>
+                            <div class="control-group" style="margin-bottom: 0px;">
                                 <label class="control-label"><strong>@Html.DisplayNameFor(model => model.SBS_Id)</strong></label>
                                 <div class="controls">
                                     @Html.DisplayFor(model => model.SBS_Id)
@@ -166,8 +172,6 @@
                 </div>
 
                 <div class="span12">
-
-                
                 </div>
 
                 @{int counterreview = 0;}
@@ -332,7 +336,7 @@
             processData: false,
             beforeSend: function () {
                 showProgress('@Url.Content("~/images/loading.gif")');
-                },
+            },
             complete: function (data) {
                 hideProgress();
             },
@@ -352,36 +356,36 @@
             }
         });
 
-        }
-        var $ki = jQuery.noConflict();
-        function showProgress(loadingImgSrc) {
-            $ki.blockUI({
-                message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
-                css: {
-                    width: '450px',
-                    border: 'none',
-                    padding: '15px',
-                    backgroundColor: '#fafafa',
-                    'border-radius': '10px',
-                    opacity: .95,
-                    color: '#000',
-                    'font-size': '18px',
-                    'box-shadow': '0px 0px 12px rgba(0,0,0,.6)'
-                }
-            });
-        }
+    }
+    var $ki = jQuery.noConflict();
+    function showProgress(loadingImgSrc) {
+        $ki.blockUI({
+            message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
+            css: {
+                width: '450px',
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#fafafa',
+                'border-radius': '10px',
+                opacity: .95,
+                color: '#000',
+                'font-size': '18px',
+                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)'
+            }
+        });
+    }
 
-        function hideProgress() {
-            $ki.unblockUI();
-        }
+    function hideProgress() {
+        $ki.unblockUI();
+    }
 
 
-        function PostComment(link) {
-            var review = $(link).attr('data-val');
-            var commentElement = "#comentario-" + review;
+    function PostComment(link) {
+        var review = $(link).attr('data-val');
+        var commentElement = "#comentario-" + review;
 
-            var comment = {
-                "UserId": '@WebSecurity.CurrentUserId',
+        var comment = {
+            "UserId": '@WebSecurity.CurrentUserId',
                 "CR_Comentario": $(commentElement).val(),
                 "RW_Id": review
             };
