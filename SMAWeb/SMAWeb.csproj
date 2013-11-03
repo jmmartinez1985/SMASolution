@@ -504,6 +504,7 @@
       <LastGenOutput>SMAModel.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\Bootstrap2.3\bootstrap-collapse.js" />
     <Content Include="Scripts\Bootstrap2.3\bootstrap-paginator.js" />
     <Content Include="Scripts\Bootstrap2.3\bootstrap.js" />
     <Content Include="Scripts\Bootstrap2.3\bootstrap.min.js" />
