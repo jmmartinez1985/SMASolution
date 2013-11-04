@@ -26,17 +26,21 @@
                     </div>
                 </div>
                 <form action="@Url.Action("UploadFiles", "UserProfile")" method="post" enctype="multipart/form-data">
-                   
-
-                     <span class="btn-u btn btn-success fileinput-button" style="margin-top: 5px;">
-                                <i class="icon-plus icon-white"></i>
-                                <span>Cargar Imagen...</span>
-                                 <input type="file" name="file" id="file" />
-                            </span>
 
 
+                    <span class="btn-u btn btn-success fileinput-button">
+                        <i class="icon-plus icon-white"></i>
+                        <span>Seleccionar Imagen</span>
+                        <input type="file" name="file" id="file" />
+                    </span>
 
-                    <input type="submit" name="submit" class="btn-u" value="Cargar" />
+
+
+                    <span class="btn-u btn btn-success fileinput-button">
+                        <i class="icon-upload icon-white"></i>
+                        <span>Iniciar Carga</span>
+                        <input type="submit" name="submit" class="btn-u"  />
+                    </span>
                 </form>
             </div>
             <div class="span6">
@@ -66,7 +70,7 @@
                     <div class="row-fluid">
                         <div class="span3">@Html.LabelFor(model => model.Details)</div>
                         <div class="span3">
-                            @Html.TextBoxFor(model => model.Details, new { @placeholder = "Detalle", @class = "input-xxlarge" })
+                            @Html.TextBoxFor(model => model.Details, new { @placeholder = "Profesión", @class = "input-xxlarge" })
                             @Html.ValidationMessageFor(model => model.Details)
                         </div>
                     </div>

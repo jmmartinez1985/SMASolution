@@ -72,7 +72,7 @@
                         <li><a href="#">Spanish</a></li>
                     </ul>
                 </li>*@
-                @*             <li class="devider">&nbsp;</li>*@
+               @* <li class="devider">&nbsp;</li>*@
                 <li><a href="#" class="login-btn">Ayuda</a></li>
                 <li class="devider">&nbsp;</li>
 
@@ -85,8 +85,8 @@
 
 
 
-
-                    <li>@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "login-btn", title = "Manage" })!</li>
+                    <li><a href="@Url.Content("~/UserProfile/EditUser")">@User.Identity.Name.ToString()</a></li>@*
+                    <li>@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "login-btn", title = "Manage" })!</li>*@
 
 
 
@@ -94,15 +94,19 @@
 
                         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "LoginFormAuth" }))
                         {
+
+                           
  @Html.AntiForgeryToken()
                    
 
 
+                            <a class="login-btn" style="vertical-align: bottom;" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
 
 
 
 
-                            <a class="login-btn" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
+
+                          
                         }
 
                     </li>
@@ -336,24 +340,24 @@
         {
             type: 'post',
             url: '@Url.Action("GetLastAnuncios", "Anuncios")',
-                           success: function (data) {
-                               var result = JSON.parse(data);
-                               var htmldata = '';
-                               jQuery.each(result.$values, function (val, anuncio) {
-                                   var urlcontent = '@Url.Content("~/Anuncios/Details/")' + anuncio.AnunciosInfo.AN_Id;
-                                   //htmldata += '<dl class="dl-horizontal"><dt><a href="Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id + '"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id + '">';
-                                   htmldata += '<dl class="dl-horizontal"><dt><a href="' + urlcontent + '"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="' + urlcontent + '">';
-                                   htmldata += anuncio.AnunciosInfo.AN_Descripcion;
-                                   htmldata += '</a></p></dd></dl>';
-                               });
+            success: function (data) {
+                var result = JSON.parse(data);
+                var htmldata = '';
+                jQuery.each(result.$values, function (val, anuncio) {
+                    var urlcontent = '@Url.Content("~/Anuncios/Details/")' + anuncio.AnunciosInfo.AN_Id;
+                    //htmldata += '<dl class="dl-horizontal"><dt><a href="Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id + '"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id + '">';
+                    htmldata += '<dl class="dl-horizontal"><dt><a href="' + urlcontent + '"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="' + urlcontent + '">';
+                    htmldata += anuncio.AnunciosInfo.AN_Descripcion;
+                    htmldata += '</a></p></dd></dl>';
+                });
 
-                               jQuery('#UltimosAnuncios').append(htmldata);
+                jQuery('#UltimosAnuncios').append(htmldata);
 
-                           },
-                   error: function (a, b, c) {
+            },
+            error: function (a, b, c) {
 
-                   }
-               });
+            }
+        });
 
 
 

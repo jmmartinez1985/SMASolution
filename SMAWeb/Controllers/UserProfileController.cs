@@ -133,8 +133,9 @@ namespace SMAWeb.Controllers
         //
         // POST: /UserProfile/EditUser/5
 
-        public ActionResult EditUser(int id = 0)
+        public ActionResult EditUser()
         {
+            int id = WebSecurity.CurrentUserId;
             UserProfile userprofile = db.UserProfile.Find(id);
             if (userprofile == null)
             {

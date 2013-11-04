@@ -1,20 +1,23 @@
 ﻿@model SMAWeb.Models.RegisterExternalLoginModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Registro en Service Market";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
+<div class="another-page">
+    <div class="headline">
+        <h3>@ViewBag.Title.</h3>
+    </div>
+
+
     <h2>Asociar @ViewBag.ProviderDisplayName a su cuenta.</h2>
-</hgroup>
 
-@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Association Form</legend>
+   
+        
         <p>
             Se ha autenticado satisfactoriamente con <strong>@ViewBag.ProviderDisplayName</strong>.
             Por favor ingrese su nombre de usuario para Service Market y luego haga clic en registrar para finalizar su inicio de sesión
@@ -28,9 +31,9 @@
         </ol>
         @Html.HiddenFor(m => m.ExternalLoginData)
         <input type="submit" value="Registrar" />
-    </fieldset>
-}
 
+    }
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

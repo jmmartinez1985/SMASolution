@@ -301,7 +301,7 @@ namespace SMAWeb.Models
         [Display(Name = "Nombre Completo")]
         public string Name { get; set; }
 
-        [Display(Name = "Detalle")]
+        [Display(Name = "Profesión")]
         public string Details { get; set; }
 
         [Display(Name = "Dirección")]
@@ -310,7 +310,7 @@ namespace SMAWeb.Models
         [Display(Name = "Ciudad")]
         public string City { get; set; }
 
-        [Display(Name = "Código de País")]
+        [Display(Name = "Nacionalidad")]
         public Nullable<int> PA_Id { get; set; }
 
         public byte[] Image { get; set; }

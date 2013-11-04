@@ -1551,6 +1551,7 @@
   * ========================== */
 
   function ScrollSpy(element, options) {
+      
     var process = $.proxy(this.process, this)
       , $element = $(element).is('body') ? $(window) : $(element)
       , href
@@ -1559,6 +1560,7 @@
     this.selector = (this.options.target
       || ((href = $(element).attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
       || '') + ' .nav li > a'
+    
     this.$body = $('body')
     this.refresh()
     this.process()
@@ -1574,7 +1576,7 @@
 
         this.offsets = $([])
         this.targets = $([])
-
+ 
         $targets = this.$body
           .find(this.selector)
           .map(function () {
@@ -1615,6 +1617,7 @@
       }
 
     , activate: function (target) {
+      
         var active
           , selector
 
@@ -1631,7 +1634,7 @@
         active = $(selector)
           .parent('li')
           .addClass('active')
-
+     
         if (active.parent('.dropdown-menu').length)  {
           active = active.closest('li.dropdown').addClass('active')
         }
@@ -1720,6 +1723,7 @@
     constructor: Tab
 
   , show: function () {
+     
       var $this = this.element
         , $ul = $this.closest('ul:not(.dropdown-menu)')
         , selector = $this.attr('data-target')
@@ -1762,6 +1766,7 @@
             && $active.hasClass('fade')
 
       function next() {
+         
         $active
           .removeClass('active')
           .find('> .dropdown-menu > .active')
