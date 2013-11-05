@@ -39,7 +39,7 @@
                     <span class="btn-u btn btn-success fileinput-button">
                         <i class="icon-upload icon-white"></i>
                         <span>Iniciar Carga</span>
-                        <input type="submit" name="submit" class="btn-u"  />
+                        <input type="submit" name="submit" class="btn-u" />
                     </span>
                 </form>
             </div>
@@ -99,11 +99,16 @@
                         </div>
                     </div>
                   
+                    <div class="row-fluid">
+                        <div class="span12">
+                        </div>
+                    </div>
                     @Html.HiddenFor(model => model.MP_MemberShipId, "MB_Membresia")
                     @Html.HiddenFor(model => model.ST_Id, "ST_Estatus")
 
                     <p>
                         <input type="submit" value="Guardar" class="btn-u btn-large" />
+                        <a href="@Url.Content("~/Account/Manage")" class="btn-u btn-large" >Cambiar Contraseña</a>
                     </p>
                 }
             </div>

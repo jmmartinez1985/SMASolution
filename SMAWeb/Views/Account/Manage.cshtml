@@ -3,28 +3,35 @@
     ViewBag.Title = "Manage Account";
 }
 
+<br />
+<div class="reg-page">
 
 
-<p class="message-success">@ViewBag.StatusMessage</p>
 
-@*<p>Usted ha iniciado sesión como <strong>@User.Identity.Name</strong>.</p>*@
 
-@if (ViewBag.HasLocalPassword)
-{
-    @Html.Partial("_ChangePasswordPartial")
-}
-else
-{ 
-    @Html.Partial("_SetPasswordPartial")
-}
 
-@*<section id="externalLogins">
+    @*<p>Usted ha iniciado sesión como <strong>@User.Identity.Name</strong>.</p>*@
+
+    @if (ViewBag.HasLocalPassword)
+    {
+        @Html.Partial("_ChangePasswordPartial")
+    }
+    else
+    { 
+        @Html.Partial("_SetPasswordPartial")
+    }
+
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>@ViewBag.StatusMessage</div>
+
+    @*<section id="externalLogins">
     @Html.Action("RemoveExternalLogins")
 
     <h3>Add an external login</h3>
     @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
 </section>*@
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>
