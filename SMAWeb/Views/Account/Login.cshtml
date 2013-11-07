@@ -60,6 +60,8 @@
                             {
                                 @Html.AntiForgeryToken()
                                 @Html.ValidationSummary(true)
+
+                                <div id="divBlanco"></div>
                                 <h3>Inicie sesión con su cuenta Service Market</h3>
                                 <div class="input-prepend">
                                     <span class="add-on"><i class="icon-user"></i></span>
@@ -78,13 +80,13 @@
                                         @Html.CheckBoxFor(m => m.RememberMe)
                                         Recordar mis datos</label>
                                     @* <button class="btn-u pull-right" type="submit">Login</button>*@
-                                    <input class="btn-u pull-right" type="submit" value="Log in" />
+                                    <input class="btn-u pull-right" id="submit" type="submit" value="Log in" />
                                 </div>
                                 <hr />
                                 <h4>¿Olvidó su contraseña?</h4>
                                 <p>No se preocupe, <a class="color-green" href="#">haga clic aquí</a> para reinicializar su contraseña.</p>
                                 <p>
-                                    @Html.ActionLink("Regístrese", "Register") si aún no tiene una cuenta.
+                                    @Html.ActionLink("Regístrese", "Register", new { @class = "color-green" }) si aún no tiene una cuenta.
                                 </p> }
                         </div>
 
@@ -113,3 +115,13 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+@*<script>
+    jQuery(document).ready(function () {
+        //debugger;
+        //jQuery('.validation-summary-errors').wrap('<div class="alert fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p></p></strong><p></p></div>').after('<div id="divBlanco"></div>');
+        jQuery('.validation-summary-errors').addClass("alert alert-error");
+    });
+
+</script>*@

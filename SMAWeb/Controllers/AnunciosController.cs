@@ -300,6 +300,12 @@ namespace SMAWeb.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion");
+            ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion");
+            ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion");
+            ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName");
+            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion");
             return View(an_anuncios);
         }
 

@@ -132,6 +132,12 @@
                                 </div>
                             </div>
                             <div class="control-group" style="margin-bottom: 0px;">
+                                <label class="control-label"><strong>@Html.DisplayNameFor(model => model.CD_Id)</strong></label>
+                                <div class="controls">
+                                    @Html.DisplayFor(model => model.CD_Id)
+                                </div>
+                            </div>
+                            <div class="control-group" style="margin-bottom: 0px;">
                                 <label class="control-label"><strong>@Html.DisplayNameFor(model => model.SBS_Id)</strong></label>
                                 <div class="controls">
                                     @Html.DisplayFor(model => model.SBS_Id)
@@ -166,8 +172,6 @@
                 </div>
 
                 <div class="span12">
-
-                
                 </div>
 
                 @{int counterreview = 0;}
@@ -291,96 +295,97 @@
             </div>
         </div>
     </div>
-    <script>
-        jQuery(document).ready(function ($) {
+</div>
+<script>
+    jQuery(document).ready(function ($) {
 
-            $('#myCarousel').carousel({
-                interval: 5000
-            });
-
-            $('#carousel-text').html($('#slide-content-0').html());
-
-            //Handles the carousel thumbnails
-            $('[id^=carousel-selector-]').click(function () {
-                var id_selector = $(this).attr("id");
-                var id = id_selector.substr(id_selector.length - 1);
-                var id = parseInt(id);
-                $('#myCarousel').carousel(id);
-            });
-
-
-            // When the carousel slides, auto update the text
-            $('#myCarousel').on('slid', function (e) {
-                var id = $('.item.active').data('slide-number');
-                $('#carousel-text').html($('#slide-content-' + id).html());
-            });
-
-
+        $('#myCarousel').carousel({
+            interval: 5000
         });
 
-        function TakeService() {
-            debugger;
-            var data = new FormData();
-            data.append("Anuncio", $('#AN_Id').val());
-            $.ajax({
-                url: '@Url.Action("TakeService", "SolicitudServicio")',
-                type: 'post',
-                data: data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function () {
-                    showProgress('@Url.Content("~/images/loading.gif")');
-                },
-                complete: function (data) {
-                    hideProgress();
-                },
-                success: function (data) {
-                    $(".message").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
-                    $('.alert').alert();
-                    $('.alert').fadeOut(3000)
-                },
-                error: function (xhr) {
-                    if (xhr.status == 403) {
-                        var response = $.parseJSON(xhr.responseText);
-                        window.location = response.LogOnUrl;
-                    }
-                    else {
-                        alert(xhr.responseText, 'An error has ocurred');
-                    }
+        $('#carousel-text').html($('#slide-content-0').html());
+
+        //Handles the carousel thumbnails
+        $('[id^=carousel-selector-]').click(function () {
+            var id_selector = $(this).attr("id");
+            var id = id_selector.substr(id_selector.length - 1);
+            var id = parseInt(id);
+            $('#myCarousel').carousel(id);
+        });
+
+
+        // When the carousel slides, auto update the text
+        $('#myCarousel').on('slid', function (e) {
+            var id = $('.item.active').data('slide-number');
+            $('#carousel-text').html($('#slide-content-' + id).html());
+        });
+
+
+    });
+
+    function TakeService() {
+        debugger;
+        var data = new FormData();
+        data.append("Anuncio", $('#AN_Id').val());
+        $.ajax({
+            url: '@Url.Action("TakeService", "SolicitudServicio")',
+            type: 'post',
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function () {
+                showProgress('@Url.Content("~/images/loading.gif")');
+            },
+            complete: function (data) {
+                hideProgress();
+            },
+            success: function (data) {
+                $(".message").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
+                $('.alert').alert();
+                $('.alert').fadeOut(3000)
+            },
+            error: function (xhr) {
+                if (xhr.status == 403) {
+                    var response = $.parseJSON(xhr.responseText);
+                    window.location = response.LogOnUrl;
                 }
-            });
-
-        }
-        var $ki = jQuery.noConflict();
-        function showProgress(loadingImgSrc) {
-            $ki.blockUI({
-                message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
-                css: {
-                    width: '450px',
-                    border: 'none',
-                    padding: '15px',
-                    backgroundColor: '#fafafa',
-                    'border-radius': '10px',
-                    opacity: .95,
-                    color: '#000',
-                    'font-size': '18px',
-                    'box-shadow': '0px 0px 12px rgba(0,0,0,.6)'
+                else {
+                    alert(xhr.responseText, 'An error has ocurred');
                 }
-            });
-        }
+            }
+        });
 
-        function hideProgress() {
-            $ki.unblockUI();
-        }
+    }
+    var $ki = jQuery.noConflict();
+    function showProgress(loadingImgSrc) {
+        $ki.blockUI({
+            message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
+            css: {
+                width: '450px',
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#fafafa',
+                'border-radius': '10px',
+                opacity: .95,
+                color: '#000',
+                'font-size': '18px',
+                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)'
+            }
+        });
+    }
+
+    function hideProgress() {
+        $ki.unblockUI();
+    }
 
 
-        function PostComment(link) {
-            var review = $(link).attr('data-val');
-            var commentElement = "#comentario-" + review;
+    function PostComment(link) {
+        var review = $(link).attr('data-val');
+        var commentElement = "#comentario-" + review;
 
-            var comment = {
-                "UserId": '@WebSecurity.CurrentUserId',
+        var comment = {
+            "UserId": '@WebSecurity.CurrentUserId',
                 "CR_Comentario": $(commentElement).val(),
                 "RW_Id": review
             };
@@ -427,4 +432,4 @@
                 }
             });
         }
-    </script>
+</script>
