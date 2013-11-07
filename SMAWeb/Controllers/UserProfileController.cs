@@ -156,9 +156,17 @@ namespace SMAWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (TempData["UserImage"] != null)
+                {
+                    userprofile.Image = TempData["UserImage"].ToString();
+                }
+                else
+                {
+                    userprofile.Image = "~/Images/No_Profile.jpg";
+                }
                 db.Entry(userprofile).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("EditUser", "UserProfile", new { id = WebSecurity.CurrentUserId });
             }
             ViewBag.MP_MemberShipId = new SelectList(db.MB_Membresia, "MP_MemberShipId", "MP_Descripcion", userprofile.MP_MemberShipId);
             ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion", userprofile.PA_Id);
@@ -176,9 +184,12 @@ namespace SMAWeb.Controllers
         {
             var image = db.UserProfile.Find(id).Image;
             var bytes = new byte[1024];
-            using (FileStream fs = new FileStream(Server.MapPath(image), FileMode.Open))
+            if (image != null)
             {
-                bytes = ReadFully(fs);
+                using (FileStream fs = new FileStream(Server.MapPath(image), FileMode.Open))
+                {
+                    bytes = ReadFully(fs);
+                }
             }
             return bytes != null ? new FileContentResult(bytes, "image/jpg") : null;
             
@@ -203,6 +214,9 @@ namespace SMAWeb.Controllers
                        Path.GetFileName(hpf.FileName));
                     hpf.SaveAs(savedFileName);
                     findUser.Image = "~/FilesUploaded/Profiles/" + Path.GetFileName(hpf.FileName);
+                    if (TempData.ContainsKey("UserImage"))
+                        TempData.Remove("UserImage");
+                    TempData.Add("UserImage", findUser.Image);
                     db.Entry(findUser).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("EditUser", "UserProfile", new { id = WebSecurity.CurrentUserId });
