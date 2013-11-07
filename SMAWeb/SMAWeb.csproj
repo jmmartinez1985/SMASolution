@@ -699,6 +699,8 @@
     <Content Include="Views\Comentarios\Edit.cshtml" />
     <Content Include="Views\Comentarios\Delete.cshtml" />
     <Content Include="Views\Review\GetReviewByAnunciosId.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordComplete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -208,7 +208,6 @@ namespace SMAWeb.Controllers
                 var findUser = db.UserProfile.FirstOrDefault(c => c.UserId == WebSecurity.CurrentUserId);
                 if (findUser != null)
                 {
-
                     string savedFileName = Path.Combine(
                        AppDomain.CurrentDomain.BaseDirectory, "FilesUploaded", "Profiles",
                        Path.GetFileName(hpf.FileName));
@@ -221,20 +220,8 @@ namespace SMAWeb.Controllers
                     db.SaveChanges();
                     return RedirectToAction("EditUser", "UserProfile", new { id = WebSecurity.CurrentUserId });
                 }
-
-                //string savedFileName = Path.Combine(
-                //   AppDomain.CurrentDomain.BaseDirectory,
-                //   Path.GetFileName(hpf.FileName));
-                //hpf.SaveAs(savedFileName);
-
-                //r.Add(new ViewDataUploadFilesResult()
-                //{
-                //    Name = savedFileName,
-                //    Length = hpf.ContentLength
-                //});
             }
             return null;
-            //return View("UploadedFiles", r);
         }
 
         public static byte[] ReadFully(Stream input)
