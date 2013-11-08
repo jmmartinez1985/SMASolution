@@ -47,8 +47,13 @@ namespace SMAWeb.Controllers
                     {
                         firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_ImagenUrl;
                     }
+                    else
+                    {
+                        firstImage = item.UserProfile.Image == null ? "~/Images/No_Profile.jpg" : item.UserProfile.Image;
+                    }
 
-                
+                    //item.AN_Fecha = Convert.ToDateTime(item.AN_Fecha.ToShortDateString());
+
                     var getRating = model.SEL_ValoracionAnuncios(item.AN_Id).FirstOrDefault();
 
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
@@ -62,7 +67,7 @@ namespace SMAWeb.Controllers
                     {
                         number += counter.RW_Reviews.Count;
                     });
-                    viewModelAnuncios.Add(new AnunciosViewModel 
+                    viewModelAnuncios.Add(new AnunciosViewModel
                     {
                         Usuario = username,
                         EstatusDescription = statusDesc,

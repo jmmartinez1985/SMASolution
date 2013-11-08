@@ -34,3 +34,27 @@ function CreateCategoria(data) {
     jQuery('.alert').fadeOut(3000);
 
 };
+
+function ShortDateTime(dateObject) {
+    debugger;
+    //var d = new Date(dateObject);
+    //var day = d.getDate();
+    //var month = d.getMonth();
+    //var year = d.getFullYear();
+
+    //if (day < 10) {
+    //    day = "0" + day;
+    //}
+
+    //if (month < 10) {
+    //    month = "0" + month;
+    //}
+
+    //var date = day + "/" + month + "/" + year;
+    //return date;
+
+    var fecha = dateObject.split('T')
+    var fechaDivida = fecha[0].split('-');
+
+    return fechaDivida[2] + "/" + fechaDivida[1] + "/" +fechaDivida[0];
+};

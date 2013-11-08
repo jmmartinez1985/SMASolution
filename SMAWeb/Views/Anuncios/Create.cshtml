@@ -31,7 +31,7 @@
                         </div>
                         <div class="editor-field">
                             @Html.TextBoxFor(model => model.AN_Titulo, new { @placeholder = "Título del Anuncio", @class = "input-block-level" })
-                            @Html.ValidationMessageFor(model => model.AN_Titulo)
+
                         </div>
                     </div>
                 </div>
@@ -44,42 +44,37 @@
                             </div>
                             <div class="editor-field">
                                 @Html.DropDownList("PA_Id", (IEnumerable<SelectListItem>)ViewBag.PA_Id, "Selecione el país", new { @class = "input-block-level" })
-                                @Html.ValidationMessageFor(model => model.PA_Id)
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.CD_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
                                 @Html.DropDownList("CD_Id", (IEnumerable<SelectListItem>)ViewBag.CD_Id, "Selecione la categoría", new { @class = "input-block-level" })
-                                @Html.ValidationMessageFor(model => model.CD_Id)
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.SBS_Id)
                             </div>
                             <div class="editor-field">
                                 @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id, "Selecione la subcategoría", new { @class = "input-block-level" })
-                                @Html.ValidationMessageFor(model => model.SBS_Id)
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.AN_Telefono)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
                                 @Html.TextBoxFor(model => model.AN_Telefono, new { @placeholder = "Teléfono", @class = "input-block-level" })
-                                @Html.ValidationMessageFor(model => model.AN_Telefono)
                             </div>
                             <div class="editor-label">
                                 @Html.LabelFor(model => model.AN_Celular)
                             </div>
                             <div class="editor-field">
                                 @Html.TextBoxFor(model => model.AN_Celular, new { @placeholder = "Teléfono 2", @class = "input-block-level" })
-                                @Html.ValidationMessageFor(model => model.AN_Celular)
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.AN_Area)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
                                 @Html.TextAreaFor(model => model.AN_Area, new { @placeholder = "Lugar del Anuncio", @class = "input-block-level", @rows = "3" })
-                                @Html.ValidationMessageFor(model => model.AN_Descripcion)
+
                             </div>
                         </div>
                         <div class="span4">
@@ -88,7 +83,7 @@
                             </div>
                             <div class="editor-field">
                                 @Html.TextAreaFor(model => model.AN_Descripcion, new { @placeholder = "Descripción del Anuncio", @class = "input-block-level", @rows = "14" })
-                                @Html.ValidationMessageFor(model => model.AN_Descripcion)
+
                             </div>
 
 
@@ -133,6 +128,34 @@
 
                     <input type="submit" value="Crear Anuncio" class="btn-u submitbtn" />
 
+                </div>
+                <div>
+                    <ul style="list-style: none;">
+                        <li>
+                            @Html.ValidationMessageFor(model => model.AN_Titulo)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.PA_Id)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.CD_Id)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.SBS_Id)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.AN_Telefono)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.AN_Celular)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.AN_Area)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.AN_Descripcion)
+                        </li>
+                    </ul>
                 </div>
                 @section Scripts {
                     @Scripts.Render("~/bundles/jqueryval")

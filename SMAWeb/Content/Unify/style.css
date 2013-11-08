@@ -711,7 +711,8 @@ blockquote:hover {
 }
 .carousel-control:hover { 
 	opacity:1;
-	color:#72c02c; 
+	/*color:#e67e22; */
+    background-color:#e67e22;
 }
 
 /*Tabs*/
