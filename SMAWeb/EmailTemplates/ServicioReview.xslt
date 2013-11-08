@@ -15,11 +15,11 @@
         <br />
         <p>
           <b>
-            Estimado <xsl:value-of select="CustomerName" /> :
+            Estimado: <xsl:value-of select="CustomerName" /> 
           </b>
         </p>
         <p>
-          Le solicitamos cordialmente nos dé su opinión acerca del servicio "<xsl:value-of select="AnuncioDescripcion" />" que fue solicitado por usted al usuario <xsl:value-of select="ProviderName" />
+          Le solicitamos cordialmente nos dé su opinión acerca del servicio  #<xsl:value-of select="SolicitudId" /> que fue solicitado por usted al usuario <xsl:value-of select="ProviderName" />
         </p>
         <p>
           Para calificar el servicio y dejar sus comentarios haga clic <xsl:element name="a">
@@ -27,7 +27,7 @@
               <xsl:value-of select="LinkReview"/>
             </xsl:attribute>
             <xsl:value-of select="LinkReview"/>
-          </xsl:element> <!--<a href="{LinkReview}"><xsl:value-of select="LinkReview"/>Aquí</a>-->
+          </xsl:element>
         </p>
         <br />
         <br />

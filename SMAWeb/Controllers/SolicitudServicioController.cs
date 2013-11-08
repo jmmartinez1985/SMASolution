@@ -286,6 +286,8 @@ namespace SMAWeb.Controllers
             public string EmailProveedor { get; set; }
             public string LinkReview { get; set; }
             public string AnuncioDescripcion { get; set; }
+            public string TelefonoCliente { get; set; }
+            public string TelefonoProveedor { get; set; }
 
         }
     }
