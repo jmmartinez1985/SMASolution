@@ -10,6 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using SMAWeb.Filters;
 using SMAWeb.Models;
+using System.Net.Mail;
 
 namespace SMAWeb.Controllers
 {
@@ -96,6 +97,160 @@ namespace SMAWeb.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+
+
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(string UserName)
+        {
+            //check user existance
+            var user = Membership.GetUser(UserName);
+            if (user == null)
+            {
+                TempData["Message"] = "El usuario no existe.";
+            }
+            else
+            {
+                //generate password token
+                var token = WebSecurity.GeneratePasswordResetToken(UserName);
+                //create url with above token
+                var resetLink = "<a href='" + Url.Action("ResetPassword", "Account", new { un = UserName, rt = token }, "http") + "'>Restaurar contraseña</a>";
+                //get user emailid
+                Entities db = new Entities();
+                var emailid = (from i in db.UserProfile
+                               where i.UserName == UserName
+                               select i.UserName).FirstOrDefault();
+                //send mail
+                string subject = "Por favor proceda a actualizar ssu password";
+                string body = "<b>En este link prodrá restaurar su contraseña</b><br/>" + resetLink; //edit it
+                try
+                {
+                    SendEMail(emailid, subject, body);
+                    TempData["Message"] = "Mensaje enviado.";
+                }
+                catch (Exception ex)
+                {
+                    TempData["Message"] = "Ha ocurrido un error enviando el mensaje." + ex.Message;
+                }
+                //only for testing
+                TempData["Message"] = "Se ha enviado un correo electrónico donde podrá restaurar sus credenciales.";
+            }
+
+            return View();
+        }
+
+        public ActionResult ResetPasswordComplete()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult ResetPassword(string un, string rt)
+        {
+            Entities db = new Entities();
+            //TODO: Check the un and rt matching and then perform following
+            //get userid of received username
+            var userid = (from i in db.UserProfile
+                          where i.UserName == un
+                          select i.UserId).FirstOrDefault();
+            //check userid and token matches
+            bool any = (from j in db.webpages_Membership
+                        where (j.UserId == userid)
+                        && (j.PasswordVerificationToken == rt)
+                        //&& (j.PasswordVerificationTokenExpirationDate < DateTime.Now)
+                        select j).Any();
+
+            if (any == true)
+            {
+                //generate random password
+                string newpassword = GenerateRandomPassword(6);
+                //reset password
+                bool response = WebSecurity.ResetPassword(rt, newpassword);
+                if (response == true)
+                {
+                    //get user emailid to send password
+                    var emailid = (from i in db.UserProfile
+                                   where i.UserName == un
+                                   select i.UserName).FirstOrDefault();
+                    //send email
+                    string subject = "Nueva contraseña";
+                    string body = "<b>Su nueva contraseña creada:</b><br/>" + newpassword; //edit it
+                    try
+                    {
+                        SendEMail(emailid, subject, body);
+                        TempData["Message"] = "Correo enviado.";
+                    }
+                    catch (Exception ex)
+                    {
+                        TempData["Message"] = "Ha ocurrido un error mientras se enviaba el correo." + ex.Message;
+                    }
+
+                    //display message
+                    TempData["Message"] = "Exito! Verifique su correo electrónico. Su nueva contraseña es: " + newpassword;
+                }
+                else
+                {
+                    TempData["Message"] = "Hey, avoid random request on this page.";
+                }
+            }
+            else
+            {
+                TempData["Message"] = "El usuario y el tokem no son válidos-";
+            }
+
+            return View("ResetPasswordComplete");
+        }
+
+        private string GenerateRandomPassword(int length)
+        {
+            string allowedChars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-*&#+";
+            char[] chars = new char[length];
+            Random rd = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                chars[i] = allowedChars[rd.Next(0, allowedChars.Length)];
+            }
+            return new string(chars);
+        }
+
+        private void SendEMail(string emailid, string subject, string body)
+        {
+            var from = System.Configuration.ConfigurationManager.AppSettings["EmailId"];
+            SmtpClient client = new SmtpClient();
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.EnableSsl = true;
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+
+            var user = System.Configuration.ConfigurationManager.AppSettings["EmailId"].ToString();
+            var pwduser = System.Configuration.ConfigurationManager.AppSettings["EmailPwd"].ToString();
+
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(user, pwduser);
+            client.UseDefaultCredentials = false;
+            client.Credentials = credentials;
+
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress(from);
+            msg.To.Add(new MailAddress(emailid));
+
+            msg.Subject = subject;
+            msg.IsBodyHtml = true;
+            msg.Body = body;
+
+            client.Send(msg);
+        }
+
+
+
 
         //
         // POST: /Account/Disassociate

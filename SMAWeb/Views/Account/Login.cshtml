@@ -4,43 +4,6 @@
     ViewBag.Title = "Inicio de Sesión";
 }
 
-@*<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>*@
-
-@*<section id="loginForm">
-    <h2>Use a local account to log in.</h2>
-    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
-
-        <fieldset>
-            <legend>Log in Form</legend>
-            <ol>
-                <li>
-                    @Html.LabelFor(m => m.Email)
-                    @Html.TextBoxFor(m => m.Email)
-                    @Html.ValidationMessageFor(m => m.Email)
-                </li>
-                <li>
-                    @Html.LabelFor(m => m.Password)
-                    @Html.PasswordFor(m => m.Password)
-                    @Html.ValidationMessageFor(m => m.Password)
-                </li>
-                <li>
-                    @Html.CheckBoxFor(m => m.RememberMe)
-                    @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-                </li>
-            </ol>
-            <input type="submit" value="Log in" />
-        </fieldset>
-        <p>
-            @Html.ActionLink("Register", "Register") if you don't have an account.
-        </p>
-    }
-</section>*@
-
 
 <br />
 <div class="container">
@@ -84,7 +47,7 @@
                                 </div>
                                 <hr />
                                 <h4>¿Olvidó su contraseña?</h4>
-                                <p>No se preocupe, <a class="color-green" href="#">haga clic aquí</a> para reinicializar su contraseña.</p>
+                                <p>No se preocupe, <a class="color-green" href="@Url.Action("ForgotPassword", "Account")">haga clic aquí</a> para reinicializar su contraseña.</p>
                                 <p>
                                     @Html.ActionLink("Regístrese", "Register", new { @class = "color-green" }) si aún no tiene una cuenta.
                                 </p> }
