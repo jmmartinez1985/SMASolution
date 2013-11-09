@@ -55,7 +55,7 @@ namespace SMAWeb.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class LoginModel
+    public partial class LoginModel
     {
         [Required]
         [Display(Name = "Correo Electrónico")]

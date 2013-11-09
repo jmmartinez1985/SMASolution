@@ -261,11 +261,13 @@
                 jQuery.each(result.$values, function (val, anuncio) {
                     
                     htmldata += '<tr><td><div class="row-fluid">';
-                    htmldata += '<div class="span12 booking-blocks"> '; 
+                    htmldata += '<div class="span12 booking-blocks"> ';
+                    //reviews
                     htmldata += '<ul class="unstyled inline blog-info">';
-                    htmldata += ' <li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha); + ' </li>';
+                    htmldata += ' <li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>';
                     htmldata += ' <li><i class="icon-comments"></i> <a href="#">'+ anuncio.Comments+ ' Reviews</a></li>';
                     htmldata += '</ul>';
+                    //fin reviews
                     htmldata += '<div class="pull-left booking-img">';
                     htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
                     htmldata += '<ul class="unstyled">';
@@ -365,6 +367,12 @@
                 jQuery.each(result.$values, function (val, anuncio) {
                     htmldata += '<tr><td><div class="row-fluid">';
                     htmldata += '<div class="span12 booking-blocks"> ';
+                    //reviews
+                    htmldata += '<ul class="unstyled inline blog-info">';
+                    htmldata += ' <li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>';
+                    htmldata += ' <li><i class="icon-comments"></i> <a href="#">' + anuncio.Comments + ' Reviews</a></li>';
+                    htmldata += '</ul>';
+                    //fin reviews
                     htmldata += '<div class="pull-left booking-img">';
                     htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
                     htmldata += '<ul class="unstyled">';
@@ -471,7 +479,8 @@
                 opacity: .95,
                 color: '#000',
                 'font-size': '18px',
-                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)'
+                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
+                'z-index': '9999'
             }
         });
     }

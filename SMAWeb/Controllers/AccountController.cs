@@ -11,6 +11,7 @@ using WebMatrix.WebData;
 using SMAWeb.Filters;
 using SMAWeb.Models;
 using System.Net.Mail;
+using System.IO;
 
 namespace SMAWeb.Controllers
 {
@@ -46,7 +47,7 @@ namespace SMAWeb.Controllers
             return View(model);
         }
 
-     
+
 
         //
         // POST: /Account/LogOff
@@ -110,28 +111,32 @@ namespace SMAWeb.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult ForgotPassword(string UserName)
+        public ActionResult ForgotPassword(string Email)
         {
             //check user existance
-            var user = Membership.GetUser(UserName);
+            var user = Membership.GetUser(Email);
             if (user == null)
             {
-                TempData["Message"] = "El usuario no existe.";
+                if (Email == string.Empty)
+                    TempData["Message"] = "No ha ingresado el correo electrónico.";
+                else
+                    TempData["Message"] = "El correo electronico ingresado no corresponde a un usuario existente.";
             }
             else
             {
                 //generate password token
-                var token = WebSecurity.GeneratePasswordResetToken(UserName);
+                var token = WebSecurity.GeneratePasswordResetToken(Email);
                 //create url with above token
-                var resetLink = "<a href='" + Url.Action("ResetPassword", "Account", new { un = UserName, rt = token }, "http") + "'>Restaurar contraseña</a>";
+                var resetLink = Url.Action("ResetPassword", "Account", new { un = Email, rt = token }, "http");
+
                 //get user emailid
                 Entities db = new Entities();
                 var emailid = (from i in db.UserProfile
-                               where i.UserName == UserName
+                               where i.UserName == Email
                                select i.UserName).FirstOrDefault();
                 //send mail
-                string subject = "Por favor proceda a actualizar ssu password";
-                string body = "<b>En este link prodrá restaurar su contraseña</b><br/>" + resetLink; //edit it
+                string subject = "Restaurar su contraseña de Service Market";
+                string body = MensajeRestablecerPassword(resetLink, Email); //edit it
                 try
                 {
                     SendEMail(emailid, subject, body);
@@ -142,7 +147,8 @@ namespace SMAWeb.Controllers
                     TempData["Message"] = "Ha ocurrido un error enviando el mensaje." + ex.Message;
                 }
                 //only for testing
-                TempData["Message"] = "Se ha enviado un correo electrónico donde podrá restaurar sus credenciales.";
+                TempData["Message"] = "Se ha enviado un correo electrónico en el cual podrá restaurar su contraseña.";
+
             }
 
             return View();
@@ -182,8 +188,8 @@ namespace SMAWeb.Controllers
                                    where i.UserName == un
                                    select i.UserName).FirstOrDefault();
                     //send email
-                    string subject = "Nueva contraseña";
-                    string body = "<b>Su nueva contraseña creada:</b><br/>" + newpassword; //edit it
+                    string subject = "Nueva Contraseña de Service Market";
+                    string body = MensajeNuevoPassword(newpassword); //edit it
                     try
                     {
                         SendEMail(emailid, subject, body);
@@ -191,23 +197,65 @@ namespace SMAWeb.Controllers
                     }
                     catch (Exception ex)
                     {
-                        TempData["Message"] = "Ha ocurrido un error mientras se enviaba el correo." + ex.Message;
+                        TempData["Message"] = "Ha ocurrido un error al intentar enviar el correo." + ex.Message ;
                     }
 
                     //display message
-                    TempData["Message"] = "Exito! Verifique su correo electrónico. Su nueva contraseña es: " + newpassword;
+                    TempData["Message"] = "Hemos atendido su solicitud de restauración de contraseña. Su nueva contraseña para Service Market es: "+ newpassword+" De igual forma le hemos enviado un correo con su nueva contraseña." ;
                 }
                 else
                 {
-                    TempData["Message"] = "Hey, avoid random request on this page.";
+                    TempData["Message"] = "Hubo un error al reiniciar la contraseña, por favor vuelva a intentarlo más a tarde o comuníquese con nuestros agnetes de Service Market.";
                 }
             }
             else
             {
-                TempData["Message"] = "El usuario y el tokem no son válidos-";
+                TempData["Message"] = "Hubo un error al reiniciar la contraseña, por favor vuelva a intentarlo más a tarde o comuníquese con nuestros agnetes de Service Market";
             }
 
             return View("ResetPasswordComplete");
+        }
+
+        private string MensajeNuevoPassword(string password)
+        {
+            string mensaje = string.Empty;
+            string imagen = Url.Content(Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port) + "/Images/logo2-blue.png");
+
+            mensaje += "<div style='color: #333; font-size: 13px; line-height: 1.6; font-family: Helvetica Neue, Helvetica, Arial, sans-serif;'><br /><div style='min-width: 90%; max-width: 30%;padding: 20px 50px 30px; overflow: hidden; margin: 0 auto; background: #fcfcfc; border: solid 1px #eee; box-shadow: 0 0 7px #eee;' ><div style='display: block; margin: 10px 0 25px 0; border-bottom: 1px dotted #e4e9f0; border-radius: 0 !important;'><img id='logo-footer' src='" + imagen + "' alt='Service Market' style='height: auto; max-width: 100%; vertical-align: middle; border: 0; -ms-interpolation-mode: bicubic;'>";
+            mensaje += "<h3 style='border-bottom: 2px solid #e67e22; margin-bottom: 25px; color: #585f69; margin: 0 0 -2px 0; padding-right: 10px; display: inline-block; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 24.5px; line-height: 40px; text-rendering: optimizelegibility; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;' >Nueva Contraseña de Service Market</h3></div><h5 style='color: #555; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>";
+            mensaje += "Hemos atendido su solicitud de restauración de contraseña. Su nueva contraseña para Service Market es:</h5><br /><h1 style='color: #e67e22; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>"+password+"<br /></h1><br /><h5 style='color: #555; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>Le recomendamos guardar su contraseña en un lugar seguro.</h5>";
+            mensaje += "</div><div style='margin-top: 40px; padding: 20px 10px; background: #585f69; color: #dadada; border-radius: 0 !important; display: block; font-size: 13px; line-height: 1.6;' ><div class='container'><div class='row-fluid'><div class='span12'><h6 style='font-size: 11.9px; margin: 10px 0; font-family: inherit; font-weight: bold; line-height: 20px; color: inherit; text-rendering: optimizelegibility; -webkit-margin-before: 2.33em; -webkit-margin-after: 2.33em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>Por favor, no responda a este mensaje; fue enviado desde una dirección de correo electrónico no supervisada como parte del servicio de restauración de su contraseña de Service Market.</h6>";
+            mensaje += "</div></div></div></div><div style='font-size: 12px; padding: 5px 10px; background: #3e4753; border-top: solid 1px #777; border-radius: 0 !important;'><div class='container'><div class='row-fluid'><div class='span8'><p style='color: #dadada; line-height: 1.6; margin: 0 0 10px; border-radius: 0 !important; display: block; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; font-size: 12px;'>2013 © Service Market. Todos los derechos reservados. <a href='#' style='color: #e67e22; text-decoration: none;'>Política de Privacidad</a> | <a href='#' style='color: #e67e22; text-decoration: none;'>Término de Servicios</a></p></div></div></div></div></div>";
+
+            return mensaje;
+
+        }
+        private string MensajeRestablecerPassword(string urlReset, string email)
+        {
+            string mensaje = string.Empty;
+            string imagen = Url.Content(Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port) + "/Images/logo2-blue.png");
+
+            mensaje += "<div style='color: #333; font-size: 13px; line-height: 1.6; font-family: Helvetica Neue, Helvetica, Arial, sans-serif;'><br />";
+            mensaje += "<div style='min-width: 90%; max-width: 30%;padding: 20px 50px 30px; overflow: hidden; margin: 0 auto; background: #fcfcfc; border: solid 1px #eee; box-shadow: 0 0 7px #eee;' >";
+            mensaje += "<div style='display: block; margin: 10px 0 25px 0; border-bottom: 1px dotted #e4e9f0; border-radius: 0 !important;'>";
+            mensaje += "<img id='logo-footer' src='" + imagen + "' alt='Service Market' style='height: auto; max-width: 100%; vertical-align: middle; border: 0; -ms-interpolation-mode: bicubic;'>";
+            mensaje += "<h3 style='border-bottom: 2px solid #e67e22; margin-bottom: 25px; color: #585f69; margin: 0 0 -2px 0; padding-right: 10px; display: inline-block; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 24.5px; line-height: 40px; text-rendering: optimizelegibility; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;' >¿Olvidó su Contraseña de Service Market?</h3></div>";
+            mensaje += "<h5 style='color: #555; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>";
+            mensaje += "Hemos recibido una solicitud para restablecer la contraseña de su cuenta " + email + ".<br />Para continuar con el proceso de restauración de contraseña, haga clic en el siguiente botón<br />";
+            mensaje += "</h5><br /><a href='" + urlReset + "' style=' padding: 4px 13px; vertical-align: middle; background: #e67e22; border: 0; font-size: 14px; cursor: pointer; position: relative; display: inline-block; color: #fff !important; text-decoration: none !important; outline: 0 !important; line-height: 1.6; border-radius: 0 !important;' >Clic para restablecer su contraseña de Service Market</a>";
+            mensaje += "<br /><br /><h5 style='color: #555; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>O puede copiar y pegar la URL en su navegador<br />";
+            mensaje += "<a style='color: #e67e22; text-decoration: none;' href='" + urlReset + "'>" + urlReset + "</a></h5></div>";
+            mensaje += "<div style='margin-top: 40px; padding: 20px 10px; background: #585f69; color: #dadada; border-radius: 0 !important; display: block; font-size: 13px; line-height: 1.6;' >";
+            mensaje += "<div class='container'><div class='row-fluid'><div class='span12'>";
+            mensaje += "<h6 style='font-size: 11.9px; margin: 10px 0; font-family: inherit; font-weight: bold; line-height: 20px; color: inherit; text-rendering: optimizelegibility; -webkit-margin-before: 2.33em; -webkit-margin-after: 2.33em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>Por favor, no responda a este mensaje; fue enviado desde una dirección de correo electrónico no supervisada como parte del servicio de restauración de su contraseña de Service Market.</h6>";
+            mensaje += "</div></div></div></div>";
+            mensaje += "<div style='font-size: 12px; padding: 5px 10px; background: #3e4753; border-top: solid 1px #777; border-radius: 0 !important;'>";
+            mensaje += "<div class='container'><div class='row-fluid'><div class='span8'>";
+            mensaje += "<p style='color: #dadada; line-height: 1.6; margin: 0 0 10px; border-radius: 0 !important; display: block; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; font-size: 12px;'>2013 © Service Market. Todos los derechos reservados. <a href='#' style='color: #e67e22; text-decoration: none;'>Política de Privacidad</a> | <a href='#' style='color: #e67e22; text-decoration: none;'>Término de Servicios</a></p>";
+            mensaje += "</div></div></div></div></div>";
+
+            return mensaje;
+
         }
 
         private string GenerateRandomPassword(int length)

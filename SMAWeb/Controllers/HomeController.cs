@@ -35,7 +35,7 @@ namespace SMAWeb.Controllers
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
             using (Entities model = new Entities())
             {
-                allAnunciosList = model.AN_Anuncios.AsParallel().OrderBy(c => c.AN_Fecha).Where(sts => sts.ST_Id == 1).ToList();
+                allAnunciosList = model.AN_Anuncios.AsParallel().OrderByDescending(c => c.AN_Fecha).Where(sts => sts.ST_Id == 1).ToList();
 
                 foreach (var item in allAnunciosList)
                 {
