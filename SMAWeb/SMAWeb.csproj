@@ -246,6 +246,9 @@
     <Compile Include="Models\CR_ComentarioReview.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ELMAH_Error.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\FAQs.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>

@@ -20,6 +20,7 @@
           <EntitySet Name="CON_Contactenos" EntityType="ServiceMarketModel.Store.CON_Contactenos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CONF_Parametros" EntityType="ServiceMarketModel.Store.CONF_Parametros" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CR_ComentarioReview" EntityType="ServiceMarketModel.Store.CR_ComentarioReview" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ELMAH_Error" EntityType="ServiceMarketModel.Store.ELMAH_Error" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FAQs" EntityType="ServiceMarketModel.Store.FAQs" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.Store.MB_Membresia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.Store.MT_MultimediaTipos" store:Type="Tables" Schema="dbo" />
@@ -49,6 +50,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_AN_Anuncios_CD_CategoriaServicio" Association="ServiceMarketModel.Store.FK_AN_Anuncios_CD_CategoriaServicio">
             <End Role="CD_CategoriaServicio" EntitySet="CD_CategoriaServicio" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_PA_Paises" Association="ServiceMarketModel.Store.FK_AN_Anuncios_PA_Paises">
+            <End Role="PA_Paises" EntitySet="PA_Paises" />
             <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
           </AssociationSet>
           <AssociationSet Name="FK_AN_Anuncios_SBS_SubCategoriaServicio" Association="ServiceMarketModel.Store.FK_AN_Anuncios_SBS_SubCategoriaServicio">
@@ -232,6 +237,22 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="ST_Id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ELMAH_Error">
+          <Key>
+            <PropertyRef Name="ErrorId" />
+          </Key>
+          <Property Name="ErrorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Application" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="Host" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Source" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="Message" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="User" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="StatusCode" Type="int" Nullable="false" />
+          <Property Name="TimeUtc" Type="datetime" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AllXml" Type="ntext" Nullable="false" />
+        </EntityType>
         <EntityType Name="FAQs">
           <Key>
             <PropertyRef Name="FAQ_Id" />
@@ -373,7 +394,9 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_AE_AnunciosExtras_AN_Anuncios">
-          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="1" />
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="AE_AnunciosExtras" Type="ServiceMarketModel.Store.AE_AnunciosExtras" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AN_Anuncios">
@@ -385,7 +408,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AM_MultimediaAnuncios_AN_Anuncios">
-          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="1" />
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="AM_MultimediaAnuncios" Type="ServiceMarketModel.Store.AM_MultimediaAnuncios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AN_Anuncios">
@@ -417,6 +442,18 @@
             </Principal>
             <Dependent Role="AN_Anuncios">
               <PropertyRef Name="CD_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AN_Anuncios_PA_Paises">
+          <End Role="PA_Paises" Type="ServiceMarketModel.Store.PA_Paises" Multiplicity="1" />
+          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PA_Paises">
+              <PropertyRef Name="PA_Id" />
+            </Principal>
+            <Dependent Role="AN_Anuncios">
+              <PropertyRef Name="PA_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -761,13 +798,29 @@
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
+          <FunctionImport Name="get_Busqueda_Avanzada">
+            <Parameter Name="Categoria" Mode="In" Type="Int32" />
+            <Parameter Name="SubCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Lugar" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="AE_AnunciosExtras" EntityType="ServiceMarketModel.AE_AnunciosExtras" />
           <EntitySet Name="AN_Anuncios" EntityType="ServiceMarketModel.AN_Anuncios" />
+          <EntitySet Name="ELMAH_Error" EntityType="ServiceMarketModel.ELMAH_Error" />
+          <AssociationSet Name="FK_AE_AnunciosExtras_AN_Anuncios" Association="ServiceMarketModel.FK_AE_AnunciosExtras_AN_Anuncios">
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+            <End Role="AE_AnunciosExtras" EntitySet="AE_AnunciosExtras" />
+          </AssociationSet>
           <AssociationSet Name="FK_AM_MultimediaAnuncios_AN_Anuncios" Association="ServiceMarketModel.FK_AM_MultimediaAnuncios_AN_Anuncios">
             <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
             <End Role="AM_MultimediaAnuncios" EntitySet="AM_MultimediaAnuncios" />
           </AssociationSet>
           <AssociationSet Name="FK_AN_Anuncios_CD_CategoriaServicio" Association="ServiceMarketModel.FK_AN_Anuncios_CD_CategoriaServicio">
             <End Role="CD_CategoriaServicio" EntitySet="CD_CategoriaServicio" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_PA_Paises" Association="ServiceMarketModel.FK_AN_Anuncios_PA_Paises">
+            <End Role="PA_Paises" EntitySet="PA_Paises" />
             <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
           </AssociationSet>
           <AssociationSet Name="FK_AN_Anuncios_SBS_SubCategoriaServicio" Association="ServiceMarketModel.FK_AN_Anuncios_SBS_SubCategoriaServicio">
@@ -786,17 +839,12 @@
             <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
             <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
           </AssociationSet>
-          <FunctionImport Name="get_Busqueda_Avanzada" EntitySet="AN_Anuncios" ReturnType="Collection(ServiceMarketModel.AN_Anuncios)">
+          <FunctionImport Name="Get_AdvanceSearch" EntitySet="AN_Anuncios" ReturnType="Collection(ServiceMarketModel.AN_Anuncios)">
             <Parameter Name="Categoria" Mode="In" Type="Int32" />
             <Parameter Name="SubCategoria" Mode="In" Type="Int32" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
             <Parameter Name="Lugar" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="AE_AnunciosExtras" EntityType="ServiceMarketModel.AE_AnunciosExtras" />
-          <AssociationSet Name="FK_AE_AnunciosExtras_AN_Anuncios" Association="ServiceMarketModel.FK_AE_AnunciosExtras_AN_Anuncios">
-            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
-            <End Role="AE_AnunciosExtras" EntitySet="AE_AnunciosExtras" />
-          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AM_MultimediaAnuncios">
           <Key>
@@ -894,6 +942,7 @@
           <Property Name="REG_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="REG_Region" Relationship="ServiceMarketModel.FK_PA_Paises_REG_Region" FromRole="PA_Paises" ToRole="REG_Region" />
           <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_UserProfile_PA_Paises" FromRole="PA_Paises" ToRole="UserProfile" />
+          <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AN_Anuncios_PA_Paises" FromRole="PA_Paises" ToRole="AN_Anuncios" />
         </EntityType>
         <EntityType Name="REG_Region">
           <Key>
@@ -1227,6 +1276,16 @@
           <End Type="ServiceMarketModel.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
           <End Type="ServiceMarketModel.UserProfile" Role="UserProfile" Multiplicity="*" />
         </Association>
+        <EntityType Name="AE_AnunciosExtras">
+          <Key>
+            <PropertyRef Name="AE_Id" />
+          </Key>
+          <Property Type="Int32" Name="AE_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="AN_Id" Nullable="false" />
+          <Property Type="String" Name="AN_Nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AN_ImagenUrl" MaxLength="350" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AE_AnunciosExtras_AN_Anuncios" FromRole="AE_AnunciosExtras" ToRole="AN_Anuncios" />
+        </EntityType>
         <EntityType Name="AN_Anuncios">
           <Key>
             <PropertyRef Name="AN_Id" />
@@ -1244,16 +1303,49 @@
           <Property Type="DateTime" Name="AN_FechaExpiracion" Precision="3" />
           <Property Type="Int32" Name="ST_Id" Nullable="false" />
           <Property Type="Int32" Name="CD_Id" />
+          <NavigationProperty Name="AE_AnunciosExtras" Relationship="ServiceMarketModel.FK_AE_AnunciosExtras_AN_Anuncios" FromRole="AN_Anuncios" ToRole="AE_AnunciosExtras" />
           <NavigationProperty Name="AM_MultimediaAnuncios" Relationship="ServiceMarketModel.FK_AM_MultimediaAnuncios_AN_Anuncios" FromRole="AN_Anuncios" ToRole="AM_MultimediaAnuncios" />
           <NavigationProperty Name="CD_CategoriaServicio" Relationship="ServiceMarketModel.FK_AN_Anuncios_CD_CategoriaServicio" FromRole="AN_Anuncios" ToRole="CD_CategoriaServicio" />
+          <NavigationProperty Name="PA_Paises" Relationship="ServiceMarketModel.FK_AN_Anuncios_PA_Paises" FromRole="AN_Anuncios" ToRole="PA_Paises" />
           <NavigationProperty Name="SBS_SubCategoriaServicio" Relationship="ServiceMarketModel.FK_AN_Anuncios_SBS_SubCategoriaServicio" FromRole="AN_Anuncios" ToRole="SBS_SubCategoriaServicio" />
           <NavigationProperty Name="ST_Estatus" Relationship="ServiceMarketModel.FK_AN_Anuncios_ST_Estatus" FromRole="AN_Anuncios" ToRole="ST_Estatus" />
           <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_AN_Anuncios_UserProfile" FromRole="AN_Anuncios" ToRole="UserProfile" />
           <NavigationProperty Name="SS_SolicitudServicio" Relationship="ServiceMarketModel.FK_SS_SolicitudServicio_AN_Anuncios" FromRole="AN_Anuncios" ToRole="SS_SolicitudServicio" />
-          <NavigationProperty Name="AE_AnunciosExtras" Relationship="ServiceMarketModel.FK_AE_AnunciosExtras_AN_Anuncios" FromRole="AN_Anuncios" ToRole="AE_AnunciosExtras" />
         </EntityType>
+        <EntityType Name="ELMAH_Error">
+          <Key>
+            <PropertyRef Name="ErrorId" />
+          </Key>
+          <Property Type="Guid" Name="ErrorId" Nullable="false" />
+          <Property Type="String" Name="Application" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Host" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Source" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Message" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="User" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StatusCode" Nullable="false" />
+          <Property Type="DateTime" Name="TimeUtc" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="Sequence" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AllXml" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_AE_AnunciosExtras_AN_Anuncios">
+          <End Type="ServiceMarketModel.AN_Anuncios" Role="AN_Anuncios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ServiceMarketModel.AE_AnunciosExtras" Role="AE_AnunciosExtras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AN_Anuncios">
+              <PropertyRef Name="AN_Id" />
+            </Principal>
+            <Dependent Role="AE_AnunciosExtras">
+              <PropertyRef Name="AN_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AM_MultimediaAnuncios_AN_Anuncios">
-          <End Type="ServiceMarketModel.AN_Anuncios" Role="AN_Anuncios" Multiplicity="1" />
+          <End Type="ServiceMarketModel.AN_Anuncios" Role="AN_Anuncios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="ServiceMarketModel.AM_MultimediaAnuncios" Role="AM_MultimediaAnuncios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AN_Anuncios">
@@ -1273,6 +1365,18 @@
             </Principal>
             <Dependent Role="AN_Anuncios">
               <PropertyRef Name="CD_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AN_Anuncios_PA_Paises">
+          <End Type="ServiceMarketModel.PA_Paises" Role="PA_Paises" Multiplicity="1" />
+          <End Type="ServiceMarketModel.AN_Anuncios" Role="AN_Anuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PA_Paises">
+              <PropertyRef Name="PA_Id" />
+            </Principal>
+            <Dependent Role="AN_Anuncios">
+              <PropertyRef Name="PA_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1320,28 +1424,6 @@
               <PropertyRef Name="AN_Id" />
             </Principal>
             <Dependent Role="SS_SolicitudServicio">
-              <PropertyRef Name="AN_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="AE_AnunciosExtras">
-          <Key>
-            <PropertyRef Name="AE_Id" />
-          </Key>
-          <Property Type="Int32" Name="AE_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="AN_Id" Nullable="false" />
-          <Property Type="String" Name="AN_Nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AN_ImagenUrl" MaxLength="350" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AE_AnunciosExtras_AN_Anuncios" FromRole="AE_AnunciosExtras" ToRole="AN_Anuncios" />
-        </EntityType>
-        <Association Name="FK_AE_AnunciosExtras_AN_Anuncios">
-          <End Type="ServiceMarketModel.AN_Anuncios" Role="AN_Anuncios" Multiplicity="1" />
-          <End Type="ServiceMarketModel.AE_AnunciosExtras" Role="AE_AnunciosExtras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AN_Anuncios">
-              <PropertyRef Name="AN_Id" />
-            </Principal>
-            <Dependent Role="AE_AnunciosExtras">
               <PropertyRef Name="AN_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -1607,6 +1689,17 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="get_Busqueda_Avanzada" FunctionName="ServiceMarketModel.Store.SEL_BusquedaAvanzada" />
+          <EntitySetMapping Name="AE_AnunciosExtras">
+            <EntityTypeMapping TypeName="ServiceMarketModel.AE_AnunciosExtras">
+              <MappingFragment StoreEntitySet="AE_AnunciosExtras">
+                <ScalarProperty Name="AN_ImagenUrl" ColumnName="AN_ImagenUrl" />
+                <ScalarProperty Name="AN_Nombre" ColumnName="AN_Nombre" />
+                <ScalarProperty Name="AN_Id" ColumnName="AN_Id" />
+                <ScalarProperty Name="AE_Id" ColumnName="AE_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AN_Anuncios">
             <EntityTypeMapping TypeName="ServiceMarketModel.AN_Anuncios">
               <MappingFragment StoreEntitySet="AN_Anuncios">
@@ -1626,17 +1719,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="get_Busqueda_Avanzada" FunctionName="ServiceMarketModel.Store.SEL_BusquedaAvanzada" />
-          <EntitySetMapping Name="AE_AnunciosExtras">
-            <EntityTypeMapping TypeName="ServiceMarketModel.AE_AnunciosExtras">
-              <MappingFragment StoreEntitySet="AE_AnunciosExtras">
-                <ScalarProperty Name="AN_ImagenUrl" ColumnName="AN_ImagenUrl" />
-                <ScalarProperty Name="AN_Nombre" ColumnName="AN_Nombre" />
-                <ScalarProperty Name="AN_Id" ColumnName="AN_Id" />
-                <ScalarProperty Name="AE_Id" ColumnName="AE_Id" />
+          <EntitySetMapping Name="ELMAH_Error">
+            <EntityTypeMapping TypeName="ServiceMarketModel.ELMAH_Error">
+              <MappingFragment StoreEntitySet="ELMAH_Error">
+                <ScalarProperty Name="AllXml" ColumnName="AllXml" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="TimeUtc" ColumnName="TimeUtc" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Host" ColumnName="Host" />
+                <ScalarProperty Name="Application" ColumnName="Application" />
+                <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_AdvanceSearch" FunctionName="ServiceMarketModel.Store.SEL_BusquedaAvanzada" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

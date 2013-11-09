@@ -155,7 +155,7 @@ namespace SMAWeb.Models
         [Display(Name = "Lugar del Anuncio")]
         public string AN_Area { get; set; }
 
-        [Required (ErrorMessage = "Por favor seleccione la categoría del anuncio")]
+        [Required(ErrorMessage = "Por favor seleccione la categoría del anuncio")]
         [Display(Name = "Categoría")]
         public Nullable<int> CD_Id { get; set; }
 
@@ -174,6 +174,8 @@ namespace SMAWeb.Models
         public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         [JsonIgnore]
         public virtual CD_CategoriaServicio CD_CategoriaServicio { get; set; }
+        [JsonIgnore]
+        public virtual PA_Paises PA_Paises { get; set; }
 
     }
 
@@ -259,11 +261,11 @@ namespace SMAWeb.Models
         public int PA_Id { get; set; }
 
         [Display(Name = "País")]
-        [Required(ErrorMessage="Por favor ingrese el país")]
+        [Required(ErrorMessage = "Por favor ingrese el país")]
         [StringLength(50, ErrorMessage = "Por favor verifique el campo país, sólo se permite nombre de países de hasta 50 dígitos.")]
         public string PA_Descripcion { get; set; }
 
-        [Required(ErrorMessage= "Por favor seleccione la región")]
+        [Required(ErrorMessage = "Por favor seleccione la región")]
         [Display(Name = "Región")]
         public int REG_Id { get; set; }
 
@@ -275,7 +277,7 @@ namespace SMAWeb.Models
     public partial class REG_RegionMetadata
     {
         [Display(Name = "Código de Región")]
-        [Required (ErrorMessage="Por favor seleccione la región.")]
+        [Required(ErrorMessage = "Por favor seleccione la región.")]
         public int REG_Id { get; set; }
 
         [Required(ErrorMessage = "Por favor ingrese la descripción de la región.")]
@@ -370,7 +372,7 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Compañía")]
         public int COM_Id { get; set; }
 
-        [Required(ErrorMessage="Por favor ingrese el nombre de la compañía")]
+        [Required(ErrorMessage = "Por favor ingrese el nombre de la compañía")]
         [StringLength(100, ErrorMessage = "Por favor verifique el campo nombre de la compañía, sólo se permite nombres de hasta 100 dígitos.")]
         [Display(Name = "Nombre de Compañía")]
         public string COM_Nombre { get; set; }
@@ -423,12 +425,12 @@ namespace SMAWeb.Models
         [Display(Name = "Pregunta")]
         public string FAQ_Question { get; set; }
 
-        [Required(ErrorMessage="Por favor ingrese la respuesta.")]
+        [Required(ErrorMessage = "Por favor ingrese la respuesta.")]
         [StringLength(500, ErrorMessage = "Por favor verifique el campo respuesta, sólo se permite una respuesta máxima de 500 dígitos.")]
         [Display(Name = "Respuesta")]
         public string FAQ_Answer { get; set; }
 
-        [Required(ErrorMessage="Por favor seleccione el estado.")]
+        [Required(ErrorMessage = "Por favor seleccione el estado.")]
         [Display(Name = "Estado")]
         public int FAQ_Status { get; set; }
 
@@ -490,7 +492,7 @@ namespace SMAWeb.Models
         [Display(Name = "Código de Solicitud de Servicio")]
         public int SS_Id { get; set; }
 
-        [Required (ErrorMessage = "Por favor ingrese su comentario.")]
+        [Required(ErrorMessage = "Por favor ingrese su comentario.")]
         [Display(Name = "Comentario")]
         public string RW_Comentario { get; set; }
 

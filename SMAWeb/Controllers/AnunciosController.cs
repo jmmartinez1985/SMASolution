@@ -208,7 +208,7 @@ namespace SMAWeb.Controllers
             using (Entities model = new Entities())
             {
 
-                allAnunciosList = db.get_Busqueda_Avanzada(category, subcategoria, descripcion, lugar).ToList();
+                allAnunciosList = db.Get_AdvanceSearch(category, subcategoria, descripcion, lugar).ToList();
 
                 foreach (var item in allAnunciosList)
                 {

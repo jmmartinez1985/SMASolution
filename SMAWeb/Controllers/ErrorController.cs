@@ -18,6 +18,7 @@ namespace SMAWeb.Controllers
         public ViewResult NotFound()
         {
             Response.StatusCode = 404;  //you may want to set this to 200
+            ViewBag.Message = Response.StatusDescription.ToString();
             return View("NotFound");
         }
 
