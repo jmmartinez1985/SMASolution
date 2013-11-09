@@ -22,8 +22,6 @@ namespace SMAWeb.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            //var an_anuncios = db.AN_Anuncios.Include(a => a.SBS_SubCategoriaServicio).Include(a => a.ST_Estatus).Include(a => a.UserProfile);
-            //return View(an_anuncios.ToList());
             var allAnunciosList = new List<AN_Anuncios>();
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
             using (Entities model = new Entities())
@@ -125,10 +123,10 @@ namespace SMAWeb.Controllers
 
                 }
             }
-            //if (viewModelAnuncios == null || viewModelAnuncios.Count == 0)
-            //{
-            //    return HttpNotFound();
-            //}
+            if (viewModelAnuncios == null || viewModelAnuncios.Count == 0)
+            {
+                return HttpNotFound();
+            }
             return View(viewModelAnuncios);
 
         }
@@ -139,37 +137,11 @@ namespace SMAWeb.Controllers
         /// <returns></returns>
         public ActionResult GetLastAnuncios()
         {
-            //var an_anuncios = db.AN_Anuncios.Include(a => a.SBS_SubCategoriaServicio).
-            //    Include(a => a.ST_Estatus).Include(a => a.UserProfile)
-            //    .Where(c => c.UserId == UserId);
-            // return View(an_anuncios.ToList());
-
             var allAnunciosList = new List<AN_Anuncios>();
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
             using (Entities model = new Entities())
             {
-                //allAnunciosList = model.AN_Anuncios.OrderByDescending(day => day.AN_Fecha).Where(acc => acc.ST_Id == 1 & (acc.UserProfile.Image != null)).Take(3).ToList();
                 allAnunciosList = model.AN_Anuncios.OrderByDescending(day => day.AN_Fecha).Where(acc => acc.ST_Id == 1).Take(3).ToList();
-                //allAnunciosList = model.AN_Anuncios.OrderByDescending(day => day.AN_Fecha).Where(acc => acc.ST_Id == 1).Take(3).ToList();
-
-                //var categoriasList = new List<Categoria>();
-                //db.CD_CategoriaServicio.ToList().ForEach(c =>
-                //{
-                //    var subCatList = new List<SubCategorias>();
-
-                //    c.SBS_SubCategoriaServicio.ToList().ForEach(sb =>
-                //    {
-                //        subCatList.Add(new SubCategorias { SubCatId = sb.SBS_Id, SubCatDesc = sb.SBS_Descripcion });
-                //    });
-                //    categoriasList.Add(new Categoria
-                //    {
-                //        CatId = c.CD_Id,
-                //        CatDesc = c.CD_Descripcion,
-                //        SubCatCollection = subCatList
-                //    });
-                //});
-
-                //ViewBag.Categories = categoriasList;
 
                 foreach (var item in allAnunciosList)
                 {
@@ -293,6 +265,10 @@ namespace SMAWeb.Controllers
         public ActionResult Details(int id = 0)
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
+            if (an_anuncios == null)
+            {
+                return HttpNotFound("Page Not Found");
+            }
             var ListReview = new List<ContentReviews>();
             an_anuncios.SS_SolicitudServicio.ToList().ForEach(
                 an =>
@@ -301,10 +277,6 @@ namespace SMAWeb.Controllers
                 });
 
             ViewBag.ReviewFound = ListReview;
-            if (an_anuncios == null)
-            {
-                return HttpNotFound();
-            }
 
             ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion");
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion");
