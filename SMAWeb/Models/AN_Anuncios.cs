@@ -16,9 +16,9 @@ namespace SMAWeb.Models
     {
         public AN_Anuncios()
         {
+            this.AE_AnunciosExtras = new HashSet<AE_AnunciosExtras>();
             this.AM_MultimediaAnuncios = new HashSet<AM_MultimediaAnuncios>();
             this.SS_SolicitudServicio = new HashSet<SS_SolicitudServicio>();
-            this.AE_AnunciosExtras = new HashSet<AE_AnunciosExtras>();
         }
     
         public int AN_Id { get; set; }
@@ -35,12 +35,13 @@ namespace SMAWeb.Models
         public int ST_Id { get; set; }
         public Nullable<int> CD_Id { get; set; }
     
+        public virtual ICollection<AE_AnunciosExtras> AE_AnunciosExtras { get; set; }
         public virtual ICollection<AM_MultimediaAnuncios> AM_MultimediaAnuncios { get; set; }
         public virtual CD_CategoriaServicio CD_CategoriaServicio { get; set; }
+        public virtual PA_Paises PA_Paises { get; set; }
         public virtual SBS_SubCategoriaServicio SBS_SubCategoriaServicio { get; set; }
         public virtual ST_Estatus ST_Estatus { get; set; }
         public virtual UserProfile UserProfile { get; set; }
         public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
-        public virtual ICollection<AE_AnunciosExtras> AE_AnunciosExtras { get; set; }
     }
 }

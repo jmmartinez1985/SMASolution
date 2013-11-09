@@ -159,7 +159,7 @@
         <br />
         <p>
           <b>
-            Estimado <xsl:value-of select="ProviderName" /> :
+            Estimado: <xsl:value-of select="ProviderName" /> 
           </b>
         </p>
         <p>
@@ -173,59 +173,27 @@
             <table >
               <tr>
                 <td>
-                  Title 1
+                  Nombre del Solicitante
                 </td>
                 <td >
-                  Title 2
+                  Correo
                 </td>
                 <td>
-                  Title 3
+                  Teléfono
                 </td>
               </tr>
               <tr>
                 <td >
-                  Row 1
+                 <xsl:value-of select="CustomerName" />
                 </td>
                 <td>
-                  Row 1
+                 <xsl:value-of select="EmailCliente" />
                 </td>
                 <td>
-                  Row 1
+                 <xsl:value-of select="TelefonoCliente" />
                 </td>
               </tr>
-              <tr>
-                <td >
-                  Row 2
-                </td>
-                <td>
-                  Row 2
-                </td>
-                <td>
-                  Row 2
-                </td>
-              </tr>
-              <tr>
-                <td >
-                  Row 2
-                </td>
-                <td>
-                  Row 2
-                </td>
-                <td>
-                  Row 2
-                </td>
-              </tr>
-              <tr>
-                <td >
-                  Row 3
-                </td>
-                <td>
-                  Row 3
-                </td>
-                <td>
-                  Row 3
-                </td>
-              </tr>
+         
             </table>
           </div>
         </p>

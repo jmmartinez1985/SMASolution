@@ -180,6 +180,8 @@ namespace SMAWeb.Models
         public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         [JsonIgnore]
         public virtual CD_CategoriaServicio CD_CategoriaServicio { get; set; }
+        [JsonIgnore]
+        public virtual PA_Paises PA_Paises { get; set; }
 
     }
 

@@ -90,9 +90,6 @@ namespace SMAWeb.Controllers
             return Json(anuncios);
         }
 
-
-
-
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";

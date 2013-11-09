@@ -17,6 +17,7 @@ namespace SMAWeb.Models
         public PA_Paises()
         {
             this.UserProfile = new HashSet<UserProfile>();
+            this.AN_Anuncios = new HashSet<AN_Anuncios>();
         }
     
         public int PA_Id { get; set; }
@@ -25,5 +26,6 @@ namespace SMAWeb.Models
     
         public virtual REG_Region REG_Region { get; set; }
         public virtual ICollection<UserProfile> UserProfile { get; set; }
+        public virtual ICollection<AN_Anuncios> AN_Anuncios { get; set; }
     }
 }

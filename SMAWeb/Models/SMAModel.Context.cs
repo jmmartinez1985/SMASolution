@@ -49,8 +49,9 @@ namespace SMAWeb.Models
         public DbSet<BL_BlackList> BL_BlackList { get; set; }
         public DbSet<CR_ComentarioReview> CR_ComentarioReview { get; set; }
         public DbSet<UserProfile> UserProfile { get; set; }
-        public DbSet<AN_Anuncios> AN_Anuncios { get; set; }
         public DbSet<AE_AnunciosExtras> AE_AnunciosExtras { get; set; }
+        public DbSet<AN_Anuncios> AN_Anuncios { get; set; }
+        public DbSet<ELMAH_Error> ELMAH_Error { get; set; }
     
         public virtual ObjectResult<SEL_BusquedaAvanzada_Result> SEL_BusquedaAvanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar)
         {
@@ -112,7 +113,7 @@ namespace SMAWeb.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<short>>("Get_Anuncio_Rating", aN_IdParameter);
         }
     
-        public virtual ObjectResult<AN_Anuncios> get_Busqueda_Avanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar)
+        public virtual int get_Busqueda_Avanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar)
         {
             var categoriaParameter = categoria.HasValue ?
                 new ObjectParameter("Categoria", categoria) :
@@ -130,10 +131,10 @@ namespace SMAWeb.Models
                 new ObjectParameter("Lugar", lugar) :
                 new ObjectParameter("Lugar", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("get_Busqueda_Avanzada", categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_Busqueda_Avanzada", categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
         }
     
-        public virtual ObjectResult<AN_Anuncios> get_Busqueda_Avanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar, MergeOption mergeOption)
+        public virtual ObjectResult<AN_Anuncios> Get_AdvanceSearch(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar)
         {
             var categoriaParameter = categoria.HasValue ?
                 new ObjectParameter("Categoria", categoria) :
@@ -151,7 +152,28 @@ namespace SMAWeb.Models
                 new ObjectParameter("Lugar", lugar) :
                 new ObjectParameter("Lugar", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("get_Busqueda_Avanzada", mergeOption, categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("Get_AdvanceSearch", categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
+        }
+    
+        public virtual ObjectResult<AN_Anuncios> Get_AdvanceSearch(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar, MergeOption mergeOption)
+        {
+            var categoriaParameter = categoria.HasValue ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(int));
+    
+            var subCategoriaParameter = subCategoria.HasValue ?
+                new ObjectParameter("SubCategoria", subCategoria) :
+                new ObjectParameter("SubCategoria", typeof(int));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var lugarParameter = lugar != null ?
+                new ObjectParameter("Lugar", lugar) :
+                new ObjectParameter("Lugar", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("Get_AdvanceSearch", mergeOption, categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
         }
     }
 }
