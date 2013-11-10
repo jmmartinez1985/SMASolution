@@ -1,0 +1,50 @@
+﻿@model SMAWeb.Models.SS_SolicitudServicio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>SS_SolicitudServicio</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SS_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SS_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AN_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AN_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SS_Fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SS_Fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ST_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ST_Estatus.ST_Descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserProfile.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

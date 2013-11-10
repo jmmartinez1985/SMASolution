@@ -26,8 +26,39 @@ namespace SMAWeb.Controllers
 
         public ActionResult Index()
         {
-            var ss_solicitudservicio = db.SS_SolicitudServicio.Include(s => s.AN_Anuncios).Include(s => s.ST_Estatus);
-            return View(ss_solicitudservicio.ToList());
+            var mysol = new List<SolicitudViewModel>();
+            using (var db = new Entities())
+            {
+                var solicitudes = db.SS_SolicitudServicio;
+                Func<int, string> x = value =>
+                {
+                    switch (value)
+                    {
+                        case 1: return "Activo";
+                        case 2: return "Cancelado";
+                        case 3: return "Realizado";
+                        case 4: return "En espera de Review";
+                        case 5: return "Completado";
+                        case 6: return "Iniciar Tarea";
+                        case 7: return "A revisión";
+                        default: return "";
+                    }
+                };
+                solicitudes.ToList().ForEach((sol) =>
+                {
+                    mysol.Add(new SolicitudViewModel
+                    {
+                        Solicitante = sol.UserProfile.Name,
+                        EmailSolicitante = sol.UserProfile.UserName,
+                        FechaCreacion = sol.SS_Fecha,
+                        Solicitud = sol.SS_Id,
+                        Status = x.Invoke(sol.ST_Id),
+                        TelefonoSolicitante = "No Telefono",
+                        StatusId = sol.ST_Id
+                    });
+                });
+            }
+            return View(mysol);
         }
 
          
@@ -242,6 +273,16 @@ namespace SMAWeb.Controllers
                 ppEmailTemplate.AnuncioId = soli.FirstOrDefault().AN_Anuncios.AN_Id;
                 ppEmailTemplate.EmailCliente = soli.FirstOrDefault().UserProfile.UserName;
                 ppEmailTemplate.EmailProveedor = soli.FirstOrDefault().AN_Anuncios.UserProfile.UserName;
+
+                string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
+                var firstImage = "~/Images/logo2-blue.png";
+                var formatted = firstImage.Replace("~", "");
+                if (formatted.StartsWith("/"))
+                    formatted = formatted.Remove(0, 1);
+                firstImage = urlimg + formatted;
+
+                ppEmailTemplate.Image = firstImage;
+
                 string link = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/") + "Review/Create/" + solicitud.SS_Id;
                 ppEmailTemplate.LinkReview = link;
 
@@ -288,6 +329,7 @@ namespace SMAWeb.Controllers
             public string AnuncioDescripcion { get; set; }
             public string TelefonoCliente { get; set; }
             public string TelefonoProveedor { get; set; }
+            public string Image { get; set; }
 
         }
     }
