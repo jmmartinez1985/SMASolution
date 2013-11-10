@@ -45,8 +45,7 @@
 
                             @Html.DisplayNameFor(model => model.Status)
                         </th>
-                        <th>Acción
-                        </th>
+                     
                     </tr>
                 </thead>
                 <tbody id="divBody">
@@ -57,7 +56,10 @@
 
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Solicitud)
+                               @* @Html.DisplayFor(modelItem => item.Solicitud)*@
+
+                                @Html.ActionLink(item.Solicitud.ToString(), "Details", "SolicitudServicio", new { id = item.Solicitud }, null)
+
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.FechaCreacion)
@@ -74,29 +76,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
-                            <td>
-
-                                @if (item.StatusId == 1)
-                                {
-
-                                    <a class="btn-u" attrurl="@Url.Action("ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 6 })" id="starttask">Iniciar Tarea</a>
-
-                                    <a class="btn-u" attrurl="@Url.Action("ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 2 })" id="canceltask">Cancelar Tarea</a>
-                                }
-
-                                else if (item.StatusId == 6)
-                                {
-
-                                    <a class="btn-u" attrurl="@Url.Action("ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 3 })" id="processtask">Tarea Completada</a>
-                                }
-
-                                else if (item.StatusId == 2)
-                                {
-
-                                    <a class="btn-u">Tarea Cancelada</a>
-                                }
-
-                            </td>
+         
                         </tr>
                     }
                 </tbody>

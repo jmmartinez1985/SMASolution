@@ -26,8 +26,39 @@ namespace SMAWeb.Controllers
 
         public ActionResult Index()
         {
-            var ss_solicitudservicio = db.SS_SolicitudServicio.Include(s => s.AN_Anuncios).Include(s => s.ST_Estatus);
-            return View(ss_solicitudservicio.ToList());
+            var mysol = new List<SolicitudViewModel>();
+            using (var db = new Entities())
+            {
+                var solicitudes = db.SS_SolicitudServicio;
+                Func<int, string> x = value =>
+                {
+                    switch (value)
+                    {
+                        case 1: return "Activo";
+                        case 2: return "Cancelado";
+                        case 3: return "Realizado";
+                        case 4: return "En espera de Review";
+                        case 5: return "Completado";
+                        case 6: return "Iniciar Tarea";
+                        case 7: return "A revisión";
+                        default: return "";
+                    }
+                };
+                solicitudes.ToList().ForEach((sol) =>
+                {
+                    mysol.Add(new SolicitudViewModel
+                    {
+                        Solicitante = sol.UserProfile.Name,
+                        EmailSolicitante = sol.UserProfile.UserName,
+                        FechaCreacion = sol.SS_Fecha,
+                        Solicitud = sol.SS_Id,
+                        Status = x.Invoke(sol.ST_Id),
+                        TelefonoSolicitante = "No Telefono",
+                        StatusId = sol.ST_Id
+                    });
+                });
+            }
+            return View(mysol);
         }
 
          
