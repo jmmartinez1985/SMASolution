@@ -273,6 +273,16 @@ namespace SMAWeb.Controllers
                 ppEmailTemplate.AnuncioId = soli.FirstOrDefault().AN_Anuncios.AN_Id;
                 ppEmailTemplate.EmailCliente = soli.FirstOrDefault().UserProfile.UserName;
                 ppEmailTemplate.EmailProveedor = soli.FirstOrDefault().AN_Anuncios.UserProfile.UserName;
+
+                string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
+                var firstImage = "~/Images/logo2-blue.png";
+                var formatted = firstImage.Replace("~", "");
+                if (formatted.StartsWith("/"))
+                    formatted = formatted.Remove(0, 1);
+                firstImage = urlimg + formatted;
+
+                ppEmailTemplate.Image = firstImage;
+
                 string link = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/") + "Review/Create/" + solicitud.SS_Id;
                 ppEmailTemplate.LinkReview = link;
 
@@ -319,6 +329,7 @@ namespace SMAWeb.Controllers
             public string AnuncioDescripcion { get; set; }
             public string TelefonoCliente { get; set; }
             public string TelefonoProveedor { get; set; }
+            public string Image { get; set; }
 
         }
     }

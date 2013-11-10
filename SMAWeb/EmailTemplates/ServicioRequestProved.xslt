@@ -8380,7 +8380,11 @@
         <br />
         <div class="another-page">
           <div class="headline">
-            <img id="logo-footer" src="@Url.Content("~=""/Images/logo2-blue.png")" alt="Service Market">
+            <xsl:element name="img">
+              <xsl:attribute name="src">
+                <xsl:value-of select="Image"/>
+              </xsl:attribute>
+            </xsl:element>
             <h3>Solicitud de Servicio de Service Market</h3>
           </div>
           <h5>
