@@ -8391,10 +8391,10 @@
             Le informamos que tiene una nueva solicitud de servicio en el Sitio Web de Service Market.
           </h5>
           <h5>
-            El n&uacute;mero del anuncio solicitado es el <xsl:value-of select="AnuncioId" />.
+            El número del anuncio solicitado es el <xsl:value-of select="AnuncioId" />.
           </h5>
           <h5>
-            A continuaci&oacute;n los datos de la persona que le ha contactado.
+            A continuación los datos de la persona que le ha contactado.
           </h5>
           <br />
           <h5>
@@ -8406,7 +8406,7 @@
             <xsl:value-of select="EmailCliente" />
           </h5>
           <h5>
-            <strong class="color-green">Tel&eacute;fono: </strong>
+            <strong class="color-green">Teléfono: </strong>
             <xsl:value-of select="TelefonoCliente" />
           </h5>
           <br />
@@ -8421,7 +8421,7 @@
           <div class="container">
             <div class="row-fluid">
               <div class="span12">
-                <h6>Por favor no responda a este mensaje; fue enviado desde una direcci&oacute;n de correo electr&oacute;nico no supervisada como parte del servicio que ofrece el Sitio Web Service Market.</h6>
+                <h6>Por favor no responda a este mensaje; fue enviado desde una dirección de correo electrónico no supervisada como parte del servicio que ofrece el Sitio Web Service Market.</h6>
               </div>
             </div>
           </div>
@@ -8431,7 +8431,7 @@
             <div class="row-fluid">
               <div class="span12">
                 <p>
-                  2013 &#169; Service Market. Todos los derechos reservados. <a href="#">Pol&iacute;tica de Privacidad</a> | <a href="#">T&eacute;rmino de Servicios</a>
+                  2013 &#169; Service Market. Todos los derechos reservados. <a href="#">Política de Privacidad</a> | <a href="#">Término de Servicios</a>
                 </p>
               </div>
             </div>

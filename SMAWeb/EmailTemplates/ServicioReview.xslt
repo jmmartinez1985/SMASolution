@@ -8404,7 +8404,7 @@
           </xsl:element>
           <br />
           <h5>
-            Le recordamos la importancia de sus comentarios pues permitir&aacute;n a otros usuarios tener una referencia de este servicio.
+            Le recordamos la importancia de sus comentarios pues permitirán a otros usuarios tener una referencia de este servicio.
           </h5>
           <br />
           <h5>Gracias por preferirnos.</h5>
@@ -8428,7 +8428,7 @@
             <div class="row-fluid">
               <div class="span12">
                 <p>
-                  2013 &#169; Service Market. Todos los derechos reservados. <a href="#">Pol&iacute;tica de Privacidad</a> | <a href="#">T&eacute;rmino de Servicios</a>
+                  2013 &#169; Service Market. Todos los derechos reservados. <a href="#">Política de Privacidad</a> | <a href="#">T&eacute;rmino de Servicios</a>
                 </p>
               </div>
             </div>

@@ -8380,7 +8380,7 @@
         <br />
         <div class="another-page">
           <div class="headline">
-            <img id="logo-footer" src="@Url.Content("~=""/Images/logo2-blue.png")" alt="Service Market">
+            <img id="logo-footer" src="~/Images/logo2-blue.png" alt="Service Market" />
             <h3>Solicitud de Servicio de Service Market</h3>
           </div>
           <h5>
@@ -8391,10 +8391,10 @@
             Le informamos que la solicitud de servicio en el Sitio Web Service Market se ha creado satisfactoriamente.
           </h5>
           <h5>
-            El n&uacute;mero de su solicitado es el <xsl:value-of select="SolicitudId" />.
+            El número de su solicitado es el <xsl:value-of select="SolicitudId" />.
           </h5>
           <h5>
-            A continuaci&oacute;n los datos del anunciante que usted ha contactado.
+            A continuación los datos del anunciante que usted ha contactado.
           </h5>
           <br />
           <h5>
@@ -8406,11 +8406,11 @@
             <xsl:value-of select="EmailProveedor" />
           </h5>
           <h5>
-            <strong class="color-green">Tel&eacute;fono: </strong>
+            <strong class="color-green">Teléfono: </strong>
             <xsl:value-of select="TelefonoProveedor" />
           </h5>
           <br />
-          <h5>Le solicitamos por favor ser paciente, y le recordamos que el tiempo de atenci&oacute;n de su solicitud depende de la disponibilidad del anunciante.</h5>
+          <h5>Le solicitamos por favor ser paciente, y le recordamos que el tiempo de atención de su solicitud depende de la disponibilidad del anunciante.</h5>
           <br />
           <br />
           <h5>Atentamente,</h5>
@@ -8421,17 +8421,18 @@
           <div class="container">
             <div class="row-fluid">
               <div class="span12">
-                <h6>Por favor no responda a este mensaje; fue enviado desde una direcci&oacute;n de correo electr&oacute;nico no supervisada como parte del servicio que ofrece el Sitio Web Service Market.</h6>
+                <h6>Por favor no responda a este mensaje; fue enviado desde una dirección de correo electrónico no supervisada como parte del servicio que ofrece el Sitio Web Service Market.</h6>
               </div>
             </div>
           </div>
         </div>
+        
         <div class="copyright">
           <div class="container">
             <div class="row-fluid">
               <div class="span12">
                 <p>
-                  2013 &#169; Service Market. Todos los derechos reservados. <a href="#">Pol&iacute;tica de Privacidad</a> | <a href="#">T&eacute;rmino de Servicios</a>
+                  2013 &#169; Service Market. Todos los derechos reservados. <a href="#">Política de Privacidad</a> | <a href="#">Término de Servicios</a>
                 </p>
               </div>
             </div>
