@@ -31,7 +31,6 @@ function CreateCategoria(data) {
     var Titulo = 'Creación de Categoría';
     var Mensaje = '';
     var TipoAlerta = '';
-    debugger;
     if (data.wasSuccess) {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
         TipoAlerta = 'alert-success';
@@ -48,7 +47,6 @@ function CreateCategoria(data) {
 };
 
 function ShortDateTime(dateObject) {
-    debugger;
     //var d = new Date(dateObject);
     //var day = d.getDate();
     //var month = d.getMonth();
