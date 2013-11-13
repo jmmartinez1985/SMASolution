@@ -41,10 +41,106 @@ function CreateCategoria(data) {
     }
 
     jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+    jQuery(".alert").alert();
+    jQuery(".alert").fadeOut(3000);
+};
+
+function CreateFAQ(data) {
+    var Titulo = 'Creación de FAQ';
+    var Mensaje = '';
+    var TipoAlerta = '';
+    debugger;
+    if (data.wasSuccess) {
+        Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
+        TipoAlerta = 'alert-success';
+    }
+    else {
+        Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
+        TipoAlerta = 'alert-error';
+    }
+
+    jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+    jQuery('.alert').alert();
+    jQuery('.alert').fadeOut(3000);
+};
+
+function CreateMembresia(data) {
+    debugger;
+    var Titulo = 'Creación de Membresía';
+    var Mensaje = '';
+    var TipoAlerta = '';
+    if (data.wasSuccess) {
+        Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
+        TipoAlerta = 'alert-success';
+    }
+    else {
+        Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
+        TipoAlerta = 'alert-error';
+    }
+
+    jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+    jQuery(".alert").alert();
+    jQuery(".alert").fadeOut(3000);
+
+};
+
+function CreatePaises(data) {
+    var Titulo = 'Creación de Países';
+    var Mensaje = '';
+    var TipoAlerta = '';
+    if (data.wasSuccess) {
+        Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
+        TipoAlerta = 'alert-success';
+    }
+    else {
+        Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
+        TipoAlerta = 'alert-error';
+    }
+
+    jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
     jQuery('.alert').alert();
     jQuery('.alert').fadeOut(3000);
 
 };
+
+function CreateRegion(data) {
+    var Titulo = 'Creación de Países';
+    var Mensaje = '';
+    var TipoAlerta = '';
+    if (data.wasSuccess) {
+        Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
+        TipoAlerta = 'alert-success';
+    }
+    else {
+        Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
+        TipoAlerta = 'alert-error';
+    }
+
+    jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+    jQuery('.alert').alert();
+    jQuery('.alert').fadeOut(3000);
+
+};
+
+function CreateSubCategoria(data) {
+    var Titulo = 'Creación de SubCategoría';
+    var Mensaje = '';
+    var TipoAlerta = '';
+    debugger;
+    if (data.wasSuccess) {
+        Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
+        TipoAlerta = 'alert-success';
+    }
+    else {
+        Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
+        TipoAlerta = 'alert-error';
+    }
+
+    jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+    jQuery('.alert').alert();
+    jQuery('.alert').fadeOut(3000);
+};
+
 
 function ShortDateTime(dateObject) {
     //var d = new Date(dateObject);
