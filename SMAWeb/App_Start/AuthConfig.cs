@@ -25,8 +25,8 @@ namespace SMAWeb
                 consumerSecret: "aRYoXnvom6COSdRA3PQ8Cqot1UkKwB9OyFS6GGr5UC8");
 
             OAuthWebSecurity.RegisterFacebookClient(
-                appId: "261973827175259",
-                appSecret: "2d42d36842716ea372514a88d5941b53");
+                appId: "530931017003510",
+                appSecret: "aaa0a1753d6d3143e8b0c2403c625cdd");
 
             //OAuthWebSecurity.RegisterGoogleClient();
         }
