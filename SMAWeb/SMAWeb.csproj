@@ -523,10 +523,8 @@
     <Content Include="Scripts\CustomScript\jquery.flexslider-min.js" />
     <Content Include="Scripts\CustomScript\modernizr.custom.js" />
     <Content Include="Scripts\CustomScript\modernizr.js" />
-    <Content Include="Scripts\FileUpload\bootstrap.min.js" />
     <Content Include="Scripts\FileUpload\canvas-to-blob.min.js" />
     <Content Include="Scripts\FileUpload\jquery-ui-1.8.21.full.min.js" />
-    <Content Include="Scripts\FileUpload\jquery-ui.min.js" />
     <Content Include="Scripts\FileUpload\jquery.blueimp-gallery.min.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload-audio.js" />
     <Content Include="Scripts\FileUpload\jquery.fileupload-image.js" />
@@ -544,7 +542,6 @@
     <Content Include="Scripts\FileUpload\load-image.min.js" />
     <Content Include="Scripts\FileUpload\locale.js" />
     <Content Include="Scripts\FileUpload\main.js" />
-    <Content Include="Scripts\FileUpload\show_ads.js" />
     <Content Include="Scripts\FileUpload\tmpl.min.js" />
     <Content Include="Scripts\jpage\jPages.js" />
     <Content Include="Scripts\jpage\jPages.min.js" />
