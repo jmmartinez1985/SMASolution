@@ -12,12 +12,13 @@ namespace SMAWeb.Controllers
         //
         // GET: /Blog/
         //[Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();
         }
 
-
+        [Authorize(Roles = "SuperUsers")]
         public ActionResult Create()
         {
             var personalDetail = new PersonalDetail();

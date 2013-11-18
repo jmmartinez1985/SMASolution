@@ -15,7 +15,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /FAQ/
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var faqs = db.FAQs.Include(f => f.ST_Estatus);
@@ -33,7 +33,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /FAQ/Create
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             FAQs faq = new FAQs();
@@ -45,7 +45,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /FAQ/Create
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(FAQs faqs)
@@ -73,7 +73,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /FAQ/Edit/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id = 0)
         {
             FAQs faqs = db.FAQs.Find(id);
@@ -87,7 +87,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /FAQ/Edit/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(FAQs faqs)
@@ -104,7 +104,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /FAQ/Delete/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id = 0)
         {
             FAQs faqs = db.FAQs.Find(id);
@@ -117,7 +117,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /FAQ/Delete/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

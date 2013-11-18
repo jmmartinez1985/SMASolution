@@ -477,7 +477,7 @@ namespace SMAWeb.Controllers
                     if (user == null)
                     {
                         // Insert name into the profile table
-                        db.UserProfile.Add(new UserProfile { UserName = model.UserName });
+                        db.UserProfile.Add(new UserProfile { UserName = model.UserName});
                         db.SaveChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);

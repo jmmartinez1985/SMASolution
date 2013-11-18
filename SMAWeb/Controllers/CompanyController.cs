@@ -42,7 +42,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Company/
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.COM_Compañia.ToList());
@@ -50,7 +50,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Company/Details/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id = 0)
         {
             COM_Compañia com_compañia = db.COM_Compañia.Find(id);
@@ -63,7 +63,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Company/Create
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -74,6 +74,7 @@ namespace SMAWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(COM_Compañia com_compañia)
         {
             if (ModelState.IsValid)
@@ -88,7 +89,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Company/Edit/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id = 0)
         {
             COM_Compañia com_compañia = db.COM_Compañia.Find(id);
@@ -104,6 +105,7 @@ namespace SMAWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(COM_Compañia com_compañia)
         {
             if (ModelState.IsValid)
@@ -117,7 +119,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Company/Delete/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id = 0)
         {
             COM_Compañia com_compañia = db.COM_Compañia.Find(id);
@@ -130,7 +132,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Company/Delete/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

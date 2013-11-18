@@ -18,7 +18,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /UserProfile/
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var userprofile = db.UserProfile.Include(u => u.MB_Membresia).Include(u => u.PA_Paises).Include(u => u.ST_Estatus);
@@ -27,7 +27,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /UserProfile/Details/5
-
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult Details(int id = 0)
         {
             UserProfile userprofile = db.UserProfile.Find(id);
@@ -71,7 +71,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /UserProfile/Edit/5
-
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult Edit(int id = 0)
         {
             UserProfile userprofile = db.UserProfile.Find(id);
@@ -87,7 +87,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /UserProfile/Edit/5
-
+        [Authorize(Roles = "Users, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(UserProfile userprofile)
@@ -106,7 +106,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /UserProfile/Delete/5
-
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult Delete(int id = 0)
         {
             UserProfile userprofile = db.UserProfile.Find(id);
@@ -119,7 +119,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /UserProfile/Delete/5
-
+        [Authorize(Roles = "Users, Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -132,7 +132,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /UserProfile/EditUser/5
-
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult EditUser()
         {
             int id = WebSecurity.CurrentUserId;
@@ -149,7 +149,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /UserProfile/EditUser/5
-
+        [Authorize(Roles = "Users, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditUser(UserProfile userprofile)

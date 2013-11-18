@@ -15,7 +15,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Membresia/
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.MB_Membresia.ToList());
@@ -23,7 +23,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Membresia/Details/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id = 0)
         {
             MB_Membresia mb_membresia = db.MB_Membresia.Find(id);
@@ -36,7 +36,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Membresia/Create
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             MB_Membresia mem = new MB_Membresia();
@@ -46,7 +46,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Membresia/Create
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(MB_Membresia mb_membresia)
@@ -73,7 +73,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Membresia/Edit/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id = 0)
         {
             MB_Membresia mb_membresia = db.MB_Membresia.Find(id);
@@ -86,7 +86,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Membresia/Edit/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(MB_Membresia mb_membresia)
@@ -102,7 +102,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Membresia/Delete/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id = 0)
         {
             MB_Membresia mb_membresia = db.MB_Membresia.Find(id);
@@ -115,7 +115,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Membresia/Delete/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

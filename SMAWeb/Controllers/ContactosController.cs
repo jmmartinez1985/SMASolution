@@ -15,7 +15,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Contactos/
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.CON_Contactenos.ToList());
@@ -23,7 +23,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Contactos/Details/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id = 0)
         {
             CON_Contactenos con_contactenos = db.CON_Contactenos.Find(id);
@@ -62,7 +62,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Contactos/Edit/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id = 0)
         {
             CON_Contactenos con_contactenos = db.CON_Contactenos.Find(id);
@@ -75,7 +75,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Contactos/Edit/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CON_Contactenos con_contactenos)
@@ -91,7 +91,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Contactos/Delete/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id = 0)
         {
             CON_Contactenos con_contactenos = db.CON_Contactenos.Find(id);
@@ -104,7 +104,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Contactos/Delete/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

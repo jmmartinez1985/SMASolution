@@ -15,7 +15,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /MultimediaTipos/
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.MT_MultimediaTipos.ToList());
@@ -23,7 +23,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /MultimediaTipos/Details/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id = 0)
         {
             MT_MultimediaTipos mt_multimediatipos = db.MT_MultimediaTipos.Find(id);
@@ -36,7 +36,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /MultimediaTipos/Create
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -44,7 +44,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /MultimediaTipos/Create
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(MT_MultimediaTipos mt_multimediatipos)
@@ -61,7 +61,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /MultimediaTipos/Edit/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id = 0)
         {
             MT_MultimediaTipos mt_multimediatipos = db.MT_MultimediaTipos.Find(id);
@@ -74,7 +74,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /MultimediaTipos/Edit/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(MT_MultimediaTipos mt_multimediatipos)
@@ -90,7 +90,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /MultimediaTipos/Delete/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id = 0)
         {
             MT_MultimediaTipos mt_multimediatipos = db.MT_MultimediaTipos.Find(id);
@@ -103,7 +103,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /MultimediaTipos/Delete/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

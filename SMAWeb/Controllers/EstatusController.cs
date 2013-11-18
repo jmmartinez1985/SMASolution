@@ -15,7 +15,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Estatus/
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.ST_Estatus.ToList());
@@ -23,7 +23,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Estatus/Details/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id = 0)
         {
             ST_Estatus st_estatus = db.ST_Estatus.Find(id);
@@ -36,7 +36,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Estatus/Create
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -44,7 +44,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Estatus/Create
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ST_Estatus st_estatus)
@@ -61,7 +61,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Estatus/Edit/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id = 0)
         {
             ST_Estatus st_estatus = db.ST_Estatus.Find(id);
@@ -74,7 +74,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Estatus/Edit/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ST_Estatus st_estatus)
@@ -90,7 +90,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Estatus/Delete/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id = 0)
         {
             ST_Estatus st_estatus = db.ST_Estatus.Find(id);
@@ -103,7 +103,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Estatus/Delete/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

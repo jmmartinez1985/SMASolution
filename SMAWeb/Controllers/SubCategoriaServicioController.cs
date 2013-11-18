@@ -16,7 +16,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /SubCategoriaServicio/
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var sbs_subcategoriaservicio = db.SBS_SubCategoriaServicio.Include(s => s.CD_CategoriaServicio);
@@ -44,7 +44,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /SubCategoriaServicio/Details/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id = 0)
         {
             SBS_SubCategoriaServicio sbs_subcategoriaservicio = db.SBS_SubCategoriaServicio.Find(id);
@@ -57,7 +57,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /SubCategoriaServicio/Create
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
 
@@ -70,7 +70,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /SubCategoriaServicio/Create
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(SBS_SubCategoriaServicio sbs_subcategoriaservicio)
@@ -98,7 +98,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /SubCategoriaServicio/Edit/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id = 0)
         {
             SBS_SubCategoriaServicio sbs_subcategoriaservicio = db.SBS_SubCategoriaServicio.Find(id);
@@ -112,7 +112,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /SubCategoriaServicio/Edit/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SBS_SubCategoriaServicio sbs_subcategoriaservicio)
@@ -129,7 +129,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /SubCategoriaServicio/Delete/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id = 0)
         {
             SBS_SubCategoriaServicio sbs_subcategoriaservicio = db.SBS_SubCategoriaServicio.Find(id);
@@ -142,7 +142,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /SubCategoriaServicio/Delete/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
