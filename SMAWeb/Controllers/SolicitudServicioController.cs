@@ -23,7 +23,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /SolicitudServicio/
-
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult Index()
         {
             var mysol = new List<SolicitudViewModel>();
@@ -58,6 +58,7 @@ namespace SMAWeb.Controllers
                     });
                 });
             }
+            //mysol.OrderByDescending(sol => sol.FechaCreacion);
             return View(mysol);
         }
 
@@ -153,7 +154,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /SolicitudServicio/Details/5
-
+        [Authorize(Roles = "Users")]
         public ActionResult Details(int id = 0)
         {
             SS_SolicitudServicio ss_solicitudservicio = db.SS_SolicitudServicio.Find(id);
@@ -166,7 +167,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /SolicitudServicio/Create
-
+        [Authorize(Roles = "Users")]
         public ActionResult Create()
         {
             ViewBag.AN_Id = new SelectList(db.AN_Anuncios, "AN_Id", "AN_Titulo");
@@ -176,7 +177,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /SolicitudServicio/Create
-
+        [Authorize(Roles = "Users")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(SS_SolicitudServicio ss_solicitudservicio)
@@ -195,7 +196,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /SolicitudServicio/Edit/5
-
+        [Authorize(Roles = "Users")]
         public ActionResult Edit(int id = 0)
         {
             SS_SolicitudServicio ss_solicitudservicio = db.SS_SolicitudServicio.Find(id);
@@ -210,7 +211,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /SolicitudServicio/Edit/5
-
+        [Authorize(Roles = "Users")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SS_SolicitudServicio ss_solicitudservicio)
@@ -228,7 +229,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /SolicitudServicio/Delete/5
-
+        [Authorize(Roles = "Users")]
         public ActionResult Delete(int id = 0)
         {
             SS_SolicitudServicio ss_solicitudservicio = db.SS_SolicitudServicio.Find(id);
@@ -241,7 +242,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /SolicitudServicio/Delete/5
-
+        [Authorize(Roles = "Users")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

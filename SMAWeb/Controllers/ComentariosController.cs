@@ -18,7 +18,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Comentarios/
-
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult Index()
         {
             var cr_comentarioreview = db.CR_ComentarioReview.Include(c => c.RW_Reviews).Include(c => c.ST_Estatus).Include(c => c.UserProfile);
@@ -27,7 +27,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Comentarios/Details/5
-
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult Details(int id = 0)
         {
             CR_ComentarioReview cr_comentarioreview = db.CR_ComentarioReview.Find(id);
@@ -38,6 +38,7 @@ namespace SMAWeb.Controllers
             return View(cr_comentarioreview);
         }
 
+
         public ActionResult GetCommentsByReview(int id = 0)
         {
             List<CR_ComentarioReview> comentariosList = db.CR_ComentarioReview.Where(c => c.RW_Id == id).ToList();
@@ -47,7 +48,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Comentarios/Create
-
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult Create()
         {
             ViewBag.RW_Id = new SelectList(db.RW_Reviews, "RW_Id", "RW_Comentario");
@@ -95,7 +96,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Comentarios/Edit/5
-
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult Edit(int id = 0)
         {
             CR_ComentarioReview cr_comentarioreview = db.CR_ComentarioReview.Find(id);
@@ -114,6 +115,7 @@ namespace SMAWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult Edit(CR_ComentarioReview cr_comentarioreview)
         {
             if (ModelState.IsValid)
@@ -130,7 +132,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Comentarios/Delete/5
-
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult Delete(int id = 0)
         {
             CR_ComentarioReview cr_comentarioreview = db.CR_ComentarioReview.Find(id);
@@ -146,6 +148,7 @@ namespace SMAWeb.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             CR_ComentarioReview cr_comentarioreview = db.CR_ComentarioReview.Find(id);

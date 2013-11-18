@@ -15,7 +15,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Paises/
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var pa_paises = db.PA_Paises;
@@ -24,7 +24,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Paises/Details/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id = 0)
         {
             PA_Paises pa_paises = db.PA_Paises.Find(id);
@@ -37,7 +37,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Paises/Create
-
+        [Authorize(Roles = "SuperUsers")]
         public ActionResult Create()
         {
             PA_Paises pais = new PA_Paises();
@@ -47,9 +47,9 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Paises/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperUsers")]
         public ActionResult Create(PA_Paises pa_paises)
         {
             if (ModelState.IsValid)
@@ -73,7 +73,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Paises/Edit/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id = 0)
         {
             PA_Paises pa_paises = db.PA_Paises.Find(id);
@@ -86,7 +86,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Paises/Edit/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(PA_Paises pa_paises)
@@ -102,7 +102,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Paises/Delete/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id = 0)
         {
             PA_Paises pa_paises = db.PA_Paises.Find(id);
@@ -115,7 +115,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Paises/Delete/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

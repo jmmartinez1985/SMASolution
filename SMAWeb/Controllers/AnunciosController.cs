@@ -192,8 +192,7 @@ namespace SMAWeb.Controllers
 
         }
 
-        //
-        // GET: /Anuncios/Details/5
+        
         public ActionResult GetInformationAnuncios(FormCollection form)
         {
             var allAnunciosList = new List<AN_Anuncios>();
@@ -262,6 +261,9 @@ namespace SMAWeb.Controllers
             return Json(anuncios);
         }
 
+        //
+        // GET: /Anuncios/Details/5
+        [Authorize(Roles = "Users, Admin")]
         public ActionResult Details(int id = 0)
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
@@ -288,6 +290,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Anuncios/Create
+        [Authorize(Roles = "Users")]
         public ActionResult Create()
         {
             AN_Anuncios an = new AN_Anuncios();
@@ -308,6 +311,7 @@ namespace SMAWeb.Controllers
         // POST: /Anuncios/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Users")]
         public ActionResult Create(AN_Anuncios an_anuncios)
         {
             if (ModelState.IsValid)
@@ -336,7 +340,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Anuncios/Edit/5
-
+        [Authorize(Roles = "Users")]
         public ActionResult Edit(int id = 0)
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
@@ -356,7 +360,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Anuncios/Edit/5
-
+        [Authorize(Roles = "Users")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(AN_Anuncios an_anuncios)
@@ -380,7 +384,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Anuncios/Delete/5
-
+        [Authorize(Roles = "Users")]
         public ActionResult Delete(int id = 0)
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
@@ -393,7 +397,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Anuncios/Delete/5
-
+        [Authorize(Roles = "Users")]
         [HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -408,6 +412,7 @@ namespace SMAWeb.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Users")]
         [HttpPost, ActionName("Inactivate")]
         //[ValidateAntiForgeryToken]
         public ActionResult InactivateAnuncio(int id)
