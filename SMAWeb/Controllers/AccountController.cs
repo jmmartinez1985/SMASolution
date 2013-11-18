@@ -197,11 +197,11 @@ namespace SMAWeb.Controllers
                     }
                     catch (Exception ex)
                     {
-                        TempData["Message"] = "Ha ocurrido un error al intentar enviar el correo." + ex.Message ;
+                        TempData["Message"] = "Ha ocurrido un error al intentar enviar el correo." + ex.Message;
                     }
 
                     //display message
-                    TempData["Message"] = "Hemos atendido su solicitud de restauración de contraseña. Su nueva contraseña para Service Market es: "+ newpassword+" De igual forma le hemos enviado un correo con su nueva contraseña." ;
+                    TempData["Message"] = "Hemos atendido su solicitud de restauración de contraseña. Su nueva contraseña para Service Market es: " + newpassword + " De igual forma le hemos enviado un correo con su nueva contraseña.";
                 }
                 else
                 {
@@ -223,7 +223,7 @@ namespace SMAWeb.Controllers
 
             mensaje += "<div style='color: #333; font-size: 13px; line-height: 1.6; font-family: Helvetica Neue, Helvetica, Arial, sans-serif;'><br /><div style='min-width: 90%; max-width: 30%;padding: 20px 50px 30px; overflow: hidden; margin: 0 auto; background: #fcfcfc; border: solid 1px #eee; box-shadow: 0 0 7px #eee;' ><div style='display: block; margin: 10px 0 25px 0; border-bottom: 1px dotted #e4e9f0; border-radius: 0 !important;'><img id='logo-footer' src='" + imagen + "' alt='Service Market' style='height: auto; max-width: 100%; vertical-align: middle; border: 0; -ms-interpolation-mode: bicubic;'>";
             mensaje += "<h3 style='border-bottom: 2px solid #e67e22; margin-bottom: 25px; color: #585f69; margin: 0 0 -2px 0; padding-right: 10px; display: inline-block; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 24.5px; line-height: 40px; text-rendering: optimizelegibility; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;' >Nueva Contraseña de Service Market</h3></div><h5 style='color: #555; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>";
-            mensaje += "Hemos atendido su solicitud de restauración de contraseña. Su nueva contraseña para Service Market es:</h5><br /><h1 style='color: #e67e22; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>"+password+"</h1><br /><br /><h5 style='color: #555; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>Le recomendamos guardar su contraseña en un lugar seguro.</h5>";
+            mensaje += "Hemos atendido su solicitud de restauración de contraseña. Su nueva contraseña para Service Market es:</h5><br /><h1 style='color: #e67e22; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>" + password + "</h1><br /><br /><h5 style='color: #555; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>Le recomendamos guardar su contraseña en un lugar seguro.</h5>";
             mensaje += "</div><div style='margin-top: 40px; padding: 20px 10px; background: #585f69; color: #dadada; border-radius: 0 !important; display: block; font-size: 13px; line-height: 1.6;' ><div class='container'><div class='row-fluid'><div class='span12'><h6 style='font-size: 11.9px; margin: 10px 0; font-family: inherit; font-weight: bold; line-height: 20px; color: inherit; text-rendering: optimizelegibility; -webkit-margin-before: 2.33em; -webkit-margin-after: 2.33em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>Por favor no responda a este mensaje; fue enviado desde una dirección de correo electrónico no supervisada como parte del servicio de restauración de su contraseña de Service Market.</h6>";
             mensaje += "</div></div></div></div><div style='font-size: 12px; padding: 5px 10px; background: #3e4753; border-top: solid 1px #777; border-radius: 0 !important;'><div class='container'><div class='row-fluid'><div class='span8'><p style='color: #dadada; line-height: 1.6; margin: 0 0 10px; border-radius: 0 !important; display: block; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; font-size: 12px;'>2013 © Service Market. Todos los derechos reservados. <a href='#' style='color: #e67e22; text-decoration: none;'>Política de Privacidad</a> | <a href='#' style='color: #e67e22; text-decoration: none;'>Término de Servicios</a></p></div></div></div></div></div>";
 
@@ -477,8 +477,11 @@ namespace SMAWeb.Controllers
                     if (user == null)
                     {
                         // Insert name into the profile table
-                        db.UserProfile.Add(new UserProfile { UserName = model.UserName });
+
+
+                        db.UserProfile.Add(new UserProfile { UserName = model.UserName, ST_Id = 1, MP_MemberShipId = 1, Name = model.UserName });
                         db.SaveChanges();
+
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
                         OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
