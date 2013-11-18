@@ -238,7 +238,7 @@ namespace SMAWeb.Models
 
         [Display(Name = "Días de Expiración")]
         [Required(ErrorMessage = "Por favor ingrese los días de expiración de la membresía.")]
-        [StringLength(4, ErrorMessage = "Por favor verifique el campo días de expiración, sólo se permiten números de hasta 4 dígitos.")]
+        //[StringLength(4, ErrorMessage = "Por favor verifique el campo días de expiración, sólo se permiten números de hasta 4 dígitos.")]
         [RegularExpression(@"([1-9][0-9]*)", ErrorMessage = "Por favor revise los datos ingresados para el campo días de expiración.")]
         [Range(0, Int32.MaxValue, ErrorMessage = "No es un número válido o no está en el rango permitido.")]
         public Nullable<int> MP_ExpiracionDays { get; set; }
