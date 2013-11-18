@@ -37,7 +37,6 @@ namespace SMAWeb.Models
         public DbSet<MB_Membresia> MB_Membresia { get; set; }
         public DbSet<MT_MultimediaTipos> MT_MultimediaTipos { get; set; }
         public DbSet<PA_Paises> PA_Paises { get; set; }
-        public DbSet<REG_Region> REG_Region { get; set; }
         public DbSet<SBS_SubCategoriaServicio> SBS_SubCategoriaServicio { get; set; }
         public DbSet<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         public DbSet<ST_Estatus> ST_Estatus { get; set; }

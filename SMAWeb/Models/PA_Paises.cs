@@ -22,9 +22,10 @@ namespace SMAWeb.Models
     
         public int PA_Id { get; set; }
         public string PA_Descripcion { get; set; }
-        public int REG_Id { get; set; }
+        public int PA_ISONUM { get; set; }
+        public string PA_ISO2 { get; set; }
+        public string PA_ISO3 { get; set; }
     
-        public virtual REG_Region REG_Region { get; set; }
         public virtual ICollection<UserProfile> UserProfile { get; set; }
         public virtual ICollection<AN_Anuncios> AN_Anuncios { get; set; }
     }

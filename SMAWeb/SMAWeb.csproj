@@ -204,7 +204,6 @@
     <Compile Include="Controllers\MembresiaController.cs" />
     <Compile Include="Controllers\MultimediaTiposController.cs" />
     <Compile Include="Controllers\PaisesController.cs" />
-    <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\SolicitudServicioController.cs" />
     <Compile Include="Controllers\SubCategoriaServicioController.cs" />
@@ -260,9 +259,6 @@
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PA_Paises.cs">
-      <DependentUpon>SMAModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\REG_Region.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RW_Reviews.cs">
@@ -660,8 +656,6 @@
     <Content Include="Views\SubCategoriaServicio\Index.cshtml" />
     <Content Include="Views\SubCategoriaServicio\Create.cshtml" />
     <Content Include="Views\SubCategoriaServicio\Edit.cshtml" />
-    <Content Include="Views\Region\Index.cshtml" />
-    <Content Include="Views\Region\Create.cshtml" />
     <Content Include="Views\Paises\Index.cshtml" />
     <Content Include="Views\Paises\Create.cshtml" />
     <Content Include="Views\Membresia\Index.cshtml" />

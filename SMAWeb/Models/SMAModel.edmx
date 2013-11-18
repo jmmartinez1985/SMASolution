@@ -25,7 +25,6 @@
           <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.Store.MB_Membresia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.Store.MT_MultimediaTipos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PA_Paises" EntityType="ServiceMarketModel.Store.PA_Paises" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="REG_Region" EntityType="ServiceMarketModel.Store.REG_Region" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RW_Reviews" EntityType="ServiceMarketModel.Store.RW_Reviews" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SBS_SubCategoriaServicio" EntityType="ServiceMarketModel.Store.SBS_SubCategoriaServicio" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SS_SolicitudServicio" EntityType="ServiceMarketModel.Store.SS_SolicitudServicio" store:Type="Tables" Schema="dbo" />
@@ -83,10 +82,6 @@
           <AssociationSet Name="FK_FAQs_ST_Estatus" Association="ServiceMarketModel.Store.FK_FAQs_ST_Estatus">
             <End Role="ST_Estatus" EntitySet="ST_Estatus" />
             <End Role="FAQs" EntitySet="FAQs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PA_Paises_REG_Region" Association="ServiceMarketModel.Store.FK_PA_Paises_REG_Region">
-            <End Role="REG_Region" EntitySet="REG_Region" />
-            <End Role="PA_Paises" EntitySet="PA_Paises" />
           </AssociationSet>
           <AssociationSet Name="fk_RoleId" Association="ServiceMarketModel.Store.fk_RoleId">
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
@@ -282,15 +277,10 @@
             <PropertyRef Name="PA_Id" />
           </Key>
           <Property Name="PA_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="PA_Descripcion" Type="varchar" MaxLength="50" />
-          <Property Name="REG_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="REG_Region">
-          <Key>
-            <PropertyRef Name="REG_Id" />
-          </Key>
-          <Property Name="REG_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="REG_Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="PA_ISONUM" Type="int" Nullable="false" />
+          <Property Name="PA_ISO2" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="PA_ISO3" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="PA_Descripcion" Type="varchar" Nullable="false" MaxLength="80" />
         </EntityType>
         <EntityType Name="RW_Reviews">
           <Key>
@@ -541,18 +531,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PA_Paises_REG_Region">
-          <End Role="REG_Region" Type="ServiceMarketModel.Store.REG_Region" Multiplicity="1" />
-          <End Role="PA_Paises" Type="ServiceMarketModel.Store.PA_Paises" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="REG_Region">
-              <PropertyRef Name="REG_Id" />
-            </Principal>
-            <Dependent Role="PA_Paises">
-              <PropertyRef Name="REG_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_RoleId">
           <End Role="webpages_Roles" Type="ServiceMarketModel.Store.webpages_Roles" Multiplicity="1" />
           <End Role="webpages_UsersInRoles" Type="ServiceMarketModel.Store.webpages_UsersInRoles" Multiplicity="*" />
@@ -708,7 +686,6 @@
           <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.MB_Membresia" />
           <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.MT_MultimediaTipos" />
           <EntitySet Name="PA_Paises" EntityType="ServiceMarketModel.PA_Paises" />
-          <EntitySet Name="REG_Region" EntityType="ServiceMarketModel.REG_Region" />
           <EntitySet Name="SBS_SubCategoriaServicio" EntityType="ServiceMarketModel.SBS_SubCategoriaServicio" />
           <EntitySet Name="SS_SolicitudServicio" EntityType="ServiceMarketModel.SS_SolicitudServicio" />
           <EntitySet Name="ST_Estatus" EntityType="ServiceMarketModel.ST_Estatus" />
@@ -727,10 +704,6 @@
           <AssociationSet Name="FK_FAQs_ST_Estatus" Association="ServiceMarketModel.FK_FAQs_ST_Estatus">
             <End Role="ST_Estatus" EntitySet="ST_Estatus" />
             <End Role="FAQs" EntitySet="FAQs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PA_Paises_REG_Region" Association="ServiceMarketModel.FK_PA_Paises_REG_Region">
-            <End Role="REG_Region" EntitySet="REG_Region" />
-            <End Role="PA_Paises" EntitySet="PA_Paises" />
           </AssociationSet>
           <AssociationSet Name="FK_SS_SolicitudServicio_ST_Estatus" Association="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus">
             <End Role="ST_Estatus" EntitySet="ST_Estatus" />
@@ -938,19 +911,12 @@
             <PropertyRef Name="PA_Id" />
           </Key>
           <Property Name="PA_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="PA_Descripcion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="REG_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="REG_Region" Relationship="ServiceMarketModel.FK_PA_Paises_REG_Region" FromRole="PA_Paises" ToRole="REG_Region" />
+          <Property Name="PA_Descripcion" Type="String" MaxLength="80" Unicode="false" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_UserProfile_PA_Paises" FromRole="PA_Paises" ToRole="UserProfile" />
           <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AN_Anuncios_PA_Paises" FromRole="PA_Paises" ToRole="AN_Anuncios" />
-        </EntityType>
-        <EntityType Name="REG_Region">
-          <Key>
-            <PropertyRef Name="REG_Id" />
-          </Key>
-          <Property Name="REG_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="REG_Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="PA_Paises" Relationship="ServiceMarketModel.FK_PA_Paises_REG_Region" FromRole="REG_Region" ToRole="PA_Paises" />
+          <Property Type="Int32" Name="PA_ISONUM" Nullable="false" />
+          <Property Type="String" Name="PA_ISO2" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PA_ISO3" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SBS_SubCategoriaServicio">
           <Key>
@@ -1065,18 +1031,6 @@
             </Principal>
             <Dependent Role="FAQs">
               <PropertyRef Name="FAQ_Status" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PA_Paises_REG_Region">
-          <End Role="REG_Region" Type="ServiceMarketModel.REG_Region" Multiplicity="1" />
-          <End Role="PA_Paises" Type="ServiceMarketModel.PA_Paises" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="REG_Region">
-              <PropertyRef Name="REG_Id" />
-            </Principal>
-            <Dependent Role="PA_Paises">
-              <PropertyRef Name="REG_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1525,17 +1479,11 @@
           <EntitySetMapping Name="PA_Paises">
             <EntityTypeMapping TypeName="ServiceMarketModel.PA_Paises">
               <MappingFragment StoreEntitySet="PA_Paises">
+                <ScalarProperty Name="PA_ISO3" ColumnName="PA_ISO3" />
+                <ScalarProperty Name="PA_ISO2" ColumnName="PA_ISO2" />
+                <ScalarProperty Name="PA_ISONUM" ColumnName="PA_ISONUM" />
                 <ScalarProperty Name="PA_Id" ColumnName="PA_Id" />
                 <ScalarProperty Name="PA_Descripcion" ColumnName="PA_Descripcion" />
-                <ScalarProperty Name="REG_Id" ColumnName="REG_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="REG_Region">
-            <EntityTypeMapping TypeName="ServiceMarketModel.REG_Region">
-              <MappingFragment StoreEntitySet="REG_Region">
-                <ScalarProperty Name="REG_Id" ColumnName="REG_Id" />
-                <ScalarProperty Name="REG_Descripcion" ColumnName="REG_Descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

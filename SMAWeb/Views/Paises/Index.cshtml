@@ -29,9 +29,6 @@
                         <th>
                             @Html.DisplayNameFor(model => model.PA_Descripcion)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.REG_Region.REG_Descripcion)
-                        </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -45,9 +42,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.PA_Descripcion)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REG_Region.REG_Descripcion)
-                            </td>
+                       
                             <td>
                                @*@Html.ActionLink("Editar", "Edit", new { id = item.PA_Id }) |
             @Html.ActionLink("Detalles", "Details", new {   id = item.PA_Id   }) |

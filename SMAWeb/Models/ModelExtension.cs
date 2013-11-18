@@ -270,12 +270,6 @@ namespace SMAWeb.Models
         [Required(ErrorMessage = "Por favor ingrese el país")]
         [StringLength(50, ErrorMessage = "Por favor verifique el campo país, sólo se permite nombre de países de hasta 50 dígitos.")]
         public string PA_Descripcion { get; set; }
-
-        [Required(ErrorMessage = "Por favor seleccione la región")]
-        [Display(Name = "Región")]
-        public int REG_Id { get; set; }
-
-        public virtual REG_Region REG_Region { get; set; }
         [JsonIgnore]
         public virtual ICollection<UserProfile> UserProfile { get; set; }
     }

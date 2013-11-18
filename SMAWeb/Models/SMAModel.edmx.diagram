@@ -14,7 +14,6 @@
         <EntityTypeShape EntityType="ServiceMarketModel.MB_Membresia" Width="1.5" PointX="3.75" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.MT_MultimediaTipos" Width="1.5" PointX="6" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.PA_Paises" Width="1.5" PointX="3.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServiceMarketModel.REG_Region" Width="1.5" PointX="1.5" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.SBS_SubCategoriaServicio" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.SS_SolicitudServicio" Width="1.5" PointX="11.25" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ServiceMarketModel.ST_Estatus" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
@@ -25,7 +24,6 @@
         <AssociationConnector Association="ServiceMarketModel.FK_AM_MultimediaAnuncios_MT_MultimediaTipos" ManuallyRouted="false" />
         <AssociationConnector Association="ServiceMarketModel.FK_SBS_SubCategoriaServicio_CD_CategoriaServicio" ManuallyRouted="false" />
         <AssociationConnector Association="ServiceMarketModel.FK_FAQs_ST_Estatus" ManuallyRouted="false" />
-        <AssociationConnector Association="ServiceMarketModel.FK_PA_Paises_REG_Region" ManuallyRouted="false" />
         <AssociationConnector Association="ServiceMarketModel.FK_SS_SolicitudServicio_ST_Estatus" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ServiceMarketModel.RW_Reviews" Width="1.5" PointX="12.875" PointY="1.125" />
         <AssociationConnector Association="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio" />
