@@ -110,6 +110,12 @@
                 url: '@Url.Action("RespuestaContacto", "Contactos")',
                 type: 'post',
                 data: { id: id, nombre : nombre, correo : email, respuesta : respuesta },
+                beforeSend: function () {
+                    showProgress('@Url.Content("~/images/loading.gif")');
+                },
+                complete: function (data) {
+                    hideProgress();
+                },
                 success: function (data) {
                     window.location = data.url;
                  },
@@ -126,4 +132,29 @@
 
         });
     });
+
+    
+    var $ki = jQuery.noConflict();
+    function showProgress(loadingImgSrc) {
+        $ki.blockUI({
+            message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
+            css: {
+                width: '450px',
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#fafafa',
+                'border-radius': '10px',
+                opacity: .95,
+                color: '#000',
+                'font-size': '18px',
+                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
+                'z-index': '9999'
+            }
+        });
+    }
+
+    function hideProgress() {
+        $ki.unblockUI();
+    }
+
 </script>

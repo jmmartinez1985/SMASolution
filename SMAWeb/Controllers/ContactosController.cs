@@ -158,17 +158,17 @@ namespace SMAWeb.Controllers
                 body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\RespuestaContacto.xslt"));
                 Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.Destinatario, "Respuesta a consulta en Service Market", body);
 
-                CON_Contactenos con_contactenos = db.CON_Contactenos.Find(id);
+                CON_Contactenos con_contactenos = db.CON_Contactenos.Find(Convert.ToInt16(id));
                 db.CON_Contactenos.Remove(con_contactenos);
                 db.SaveChanges();
-                
+
             }
             catch
             {
 
             }
 
-            
+
             var urlRedirect = Url.Action("Index");
             return Json(new { url = urlRedirect });
 
