@@ -22,26 +22,11 @@
                     <div class="row-fluid">
                         <div class="span12 booking-blocks">
                             <!--   -->
+                            <div class="span10">
                             <div class="pull-left booking-img">
                                 <!--   -->
-                                <img src="@item.FirstImage" alt="@item.Usuario">
+                                <img src="@item.FirstImage" alt="@item.Usuario" title="@item.Usuario">
                                 <!-- Nombre del Anunciante  -->
-                                <ul class="unstyled">
-                                    <li><i class="icon-briefcase"></i>@item.CategoriaDescripcion</li>
-                                    <!-- Categorias  -->
-                                    <li><i class="icon-map-marker"></i>@item.AnunciosInfo.AN_Area</li>
-                                    <!-- Lugar del anuncio, agregar campo a la base de datos  -->
-                                    <li>
-                                        <ul class="unstyled inline">
-                                            <!-- Calculado basado Review basado en 5  -->
-                                            <li><i class="icon-star"></i></li>
-                                            <li><i class="icon-star"></i></li>
-                                            <li><i class="icon-star"></i></li>
-                                            <li><i class="icon-star"></i></li>
-                                            <li><i class="icon-star-empty"></i></li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </div>
                             <div style="overflow: hidden;">
                                 <h2><a href="#">@item.AnunciosInfo.AN_Titulo</a></h2>
@@ -49,13 +34,27 @@
 
                                 <p>@item.AnunciosInfo.AN_Descripcion</p>
                                 <!-- Descripcion de anuncio, basado en 200 caracteres -->
-                                <button class="btn-u btn-u-orange">Leer Más</button>
-                                <!-- Nombre del Anunciante  -->
-                                <button class="btn-u btn-u-orange">Editar</button>
-                                <button class="btn-u btn-u-orange">Eliminar</button>
-                                <button class="btn-u btn-u-orange">Desactivar</button>
+                                <ul class="unstyled">
+                                    <li><i class="icon-briefcase"></i>@item.CategoriaDescripcion</li>
+                                    <!-- Categorias  -->
+                                    <li><i class="icon-map-marker"></i>@item.AnunciosInfo.AN_Area</li>
+                                    <!-- Lugar del anuncio, agregar campo a la base de datos  -->
+                                </ul>
+                                
+                            </div>
+                            
+
+                            </div>
+                            <div class="span2 pull-right">
+                                
+                                        <button class="btn-u btn-u-orange btn-block">Leer Más</button>
+                                        <button class="btn-u btn-u-orange btn-block">Editar</button>
+                                        <button class="btn-u btn-u-orange btn-block">Eliminar</button>
+                                        <button class="btn-u btn-u-orange btn-block">Desactivar</button>
+                                                                
                             </div>
                         </div>
+                        
                     </div>
                 </td>
             </tr>

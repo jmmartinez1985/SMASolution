@@ -6,6 +6,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Models;
+using SMAWeb.Filters;
+using System.Xml.Xsl;
+using System.IO;
+using System.Xml;
+using System.Xml.XPath;
+using SMAWeb.Extensions;
+using System.Dynamic;
 
 namespace SMAWeb.Controllers
 {
@@ -54,7 +61,7 @@ namespace SMAWeb.Controllers
                 con_contactenos.CON_Fecha = DateTime.Now;
                 db.CON_Contactenos.Add(con_contactenos);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(con_contactenos);
@@ -106,19 +113,76 @@ namespace SMAWeb.Controllers
         // POST: /Contactos/Delete/5
         [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             CON_Contactenos con_contactenos = db.CON_Contactenos.Find(id);
             db.CON_Contactenos.Remove(con_contactenos);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            var urlRedirect = Url.Action("Index");
+            return Json(new { url = urlRedirect });
         }
+
 
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public ActionResult RespuestaContacto(string id, string nombre, string correo, string respuesta)
+        {
+            string pXml = string.Empty;
+            var ppEmailTemplate = new Notification();
+
+            ppEmailTemplate.CustomerName = nombre;
+            ppEmailTemplate.Respuesta = respuesta;
+            ppEmailTemplate.Destinatario = correo;
+
+            string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
+            var firstImage = "~/Images/logo2-blue.png";
+            var formatted = firstImage.Replace("~", "");
+            if (formatted.StartsWith("/"))
+                formatted = formatted.Remove(0, 1);
+            firstImage = urlimg + formatted;
+
+            ppEmailTemplate.Image = firstImage;
+
+            pXml = ppEmailTemplate.Serialize<Notification>();
+            string serverPath = string.Empty;
+            serverPath = base.Server.MapPath("~");
+            string body = string.Empty;
+
+            try
+            {
+                body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\RespuestaContacto.xslt"));
+                Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.Destinatario, "Respuesta a consulta en Service Market", body);
+
+                CON_Contactenos con_contactenos = db.CON_Contactenos.Find(id);
+                db.CON_Contactenos.Remove(con_contactenos);
+                db.SaveChanges();
+                
+            }
+            catch
+            {
+
+            }
+
+            
+            var urlRedirect = Url.Action("Index");
+            return Json(new { url = urlRedirect });
+
+        }
+
+        public class Notification
+        {
+            public string CustomerName { get; set; }
+            public string Respuesta { get; set; }
+            public string Destinatario { get; set; }
+            public string Image { get; set; }
+
+        }
+
     }
+
 }

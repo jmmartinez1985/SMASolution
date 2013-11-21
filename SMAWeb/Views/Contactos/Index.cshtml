@@ -27,12 +27,6 @@
                             @Html.DisplayNameFor(model => model.CON_Nombre)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.CON_Telefono)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CON_Celular)
-                        </th>
-                        <th>
                             @Html.DisplayNameFor(model => model.CON_Email)
                         </th>
                         <th>
@@ -55,12 +49,6 @@
                                 @Html.DisplayFor(modelItem => item.CON_Nombre)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.CON_Telefono)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CON_Celular)
-                            </td>
-                            <td>
                                 @Html.DisplayFor(modelItem => item.CON_Email)
                             </td>
                             <td>
@@ -70,9 +58,11 @@
                                 @Html.DisplayFor(modelItem => item.CON_Fecha)
                             </td>
                             <td>
-                                @*@Html.ActionLink("Editar", "Edit", new {  id=item.CON_Id }) |
-            @Html.ActionLink("Detalles", "Details", new {  id=item.CON_Id  }) |
-            @Html.ActionLink("Eliminar", "Delete", new {  id=item.CON_Id  })*@
+            
+                                @Html.ActionLink("Responder", "Edit", new { id = item.CON_Id }, new { @class = "btn-u"}) 
+                                <button type="submit" onclick="DeleteContacto('@item.CON_Id')" class="btn-u">Eliminar</button>
+                                
+            
                             </td>
                         </tr>
                     }
@@ -107,4 +97,31 @@
             delay: 20
         });
     });
+
+    function DeleteContacto(id) {
+        
+        $.ajax({
+            url: '@Url.Action("Delete", "Contactos")',
+            type: 'post',
+            data: { id : id},
+            @*beforeSend: function () {
+                showProgress('@Url.Content("~/images/loading.gif")');
+            },
+            complete: function (data) {
+                hideProgress();
+            },*@
+            success: function (data) {
+                window.location = data.url;
+            },
+            error: function (xhr) {
+                if (xhr.status == 403) {
+                    var response = $.parseJSON(xhr.responseText);
+                    window.location = response.LogOnUrl;
+                }
+                else {
+                    alert(xhr.responseText, 'An error has ocurred');
+                }
+            }
+        });
+    }
 </script>

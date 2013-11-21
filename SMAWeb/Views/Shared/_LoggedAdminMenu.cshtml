@@ -10,49 +10,48 @@
         <div class="nav-collapse collapse">
             <ul class="nav top-2">
                 <li class="active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catálogos
-                               
-                                    <b class="caret"></b>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Service Market
+                        <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="@Url.Action("Index", "CategoriaServicio")">&nbsp;Categoría</a></li>
-                        <li><a href="@Url.Action("Index", "SubCategoriaServicio")">&nbsp;SubCategoría</a></li>
-                        <li><a href="@Url.Action("Index", "FAQ")">&nbsp;FAQ's</a></li>
-                        <li><a href="@Url.Action("Index", "Membresia")">&nbsp;Membresía</a></li>
+                        <li><a href="@Url.Action("Index", "Anuncios")"><i class="icon-book"></i>&nbsp;Anuncios Publicados</a></li>
+                        <li><a href="@Url.Action("Index", "SolicitudServicio")"><i class="icon-briefcase"></i>&nbsp;Servicios Solicitados</a></li>
+                    </ul>
+                    <b class="caret-out"></b>
+                </li>
+                <li class="">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catálogos
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Action("Index", "CategoriaServicio")"><i class="icon-tag"></i>&nbsp;Categoría</a></li>
+                        <li><a href="@Url.Action("Index", "SubCategoriaServicio")"><i class="icon-tags"></i>&nbsp;SubCategoría</a></li>
+                        <li><a href="@Url.Action("Index", "FAQ")"><i class="icon-comment"></i>&nbsp;FAQ's</a></li>
+                        <li><a href="@Url.Action("Index", "Membresia")"><i class="icon-user"></i>&nbsp;Membresía</a></li>
                         @*<li><a href="@Url.Action("Index", "Paises")">&nbsp;Países</a></li>
                         <li><a href="@Url.Action("Index", "Region")">&nbsp;Región</a></li>*@
                     </ul>
                     <b class="caret-out"></b>
                 </li>
-                <li class="">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anuncios
-                               
-                                    <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="@Url.Action("Index", "Anuncios")">Anuncios Publicados</a></li>
-                    </ul>
-                    <b class="caret-out"></b>
-                </li>
-                <li class="">
+
+                @*<li class="">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Solicitudes de Servicio
                                
                                     <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="@Url.Action("Index", "SolicitudServicio")">Servicios Solicitados</a></li>
+                        
                     </ul>
                     <b class="caret-out"></b>
-                </li>
+                </li>*@
 
                 <li class="">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración
-                               
-                                    <b class="caret"></b>
+                        <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="@Url.Action("Index", "Company")">&nbsp;Compañía</a></li>
-                        <li><a href="@Url.Action("Index", "Contactos")">&nbsp;Contactos</a></li>
+                        <li><a href="@Url.Action("Index", "Company")"><i class="icon-home"></i>&nbsp;Compañía</a></li>
+                        <li><a href="@Url.Action("Index", "Contactos")"><i class="icon-envelope"></i>&nbsp;Contactos</a></li>
                     </ul>
                     <b class="caret-out"></b>
                 </li>

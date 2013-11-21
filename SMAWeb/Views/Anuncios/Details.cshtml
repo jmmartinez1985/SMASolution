@@ -4,9 +4,6 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-
 <br />
 <div class="container">
     <div class="row-fluid margin-bottom-10">
@@ -43,12 +40,14 @@
                                                             {
                                                                 if (counter == 0)
                                                                 {
+
                                                         <div class="active item" data-slide-number="@counter">
                                                             <img src="@Url.Content(item.AN_ImagenUrl)" />
                                                         </div>
                                                                 }
                                                                 else
                                                                 {
+
                                                         <div class="item" data-slide-number="@counter">
                                                             <img src="@Url.Content(item.AN_ImagenUrl)" />
                                                         </div>
@@ -59,11 +58,12 @@
                                                         }
                                                         else
                                                         {
+
                                                         <div class="active item" data-slide-number="@counter">
                                                             <img src="@Url.Content("~/Images/foto-no-disponible.jpg")" />
                                                         </div>
                                                         }
-                                                    }
+ }
 
                                                 </div>
                                                 <!-- Carousel nav -->
@@ -86,6 +86,7 @@
                                             {
                                                 foreach (var item in @Model.AE_AnunciosExtras)
                                                 {
+
                                             <li class="span3">
                                                 <a class="thumbnail" id="carousel-selector-@counter">
                                                     <img src="@Url.Content(item.AN_ImagenUrl)" />
@@ -96,13 +97,14 @@
                                             }
                                             else
                                             {
+
                                             <li class="span3">
                                                 <a class="thumbnail" id="carousel-selector-@counter">
                                                     <img src="@Url.Content("~/Images/foto-no-disponible.jpg")" />
                                                 </a>
                                             </li>
                                             }
-                                        }
+ }
 
                                     </ul>
                                 </div>
@@ -184,6 +186,9 @@
                         {
                          
                    
+
+
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2-gp1" href="#collapse-@itemRV.RW_Id">@itemRV.RW_Comentario
@@ -198,19 +203,20 @@
                                     <div class="span9">
 
                                         <div class="span2">
-                                            <a href="#" class="thumbnail">
-                                                <img src="@Url.Content(userPic)" alt="">
+                                            <a href="#" class="thumbnail" style="width:80px; height:80px;">
+                                                <img src="@Url.Content(userPic)" style="width:80px; height:80px;" >
                                             </a>
                                         </div>
                                         <div class="span10">
-                                            <p>
-                                                <i class="icon-user"></i>by <a href="#">John</a>
+                                            <div class="comments" style="height:70px; padding:9px;">
+                                            <em style="color: #999999;">
+                                                <i class="icon-user"></i>John
                                                 | <i class="icon-calendar"></i>@itemRV.RW_Fecha
-                                            </p>
+                                            </em>
                                             <p>
                                                 @itemRV.RW_Comentario
                                             </p>
-
+                                                </div>
                                         </div>
 
                                     </div>
@@ -218,33 +224,63 @@
                                     <div class="span8 offset1">
 
 
-                                        <div class="margin-bottom-40">
+                                        <div class="margin-bottom-20">
                                             <div id="testimonials-@itemRV.RW_Id" class="carousel slide testimonials testimonials-v1">
+                                                 <div class="carousel-arrow pull-right">
+                                                    <a class="" href="#testimonials-@itemRV.RW_Id" data-slide="prev">
+                                                        <i class="icon-chevron-left"></i>
+                                                    </a>
+                                                    <a class="" href="#testimonials-@itemRV.RW_Id" data-slide="next">
+                                                        <i class="icon-chevron-right"></i>
+                                                    </a>
+                                                </div>
                                                 <div class="carousel-inner">
                                                     @{int commentcounter = 0;}
                                                     @foreach (var itemcomment in itemRV.CR_ComentarioReview)
                                                     {
                                                         if (commentcounter == 0)
                                                         { 
+
                                                         <div class="item active">
-                                                            <p>@itemcomment.CR_Comentario</p>
                                                             <div class="testimonial-info">
-                                                                <img  src="@Url.Content(itemcomment.UserProfile.Image)" width="90px" height="60px" alt="">
-                                                                <span class="testimonial-author">@itemcomment.UserProfile.Name
-                                                                    <em>Visitor</em>
-                                                                </span>
+
+                                                                <blockquote>
+                                                                    <div class="span2">
+                                                                        <img  class="img-circle img-polaroid" src="@Url.Content(itemcomment.UserProfile.Image)" style="width:68px; height:68px;">
+                                                                    </div>
+                                                                    <div class="span10">
+                                                                        <p>
+                                                                            @itemcomment.CR_Comentario
+
+                                                                            <small>
+                                                                                <em>@itemcomment.UserProfile.Name</em>
+                                                                            </small>
+                                                                        </p>
+
+                                                                    </div>
+                                                                </blockquote>
                                                             </div>
                                                         </div>
                                                         }
                                                         else
                                                         {
+
                                                         <div class="item">
-                                                            <p>@itemcomment.CR_Comentario</p>
+
                                                             <div class="testimonial-info">
-                                                                <img src="@Url.Content(itemcomment.UserProfile.Image)" width="90px" height="60px" alt="">
-                                                                <span class="testimonial-author">@itemcomment.UserProfile.Name
-                                                                    <em>Visitor</em>
-                                                                </span>
+
+                                                                <blockquote>
+                                                                    <div class="span2">
+                                                                        <img class="img-circle img-polaroid" src="@Url.Content(itemcomment.UserProfile.Image)" style="width:68px; height:68px;"  >
+                                                                    </div>
+                                                                    <div class="span10">
+                                                                        <p>
+                                                                            @itemcomment.CR_Comentario
+                                                                            <small>
+                                                                                <em>@itemcomment.UserProfile.Name</em></small>
+                                                                        </p>
+                                                                    </div>
+                                                                </blockquote>
                                                             </div>
                                                         </div>
                                                         }
@@ -253,14 +289,7 @@
 
                                                 </div>
 
-                                                <div class="carousel-arrow">
-                                                    <a class="left carousel-control" href="#testimonials-@itemRV.RW_Id" data-slide="prev">
-                                                        <i class="icon-angle-left"></i>
-                                                    </a>
-                                                    <a class="right carousel-control" href="#testimonials-@itemRV.RW_Id" data-slide="next">
-                                                        <i class="icon-angle-right"></i>
-                                                    </a>
-                                                </div>
+                                               
                                             </div>
                                         </div>
 
@@ -387,50 +416,50 @@
 
         var comment = {
             "UserId": '@WebSecurity.CurrentUserId',
-                "CR_Comentario": $(commentElement).val(),
-                "RW_Id": review
-            };
+            "CR_Comentario": $(commentElement).val(),
+            "RW_Id": review
+        };
 
-            var jsonSerialized = JSON.stringify(comment);
-            $.ajax({
-                url: '@Url.Action("Create", "Comentarios")',
-                type: 'post',
-                data: jsonSerialized,
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                beforeSend: function () {
-                    showProgress('@Url.Content("~/images/loading.gif")');
-                },
-                complete: function (data) {
-                    hideProgress();
-                },
-                success: function (data) {
-                    debugger;
-                    $(commentElement).val('');
-                    var result = JSON.parse(data);
-                    var html = '';
-                    var carusel = $("#testimonials-" + review).find('.carousel-inner');
-                    html += '<div class="item">';
-                    html += ' <p>' + result.data.Comments + '</p>';
-                    html += '         <div class="testimonial-info">';
-                    html += '   <img src="' + result.data.Image + '" width="90px" height="60px" alt="">';
-                    html += '      <span class="testimonial-author">' + result.data.Name + '';
-                    html += '         <em>Visitor</em>';
-                    html += '      </span>';
-                    html += '   </div>';
-                    html += ' </div>';
-                    carusel.append(html);
-                    jAlert('Comentario publicado.');
-                },
-                error: function (xhr) {
-                    if (xhr.status == 403) {
-                        var response = $.parseJSON(xhr.responseText);
-                        window.location = response.LogOnUrl;
-                    }
-                    else {
-                        alert(xhr.responseText, 'An error has ocurred');
-                    }
+        var jsonSerialized = JSON.stringify(comment);
+        $.ajax({
+            url: '@Url.Action("Create", "Comentarios")',
+            type: 'post',
+            data: jsonSerialized,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            beforeSend: function () {
+                showProgress('@Url.Content("~/images/loading.gif")');
+            },
+            complete: function (data) {
+                hideProgress();
+            },
+            success: function (data) {
+                debugger;
+                $(commentElement).val('');
+                var result = JSON.parse(data);
+                var html = '';
+                var carusel = $("#testimonials-" + review).find('.carousel-inner');
+                html += '<div class="item">';
+                html += ' <p>' + result.data.Comments + '</p>';
+                html += '         <div class="testimonial-info">';
+                html += '   <img src="' + result.data.Image + '" width="90px" height="60px" alt="">';
+                html += '      <span class="testimonial-author">' + result.data.Name + '';
+                html += '         <em>Visitor</em>';
+                html += '      </span>';
+                html += '   </div>';
+                html += ' </div>';
+                carusel.append(html);
+                jAlert('Comentario publicado.');
+            },
+            error: function (xhr) {
+                if (xhr.status == 403) {
+                    var response = $.parseJSON(xhr.responseText);
+                    window.location = response.LogOnUrl;
                 }
-            });
-        }
+                else {
+                    alert(xhr.responseText, 'An error has ocurred');
+                }
+            }
+        });
+    }
 </script>

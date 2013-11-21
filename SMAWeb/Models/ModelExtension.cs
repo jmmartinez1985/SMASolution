@@ -340,7 +340,7 @@ namespace SMAWeb.Models
     public partial class CON_ContactenosMetadata
     {
         [Required]
-        [Display(Name = "Código Contacto")]
+        [Display(Name = "ID")]
         public int CON_Id { get; set; }
 
         [Required]

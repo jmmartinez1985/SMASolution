@@ -1,9 +1,7 @@
 ﻿@model SMAWeb.Models.CON_Contactenos
-
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Responder a un contacto";
 }
-
 <br />
 <div class="container">
     <div class="row-fluid margin-bottom-10">
@@ -15,70 +13,117 @@
 
             @using (Html.BeginForm())
             {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true)
-
-              
-                   
-                @Html.HiddenFor(model => model.CON_Id)
-                   
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.CON_Nombre)
-                </div>
-                <div class="editor-field">
-                    @Html.TextBoxFor(model => model.CON_Nombre, new { @placeholder = "Nombre Completo", @class = "input-xxlarge" })
-                    @Html.ValidationMessageFor(model => model.CON_Nombre)
-                </div>
-
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.CON_Telefono)
-                </div>
-                <div class="editor-field">
-                    @Html.TextBoxFor(model => model.CON_Telefono, new { @placeholder = "Teléfono", @class = "input-xxlarge" })
-                    @Html.ValidationMessageFor(model => model.CON_Telefono)
-                </div>
-
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.CON_Celular)
-                </div>
-                <div class="editor-field">
-                    @Html.TextBoxFor(model => model.CON_Celular, new { @placeholder = "Celular", @class = "input-large" })
-                    @Html.ValidationMessageFor(model => model.CON_Celular)
-                </div>
-
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.CON_Email)
-                </div>
-                <div class="editor-field">
-                    @Html.TextBoxFor(model => model.CON_Email, new { @placeholder = "Correo Electrónico", @class = "input-xxlarge" })
-                    @Html.ValidationMessageFor(model => model.CON_Email)
-                </div>
-
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.CON_Mensaje)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.CON_Mensaje, new { @placeholder = "Mensaje", @class = "input-xxlarge" })
-                    @Html.ValidationMessageFor(model => model.CON_Mensaje)
-                </div>
-
-                   
-                @Html.HiddenFor(model => model.CON_Fecha)
-                   
-
-                <p>
-                    <input type="submit" value="Guardar" class="btn-u" />
-                </p>
+ @Html.AntiForgeryToken()
+ @Html.ValidationSummary(true)  
+                <div id="CON_Id">
+ @Html.HiddenFor(model => model.CON_Id)
+                   </div>                 
                 
-            }
 
-            <div>
+
+
+                <div class="span5">
+                    <div class="form-horizontal">
+                        <div class="control-group" style="margin-bottom: 0px;">
+                            <label class="control-label"><strong>@Html.DisplayNameFor(model => model.CON_Nombre)</strong></label>
+                            <div class="controls" id="txtNombre">
+                                @Html.DisplayFor(model => model.CON_Nombre)
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 0px;">
+                            <label class="control-label"><strong>@Html.DisplayNameFor(model => model.CON_Telefono)</strong></label>
+                            <div class="controls">
+                                @Html.DisplayFor(model => model.CON_Telefono)
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 0px;">
+                            <label class="control-label"><strong>@Html.DisplayNameFor(model => model.CON_Celular)</strong></label>
+                            <div class="controls">
+                                @Html.DisplayFor(model => model.CON_Celular)
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 0px;">
+                            <label class="control-label"><strong>@Html.DisplayNameFor(model => model.CON_Email)</strong></label>
+                            <div class="controls" id="txtEmail">
+                                @Html.DisplayFor(model => model.CON_Email)
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 0px;">
+                            <label class="control-label"><strong>@Html.DisplayNameFor(model => model.CON_Fecha)</strong></label>
+                            <div class="controls">
+                                @Html.DisplayFor(model => model.CON_Fecha)
+                            </div>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 0px;">
+                            <label class="control-label"><strong>@Html.DisplayNameFor(model => model.CON_Mensaje)</strong></label>
+                            <div class="controls">
+                                @Html.DisplayFor(model => model.CON_Mensaje)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="editor-label">
+                        <label>
+                       <strong>Respuesta</strong></label>
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextArea("txtRespuesta", new { @placeholder = "Respuesta", @class = "span12", @rows = "8" })
+                    </div>
+                    <p>
+                    
+                </p>
+                </div>
+                   
+                
+
+
+                <div class="span12">
+                
+                </div>
+            }
+            <input type="submit" value="Responder" id="btnResponder" class="btn-u pull-right" />
+            <div class="span12">
+                <br />
                 @Html.ActionLink("Regresar", "Index")
             </div>
+            
 
             @section Scripts {
                 @Scripts.Render("~/bundles/jqueryval")
             }
+            
         </div>
     </div>
 </div>
+<script>
+    jQuery(function () {
+        jQuery("#btnResponder").click(function () {
+            debugger;
+            var nombre = jQuery("#txtNombre").text().trim();
+            var email = jQuery("#txtEmail").text().trim();
+            var respuesta = jQuery("#txtRespuesta").val();
+            var id = jQuery('#CON_Id input').val();
+
+
+            jQuery.ajax({
+                url: '@Url.Action("RespuestaContacto", "Contactos")',
+                type: 'post',
+                data: { id: id, nombre : nombre, correo : email, respuesta : respuesta },
+                success: function (data) {
+                    window.location = data.url;
+                 },
+                 error: function (xhr) {
+                     if (xhr.status == 403) {
+                         var response = $.parseJSON(xhr.responseText);
+                         window.location = response.LogOnUrl;
+                     }
+                     else {
+                         alert(xhr.responseText, 'Ha ocurrido un error.');
+                     }
+                 }
+            });
+
+        });
+    });
+</script>
