@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<SMAWeb.Models.AnunciosViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Mis Anuncios Publicados";
 }
+
 
 <link href="@Url.Content("~/Content/jpages/jPages.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Content/jpages/animate.css")" rel="stylesheet" type="text/css" />
@@ -13,7 +14,7 @@
 
 
 <div class="container">
-  @*  <div class="row-fluid purchase">
+    @*  <div class="row-fluid purchase">
         <span>Búsqueda de Servicios</span>
         <div class="form-inline">
             <div class="input-append">
@@ -40,43 +41,51 @@
                     <tbody id="anunciosAvailable">
                         @foreach (var item in Model)
                         {
+
                             <tr>
                                 <td>
                                     <div class="row-fluid">
                                         <div class="span12 booking-blocks">
                                             <!--   -->
+                                                <div class="span10">
                                             <div class="pull-left booking-img">
                                                 <!--   -->
                                                 <img src="@item.FirstImage" alt="@item.Usuario">
                                                 <!-- Nombre del Anunciante  -->
                                                 <ul class="unstyled">
+                                                    <li>
+                                                        <ul class="unstyled inline">
+                                                            <li>
+                                                                <div class="ratyclass" id='@item.AnunciosInfo.AN_Id'  ratyval='@item.Rating' style="width:20px;" ></div>
+                                                            </li>
+
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div style="overflow: hidden;">
+                                                <h2><a href="@Url.Content("~/Anuncios/Details/" + @item.AnunciosInfo.AN_Id)">@item.AnunciosInfo.AN_Titulo</a></h2>
+                                                <!-- Titulo Anuncio  -->
+                                                <ul class="unstyled inline">
                                                     <li><i class="icon-briefcase"></i>@item.CategoriaDescripcion</li>
                                                     <!-- Categorias  -->
                                                     <li><i class="icon-map-marker"></i>@item.AnunciosInfo.AN_Area</li>
                                                     <!-- Lugar del anuncio, agregar campo a la base de datos  -->
-                                                <li>
-                                                    <ul class="unstyled inline">
-                                                        <li><div class="ratyclass" id='@item.AnunciosInfo.AN_Id'  ratyval='@item.Rating' style="width:20px;" ></div </li>
-
-                                                    </ul>
-
-                                                </li>
                                                 </ul>
-                                            </div>
-                                            <div style="overflow: hidden;">
-                                                <h2><a href="@Url.Content("~/Anuncios/Details/"+@item.AnunciosInfo.AN_Id)">@item.AnunciosInfo.AN_Titulo</a></h2>
-                                                <!-- Titulo Anuncio  -->
-
                                                 <p>@item.AnunciosInfo.AN_Descripcion</p>
                                                 <!-- Descripcion de anuncio, basado en 200 caracteres -->
 
-                                                @Html.ActionLink("Preliminar", "Details", "Anuncios", new { id = item.AnunciosInfo.AN_Id }, new { @class = "btn-u btn-u-orange" })
-                                                @Html.ActionLink("Editar", "Edit", "Anuncios", new { id = item.AnunciosInfo.AN_Id }, new { @class = "btn-u btn-u-orange" })
-
-                                        
-                                                <a class="btn-u btn-u-orange" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id')" >Eliminar</a>
-                                                <a class="btn-u btn-u-orange" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id')" >Desactivar</a>
+                                                
                                             </div>
+                                                    </div>
+                                                <div class="span2 pull-right">
+                                                    <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Details", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</a>
+                                                <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Edit", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-edit"></i>&nbsp;Editar</a>
+
+
+                                                <a class="btn-u btn-u-orange btn-block" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id')" ><i class="icon-white icon-trash"></i>&nbsp;Eliminar</a>
+                                                <a class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id')" ><i class="icon-white icon-refresh"></i>&nbsp;Desactivar</a>
+                                                    </div>
                                         </div>
                                     </div>
                                 </td>
@@ -242,7 +251,7 @@
                    data: { id: id },
                    beforeSend: function () {
                        showProgress('@Url.Content("~/images/loading.gif")');
-                    },
+                   },
                    complete: function (data) {
                        hideProgress();
                    },
@@ -269,20 +278,20 @@
                   data: { id: id },
                   beforeSend: function () {
                       showProgress('@Url.Content("~/images/loading.gif")');
-                   },
+                  },
                   complete: function (data) {
                       hideProgress();
                   },
-                   success: function (data) {
-                       jAlert('Registro desahilitado satistafactoriamente.');
-                       window.location = data.redirectToUrl;
+                  success: function (data) {
+                      jAlert('Registro desahilitado satistafactoriamente.');
+                      window.location = data.redirectToUrl;
 
-                   },
-                   error: function (a, b, c) {
-                       alert(a);
-                   }
-               });
-           }
-        });
-   }
+                  },
+                  error: function (a, b, c) {
+                      alert(a);
+                  }
+              });
+          }
+       });
+  }
 </script>

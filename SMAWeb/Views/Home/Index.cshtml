@@ -269,17 +269,19 @@
                     htmldata += '<div class="pull-left booking-img">';
                     htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
                     htmldata += '<ul class="unstyled">';
-                    htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
-                    htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
                     htmldata += '<li><ul class="unstyled inline"><li><div class="ratyclass" id=' + "toraty" + val + '  ratyval= ' + anuncio.Rating + ' style="width:20px;" ></div </li></ul></li>'
                     htmldata += '</ul>';
                     htmldata += '</div>';
                     htmldata += '<div style="overflow: hidden;">';
                     htmldata += '<h2><a href="#">' + anuncio.AnunciosInfo.AN_Titulo + '</a></h2> ';
                     htmldata += '<b>' + anuncio.Usuario + '</b>';
+                    htmldata += '<ul class="unstyled inline">';
+                    htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
+                    htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
+                    htmldata += '</ul>';
                     htmldata += '<p>' + anuncio.AnunciosInfo.AN_Descripcion + '</p>';
-                    htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange">Leer Más</button>&nbsp;';
-                    htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange">Solicitar</button>';
+                    htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>&nbsp;';
+                    htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
                     htmldata += '</div>';
                     htmldata += '</div>';
                     htmldata += '</div></td> </tr>';

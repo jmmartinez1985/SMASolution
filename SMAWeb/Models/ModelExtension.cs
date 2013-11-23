@@ -343,7 +343,7 @@ namespace SMAWeb.Models
         [Display(Name = "ID")]
         public int CON_Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor ingrese su nombre.")]
         [Display(Name = "Nombre")]
         public string CON_Nombre { get; set; }
 
@@ -353,11 +353,12 @@ namespace SMAWeb.Models
         [Display(Name = "Celular")]
         public string CON_Celular { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor ingrese el correo electrónico.")]
+        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Por favor revise los datos ingresados para el campo correo electrónico.")]
         [Display(Name = "Correo Electrónico")]
         public string CON_Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor ingrese su mensaje.")]
         [Display(Name = "Mensaje")]
         public string CON_Mensaje { get; set; }
 

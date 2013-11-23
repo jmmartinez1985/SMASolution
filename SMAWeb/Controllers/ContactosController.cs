@@ -56,6 +56,11 @@ namespace SMAWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CON_Contactenos con_contactenos)
         {
+            if (con_contactenos.CON_Celular == null)
+                con_contactenos.CON_Celular = "0";
+            if (con_contactenos.CON_Telefono == null)
+                con_contactenos.CON_Telefono = "0";
+
             if (ModelState.IsValid)
             {
                 con_contactenos.CON_Fecha = DateTime.Now;

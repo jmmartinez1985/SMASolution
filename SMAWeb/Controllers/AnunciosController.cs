@@ -412,7 +412,7 @@ namespace SMAWeb.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles = "Users")]
+        [Authorize(Roles = "Users, Admin")]
         [HttpPost, ActionName("Inactivate")]
         //[ValidateAntiForgeryToken]
         public ActionResult InactivateAnuncio(int id)

@@ -29,17 +29,20 @@
                                 <!-- Nombre del Anunciante  -->
                             </div>
                             <div style="overflow: hidden;">
-                                <h2><a href="#">@item.AnunciosInfo.AN_Titulo</a></h2>
+                                <h2><a href="@Url.Action("Details", "Anuncios")/@item.AnunciosInfo.AN_Id">@item.AnunciosInfo.AN_Titulo</a></h2>
                                 <!-- Titulo Anuncio  -->
 
-                                <p>@item.AnunciosInfo.AN_Descripcion</p>
-                                <!-- Descripcion de anuncio, basado en 200 caracteres -->
-                                <ul class="unstyled">
+
+                                  <ul class="unstyled inline">
                                     <li><i class="icon-briefcase"></i>@item.CategoriaDescripcion</li>
                                     <!-- Categorias  -->
                                     <li><i class="icon-map-marker"></i>@item.AnunciosInfo.AN_Area</li>
                                     <!-- Lugar del anuncio, agregar campo a la base de datos  -->
                                 </ul>
+                                <!-- Descripcion de anuncio, basado en 200 caracteres -->
+                                <p>@item.AnunciosInfo.AN_Descripcion</p>
+                                
+                              
                                 
                             </div>
                             
@@ -47,10 +50,9 @@
                             </div>
                             <div class="span2 pull-right">
                                 
-                                        <button class="btn-u btn-u-orange btn-block">Leer Más</button>
-                                        <button class="btn-u btn-u-orange btn-block">Editar</button>
-                                        <button class="btn-u btn-u-orange btn-block">Eliminar</button>
-                                        <button class="btn-u btn-u-orange btn-block">Desactivar</button>
+                                        <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Details", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</a>
+                                        <button class="btn-u btn-u-orange btn-block" style="text-align:left"><i class="icon-white icon-trash"></i>&nbsp;Eliminar</button>
+                                        <button class="btn-u btn-u-orange btn-block" style="text-align:left"><i class="icon-white icon-refresh"></i>&nbsp;Desactivar</button>
                                                                 
                             </div>
                         </div>
