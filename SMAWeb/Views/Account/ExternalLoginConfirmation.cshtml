@@ -20,11 +20,11 @@
         
         <p>
             Se ha autenticado satisfactoriamente con <strong>@ViewBag.ProviderDisplayName</strong>.
-            Por favor ingrese su nombre de usuario para Service Market y luego haga clic en registrar para finalizar su inicio de sesión
+            Por favor ingrese su correo electrónico para Service Market y luego haga clic en registrar para finalizar su inicio de sesión
         </p>
         <ol>
             <li class="name">
-                @Html.LabelFor(m => m.UserName)
+                @Html.Label("Correo Electrónico")
                 @Html.TextBoxFor(m => m.UserName)
                 @Html.ValidationMessageFor(m => m.UserName)
             </li>
