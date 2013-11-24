@@ -22,7 +22,7 @@ else
         @foreach (AuthenticationClientData p in Model)
         {   
             <p>
-                <button type="submit"  class="btn btn-large btn-block btn-u"  name="provider" value="@p.AuthenticationClient.ProviderName" title="Log in using your @p.DisplayName account">@p.DisplayName</button>
+                <button type="submit"  class="btn btn-large btn-block btn-u"  name="provider" value="@p.AuthenticationClient.ProviderName" title="Inicia sesión usando tu cuenta de @p.DisplayName ">@p.DisplayName</button>
             </p>          
         }
 

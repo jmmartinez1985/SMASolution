@@ -352,7 +352,7 @@ namespace SMAWeb.Controllers
             ViewBag.ResourcesCount = an_anuncios.AE_AnunciosExtras.Count;
             HttpContext.Session["Anuncio"] = an_anuncios.AN_Id;
             ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
-            ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id);
+            ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id).Take(2);
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName", an_anuncios.UserId);
             ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion");
             ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion");
@@ -370,7 +370,7 @@ namespace SMAWeb.Controllers
             {
                 db.Entry(an_anuncios).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("GetAnunciosByUser");
             }
             ViewBag.ResourcesCount = an_anuncios.AE_AnunciosExtras.Count;
             an_anuncios.AE_AnunciosExtras = db.AE_AnunciosExtras.Where(c => c.AN_Id == an_anuncios.AN_Id).ToList();

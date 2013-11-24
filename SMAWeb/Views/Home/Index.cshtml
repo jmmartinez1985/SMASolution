@@ -260,12 +260,13 @@
                     
                     htmldata += '<tr><td><div class="row-fluid">';
                     htmldata += '<div class="span12 booking-blocks"> ';
-                    //reviews
-                    htmldata += '<ul class="unstyled inline blog-info">';
-                    htmldata += ' <li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>';
-                    htmldata += ' <li><i class="icon-comments"></i> <a href="#">'+ anuncio.Comments+ ' Reviews</a></li>';
-                    htmldata += '</ul>';
-                    //fin reviews
+                    htmldata += '<div class="span10">';
+                    ////reviews
+                    //htmldata += '<ul class="unstyled inline blog-info">';
+                    //htmldata += ' <li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>';
+                    //htmldata += ' <li><i class="icon-comments"></i> <a href="#">'+ anuncio.Comments+ ' Reviews</a></li>';
+                    //htmldata += '</ul>';
+                    ////fin reviews
                     htmldata += '<div class="pull-left booking-img">';
                     htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
                     htmldata += '<ul class="unstyled">';
@@ -273,15 +274,19 @@
                     htmldata += '</ul>';
                     htmldata += '</div>';
                     htmldata += '<div style="overflow: hidden;">';
-                    htmldata += '<h2><a href="#">' + anuncio.AnunciosInfo.AN_Titulo + '</a></h2> ';
+                    htmldata += '<h2><a href="#">' + anuncio.AnunciosInfo.AN_Titulo + '</a> (' + anuncio.Comments + ' Reviews)</h2> ';
                     htmldata += '<b>' + anuncio.Usuario + '</b>';
                     htmldata += '<ul class="unstyled inline">';
+                    htmldata += '<li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>&nbsp;';
                     htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
                     htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
                     htmldata += '</ul>';
                     htmldata += '<p>' + anuncio.AnunciosInfo.AN_Descripcion + '</p>';
-                    htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>&nbsp;';
-                    htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
+                    htmldata += '</div>';
+                    htmldata += '</div>';
+                    htmldata += '<div class="span2">';
+                    htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
+                    htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
                     htmldata += '</div>';
                     htmldata += '</div>';
                     htmldata += '</div></td> </tr>';
@@ -367,26 +372,33 @@
                 jQuery.each(result.$values, function (val, anuncio) {
                     htmldata += '<tr><td><div class="row-fluid">';
                     htmldata += '<div class="span12 booking-blocks"> ';
-                    //reviews
-                    htmldata += '<ul class="unstyled inline blog-info">';
-                    htmldata += ' <li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>';
-                    htmldata += ' <li><i class="icon-comments"></i> <a href="#">' + anuncio.Comments + ' Reviews</a></li>';
-                    htmldata += '</ul>';
-                    //fin reviews
+                    htmldata += '<div class="span10">';
+                    ////reviews
+                    //htmldata += '<ul class="unstyled inline blog-info">';
+                    
+                    //htmldata += ' <li><i class="icon-comments"></i> <a href="#">' + anuncio.Comments + ' Reviews</a></li>';
+                    //htmldata += '</ul>';
+                    ////fin reviews
                     htmldata += '<div class="pull-left booking-img">';
                     htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
                     htmldata += '<ul class="unstyled">';
-                    htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
-                    htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
                     htmldata += '<li><ul class="unstyled inline"><li><div class="ratyclass" id=' + "toraty" + val + '  ratyval= ' + anuncio.Rating + ' style="width:20px;" ></div </li></ul></li>'
                     htmldata += '</ul>';
                     htmldata += '</div>';
                     htmldata += '<div style="overflow: hidden;">';
-                    htmldata += '<h2><a href="#">' + anuncio.AnunciosInfo.AN_Titulo + '</a></h2> ';
+                    htmldata += '<h2><a href="#">' + anuncio.AnunciosInfo.AN_Titulo + '</a> (' + anuncio.Comments + ' Reviews)</h2> ';
                     htmldata += '<b>' + anuncio.Usuario + '</b>';
+                    htmldata += '<ul class="unstyled inline">';
+                    htmldata += '<li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>&nbsp;';
+                    htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
+                    htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
+                    htmldata += '</ul>';
                     htmldata += '<p>' + anuncio.AnunciosInfo.AN_Descripcion + '</p>';
-                    htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange">Leer Más</button>&nbsp;';
-                    htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange">Solicitar</button>';
+                    htmldata += '</div>';
+                    htmldata += '</div>';
+                    htmldata += '<div class="span2">';
+                    htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
+                    htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
                     htmldata += '</div>';
                     htmldata += '</div>';
                     htmldata += '</div></td> </tr>';
