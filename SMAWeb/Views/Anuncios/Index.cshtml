@@ -51,8 +51,9 @@
                             <div class="span2 pull-right">
                                 
                                         <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Details", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</a>
-                                        <button class="btn-u btn-u-orange btn-block" style="text-align:left"><i class="icon-white icon-trash"></i>&nbsp;Eliminar</button>
-                                        <button class="btn-u btn-u-orange btn-block" style="text-align:left"><i class="icon-white icon-refresh"></i>&nbsp;Desactivar</button>
+                                        <button class="btn-u btn-u-orange btn-block" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id')" style="text-align:left"><i class="icon-white icon-trash"></i>&nbsp;Eliminar</button>
+                                        <button class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id' ,'@item.EstatusDescription')" style="text-align:left"><i class="icon-white icon-refresh"></i>@if(@item.EstatusDescription == "Activo"){ <i style="font-style:normal">Desactivar</i>}else{ <i style="font-style:normal">Activar</i>}
+                                        </button>
                                                                 
                             </div>
                         </div>
@@ -91,4 +92,95 @@
             delay: 20
         });
     });
+
+
+
+    function DeleteAnuncio(id) {
+        jConfirm('¿Desea borrar el anuncio publicado?', 'Borrar anuncio existente', function (confirmed) {
+            if (confirmed) {
+                jQuery.ajax(
+               {
+                   type: 'post',
+                   url: '@Url.Content("~/Anuncios/Delete/")',
+                   data: { id: id },
+                   beforeSend: function () {
+                       showProgress('@Url.Content("~/images/loading.gif")');
+                   },
+                   complete: function (data) {
+                       hideProgress();
+                   },
+                   success: function (data) {
+                       //jAlert('Registro borrado satistafactoriamente.');
+                       //window.location = data.redirectToUrl;
+                       //location.reload();
+                   },
+                   error: function (a, b, c) {
+                       alert(a);
+                   }
+               });
+           }
+        });
+   }
+
+    function InactivateAnuncio(id, estado) {
+        var titulo;
+        var mensaje;
+        debugger;
+        if (estado == 'Activo') {
+            titulo = 'Cambiar el estado del anuncio';
+            mensaje = '¿Desea desactivar el anuncio?';
+        }
+        else {
+            titulo = 'Cambiar el estado del anuncio';
+            mensaje = '¿Desea activar el anuncio?';
+        }
+       jConfirm(mensaje, titulo, function (confirmed) {
+           if (confirmed) {
+               jQuery.ajax(
+              {
+                  type: 'post',
+                  url: '@Url.Content("~/Anuncios/Inactivate/")',
+                  data: { id: id },
+                  beforeSend: function () {
+                      showProgress('@Url.Content("~/images/loading.gif")');
+                  },
+                  complete: function (data) {
+                      hideProgress();
+                  },
+                  success: function (data) {
+                      //jAlert('Registro desahilitado satistafactoriamente.');
+                      //window.location = data.redirectToUrl;
+                      location.reload();
+
+                  },
+                  error: function (a, b, c) {
+                      alert(a);
+                  }
+              });
+          }
+       });
+  }
+
+    var $ki = jQuery.noConflict();
+    function showProgress(loadingImgSrc) {
+        $ki.blockUI({
+            message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
+            css: {
+                width: '450px',
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#fafafa',
+                'border-radius': '10px',
+                opacity: .95,
+                color: '#000',
+                'font-size': '18px',
+                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
+                'z-index': '9999'
+            }
+        });
+    }
+
+    function hideProgress() {
+        $ki.unblockUI();
+    }
 </script>

@@ -36,8 +36,8 @@
 		overlayOpacity: .01,                // transparency level of overlay
 		overlayColor: '#FFF',               // base color of overlay
 		draggable: true,                    // make the dialogs draggable (requires UI Draggables plugin)
-		okButton: '&nbsp;OK&nbsp;',         // text for the OK button
-		cancelButton: '&nbsp;Cancel&nbsp;', // text for the Cancel button
+		okButton: '&nbsp;Aceptar&nbsp;',         // text for the OK button
+		cancelButton: '&nbsp;Cancelar&nbsp;', // text for the Cancel button
 		dialogClass: null,                  // if specified, this class will be applied to all dialogs
 		
 		// Public methods
@@ -72,7 +72,7 @@
 			
 			$("BODY").append(
 			  '<div id="popup_container">' +
-			    '<h1 id="popup_title"></h1>' +
+			    '<h3 id="popup_title"></h3>' +
 			    '<div id="popup_content">' +
 			      '<div id="popup_message"></div>' +
 				'</div>' +
@@ -105,7 +105,7 @@
 			
 			switch( type ) {
 				case 'alert':
-					$("#popup_message").after('<div id="popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" /></div>');
+					$("#popup_message").after('<div id="popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" class="btn-u btn-u-blue" /></div>');
 					$("#popup_ok").click( function() {
 						$.alerts._hide();
 						callback(true);
@@ -115,7 +115,7 @@
 					});
 				break;
 				case 'confirm':
-					$("#popup_message").after('<div id="popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" /> <input type="button" value="' + $.alerts.cancelButton + '" id="popup_cancel" /></div>');
+				    $("#popup_message").after('<div id="popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" class="btn-u  btn-u-blue" /> <input type="button" value="' + $.alerts.cancelButton + '" id="popup_cancel" class="btn-u-red btn-u" /></div>');
 					$("#popup_ok").click( function() {
 						$.alerts._hide();
 						if( callback ) callback(true);
@@ -131,7 +131,7 @@
 					});
 				break;
 				case 'prompt':
-					$("#popup_message").append('<br /><input type="text" size="30" id="popup_prompt" />').after('<div id="popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" /> <input type="button" value="' + $.alerts.cancelButton + '" id="popup_cancel" /></div>');
+				    $("#popup_message").append('<br /><input type="text" size="30" id="popup_prompt" />').after('<div id="popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" class="btn-u  btn-u-blue" /> <input type="button" value="' + $.alerts.cancelButton + '" id="popup_cancel"  class="btn-u-red btn-u" /></div>');
 					$("#popup_prompt").width( $("#popup_message").width() );
 					$("#popup_ok").click( function() {
 						var val = $("#popup_prompt").val();

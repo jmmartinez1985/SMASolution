@@ -72,7 +72,8 @@ namespace SMAWeb.Controllers
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
             using (Entities model = new Entities())
             {
-                allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.ST_Id == 1 && acc.UserId == UserId).ToList();
+                //allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.ST_Id == 1 && acc.UserId == UserId).ToList();
+                allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.UserId == UserId).ToList();
 
 
                 var categoriasList = new List<Categoria>();
@@ -398,7 +399,7 @@ namespace SMAWeb.Controllers
         //
         // POST: /Anuncios/Delete/5
         [Authorize(Roles = "Users")]
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete, Admin")]
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -418,7 +419,12 @@ namespace SMAWeb.Controllers
         public ActionResult InactivateAnuncio(int id)
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
-            an_anuncios.ST_Id = 2;
+            //activar y desactivar
+            if(an_anuncios.ST_Id == 1)
+                an_anuncios.ST_Id = 2;
+            else
+                an_anuncios.ST_Id = 1;
+
             db.Entry(an_anuncios).State = EntityState.Modified;
             db.SaveChanges();
             if (Request.IsAjaxRequest())
