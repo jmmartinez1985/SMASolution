@@ -1,50 +1,54 @@
 ﻿@model SMAWeb.Models.SS_SolicitudServicio
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle de Solicitud de Servicio";
 }
 
-<h2>Details</h2>
+<br />
+<div class="container">
+    <div class="row-fluid margin-bottom-10">
 
-<fieldset>
-    <legend>SS_SolicitudServicio</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.SS_Id)
+        <div class="another-page">
+            <div class="headline">
+                <h3>Detalle de Solicitud de Servicio</h3>
+            </div>
+            <div class="form-horizontal">
+                <div class="control-group" style="margin-bottom: 0px;">
+                    <label class="control-label" style="padding-top: 0px; width:280px"><strong>@Html.DisplayNameFor(model => model.SS_Id)</strong></label>
+                    <div class="controls" style="margin-left: 300px;">
+                        @Html.DisplayFor(model => model.SS_Id)
+                    </div>
+                </div>
+                <div class="control-group" style="margin-bottom: 0px;">
+                    <label class="control-label" style="padding-top: 0px; width:280px"><strong>@Html.DisplayNameFor(model => model.AN_Id)</strong></label>
+                    <div class="controls" style="margin-left: 300px;">
+                        @Html.DisplayFor(model => model.AN_Id)
+                    </div>
+                </div>
+                <div class="control-group" style="margin-bottom: 0px;">
+                    <label class="control-label" style="padding-top: 0px; width:280px"><strong>@Html.DisplayNameFor(model => model.SS_Fecha)</strong></label>
+                    <div class="controls" style="margin-left: 300px;">
+                        @Html.DisplayFor(model => model.SS_Fecha)
+                    </div>
+                </div>
+                <div class="control-group" style="margin-bottom: 0px;">
+                    <label class="control-label" style="padding-top: 0px; width:280px"><strong>@Html.DisplayNameFor(model => model.ST_Id)</strong></label>
+                    <div class="controls" style="margin-left: 300px;">
+                        @Html.DisplayFor(model => model.ST_Estatus.ST_Descripcion)
+                    </div>
+                </div>
+                <div class="control-group" style="margin-bottom: 0px;">
+                    <label class="control-label" style="padding-top: 0px; width:280px"><strong>@Html.DisplayName("Nombre de Usuario")</strong></label>
+                    <div class="controls" style="margin-left: 300px;">
+                        @Html.DisplayFor(model => model.UserProfile.Name)
+                    </div>
+                </div>
+            </div>
+            <br />
+            <p>
+                @*@Html.ActionLink("Edit", "Edit", new { id=Model.PrimaryKey  }) | *@
+                @Html.ActionLink("Regresar", "Index")
+            </p>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.SS_Id)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.AN_Id)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AN_Id)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.SS_Fecha)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.SS_Fecha)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ST_Id)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ST_Estatus.ST_Descripcion)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.UserId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserProfile.Name)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>

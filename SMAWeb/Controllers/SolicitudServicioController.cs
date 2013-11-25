@@ -96,7 +96,7 @@ namespace SMAWeb.Controllers
             var mysol = new List<SolicitudViewModel>();
             using (var db = new Entities())
             {
-                var solicitudes = db.SS_SolicitudServicio.Where(c => c.AN_Anuncios.UserId == WebSecurity.CurrentUserId);
+                var solicitudes = db.SS_SolicitudServicio.OrderByDescending(c => c.SS_Id ).Where(c => c.AN_Anuncios.UserId == WebSecurity.CurrentUserId);
                 Func<int, string> x = value =>
                 {
                     switch (value)
