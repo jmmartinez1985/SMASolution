@@ -98,7 +98,7 @@ namespace SMAWeb.Controllers
                 ViewBag.Categories = categoriasList;
 
                 foreach (var item in allAnunciosList)
-                {
+                { 
                     string username = item.UserProfile.Name;
                     string statusDesc = item.ST_Estatus.ST_Descripcion;
                     var categoria = item.SBS_SubCategoriaServicio.CD_CategoriaServicio.CD_Descripcion;
