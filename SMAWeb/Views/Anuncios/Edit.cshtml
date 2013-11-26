@@ -58,7 +58,7 @@
                                 @Html.LabelFor(model => model.SBS_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id,  new { @class = "input-block-level" })
+                                @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id, new { @class = "input-block-level" })
                                 @Html.ValidationMessageFor(model => model.SBS_Id)
                             </div>
                             <div class="controls form-inline">
@@ -158,8 +158,6 @@
 
 <script>
     function DeleteRecurso(id) {
-        //jConfirm('Desea borrar el recurso?', 'Borrar recurso existente', function (confirmed) {
-        //    if (confirmed) {
         jQuery.ajax(
        {
            type: 'POST',
@@ -175,9 +173,37 @@
            }
        });
    }
-   //     });
-   //}
 
+
+   jQuery(document).ready(function () {
+       jQuery("#CD_Id").change(function () {
+           $.ajax({
+               dataType: "json",
+               type: 'post',
+               url: '@Url.Action("GetSubCategories", "SubCategoriaServicio")',
+               data: { Cat: parseInt(jQuery("#CD_Id").val()) },
+               success: function (data) {
+                   var result = JSON.parse(data);
+                   var select = $('#SBS_Id');
+                   if (select.prop) {
+                       var options = select.prop('options');
+                   }
+                   else {
+                       var options = select.attr('options');
+                   }
+                   $('option', select).remove();
+                   $.each(result.$values, function (key, val) {
+                       options[options.length] = new Option(val.SBS_Descripcion, val.SBS_Id);
+                   });
+               },
+               error: function (a, b, c) {
+
+               },
+           });
+
+       });
+
+   });
 
    function EnableLoader() {
        jQuery.ajax(
@@ -185,13 +211,13 @@
                  type: 'GET',
                  url: '@Url.Action("LoadUplaoder", "Anuncios")',
 
-                         success: function (data) {
-                             jQuery('.divLoader').html(data);
-                         },
-                         error: function (a, b, c) {
-                             alert(a);
-                         }
-                     });
+                 success: function (data) {
+                     jQuery('.divLoader').html(data);
+                 },
+                 error: function (a, b, c) {
+                     alert(a);
                  }
+             });
+         }
 
 </script>

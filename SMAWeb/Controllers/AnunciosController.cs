@@ -10,6 +10,7 @@ using SMAWeb.Filters;
 using WebMatrix.WebData;
 using SMAWeb.Extensions;
 using Newtonsoft.Json.Linq;
+using System.Transactions;
 
 namespace SMAWeb.Controllers
 {
@@ -404,8 +405,24 @@ namespace SMAWeb.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
-            db.AN_Anuncios.Remove(an_anuncios);
-            db.SaveChanges();
+
+            using (var scope = new TransactionScope())
+            {
+                if (an_anuncios.SS_SolicitudServicio.All(c => c.SS_Id == 1))
+                {
+                    an_anuncios.SS_SolicitudServicio.ToList().ForEach(sol =>
+                    {
+                        db.SS_SolicitudServicio.Remove(sol);
+                    });
+
+                    db.AN_Anuncios.Remove(an_anuncios);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("No se puede borrar este anuncio ya esta sirviendo de referencia para solicitud de servicio, por favor proceda a desactivar el mismo.");
+                }
+            }
             if (Request.IsAjaxRequest())
             {
                 return Json(new { redirectToUrl = Url.Action("GetAnunciosByUser", "Anuncios") });
@@ -421,7 +438,14 @@ namespace SMAWeb.Controllers
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
             an_anuncios.ST_Id = 2;
             db.Entry(an_anuncios).State = EntityState.Modified;
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("El anuncio no puedo ser inactivado, por intente más tarde o pongase en contacto con el administrador.");
+            }
             if (Request.IsAjaxRequest())
             {
                 return Json(new { redirectToUrl = Url.Action("GetAnunciosByUser", "Anuncios") });
