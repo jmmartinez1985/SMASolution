@@ -127,11 +127,14 @@
     });
 
 
-
-
     jQuery('.ratyclass').each(function (i, elem) {
         var ratyvalue = jQuery(this).attr('ratyval');
         $ki(this).raty({ readOnly: true, score: ratyvalue });
+        $ki(this).find('img').each(function () {
+            var srcattr = $ki(this).attr('src');
+            var completeimg = '@Url.Content("~/Scripts/raty-2.5.2/lib/img/")' + srcattr;
+            $ki(this).attr('src', completeimg);
+        });;
     });
 
     jQuery(document).ready(function () {

@@ -93,6 +93,8 @@ namespace SMAWeb.Controllers
                     });
                 });
 
+
+
                 ViewBag.Categories = categoriasList;
 
                 foreach (var item in allAnunciosList)
@@ -105,6 +107,9 @@ namespace SMAWeb.Controllers
                     {
                         firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_ImagenUrl;
                     }
+
+                    var getRating = model.SEL_ValoracionAnuncios(item.AN_Id).FirstOrDefault();
+
 
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
                     var formatted = firstImage.Replace("~", "");
@@ -119,7 +124,7 @@ namespace SMAWeb.Controllers
                         EstatusDescription = statusDesc,
                         AnunciosInfo = item,
                         CategoriaDescripcion = categoria,
-                        FirstImage = firstImage
+                        FirstImage = firstImage, Rating = getRating
                     });
 
                 }
