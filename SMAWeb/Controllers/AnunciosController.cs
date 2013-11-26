@@ -192,7 +192,7 @@ namespace SMAWeb.Controllers
 
         }
 
-        
+
         public ActionResult GetInformationAnuncios(FormCollection form)
         {
             var allAnunciosList = new List<AN_Anuncios>();
@@ -350,11 +350,12 @@ namespace SMAWeb.Controllers
             }
             ViewBag.ResourcesCount = an_anuncios.AE_AnunciosExtras.Count;
             HttpContext.Session["Anuncio"] = an_anuncios.AN_Id;
-            ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
+            var subcategorias = db.SBS_SubCategoriaServicio.Where(c => c.CD_Id == an_anuncios.CD_Id);
+            ViewBag.SBS_Id = new SelectList(subcategorias, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id);
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName", an_anuncios.UserId);
-            ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion");
-            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion");
+            ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion", an_anuncios.PA_Id);
+            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion", an_anuncios.CD_Id);
             return View(an_anuncios);
         }
 

@@ -44,21 +44,21 @@
                                 @Html.LabelFor(model => model.PA_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("PA_Id", (IEnumerable<SelectListItem>)ViewBag.PA_Id, "Selecione el país", new { @class = "input-block-level" })
+                                @Html.DropDownList("PA_Id", (IEnumerable<SelectListItem>)ViewBag.PA_Id, new { @class = "input-block-level" })
                                 @Html.ValidationMessageFor(model => model.PA_Id)
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.CD_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("CD_Id", (IEnumerable<SelectListItem>)ViewBag.CD_Id, "Selecione la categoría", new { @class = "input-block-level" })
+                                @Html.DropDownList("CD_Id", (IEnumerable<SelectListItem>)ViewBag.CD_Id, new { @class = "input-block-level" })
                                 @Html.ValidationMessageFor(model => model.CD_Id)
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.SBS_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id, "Selecione la subcategoría", new { @class = "input-block-level" })
+                                @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id,  new { @class = "input-block-level" })
                                 @Html.ValidationMessageFor(model => model.SBS_Id)
                             </div>
                             <div class="controls form-inline">
@@ -165,33 +165,33 @@
            type: 'POST',
            url: '@Url.Content("~/HttpHandler/UploadHandler.ashx?id=")' + id,
 
-                   success: function (data) {
-                       var element = jQuery(".thumbnails").find('li[itemid= ' + id + ' ]');
-                       element.remove();
-                       EnableLoader();
-                   },
-                   error: function (a, b, c) {
-                       alert(a);
-                   }
-               });
+           success: function (data) {
+               var element = jQuery(".thumbnails").find('li[itemid= ' + id + ' ]');
+               element.remove();
+               EnableLoader();
+           },
+           error: function (a, b, c) {
+               alert(a);
            }
-           //     });
-           //}
+       });
+   }
+   //     });
+   //}
 
 
-           function EnableLoader() {
-               jQuery.ajax(
-                     {
-                         type: 'GET',
-                         url: '@Url.Action("LoadUplaoder", "Anuncios")',
+   function EnableLoader() {
+       jQuery.ajax(
+             {
+                 type: 'GET',
+                 url: '@Url.Action("LoadUplaoder", "Anuncios")',
 
-                 success: function (data) {
-                     jQuery('.divLoader').html(data);
-                 },
-                 error: function (a, b, c) {
-                     alert(a);
+                         success: function (data) {
+                             jQuery('.divLoader').html(data);
+                         },
+                         error: function (a, b, c) {
+                             alert(a);
+                         }
+                     });
                  }
-             });
-         }
 
 </script>
