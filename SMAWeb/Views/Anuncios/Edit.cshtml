@@ -32,7 +32,7 @@
                         </div>
                         <div class="editor-field">
                             @Html.TextBoxFor(model => model.AN_Titulo, new { @placeholder = "Título del Anuncio", @class = "input-block-level" })
-                            
+
                         </div>
                     </div>
                 </div>
@@ -44,28 +44,28 @@
                                 @Html.LabelFor(model => model.PA_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("PA_Id", (IEnumerable<SelectListItem>)ViewBag.PA_Id, "Selecione el país", new { @class = "input-block-level" })
-                               
+                                @Html.DropDownList("PA_Id", (IEnumerable<SelectListItem>)ViewBag.PA_Id, new { @class = "input-block-level" })
+
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.CD_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("CD_Id", (IEnumerable<SelectListItem>)ViewBag.CD_Id, "Selecione la categoría", new { @class = "input-block-level" })
-                               
+                                @Html.DropDownList("CD_Id", (IEnumerable<SelectListItem>)ViewBag.CD_Id, new { @class = "input-block-level" })
+
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.SBS_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id, "Selecione la subcategoría", new { @class = "input-block-level" })
+                                @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id, new { @class = "input-block-level" })
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.AN_Telefono)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
                                 @Html.TextBoxFor(model => model.AN_Telefono, new { @placeholder = "Teléfono", @class = "input-block-level" })
-                                
+
                             </div>
 
                             <div class="editor-label">
@@ -73,7 +73,7 @@
                             </div>
                             <div class="editor-field">
                                 @Html.TextBoxFor(model => model.AN_Celular, new { @placeholder = "Celular", @class = "input-block-level" })
-                                
+
                             </div>
 
                             <div class="controls form-inline">
@@ -81,14 +81,14 @@
                             </div>
                             <div class="editor-field">
                                 @Html.TextAreaFor(model => model.AN_Area, new { @placeholder = "Lugar del Anuncio", @class = "input-block-level", @rows = "3" })
-                                
+
                             </div>
                             <div class="editor-label">
                                 @Html.LabelFor(model => model.ST_Id)
                             </div>
                             <div class="editor-field">
                                 @Html.DropDownList("ST_Id", (IEnumerable<SelectListItem>)ViewBag.ST_Id, new { @class = "input-block-level" })
-                                
+
                             </div>
 
                         </div>
@@ -98,7 +98,7 @@
                             </div>
                             <div class="editor-field">
                                 @Html.TextAreaFor(model => model.AN_Descripcion, new { @placeholder = "Descripción del Anuncio", @class = "input-block-level", @rows = "15" })
-                                
+
                             </div>
 
 
@@ -110,62 +110,64 @@
                     </div>
                     <br />
                     <div>
-                    <ul style="list-style: none;">
-                        <li>@Html.ValidationMessageFor(model => model.AN_Titulo)</li>
-                        <li>@Html.ValidationMessageFor(model => model.PA_Id)</li>
-                        <li>@Html.ValidationMessageFor(model => model.CD_Id)</li>
-                        <li>@Html.ValidationMessageFor(model => model.SBS_Id)</li>
-                        <li>@Html.ValidationMessageFor(model => model.AN_Telefono)</li>
-                        <li>@Html.ValidationMessageFor(model => model.AN_Celular)</li>
-                        <li>@Html.ValidationMessageFor(model => model.AN_Descripcion)</li>
-                        <li>@Html.ValidationMessageFor(model => model.ST_Id)</li>
-                        <li>@Html.ValidationMessageFor(model => model.AN_Descripcion)</li>
-                    </ul>
-
-                    <div class="span12">
-                        <div class="headline">
-                            <h3>Multimedia disponible en el Anuncio</h3>
-                        </div>
-                        <ul class="thumbnails">
-
-                            @foreach (var item in Model.AE_AnunciosExtras.ToList().Take(4))
-                            {
-                                <li class="span3" itemid="@item.AE_Id">
-                                    <div class="thumbnail-style thumbnail-kenburn">
-                                        <div class="thumbnail-img">
-                                            <div class="overflow-hidden">
-                                                <img src="@Url.Content(item.AN_ImagenUrl)" alt="" />
-                                            </div>
-                                            <a class="btn-more btn-u hover-effect" onclick="DeleteRecurso('@item.AE_Id')" href="#">Eliminar</a>
-                                        </div>
-                                    </div>
-                                </li>
-                            }
-
+                        <ul style="list-style: none;">
+                            <li>@Html.ValidationMessageFor(model => model.AN_Titulo)</li>
+                            <li>@Html.ValidationMessageFor(model => model.PA_Id)</li>
+                            <li>@Html.ValidationMessageFor(model => model.CD_Id)</li>
+                            <li>@Html.ValidationMessageFor(model => model.SBS_Id)</li>
+                            <li>@Html.ValidationMessageFor(model => model.AN_Telefono)</li>
+                            <li>@Html.ValidationMessageFor(model => model.AN_Celular)</li>
+                            <li>@Html.ValidationMessageFor(model => model.AN_Descripcion)</li>
+                            <li>@Html.ValidationMessageFor(model => model.ST_Id)</li>
+                            <li>@Html.ValidationMessageFor(model => model.AN_Descripcion)</li>
                         </ul>
+
+                        <div class="span12">
+                            <div class="headline">
+                                <h3>Multimedia disponible en el Anuncio</h3>
+                            </div>
+                            <ul class="thumbnails">
+
+                                @foreach (var item in Model.AE_AnunciosExtras.ToList().Take(4))
+                                {
+                                    <li class="span3" itemid="@item.AE_Id">
+                                        <div class="thumbnail-style thumbnail-kenburn">
+                                            <div class="thumbnail-img">
+                                                <div class="overflow-hidden">
+                                                    <img src="@Url.Content(item.AN_ImagenUrl)" alt="" />
+                                                </div>
+                                                <a class="btn-more btn-u hover-effect" onclick="DeleteRecurso('@item.AE_Id')" href="#">Eliminar</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
                     </div>
-                </div>   
+
+
+                    <div class="span12 divLoader">
+                        @if (ViewBag.ResourcesCount < 4)
+                        {
+                            @Html.Partial("LoadUplaoder")
+                        }
+                    </div>
+
+                    <div>
+                        @Html.ActionLink("Regresar", "Index", "Home", null, new { @class = "btn-u" })
+                    </div>
+
+                    @section Scripts {
+                        @Scripts.Render("~/bundles/jqueryval")
+                    }
+
+                </div>
+                
             }
-
-            <div class="span12 divLoader">
-                @if (ViewBag.ResourcesCount < 4)
-                {
-                    @Html.Partial("LoadUplaoder")
-                }
-            </div>
-
-            <div>
-                @Html.ActionLink("Regresar", "Index", "Home", null, new { @class = "btn-u" })
-            </div>
-
-            @section Scripts {
-                @Scripts.Render("~/bundles/jqueryval")
-            }
-
         </div>
     </div>
 </div>
-
 
 <script>
     function DeleteRecurso(id) {
@@ -174,19 +176,20 @@
            type: 'POST',
            url: '@Url.Content("~/HttpHandler/UploadHandler.ashx?id=")' + id,
 
-                   success: function (data) {
-                       var element = jQuery(".thumbnails").find('li[itemid= ' + id + ' ]');
-                       element.remove();
-                       EnableLoader();
-                   },
-                   error: function (a, b, c) {
-                       alert(a);
-                   }
-               });
+           success: function (data) {
+               var element = jQuery(".thumbnails").find('li[itemid= ' + id + ' ]');
+               element.remove();
+               EnableLoader();
+           },
+           error: function (a, b, c) {
+               alert(a);
            }
+       });
+   }
 
 
    jQuery(document).ready(function () {
+       debugger;
        jQuery("#CD_Id").change(function () {
            $.ajax({
                dataType: "json",
@@ -214,21 +217,21 @@
 
        });
 
-   });
+    });
 
-           function EnableLoader() {
-               jQuery.ajax(
-                     {
-                         type: 'GET',
-                         url: '@Url.Action("LoadUplaoder", "Anuncios")',
+   function EnableLoader() {
+       jQuery.ajax(
+             {
+                 type: 'GET',
+                 url: '@Url.Action("LoadUplaoder", "Anuncios")',
 
-                 success: function (data) {
-                     jQuery('.divLoader').html(data);
-                 },
-                 error: function (a, b, c) {
-                     alert(a);
+                         success: function (data) {
+                             jQuery('.divLoader').html(data);
+                         },
+                         error: function (a, b, c) {
+                             alert(a);
+                         }
+                     });
                  }
-             });
-         }
 
 </script>
