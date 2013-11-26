@@ -14,21 +14,7 @@
 
 
 <div class="container">
-  @*  <div class="row-fluid purchase">
-        <span>Búsqueda de Servicios</span>
-        <div class="form-inline">
-            <div class="input-append">
-                <input id="txtSearchHome" class="input-xxlarge" type="text" placeholder="Buscar en la página">
-                <button type="submit" class="btn-u btn-u-orange"><i class="icon-search icon-white"></i></button>
-            </div>
-            <a href="#advanced" role="button" data-toggle="modal" class="btn-u btn-u-orange btn-large">Búsqueda Avanzada</a>
-        </div>
-
-    </div>*@
-
-    <br />
     <div class="row-fluid margin-bottom-10">
-
         <div class="another-page">
             <div class="headline">
                 <h3>Mis Anuncios Publicados</h3>
@@ -47,44 +33,47 @@
                                     <div class="row-fluid">
                                         <div class="span12 booking-blocks">
                                             <!--   -->
-                                                <div class="span10">
-                                            <div class="pull-left booking-img">
-                                                <!--   -->
-                                                <img src="@item.FirstImage" alt="@item.Usuario">
-                                                <!-- Nombre del Anunciante  -->
-                                                <ul class="unstyled">
-                                                <li>
-                                                    <ul class="unstyled inline">
-                                                            <li>
-                                                                <div class="ratyclass" id='@item.AnunciosInfo.AN_Id'  ratyval='@item.Rating' style="width:20px;" ></div>
-                                                            </li>
+                                            <div class="span10">
+                                                <div class="pull-left booking-img">
+                                                    <!--   -->
+                                                    <img src="@item.FirstImage" alt="@item.Usuario">
+                                                    <!-- Nombre del Anunciante  -->
+                                                    <ul class="unstyled">
+                                                        <li>
+                                                            <ul class="unstyled inline">
+                                                                <li>
+                                                                    <div class="ratyclass" id='@item.AnunciosInfo.AN_Id'  ratyval='@item.Rating' style="width:20px;" ></div>
+                                                                </li>
 
+                                                            </ul>
+                                                        </li>
                                                     </ul>
-                                                </li>
-                                                </ul>
-                                            </div>
-                                            <div style="overflow: hidden;">
-                                                <h2><a href="@Url.Content("~/Anuncios/Details/" + @item.AnunciosInfo.AN_Id)">@item.AnunciosInfo.AN_Titulo</a></h2>
-                                                <!-- Titulo Anuncio  -->
-                                                <ul class="unstyled inline">
-                                                    <li><i class="icon-briefcase"></i>@item.CategoriaDescripcion</li>
-                                                    <!-- Categorias  -->
-                                                    <li><i class="icon-map-marker"></i>@item.AnunciosInfo.AN_Area</li>
-                                                    <!-- Lugar del anuncio, agregar campo a la base de datos  -->
-                                                </ul>
-                                                <p>@item.AnunciosInfo.AN_Descripcion</p>
-                                                <!-- Descripcion de anuncio, basado en 200 caracteres -->
+                                                </div>
+                                                <div style="overflow: hidden;">
+                                                    <h2><a href="@Url.Content("~/Anuncios/Details/" + @item.AnunciosInfo.AN_Id)">@item.AnunciosInfo.AN_Titulo</a></h2>
+                                                    <!-- Titulo Anuncio  -->
+                                                    <ul class="unstyled inline">
+                                                        <li><i class="icon-briefcase"></i>@item.CategoriaDescripcion</li>
+                                                        <!-- Categorias  -->
+                                                        <li><i class="icon-map-marker"></i>@item.AnunciosInfo.AN_Area</li>
+                                                        <!-- Lugar del anuncio, agregar campo a la base de datos  -->
+                                                    </ul>
+                                                    <p>@item.AnunciosInfo.AN_Descripcion</p>
+                                                    <!-- Descripcion de anuncio, basado en 200 caracteres -->
 
 
+                                                </div>
                                             </div>
-                                                    </div>
-                                                <div class="span2 pull-right">
-                                                    <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Details", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</a>
+                                            <div class="span2 pull-right">
+                                                <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Details", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</a>
                                                 <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Edit", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-edit"></i>&nbsp;Editar</a>
-                                        
+
 
                                                 <a class="btn-u btn-u-orange btn-block" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id')" ><i class="icon-white icon-trash"></i>&nbsp;Eliminar</a>
-                                                <a class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id' ,'@item.EstatusDescription')"  ><i class="icon-white icon-refresh"></i>@if(@item.EstatusDescription == "Activo"){ <i style="font-style:normal">Desactivar</i>}else{ <i style="font-style:normal">Activar</i>}</a>
+                                                <a class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id' ,'@item.EstatusDescription')"  ><i class="icon-white icon-refresh"></i>@if (@item.EstatusDescription == "Activo")
+                                                                                                                                                                                                                     { <i style="font-style: normal">Desactivar</i>}
+                                                                                                                                                                                                                     else
+                                                                                                                                                                                                                     { <i style="font-style: normal">Activar</i>}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -105,10 +94,8 @@
                 </table>
             </div>
         </div>
-                </div>
-
-
-                </div>
+    </div>
+</div>
 
 
 
@@ -143,7 +130,7 @@
             var srcattr = $ki(this).attr('src');
             var completeimg = '@Url.Content("~/Scripts/raty-2.5.2/lib/img/")' + srcattr;
             $ki(this).attr('src', completeimg); 
-        });;
+        });
     });
 
     jQuery(document).ready(function () {
@@ -186,7 +173,7 @@
                    data: { id: id },
                    beforeSend: function () {
                        showProgress('@Url.Content("~/images/loading.gif")');
-                    },
+                   },
                    complete: function (data) {
                        hideProgress();
                    },
@@ -199,15 +186,15 @@
                        debugger;
                        if (xhr.status == 403) {
 
-                   }
+                       }
                        else {
                            jAlert(xhr.responseText, 'An error has ocurred');
                        }
                    }
                });
-           }
+            }
         });
-   }
+    }
 
     function InactivateAnuncio(id, estado) {
         var titulo;
@@ -222,61 +209,60 @@
             mensaje = '¿Desea activar el anuncio?';
         }
         jConfirm(mensaje, titulo, function (confirmed) {
-           if (confirmed) {
-               jQuery.ajax(
-              {
-                  type: 'post',
-                  url: '@Url.Content("~/Anuncios/Inactivate/")',
-                  data: { id: id },
-                  beforeSend: function () {
-                      showProgress('@Url.Content("~/images/loading.gif")');
+            if (confirmed) {
+                jQuery.ajax(
+               {
+                   type: 'post',
+                   url: '@Url.Content("~/Anuncios/Inactivate/")',
+                   data: { id: id },
+                   beforeSend: function () {
+                       showProgress('@Url.Content("~/images/loading.gif")');
                    },
-                  complete: function (data) {
-                      hideProgress();
-                  },
+                   complete: function (data) {
+                       hideProgress();
+                   },
                    success: function (data) {
-                      //jAlert('Registro desahilitado satistafactoriamente.');
-                      //window.location = data.redirectToUrl;
-                      location.reload();
+                       //jAlert('Registro desahilitado satistafactoriamente.');
+                       //window.location = data.redirectToUrl;
+                       location.reload();
 
                    },
-                  error: function (xhr) {
-                      debugger;
-                      if (xhr.status == 403) {
+                   error: function (xhr) {
+                       debugger;
+                       if (xhr.status == 403) {
 
-                      }
-                      else {
-                          jAlert(xhr.responseText, 'An error has ocurred');
-                      }
-                  }
-              });
+                       }
+                       else {
+                           jAlert(xhr.responseText, 'An error has ocurred');
+                       }
                    }
                });
-          }
-       });
-           }
-
-
-  var $ki = jQuery.noConflict();
-  function showProgress(loadingImgSrc) {
-      $ki.blockUI({
-          message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
-          css: {
-              width: '450px',
-              border: 'none',
-              padding: '15px',
-              backgroundColor: '#fafafa',
-              'border-radius': '10px',
-              opacity: .95,
-              color: '#000',
-              'font-size': '18px',
-              'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
-              'z-index': '9999'
-          }
+            }
         });
-   }
+    }
 
-  function hideProgress() {
-      $ki.unblockUI();
-  }
+
+
+    var $ki = jQuery.noConflict();
+    function showProgress(loadingImgSrc) {
+        $ki.blockUI({
+            message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
+            css: {
+                width: '450px',
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#fafafa',
+                'border-radius': '10px',
+                opacity: .95,
+                color: '#000',
+                'font-size': '18px',
+                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
+                'z-index': '9999'
+            }
+        });
+    }
+
+    function hideProgress() {
+        $ki.unblockUI();
+    }
 </script>
