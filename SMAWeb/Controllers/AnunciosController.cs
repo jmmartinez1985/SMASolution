@@ -10,6 +10,7 @@ using SMAWeb.Filters;
 using WebMatrix.WebData;
 using SMAWeb.Extensions;
 using Newtonsoft.Json.Linq;
+using System.Transactions;
 
 namespace SMAWeb.Controllers
 {
@@ -93,6 +94,8 @@ namespace SMAWeb.Controllers
                     });
                 });
 
+
+
                 ViewBag.Categories = categoriasList;
 
                 foreach (var item in allAnunciosList)
@@ -105,6 +108,9 @@ namespace SMAWeb.Controllers
                     {
                         firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_ImagenUrl;
                     }
+
+                    var getRating = model.SEL_ValoracionAnuncios(item.AN_Id).FirstOrDefault();
+
 
                     string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
                     var formatted = firstImage.Replace("~", "");
@@ -119,7 +125,7 @@ namespace SMAWeb.Controllers
                         EstatusDescription = statusDesc,
                         AnunciosInfo = item,
                         CategoriaDescripcion = categoria,
-                        FirstImage = firstImage
+                        FirstImage = firstImage, Rating = getRating
                     });
 
                 }
@@ -351,11 +357,12 @@ namespace SMAWeb.Controllers
             }
             ViewBag.ResourcesCount = an_anuncios.AE_AnunciosExtras.Count;
             HttpContext.Session["Anuncio"] = an_anuncios.AN_Id;
-            ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
-            ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id).Take(2);
+            var subcategorias = db.SBS_SubCategoriaServicio.Where(c => c.CD_Id == an_anuncios.CD_Id);
+            ViewBag.SBS_Id = new SelectList(subcategorias, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
+            ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id);
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName", an_anuncios.UserId);
-            ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion");
-            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion");
+            ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion", an_anuncios.PA_Id);
+            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion", an_anuncios.CD_Id);
             return View(an_anuncios);
         }
 
@@ -404,8 +411,24 @@ namespace SMAWeb.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
+
+            using (var scope = new TransactionScope())
+            {
+                if (an_anuncios.SS_SolicitudServicio.All(c => c.SS_Id == 1))
+                {
+                    an_anuncios.SS_SolicitudServicio.ToList().ForEach(sol =>
+                    {
+                        db.SS_SolicitudServicio.Remove(sol);
+                    });
+
             db.AN_Anuncios.Remove(an_anuncios);
             db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("No se puede borrar este anuncio ya esta sirviendo de referencia para solicitud de servicio, por favor proceda a desactivar el mismo.");
+                }
+            }
             if (Request.IsAjaxRequest())
             {
                 return Json(new { redirectToUrl = Url.Action("GetAnunciosByUser", "Anuncios") });
@@ -421,12 +444,19 @@ namespace SMAWeb.Controllers
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
             //activar y desactivar
             if(an_anuncios.ST_Id == 1)
-                an_anuncios.ST_Id = 2;
+            an_anuncios.ST_Id = 2;
             else
                 an_anuncios.ST_Id = 1;
 
             db.Entry(an_anuncios).State = EntityState.Modified;
+            try
+            {
             db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("El anuncio no puedo ser inactivado, por intente más tarde o pongase en contacto con el administrador.");
+            }
             if (Request.IsAjaxRequest())
             {
                 return Json(new { redirectToUrl = Url.Action("GetAnunciosByUser", "Anuncios") });

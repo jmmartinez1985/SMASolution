@@ -14,7 +14,7 @@
 
 
 <div class="container">
-    @*  <div class="row-fluid purchase">
+  @*  <div class="row-fluid purchase">
         <span>Búsqueda de Servicios</span>
         <div class="form-inline">
             <div class="input-append">
@@ -53,14 +53,14 @@
                                                 <img src="@item.FirstImage" alt="@item.Usuario">
                                                 <!-- Nombre del Anunciante  -->
                                                 <ul class="unstyled">
-                                                    <li>
-                                                        <ul class="unstyled inline">
+                                                <li>
+                                                    <ul class="unstyled inline">
                                                             <li>
                                                                 <div class="ratyclass" id='@item.AnunciosInfo.AN_Id'  ratyval='@item.Rating' style="width:20px;" ></div>
                                                             </li>
 
-                                                        </ul>
-                                                    </li>
+                                                    </ul>
+                                                </li>
                                                 </ul>
                                             </div>
                                             <div style="overflow: hidden;">
@@ -75,17 +75,17 @@
                                                 <p>@item.AnunciosInfo.AN_Descripcion</p>
                                                 <!-- Descripcion de anuncio, basado en 200 caracteres -->
 
-                                                
+
                                             </div>
                                                     </div>
                                                 <div class="span2 pull-right">
                                                     <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Details", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</a>
                                                 <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Edit", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-edit"></i>&nbsp;Editar</a>
-
+                                        
 
                                                 <a class="btn-u btn-u-orange btn-block" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id')" ><i class="icon-white icon-trash"></i>&nbsp;Eliminar</a>
                                                 <a class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id' ,'@item.EstatusDescription')"  ><i class="icon-white icon-refresh"></i>@if(@item.EstatusDescription == "Activo"){ <i style="font-style:normal">Desactivar</i>}else{ <i style="font-style:normal">Activar</i>}</a>
-                                                    </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
@@ -105,80 +105,12 @@
                 </table>
             </div>
         </div>
-    </div>
-
-
-</div>
-
-@*<div id="advanced" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="advancedSort" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <ul class="nav nav-pills pull-right">
-            <li class="active">
-                <a href="#date" data-toggle="pill">Date</a>
-            </li>
-            <li><a href="#relevance" data-toggle="pill">Relevance</a></li>
-            <li><a href="#dealership" data-toggle="pill">Dealership</a></li>
-        </ul>
-        <h4>Advanced Sort</h4>
-    </div>
-    <div class="modal-body">
-        <div class="row-fluid">
-            <div class="tab-content">
-                <div class="tab-pane active" id="date">
-                    <form>
-                        <div class="controls controls-row">
-                            <select>
-                                @foreach (var item in ViewBag.Categories)
-                                {
-                                    <option>@item.CatDesc</option>
-                                }
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-warning">Sort</button>
-                    </form>
                 </div>
-                <div class="tab-pane" id="relevance">
-                    <form>
 
-                        <div class="controls controls-row">
-                            <select class="span6">
-                                <option value="">Relevance Factor</option>
-                                <option value="">Containing</option>
-                                <option value="">Starting with</option>
-                                <option value="">Enging with</option>
-                            </select>
-                            <select class="span6">
-                                <option value="">Sorting</option>
-                                <option value="">Relevant on top</option>
-                                <option value="">Relevant on bottom</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-warning">Sort</button>
 
-                    </form>
                 </div>
-                <div class="tab-pane" id="dealership">
-                    <form>
 
-                        <div class="controls controls-row">
-                            <input type="text" class="span8" placeholder="Location">
-                            <select class="span4">
-                                <option>City</option>
-                                <option>Los Angeles</option>
-                                <option>Tokyo</option>
-                                <option>New York</option>
-                                <option>London</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-warning">Sort</button>
 
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
 
 <div id="divNoAnunciosFound" class="bold large span12" style="padding: 5px; display: none;">
     No se obtuvieron resultados.
@@ -204,11 +136,14 @@
     });
 
 
-
-
     jQuery('.ratyclass').each(function (i, elem) {
         var ratyvalue = jQuery(this).attr('ratyval');
         $ki(this).raty({ readOnly: true, score: ratyvalue });
+        $ki(this).find('img').each(function () {
+            var srcattr = $ki(this).attr('src');
+            var completeimg = '@Url.Content("~/Scripts/raty-2.5.2/lib/img/")' + srcattr;
+            $ki(this).attr('src', completeimg); 
+        });;
     });
 
     jQuery(document).ready(function () {
@@ -251,7 +186,7 @@
                    data: { id: id },
                    beforeSend: function () {
                        showProgress('@Url.Content("~/images/loading.gif")');
-                   },
+                    },
                    complete: function (data) {
                        hideProgress();
                    },
@@ -260,8 +195,14 @@
                        //window.location = data.redirectToUrl;
                        location.reload();
                    },
-                   error: function (a, b, c) {
-                       alert(a);
+                   error: function (xhr) {
+                       debugger;
+                       if (xhr.status == 403) {
+
+                   }
+                       else {
+                           jAlert(xhr.responseText, 'An error has ocurred');
+                       }
                    }
                });
            }
@@ -281,52 +222,61 @@
             mensaje = '¿Desea activar el anuncio?';
         }
         jConfirm(mensaje, titulo, function (confirmed) {
-            if (confirmed) {
-                jQuery.ajax(
-               {
-                   type: 'post',
-                   url: '@Url.Content("~/Anuncios/Inactivate/")',
+           if (confirmed) {
+               jQuery.ajax(
+              {
+                  type: 'post',
+                  url: '@Url.Content("~/Anuncios/Inactivate/")',
                   data: { id: id },
                   beforeSend: function () {
                       showProgress('@Url.Content("~/images/loading.gif")');
-                  },
+                   },
                   complete: function (data) {
                       hideProgress();
                   },
-                  success: function (data) {
+                   success: function (data) {
                       //jAlert('Registro desahilitado satistafactoriamente.');
                       //window.location = data.redirectToUrl;
                       location.reload();
 
-                  },
-                  error: function (a, b, c) {
-                      alert(a);
+                   },
+                  error: function (xhr) {
+                      debugger;
+                      if (xhr.status == 403) {
+
+                      }
+                      else {
+                          jAlert(xhr.responseText, 'An error has ocurred');
+                      }
                   }
               });
+                   }
+               });
           }
        });
-  }
+           }
 
-    var $ki = jQuery.noConflict();
-    function showProgress(loadingImgSrc) {
-        $ki.blockUI({
-            message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
-            css: {
-                width: '450px',
-                border: 'none',
-                padding: '15px',
-                backgroundColor: '#fafafa',
-                'border-radius': '10px',
-                opacity: .95,
-                color: '#000',
-                'font-size': '18px',
-                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
-                'z-index': '9999'
-            }
+
+  var $ki = jQuery.noConflict();
+  function showProgress(loadingImgSrc) {
+      $ki.blockUI({
+          message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
+          css: {
+              width: '450px',
+              border: 'none',
+              padding: '15px',
+              backgroundColor: '#fafafa',
+              'border-radius': '10px',
+              opacity: .95,
+              color: '#000',
+              'font-size': '18px',
+              'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
+              'z-index': '9999'
+          }
         });
-    }
+   }
 
-    function hideProgress() {
-        $ki.unblockUI();
-    }
+  function hideProgress() {
+      $ki.unblockUI();
+  }
 </script>
