@@ -242,7 +242,7 @@
         });
 
     });
- 
+
 
 
 
@@ -257,7 +257,7 @@
                 jQuery('#firstSearch').show(300);
                 jQuery('#SecondSearch').hide();
                 jQuery.each(result.$values, function (val, anuncio) {
-                    
+
                     htmldata += '<tr><td><div class="row-fluid">';
                     htmldata += '<div class="span12 booking-blocks"> ';
                     htmldata += '<div class="span10">';
@@ -311,7 +311,7 @@
             error: function (xhr) {
                 alert('An error has ocurred loading data: ' + xhr.responseText, 'Error');
             }
-        }); 
+        });
     });
 
 
@@ -351,7 +351,7 @@
             processData: false,
             beforeSend: function () {
                 showProgress('@Url.Content("~/images/loading.gif")');
-             },
+            },
             complete: function (data) {
                 hideProgress();
             },
@@ -375,7 +375,7 @@
                     htmldata += '<div class="span10">';
                     ////reviews
                     //htmldata += '<ul class="unstyled inline blog-info">';
-                    
+
                     //htmldata += ' <li><i class="icon-comments"></i> <a href="#">' + anuncio.Comments + ' Reviews</a></li>';
                     //htmldata += '</ul>';
                     ////fin reviews
@@ -445,38 +445,44 @@
     }
 
     function TakeService(anuncioid) {
-        var data = new FormData();
-        data.append("Anuncio", anuncioid);
-        $.ajax({
-            url: '@Url.Action("TakeService", "SolicitudServicio")',
-            type: 'post',
-            data: data,
-            cache: false,
-            contentType: false,
-            processData: false,
-            beforeSend: function () {
-                showProgress('@Url.Content("~/images/loading.gif")');
-            },
-            complete: function (data) {
-                hideProgress();
-            },
-            success: function (data) {
-                $("#anunciosAvailable").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
-                $('.alert').alert();
-                $('.alert').fadeOut(3000)
-                //  alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
-            },
-            error: function (xhr) {
-                if (xhr.status == 403) {
-                    var response = $.parseJSON(xhr.responseText);
-                    window.location = response.LogOnUrl;
-                }
-                else {
-                    alert(xhr.responseText, 'An error has ocurred');
-                }
-            }
-        });
 
+                var data = new FormData();
+                data.append("Anuncio", anuncioid);
+                $.ajax({
+                    url: '@Url.Action("TakeService", "SolicitudServicio")',
+                    type: 'post',
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function () {
+                        showProgress('@Url.Content("~/images/loading.gif")');
+                    },
+                    complete: function (data) {
+                        hideProgress();
+                    },
+                    success: function (data) {
+                        //$("#anunciosAvailable").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
+                        //$('.alert').alert();
+                        //$('.alert').fadeOut(3000)
+
+                        $.gritter.add({
+                            title: 'Servicio Solicitado',
+                            text: 'El servicio ha sido solicitado satisfactoriamente. El anunciante recibirá un correo electrónico con sus datos para poder contactarle. Gracias por preferirnos.'
+                        });
+
+                        //  alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
+                    },
+                    error: function (xhr) {
+                        if (xhr.status == 403) {
+                            var response = $.parseJSON(xhr.responseText);
+                            window.location = response.LogOnUrl;
+                        }
+                        else {
+                            alert(xhr.responseText, 'An error has ocurred');
+                        }
+                    }
+                });
     }
 
     function showProgress(loadingImgSrc) {

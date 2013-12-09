@@ -108,7 +108,37 @@
 
 
     function DeleteAnuncio(id) {
-        jConfirm('¿Desea borrar el anuncio publicado?', 'Borrar anuncio existente', function (confirmed) {
+
+        bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
+            if (result) {
+                debugger;
+                jQuery.ajax(
+               {
+                   type: 'post',
+                   url: '@Url.Content("~/Anuncios/Delete/")',
+                   data: { id: id },
+                   beforeSend: function () {
+                       showProgress('@Url.Content("~/images/loading.gif")');
+                   },
+                   complete: function (data) {
+                       hideProgress();
+                   },
+                   success: function (data) {
+                       location.reload();
+                   },
+                   error: function (xhr) {
+                       if (xhr.status == 403) {
+
+                       }
+                       else {
+                           bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                           });
+                       }
+                   }
+               });
+           }
+        });
+        @*jConfirm('¿Desea borrar el anuncio publicado?', 'Borrar anuncio existente', function (confirmed) {
             if (confirmed) {
                 jQuery.ajax(
                {
@@ -131,7 +161,7 @@
                    }
                });
            }
-        });
+        });*@
    }
 
    function InactivateAnuncio(id, estado) {
@@ -146,7 +176,40 @@
            titulo = 'Cambiar el estado del anuncio';
            mensaje = '¿Desea activar el anuncio?';
        }
-       jConfirm(mensaje, titulo, function (confirmed) {
+
+
+       bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result) {
+           if (result) {
+               jQuery.ajax(
+              {
+                  type: 'post',
+                  url: '@Url.Content("~/Anuncios/Inactivate/")',
+                  data: { id: id },
+                  beforeSend: function () {
+                      showProgress('@Url.Content("~/images/loading.gif")');
+                   },
+                  complete: function (data) {
+                      hideProgress();
+                  },
+                  success: function (data) {
+                      location.reload();
+
+                  },
+                  error: function (xhr) {
+                      debugger;
+                      if (xhr.status == 403) {
+
+                      }
+                      else {
+                          bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                          });
+                      }
+                  }
+              });
+           }
+       });
+
+       @*jConfirm(mensaje, titulo, function (confirmed) {
            if (confirmed) {
                jQuery.ajax(
               {
@@ -170,7 +233,7 @@
                   }
               });
           }
-       });
+       });*@
   }
 
   var $ki = jQuery.noConflict();

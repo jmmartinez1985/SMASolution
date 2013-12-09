@@ -12,7 +12,7 @@
 
 
 
-
+<br />
 <div class="container">
     <div class="row-fluid margin-bottom-10">
         <div class="another-page">
@@ -129,7 +129,7 @@
         $ki(this).find('img').each(function () {
             var srcattr = $ki(this).attr('src');
             var completeimg = '@Url.Content("~/Scripts/raty-2.5.2/lib/img/")' + srcattr;
-            $ki(this).attr('src', completeimg); 
+            $ki(this).attr('src', completeimg);
         });
     });
 
@@ -164,7 +164,41 @@
     }
 
     function DeleteAnuncio(id) {
-        jConfirm('¿Desea borrar el anuncio publicado?', 'Borrar anuncio existente', function (confirmed) {
+        
+        bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
+            if(result)
+            {
+                debugger;
+                jQuery.ajax(
+               {
+                   type: 'post',
+                   url: '@Url.Content("~/Anuncios/Delete/")',
+                   data: { id: id },
+                   beforeSend: function () {
+                       showProgress('@Url.Content("~/images/loading.gif")');
+                   },
+                   complete: function (data) {
+                       hideProgress();
+                   },
+                   success: function (data) {
+                       //jAlert('Registro borrado satistafactoriamente.');
+                       //window.location = data.redirectToUrl;
+                       location.reload();
+                   },
+                   error: function (xhr) {
+                       debugger;
+                       if (xhr.status == 403) {
+
+                       }
+                       else {
+                           bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                           });
+                       }
+                   }
+               });
+            }
+        });
+        @*jConfirm('¿Desea borrar el anuncio publicado?', 'Borrar anuncio existente', function (confirmed) {
             if (confirmed) {
                 jQuery.ajax(
                {
@@ -192,23 +226,58 @@
                        }
                    }
                });
-            }
-        });
-    }
+           }
+        });*@
+   }
 
-    function InactivateAnuncio(id, estado) {
-        var titulo;
-        var mensaje;
-        debugger;
-        if (estado == 'Activo') {
-            titulo = 'Cambiar el estado del anuncio';
-            mensaje = '¿Desea desactivar el anuncio?';
-        }
-        else {
-            titulo = 'Cambiar el estado del anuncio';
-            mensaje = '¿Desea activar el anuncio?';
-        }
-        jConfirm(mensaje, titulo, function (confirmed) {
+   function InactivateAnuncio(id, estado) {
+       var titulo;
+       var mensaje;
+
+       if (estado == 'Activo') {
+           titulo = 'Cambiar el estado del anuncio';
+           mensaje = '¿Desea desactivar el anuncio?';
+       }
+       else {
+           titulo = 'Cambiar el estado del anuncio';
+           mensaje = '¿Desea activar el anuncio?';
+       }
+
+
+       bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result) {
+           if (result) {
+               jQuery.ajax(
+              {
+                  type: 'post',
+                  url: '@Url.Content("~/Anuncios/Inactivate/")',
+                   data: { id: id },
+                   beforeSend: function () {
+                       showProgress('@Url.Content("~/images/loading.gif")');
+                   },
+                   complete: function (data) {
+                       hideProgress();
+                   },
+                   success: function (data) {
+                       //jAlert('Registro desahilitado satistafactoriamente.');
+                       //window.location = data.redirectToUrl;
+                       location.reload();
+
+                   },
+                   error: function (xhr) {
+                       debugger;
+                       if (xhr.status == 403) {
+
+                       }
+                       else {
+                           bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                           });
+                       }
+                   }
+               });
+           }
+        });
+
+        @*jConfirm(mensaje, titulo, function (confirmed) {
             if (confirmed) {
                 jQuery.ajax(
                {
@@ -238,7 +307,7 @@
                    }
                });
             }
-        });
+        });*@
     }
 
 

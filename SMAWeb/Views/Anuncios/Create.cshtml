@@ -176,9 +176,16 @@
     });
 
     function Success() {
-        $("#content").prepend(' <br /> <br /><div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Recursos! </strong> El anuncio esta habilitado para subir sus recursos.</div>');
-        $('.alert').alert();
-        $('.alert').fadeOut(10000)
+        //$("#content").prepend(' <br /> <br /><div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Recursos! </strong> El anuncio esta habilitado para subir sus recursos.</div>');
+        //$('.alert').alert();
+        //$('.alert').fadeOut(10000)
+
+
+        $.gritter.add({
+            title: 'Anuncio Creado',
+            text: 'Su anuncio ha sido creado satisfactoriamente. Ahora puede agregar imágenes relacionadas a su anuncio. Gracias por preferirnos.'
+        });
+
         $('.submitbtn').hide();
         $('.submitback').show();
     }
