@@ -511,9 +511,14 @@ jQuery(function () {
             },
             success: function (data) {
                 debugger;
-                $("#anunciosAvailable").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
-                $('.alert').alert();
-                $('.alert').fadeOut(3000)
+
+                $.gritter.add({
+                    title: 'Servicio Solicitado',
+                    text: 'El servicio ha sido solicitado satisfactoriamente. El anunciante recibirá un correo electrónico con sus datos para poder contactarle. Gracias por preferirnos.'
+                });
+                //$("#anunciosAvailable").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
+                //$('.alert').alert();
+                //$('.alert').fadeOut(3000)
                 //  alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
             },
             error: function (xhr) {
@@ -615,9 +620,11 @@ jQuery(function () {
            });
     }
 
-    ANUNCIOS.InactivateAnuncio = function (id, estado, url) {
+    ANUNCIOS.InactivateAnuncio = function (id, url, self) {
         var titulo;
         var mensaje;
+        var estado = $(self).data("estado");
+
         if (estado == 'Activo') {
             titulo = 'Cambiar el estado del anuncio';
             mensaje = '¿Desea desactivar el anuncio?';
@@ -626,7 +633,6 @@ jQuery(function () {
             titulo = 'Cambiar el estado del anuncio';
             mensaje = '¿Desea activar el anuncio?';
         }
-
 
         bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result) {
             if (result) {
@@ -642,11 +648,30 @@ jQuery(function () {
                        COMMON.HideProgress();
                    },
                    success: function (data) {
-                       location.reload();
+                       if (estado == "Activo") {
+                           $(self).find("span").text("Activar");
+                           $(self).attr("data-estado", "Inactivo");
+
+                           $.gritter.add({
+                               title: 'Anuncio Desactivado',
+                               text: 'El anuncio ha sido desactivado satisfactoriamente.'
+                           });
+
+                       }
+                       else {
+                           $(self).find("span").text("Desactivar");
+                           $(self).attr("data-estado", "Activo");
+
+                           $.gritter.add({
+                               title: 'Anuncio Activado',
+                               text: 'El anuncio ha sido activado satisfactoriamente.'
+                           });
+                       }
+                       
+                       //location.reload();
 
                    },
                    error: function (xhr) {
-                       debugger;
                        if (xhr.status == 403) {
 
                        }

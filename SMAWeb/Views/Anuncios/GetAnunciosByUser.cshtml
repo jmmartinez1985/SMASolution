@@ -73,10 +73,10 @@
 
 
                                                     <a class="btn-u btn-u-orange btn-block" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id')" ><i class="icon-white icon-trash"></i>&nbsp;Eliminar</a>
-                                                    <a class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id' ,'@item.EstatusDescription')"  ><i class="icon-white icon-refresh"></i>@if (@item.EstatusDescription == "Activo")
-                                                                                                                                                                                                                         { <i style="font-style: normal">Desactivar</i>}
+                                                    <a class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id' , this)" data-estado="@item.EstatusDescription"  ><i class="icon-white icon-refresh"></i>@if (@item.EstatusDescription == "Activo")
+                                                                                                                                                                                                                         { <i style="font-style: normal"><span>Desactivar</span></i>}
                                                                                                                                                                                                                          else
-                                                                                                                                                                                                                         { <i style="font-style: normal">Activar</i>}</a>
+                                                                                                                                                                                                                         { <i style="font-style: normal"><span>Activar</span> </i>}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -296,8 +296,8 @@
         ANUNCIOS.DeleteAnuncio(id, '@Url.Content("~/Anuncios/Delete/")');
     }
 
-    function InactivateAnuncio(id, estado) {
-        ANUNCIOS.InactivateAnuncio(id, estado, '@Url.Content("~/Anuncios/Inactivate/")');
+    function InactivateAnuncio(id, self) {
+        ANUNCIOS.InactivateAnuncio(id, '@Url.Content("~/Anuncios/Inactivate/")', self);
     }
 
     //var $ki = jQuery.noConflict();

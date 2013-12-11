@@ -9,7 +9,7 @@
 @*<link href="@Url.Content("~/Content/jpages/style.css")" rel="stylesheet" type="text/css" />*@
 <script src="@Url.Content("~/Scripts/jpage/jPages.min.js")" type="text/javascript"></script>
 
-
+<br />
 <div class="container">
     <div class="row-fluid margin-bottom-10">
         <div class="another-page">
@@ -58,12 +58,17 @@
 
                                             <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Details", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</a>
                                             <button class="btn-u btn-u-orange btn-block" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id')" style="text-align:left"><i class="icon-white icon-trash"></i>&nbsp;Eliminar</button>
-                                            <button class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id' ,'@item.EstatusDescription')" style="text-align:left">
+                                            <button class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id' , this)" data-estado="@item.EstatusDescription" style="text-align:left">
                                                 <i class="icon-white icon-refresh"></i>@if (@item.EstatusDescription == "Activo")
-                                                                                       { <i style="font-style: normal">Desactivar</i>}
+                                                                                       { <i style="font-style: normal"><span>Desactivar</span> </i>}
                                                                                        else
-                                                                                       { <i style="font-style: normal">Activar</i>}
+                                                                                       { <i style="font-style: normal"> <span>Activar</span></i>}
                                             </button>
+
+
+
+
+
 
                                         </div>
                                     </div>
@@ -142,8 +147,8 @@
     
    }
 
-    function InactivateAnuncio(id, estado) {
-        ANUNCIOS.InactivateAnuncio(id, es, '@Url.Content("~/Anuncios/Inactivate/")');
+    function InactivateAnuncio(id, self) {
+        ANUNCIOS.InactivateAnuncio(id, '@Url.Content("~/Anuncios/Inactivate/")', self);
       @* var titulo;
        var mensaje;
        debugger;
