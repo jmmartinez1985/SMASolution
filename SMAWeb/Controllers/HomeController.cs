@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Extensions;
+using SMAWeb.Filters;
 
 namespace SMAWeb.Controllers
 {
@@ -27,7 +28,6 @@ namespace SMAWeb.Controllers
 
             return View();
         }
-
 
         public ActionResult GetServices()
         {

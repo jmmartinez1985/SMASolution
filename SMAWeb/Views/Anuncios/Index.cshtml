@@ -88,6 +88,7 @@
         </div>
     </div>
 </div>
+<script src="~/Scripts/SMA.js"></script>
 <script>
 
     var $jpage = jQuery.noConflict();
@@ -108,8 +109,8 @@
 
 
     function DeleteAnuncio(id) {
-
-        bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
+        ANUNCIOS.DeleteAnuncio(id, '@Url.Content("~/Anuncios/Delete/")');
+@*        bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
             if (result) {
                 debugger;
                 jQuery.ajax(
@@ -137,35 +138,13 @@
                    }
                });
            }
-        });
-        @*jConfirm('¿Desea borrar el anuncio publicado?', 'Borrar anuncio existente', function (confirmed) {
-            if (confirmed) {
-                jQuery.ajax(
-               {
-                   type: 'post',
-                   url: '@Url.Content("~/Anuncios/Delete/")',
-                   data: { id: id },
-                   beforeSend: function () {
-                       showProgress('@Url.Content("~/images/loading.gif")');
-                   },
-                   complete: function (data) {
-                       hideProgress();
-                   },
-                   success: function (data) {
-                       //jAlert('Registro borrado satistafactoriamente.');
-                       //window.location = data.redirectToUrl;
-                       //location.reload();
-                   },
-                   error: function (a, b, c) {
-                       alert(a);
-                   }
-               });
-           }
         });*@
+    
    }
 
-   function InactivateAnuncio(id, estado) {
-       var titulo;
+    function InactivateAnuncio(id, estado) {
+        ANUNCIOS.InactivateAnuncio(id, es, '@Url.Content("~/Anuncios/Inactivate/")');
+      @* var titulo;
        var mensaje;
        debugger;
        if (estado == 'Activo') {
@@ -207,55 +186,30 @@
                   }
               });
            }
-       });
-
-       @*jConfirm(mensaje, titulo, function (confirmed) {
-           if (confirmed) {
-               jQuery.ajax(
-              {
-                  type: 'post',
-                  url: '@Url.Content("~/Anuncios/Inactivate/")',
-                  data: { id: id },
-                  beforeSend: function () {
-                      showProgress('@Url.Content("~/images/loading.gif")');
-                  },
-                  complete: function (data) {
-                      hideProgress();
-                  },
-                  success: function (data) {
-                      //jAlert('Registro desahilitado satistafactoriamente.');
-                      //window.location = data.redirectToUrl;
-                      location.reload();
-
-                  },
-                  error: function (a, b, c) {
-                      alert(a);
-                  }
-              });
-          }
        });*@
+
   }
 
-  var $ki = jQuery.noConflict();
-  function showProgress(loadingImgSrc) {
-      $ki.blockUI({
-          message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
-          css: {
-              width: '450px',
-              border: 'none',
-              padding: '15px',
-              backgroundColor: '#fafafa',
-              'border-radius': '10px',
-              opacity: .95,
-              color: '#000',
-              'font-size': '18px',
-              'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
-              'z-index': '9999'
-          }
-      });
-  }
+  //var $ki = jQuery.noConflict();
+  //function showProgress(loadingImgSrc) {
+  //    $ki.blockUI({
+  //        message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
+  //        css: {
+  //            width: '450px',
+  //            border: 'none',
+  //            padding: '15px',
+  //            backgroundColor: '#fafafa',
+  //            'border-radius': '10px',
+  //            opacity: .95,
+  //            color: '#000',
+  //            'font-size': '18px',
+  //            'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
+  //            'z-index': '9999'
+  //        }
+  //    });
+  //}
 
-  function hideProgress() {
-      $ki.unblockUI();
-  }
+  //function hideProgress() {
+  //    $ki.unblockUI();
+  //}
 </script>

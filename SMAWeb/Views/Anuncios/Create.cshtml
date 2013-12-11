@@ -168,11 +168,11 @@
         </div>
     </div>
 </div>
-
-
+<script src="~/Scripts/SMA.js"></script>
 <script>
     jQuery(document).ready(function () {
-        $('.submitback').hide();
+        jQuery('.submitback').hide();
+        HOME.ChangeCategory("CD_Id", '@Url.Action("GetSubCategories", "SubCategoriaServicio")');
     });
 
     function Success() {
@@ -190,7 +190,7 @@
         $('.submitback').show();
     }
 
-    jQuery("#CD_Id").change(function () {
+  @*  jQuery("#CD_Id").change(function () {
         $.ajax({
             dataType: "json",
             type: 'post',
@@ -214,6 +214,6 @@
 
             },
         });
-    });
+    });*@
 
 </script>

@@ -325,6 +325,7 @@
         </div>
     </div>
 </div>
+<script src="~/Scripts/SMA.js"></script>
 <script>
     jQuery(document).ready(function ($) {
 
@@ -353,118 +354,10 @@
     });
 
     function TakeService() {
-        debugger;
-        var data = new FormData();
-        data.append("Anuncio", $('#AN_Id').val());
-        $.ajax({
-            url: '@Url.Action("TakeService", "SolicitudServicio")',
-            type: 'post',
-            data: data,
-            cache: false,
-            contentType: false,
-            processData: false,
-            beforeSend: function () {
-                showProgress('@Url.Content("~/images/loading.gif")');
-            },
-            complete: function (data) {
-                hideProgress();
-            },
-            success: function (data) {
-                //$(".message").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
-                //$('.alert').alert();
-                //$('.alert').fadeOut(3000)
-
-                $.gritter.add({
-                    title: 'Servicio Solicitado',
-                    text: 'El servicio ha sido solicitado satisfactoriamente. El anunciante recibirá un correo electrónico con sus datos para poder contactarle. Gracias por preferirnos.'
-                });
-            },
-            error: function (xhr) {
-                if (xhr.status == 403) {
-                    var response = $.parseJSON(xhr.responseText);
-                    window.location = response.LogOnUrl;
-                }
-                else {
-                    alert(xhr.responseText, 'An error has ocurred');
-                }
-            }
-        });
-
+        HOME.TakeService($('#AN_Id').val(), '@Url.Action("TakeService", "SolicitudServicio")');
     }
-    var $ki = jQuery.noConflict();
-    function showProgress(loadingImgSrc) {
-        $ki.blockUI({
-            message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
-            css: {
-                width: '450px',
-                border: 'none',
-                padding: '15px',
-                backgroundColor: '#fafafa',
-                'border-radius': '10px',
-                opacity: .95,
-                color: '#000',
-                'font-size': '18px',
-                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
-                'z-index': '9999'
-            }
-        });
-    }
-
-    function hideProgress() {
-        $ki.unblockUI();
-    }
-
 
     function PostComment(link) {
-        var review = $(link).attr('data-val');
-        var commentElement = "#comentario-" + review;
-
-        var comment = {
-            "UserId": '@WebSecurity.CurrentUserId',
-            "CR_Comentario": $(commentElement).val(),
-            "RW_Id": review
-        };
-
-        var jsonSerialized = JSON.stringify(comment);
-        $.ajax({
-            url: '@Url.Action("Create", "Comentarios")',
-            type: 'post',
-            data: jsonSerialized,
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            beforeSend: function () {
-                showProgress('@Url.Content("~/images/loading.gif")');
-            },
-            complete: function (data) {
-                hideProgress();
-            },
-            success: function (data) {
-                debugger;
-                $(commentElement).val('');
-                var result = JSON.parse(data);
-                var html = '';
-                var carusel = $("#testimonials-" + review).find('.carousel-inner');
-                html += '<div class="item">';
-                html += ' <p>' + result.data.Comments + '</p>';
-                html += '         <div class="testimonial-info">';
-                html += '   <img src="' + result.data.Image + '" width="90px" height="60px" alt="">';
-                html += '      <span class="testimonial-author">' + result.data.Name + '';
-                html += '         <em>Visitor</em>';
-                html += '      </span>';
-                html += '   </div>';
-                html += ' </div>';
-                carusel.append(html);
-                jAlert('Comentario publicado.');
-            },
-            error: function (xhr) {
-                if (xhr.status == 403) {
-                    var response = $.parseJSON(xhr.responseText);
-                    window.location = response.LogOnUrl;
-                }
-                else {
-                    alert(xhr.responseText, 'An error has ocurred');
-                }
-            }
-        });
+        ANUNCIOS.PostComment(link, '@WebSecurity.CurrentUserId', '@Url.Action("Create", "Comentarios")');
     }
 </script>

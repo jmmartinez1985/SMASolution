@@ -132,7 +132,7 @@ namespace SMAWeb.Controllers
             }
             if (viewModelAnuncios == null || viewModelAnuncios.Count == 0)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
             }
             return View(viewModelAnuncios);
 

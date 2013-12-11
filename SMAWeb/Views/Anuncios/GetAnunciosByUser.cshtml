@@ -20,79 +20,90 @@
                 <h3>Mis Anuncios Publicados</h3>
             </div>
 
-            <div style="width: 100%">
-                <table class="table-hover">
-                    <thead>
-                    </thead>
-                    <tbody id="anunciosAvailable">
-                        @foreach (var item in Model)
-                        {
+            @if (Model.Count() > 0)
+            {
 
-                            <tr>
-                                <td>
-                                    <div class="row-fluid">
-                                        <div class="span12 booking-blocks">
-                                            <!--   -->
-                                            <div class="span10">
-                                                <div class="pull-left booking-img">
-                                                    <!--   -->
-                                                    <img src="@item.FirstImage" alt="@item.Usuario">
-                                                    <!-- Nombre del Anunciante  -->
-                                                    <ul class="unstyled">
-                                                        <li>
-                                                            <ul class="unstyled inline">
-                                                                <li>
-                                                                    <div class="ratyclass" id='@item.AnunciosInfo.AN_Id'  ratyval='@item.Rating' style="width:20px;" ></div>
-                                                                </li>
+                <div style="width: 100%">
+                    <table class="table-hover">
+                        <thead>
+                        </thead>
+                        <tbody id="anunciosAvailable">
+                            @foreach (var item in Model)
+                            {
 
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
+                                <tr>
+                                    <td>
+                                        <div class="row-fluid">
+                                            <div class="span12 booking-blocks">
+                                                <!--   -->
+                                                <div class="span10">
+                                                    <div class="pull-left booking-img">
+                                                        <!--   -->
+                                                        <img src="@item.FirstImage" alt="@item.Usuario">
+                                                        <!-- Nombre del Anunciante  -->
+                                                        <ul class="unstyled">
+                                                            <li>
+                                                                <ul class="unstyled inline">
+                                                                    <li>
+                                                                        <div class="ratyclass" id='@item.AnunciosInfo.AN_Id'  ratyval='@item.Rating' style="width:20px;" ></div>
+                                                                    </li>
+
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div style="overflow: hidden;">
+                                                        <h2><a href="@Url.Content("~/Anuncios/Details/" + @item.AnunciosInfo.AN_Id)">@item.AnunciosInfo.AN_Titulo</a></h2>
+                                                        <!-- Titulo Anuncio  -->
+                                                        <ul class="unstyled inline">
+                                                            <li><i class="icon-briefcase"></i>@item.CategoriaDescripcion</li>
+                                                            <!-- Categorias  -->
+                                                            <li><i class="icon-map-marker"></i>@item.AnunciosInfo.AN_Area</li>
+                                                            <!-- Lugar del anuncio, agregar campo a la base de datos  -->
+                                                        </ul>
+                                                        <p>@item.AnunciosInfo.AN_Descripcion</p>
+                                                        <!-- Descripcion de anuncio, basado en 200 caracteres -->
+
+
+                                                    </div>
                                                 </div>
-                                                <div style="overflow: hidden;">
-                                                    <h2><a href="@Url.Content("~/Anuncios/Details/" + @item.AnunciosInfo.AN_Id)">@item.AnunciosInfo.AN_Titulo</a></h2>
-                                                    <!-- Titulo Anuncio  -->
-                                                    <ul class="unstyled inline">
-                                                        <li><i class="icon-briefcase"></i>@item.CategoriaDescripcion</li>
-                                                        <!-- Categorias  -->
-                                                        <li><i class="icon-map-marker"></i>@item.AnunciosInfo.AN_Area</li>
-                                                        <!-- Lugar del anuncio, agregar campo a la base de datos  -->
-                                                    </ul>
-                                                    <p>@item.AnunciosInfo.AN_Descripcion</p>
-                                                    <!-- Descripcion de anuncio, basado en 200 caracteres -->
+                                                <div class="span2 pull-right">
+                                                    <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Details", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</a>
+                                                    <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Edit", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-edit"></i>&nbsp;Editar</a>
 
 
+                                                    <a class="btn-u btn-u-orange btn-block" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id')" ><i class="icon-white icon-trash"></i>&nbsp;Eliminar</a>
+                                                    <a class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id' ,'@item.EstatusDescription')"  ><i class="icon-white icon-refresh"></i>@if (@item.EstatusDescription == "Activo")
+                                                                                                                                                                                                                         { <i style="font-style: normal">Desactivar</i>}
+                                                                                                                                                                                                                         else
+                                                                                                                                                                                                                         { <i style="font-style: normal">Activar</i>}</a>
                                                 </div>
-                                            </div>
-                                            <div class="span2 pull-right">
-                                                <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Details", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</a>
-                                                <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Edit", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-edit"></i>&nbsp;Editar</a>
-
-
-                                                <a class="btn-u btn-u-orange btn-block" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id')" ><i class="icon-white icon-trash"></i>&nbsp;Eliminar</a>
-                                                <a class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id' ,'@item.EstatusDescription')"  ><i class="icon-white icon-refresh"></i>@if (@item.EstatusDescription == "Activo")
-                                                                                                                                                                                                                     { <i style="font-style: normal">Desactivar</i>}
-                                                                                                                                                                                                                     else
-                                                                                                                                                                                                                     { <i style="font-style: normal">Activar</i>}</a>
                                             </div>
                                         </div>
+                                    </td>
+                                </tr>
+           
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="1">
+                                    <div class="holder" style="float: left">
                                     </div>
                                 </td>
                             </tr>
-           
-                        }
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="1">
-                                <div class="holder" style="float: left">
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
+                        </tfoot>
 
-                </table>
-            </div>
+                    </table>
+                </div>
+                
+            }
+            else
+            {
+                <div id="DivNoAnuncios" class="bold large span12" style="padding: 5px; display: block;">
+                    No cuenta con anuncios publicados aún.
+                </div>
+            }
         </div>
     </div>
 </div>
@@ -102,7 +113,7 @@
 <div id="divNoAnunciosFound" class="bold large span12" style="padding: 5px; display: none;">
     No se obtuvieron resultados.
 </div>
-
+<script src="~/Scripts/SMA.js"></script>
 <script>
 
 
@@ -135,39 +146,39 @@
 
     jQuery(document).ready(function () {
 
-        jQuery('#txtSearchHome').keyup(function () {
-            var text = jQuery('#txtSearchHome').val();
-            var rows = jQuery('#anunciosAvailable > tr');
+        HOME.SearchKey();
+        //jQuery('#txtSearchHome').keyup(function () {
+        //    var text = jQuery('#txtSearchHome').val();
+        //    var rows = jQuery('#anunciosAvailable > tr');
 
-            rows.each(function (idx, elem) {
-                var rowText = $(elem).text().toLowerCase();
-                if (rowText.indexOf(text.toLowerCase()) < 0) {
-                    jQuery(elem).hide();
-                }
-                else {
-                    jQuery(elem).show();
-                }
-            });
-            setTimeout('CheckVisibleProjects();', 300);
-        });
+        //    rows.each(function (idx, elem) {
+        //        var rowText = $(elem).text().toLowerCase();
+        //        if (rowText.indexOf(text.toLowerCase()) < 0) {
+        //            jQuery(elem).hide();
+        //        }
+        //        else {
+        //            jQuery(elem).show();
+        //        }
+        //    });
+        //    setTimeout('CheckVisibleProjects();', 300);
+        //});
 
 
     });
-    function CheckVisibleProjects() {
-        var rows = jQuery('#anunciosAvailable > tr');
-        if (rows.filter(':hidden').size() == rows.length) {
-            jQuery('#divNoAnunciosFound').fadeIn(1000);
-        }
-        else {
-            jQuery('#divNoAnunciosFound').hide();
-        }
-    }
+    //function CheckVisibleProjects() {
+    //    var rows = jQuery('#anunciosAvailable > tr');
+    //    if (rows.filter(':hidden').size() == rows.length) {
+    //        jQuery('#divNoAnunciosFound').fadeIn(1000);
+    //    }
+    //    else {
+    //        jQuery('#divNoAnunciosFound').hide();
+    //    }
+    //}
 
-    function DeleteAnuncio(id) {
-        
+    @*    function DeleteAnuncio(id) {
+
         bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
-            if(result)
-            {
+            if (result) {
                 debugger;
                 jQuery.ajax(
                {
@@ -196,86 +207,57 @@
                        }
                    }
                });
-            }
+           }
         });
-        @*jConfirm('¿Desea borrar el anuncio publicado?', 'Borrar anuncio existente', function (confirmed) {
-            if (confirmed) {
+
+    }
+
+    function InactivateAnuncio(id, estado) {
+        var titulo;
+        var mensaje;
+
+        if (estado == 'Activo') {
+            titulo = 'Cambiar el estado del anuncio';
+            mensaje = '¿Desea desactivar el anuncio?';
+        }
+        else {
+            titulo = 'Cambiar el estado del anuncio';
+            mensaje = '¿Desea activar el anuncio?';
+        }
+
+
+        bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result) {
+            if (result) {
                 jQuery.ajax(
                {
                    type: 'post',
-                   url: '@Url.Content("~/Anuncios/Delete/")',
-                   data: { id: id },
-                   beforeSend: function () {
-                       showProgress('@Url.Content("~/images/loading.gif")');
+                   url: '@Url.Content("~/Anuncios/Inactivate/")',
+                  data: { id: id },
+                  beforeSend: function () {
+                      showProgress('@Url.Content("~/images/loading.gif")');
                    },
-                   complete: function (data) {
-                       hideProgress();
-                   },
-                   success: function (data) {
-                       //jAlert('Registro borrado satistafactoriamente.');
-                       //window.location = data.redirectToUrl;
-                       location.reload();
-                   },
-                   error: function (xhr) {
-                       debugger;
-                       if (xhr.status == 403) {
+                  complete: function (data) {
+                      hideProgress();
+                  },
+                  success: function (data) {
+                      //jAlert('Registro desahilitado satistafactoriamente.');
+                      //window.location = data.redirectToUrl;
+                      location.reload();
 
-                       }
-                       else {
-                           jAlert(xhr.responseText, 'An error has ocurred');
-                       }
-                   }
-               });
+                  },
+                  error: function (xhr) {
+                      debugger;
+                      if (xhr.status == 403) {
+
+                      }
+                      else {
+                          bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                          });
+                      }
+                  }
+              });
            }
-        });*@
-   }
-
-   function InactivateAnuncio(id, estado) {
-       var titulo;
-       var mensaje;
-
-       if (estado == 'Activo') {
-           titulo = 'Cambiar el estado del anuncio';
-           mensaje = '¿Desea desactivar el anuncio?';
-       }
-       else {
-           titulo = 'Cambiar el estado del anuncio';
-           mensaje = '¿Desea activar el anuncio?';
-       }
-
-
-       bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result) {
-           if (result) {
-               jQuery.ajax(
-              {
-                  type: 'post',
-                  url: '@Url.Content("~/Anuncios/Inactivate/")',
-                   data: { id: id },
-                   beforeSend: function () {
-                       showProgress('@Url.Content("~/images/loading.gif")');
-                   },
-                   complete: function (data) {
-                       hideProgress();
-                   },
-                   success: function (data) {
-                       //jAlert('Registro desahilitado satistafactoriamente.');
-                       //window.location = data.redirectToUrl;
-                       location.reload();
-
-                   },
-                   error: function (xhr) {
-                       debugger;
-                       if (xhr.status == 403) {
-
-                       }
-                       else {
-                           bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
-                           });
-                       }
-                   }
-               });
-           }
-        });
+       });*@
 
         @*jConfirm(mensaje, titulo, function (confirmed) {
             if (confirmed) {
@@ -307,31 +289,37 @@
                    }
                });
             }
-        });*@
-    }
-
-
-
-    var $ki = jQuery.noConflict();
-    function showProgress(loadingImgSrc) {
-        $ki.blockUI({
-            message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
-            css: {
-                width: '450px',
-                border: 'none',
-                padding: '15px',
-                backgroundColor: '#fafafa',
-                'border-radius': '10px',
-                opacity: .95,
-                color: '#000',
-                'font-size': '18px',
-                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
-                'z-index': '9999'
-            }
         });
+   }*@
+
+    function DeleteAnuncio(id) {
+        ANUNCIOS.DeleteAnuncio(id, '@Url.Content("~/Anuncios/Delete/")');
     }
 
-    function hideProgress() {
-        $ki.unblockUI();
+    function InactivateAnuncio(id, estado) {
+        ANUNCIOS.InactivateAnuncio(id, estado, '@Url.Content("~/Anuncios/Inactivate/")');
     }
+
+    //var $ki = jQuery.noConflict();
+    //function showProgress(loadingImgSrc) {
+    //    $ki.blockUI({
+    //        message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
+    //        css: {
+    //            width: '450px',
+    //            border: 'none',
+    //            padding: '15px',
+    //            backgroundColor: '#fafafa',
+    //            'border-radius': '10px',
+    //            opacity: .95,
+    //            color: '#000',
+    //            'font-size': '18px',
+    //            'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
+    //            'z-index': '9999'
+    //        }
+    //    });
+    //}
+
+    //function hideProgress() {
+    //    $ki.unblockUI();
+    //}
 </script>

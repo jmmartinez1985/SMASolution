@@ -118,7 +118,7 @@
                             @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SubCategories, "Selecione la Subcategoría", new { @class = "span6" })
 
                         </div>
-                        <input type="button" value="Buscar" onclick="CallFilter(1)" class="btn-u btn btn-warning" />
+                        <input type="button" value="Buscar"  data-val="1"  class="btn-u btn btn-warning SearchButton" />
 
                     </form>
                 </div>
@@ -127,16 +127,16 @@
                         <div class="controls controls-row">
                             <input type="text" id="descriptioninput" class="span12" placeholder="Descripcion, Palabras Clave, Otros">
                         </div>
-                        <input type="button" value="Buscar" onclick="CallFilter(2)" class="btn-u btn btn-warning" />
+                        <input type="button" value="Buscar"  data-val="2"  class="btn-u btn btn-warning SearchButton" />
                     </form>
                 </div>
                 <div class="tab-pane" id="dealership">
                     <form>
 
                         <div class="controls controls-row">
-                            <input type="text" id="placeinput" class="span12" placeholder="Lugar, Ciudad , Ubicación">
+                            <input type="text" id="placeinput"  class="span12" placeholder="Lugar, Ciudad , Ubicación">
                         </div>
-                        <input type="button" value="Buscar" onclick="CallFilter(3)" class="btn-u btn btn-warning" />
+                        <input type="button" value="Buscar" data-val="3" class="btn-u btn btn-warning SearchButton" />
 
                     </form>
                 </div>
@@ -191,243 +191,21 @@
 
 <!--/slider-->
 <!--=== End Slider ===-->
+<script src="~/Scripts/SMA.js"></script>
+<script src="~/Scripts/knockout-2.2.0.js"></script>
+
 <script type="text/javascript">
-    jQuery(document).ready(function () {
+    jQuery(function () {
         Index.initParallaxSlider();
-
-        jQuery('#txtSearchHome').keyup(function () {
-            var text = jQuery('#txtSearchHome').val();
-            var rows = jQuery('#anunciosAvailable > tr');
-            var isVisible = $('#firstSearch').is(':visible');
-            if (!isVisible) {
-                rows = jQuery('#SearchData > tr');
-            }
-            rows.each(function (idx, elem) {
-                var rowText = $(elem).text().toLowerCase();
-                if (rowText.indexOf(text.toLowerCase()) < 0) {
-                    jQuery(elem).hide();
-                }
-                else {
-                    jQuery(elem).show();
-                }
-            });
-            setTimeout('CheckVisibleProjects();', 300);
-        });
-
-        jQuery("#CAT_Id").change(function () {
-            $.ajax({
-                dataType: "json",
-                type: 'post',
-                url: '@Url.Action("GetSubCategories", "SubCategoriaServicio")',
-                data: { Cat: parseInt(jQuery("#CAT_Id").val()) },
-                success: function (data) {
-                    var result = JSON.parse(data);
-                    var select = $('#SBS_Id');
-                    if (select.prop) {
-                        var options = select.prop('options');
-                    }
-                    else {
-                        var options = select.attr('options');
-                    }
-                    $('option', select).remove();
-                    $.each(result.$values, function (key, val) {
-                        options[options.length] = new Option(val.SBS_Descripcion, val.SBS_Id);
-                    });
-                },
-                error: function (a, b, c) {
-
-                },
-            });
-
-        });
-
-    });
-
-
-
-
-    $ki(function () {
-        jQuery.ajax(
+        HOME.GetServices('@Url.Action("GetServices", "Home")');
+        HOME.SearchKey();
+        HOME.ChangeCategory("CAT_Id", '@Url.Action("GetSubCategories", "SubCategoriaServicio")');
+        $(".SearchButton").click(function ()
         {
-            type: 'post',
-            url: '@Url.Action("GetServices", "Home")',
-            success: function (data) {
-                var result = JSON.parse(data);
-                var htmldata = '';
-                jQuery('#firstSearch').show(300);
-                jQuery('#SecondSearch').hide();
-                jQuery.each(result.$values, function (val, anuncio) {
-
-                    htmldata += '<tr><td><div class="row-fluid">';
-                    htmldata += '<div class="span12 booking-blocks"> ';
-                    htmldata += '<div class="span10">';
-                    ////reviews
-                    //htmldata += '<ul class="unstyled inline blog-info">';
-                    //htmldata += ' <li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>';
-                    //htmldata += ' <li><i class="icon-comments"></i> <a href="#">'+ anuncio.Comments+ ' Reviews</a></li>';
-                    //htmldata += '</ul>';
-                    ////fin reviews
-                    htmldata += '<div class="pull-left booking-img">';
-                    htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
-                    htmldata += '<ul class="unstyled">';
-                    htmldata += '<li><ul class="unstyled inline"><li><div class="ratyclass" id=' + "toraty" + val + '  ratyval= ' + anuncio.Rating + ' style="width:20px;" ></div </li></ul></li>'
-                    htmldata += '</ul>';
-                    htmldata += '</div>';
-                    htmldata += '<div style="overflow: hidden;">';
-                    htmldata += '<h2><a href="javascript:SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');">' + anuncio.AnunciosInfo.AN_Titulo + '</a> (' + anuncio.Comments + ' Reviews)</h2> ';
-                    htmldata += '<b>' + anuncio.Usuario + '</b>';
-                    htmldata += '<ul class="unstyled inline">';
-                    htmldata += '<li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>&nbsp;';
-                    htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
-                    htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
-                    htmldata += '</ul>';
-                    htmldata += '<p>' + anuncio.AnunciosInfo.AN_Descripcion + '</p>';
-                    htmldata += '</div>';
-                    htmldata += '</div>';
-                    htmldata += '<div class="span2">';
-                    htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
-                    htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
-                    htmldata += '</div>';
-                    htmldata += '</div>';
-                    htmldata += '</div></td> </tr>';
-                });
-                jQuery('#anunciosAvailable').prepend(htmldata);
-                jQuery('.ratyclass').each(function (i, elem) {
-                    var ratyvalue = $(this).attr('ratyval');
-                    $ki(this).raty({ readOnly: true, score: ratyvalue });
-                });
-                $ki("div.holder").jPages({
-                    containerID: "anunciosAvailable",
-                    //              previous: "←",
-                    //              next: "→",
-                    first: "Primera",
-                    previous: "Anterior",
-                    next: "Siguiente",
-                    last: "Última",
-                    perPage: 7,
-                    delay: 20
-                });
-            },
-            error: function (xhr) {
-                alert('An error has ocurred loading data: ' + xhr.responseText, 'Error');
-            }
+            var attr = $(this).attr('data-val');
+            HOME.CallFilter(attr, '@Url.Action("GetInformationAnuncios", "Anuncios")');
         });
     });
-
-
-    function FillFormData(search) {
-        var form = new FormData();
-        if (search == 1) {
-            form.append("Categoria", jQuery('#CAT_Id').val());
-            form.append("SubCategoria", jQuery('#SBS_Id').val());
-            form.append("Lugar", "");
-            form.append("Descripcion", "");
-        }
-        else if (search == 2) {
-            form.append("Categoria", "");
-            form.append("SubCategoria", "");
-            form.append("Descripcion", jQuery('#descriptioninput').val());
-            form.append("Lugar", "");
-        }
-        else {
-            form.append("Categoria", "");
-            form.append("SubCategoria", "");
-            form.append("Descripcion", "");
-            form.append("Lugar", jQuery('#placeinput').val());
-        }
-
-        return form;
-    }
-
-    function CallFilter(search) {
-        var formdata = FillFormData(search)
-        debugger;
-        $.ajax({
-            url: '@Url.Action("GetInformationAnuncios", "Anuncios")',
-            type: 'post',
-            data: formdata,
-            cache: false,
-            contentType: false,
-            processData: false,
-            beforeSend: function () {
-                showProgress('@Url.Content("~/images/loading.gif")');
-            },
-            complete: function (data) {
-                hideProgress();
-            },
-            success: function (data) {
-                if (data.Error) {
-                    jQuery('#divNoAnunciosFound').fadeIn(1000);
-                    jQuery('#SecondSearch').hide();
-                    jQuery('#firstSearch').hide();
-                    hideProgress();
-                    jQuery('#advanced').modal('hide');
-                    return true;
-                }
-                jQuery('#firstSearch').hide(300);
-                jQuery('#SecondSearch').show();
-                jQuery('#SearchData').html('');
-                var result = JSON.parse(data);
-                var htmldata = '';
-                jQuery.each(result.$values, function (val, anuncio) {
-                    htmldata += '<tr><td><div class="row-fluid">';
-                    htmldata += '<div class="span12 booking-blocks"> ';
-                    htmldata += '<div class="span10">';
-                    ////reviews
-                    //htmldata += '<ul class="unstyled inline blog-info">';
-
-                    //htmldata += ' <li><i class="icon-comments"></i> <a href="#">' + anuncio.Comments + ' Reviews</a></li>';
-                    //htmldata += '</ul>';
-                    ////fin reviews
-                    htmldata += '<div class="pull-left booking-img">';
-                    htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
-                    htmldata += '<ul class="unstyled">';
-                    htmldata += '<li><ul class="unstyled inline"><li><div class="ratyclass" id=' + "toraty" + val + '  ratyval= ' + anuncio.Rating + ' style="width:20px;" ></div </li></ul></li>'
-                    htmldata += '</ul>';
-                    htmldata += '</div>';
-                    htmldata += '<div style="overflow: hidden;">';
-                    htmldata += '<h2><a href="javascript:SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');">' + anuncio.AnunciosInfo.AN_Titulo + '</a> (' + anuncio.Comments + ' Reviews)</h2> ';
-                    htmldata += '<b>' + anuncio.Usuario + '</b>';
-                    htmldata += '<ul class="unstyled inline">';
-                    htmldata += '<li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>&nbsp;';
-                    htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
-                    htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
-                    htmldata += '</ul>';
-                    htmldata += '<p>' + anuncio.AnunciosInfo.AN_Descripcion + '</p>';
-                    htmldata += '</div>';
-                    htmldata += '</div>';
-                    htmldata += '<div class="span2">';
-                    htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
-                    htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
-                    htmldata += '</div>';
-                    htmldata += '</div>';
-                    htmldata += '</div></td> </tr>';
-                });
-                jQuery('#SearchData').prepend(htmldata);
-                $ki("div.holder").jPages({
-                    containerID: "SearchData",
-                    //              previous: "←",
-                    //              next: "→",
-                    first: "Primera",
-                    previous: "Anterior",
-                    next: "Siguiente",
-                    last: "Última",
-                    perPage: 7,
-                    delay: 20
-                });
-                jQuery('.ratyclass').each(function (i, elem) {
-                    var ratyvalue = $(this).attr('ratyval');
-                    $ki(this).raty({ readOnly: true, score: ratyvalue });
-                });
-                hideProgress();
-                jQuery('#advanced').modal('hide');
-
-            },
-            error: function (xhr) {
-                hideProgress();
-            }
-        });
-    }
 
     function CheckVisibleProjects() {
         var rows = jQuery('#anunciosAvailable > tr');
@@ -445,65 +223,7 @@
     }
 
     function TakeService(anuncioid) {
-
-                var data = new FormData();
-                data.append("Anuncio", anuncioid);
-                $.ajax({
-                    url: '@Url.Action("TakeService", "SolicitudServicio")',
-                    type: 'post',
-                    data: data,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function () {
-                        showProgress('@Url.Content("~/images/loading.gif")');
-                    },
-                    complete: function (data) {
-                        hideProgress();
-                    },
-                    success: function (data) {
-                        //$("#anunciosAvailable").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
-                        //$('.alert').alert();
-                        //$('.alert').fadeOut(3000)
-
-                        $.gritter.add({
-                            title: 'Servicio Solicitado',
-                            text: 'El servicio ha sido solicitado satisfactoriamente. El anunciante recibirá un correo electrónico con sus datos para poder contactarle. Gracias por preferirnos.'
-                        });
-
-                        //  alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
-                    },
-                    error: function (xhr) {
-                        if (xhr.status == 403) {
-                            var response = $.parseJSON(xhr.responseText);
-                            window.location = response.LogOnUrl;
-                        }
-                        else {
-                            alert(xhr.responseText, 'An error has ocurred');
-                        }
-                    }
-                });
+        HOME.TakeService(anuncioid, '@Url.Action("TakeService", "SolicitudServicio")');
     }
 
-    function showProgress(loadingImgSrc) {
-        $ki.blockUI({
-            message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
-            css: {
-                width: '450px',
-                border: 'none',
-                padding: '15px',
-                backgroundColor: '#fafafa',
-                'border-radius': '10px',
-                opacity: .95,
-                color: '#000',
-                'font-size': '18px',
-                'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
-                'z-index': '9999'
-            }
-        });
-    }
-
-    function hideProgress() {
-        $ki.unblockUI();
-    }
 </script>

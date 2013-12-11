@@ -147,91 +147,40 @@
                     </div>
 
 
-                    <div class="span12 divLoader">
-                        @if (ViewBag.ResourcesCount < 4)
-                        {
-                            @Html.Partial("LoadUplaoder")
-                        }
-                    </div>
 
-                    <div>
-                        @Html.ActionLink("Regresar", "Index", "Home", null, new { @class = "btn-u" })
-                    </div>
-
-                    @section Scripts {
-                        @Scripts.Render("~/bundles/jqueryval")
-                    }
 
                 </div>
                 
             }
+
+            <div class="row-fluid">
+                <div class="span12 divLoader">
+                    @if (ViewBag.ResourcesCount < 4)
+                    {
+                        @Html.Partial("LoadUplaoder")
+                    }
+                </div>
+                <div>
+                    @Html.ActionLink("Regresar", "Index", "Home", null, new { @class = "btn-u" })
+                </div>
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
+
+            </div>
         </div>
     </div>
 </div>
 
+<script src="~/Scripts/SMA.js"></script>
 <script>
     function DeleteRecurso(id) {
-        jQuery.ajax(
-       {
-           type: 'POST',
-           url: '@Url.Content("~/HttpHandler/UploadHandler.ashx?id=")' + id,
+        ANUNCIOS.DeleteResource(id, '@Url.Content("~/HttpHandler/UploadHandler.ashx?id=")', '@Url.Action("LoadUplaoder", "Anuncios")');
+    }
 
-           success: function (data) {
-               var element = jQuery(".thumbnails").find('li[itemid= ' + id + ' ]');
-               element.remove();
-               EnableLoader();
-           },
-           error: function (a, b, c) {
-               alert(a);
-           }
-       });
-   }
-
-
-   jQuery(document).ready(function () {
-       debugger;
-       jQuery("#CD_Id").change(function () {
-           $.ajax({
-               dataType: "json",
-               type: 'post',
-               url: '@Url.Action("GetSubCategories", "SubCategoriaServicio")',
-               data: { Cat: parseInt(jQuery("#CD_Id").val()) },
-               success: function (data) {
-                   var result = JSON.parse(data);
-                   var select = $('#SBS_Id');
-                   if (select.prop) {
-                       var options = select.prop('options');
-                   }
-                   else {
-                       var options = select.attr('options');
-                   }
-                   $('option', select).remove();
-                   $.each(result.$values, function (key, val) {
-                       options[options.length] = new Option(val.SBS_Descripcion, val.SBS_Id);
-                   });
-               },
-               error: function (a, b, c) {
-
-               },
-           });
-
-       });
-
+    jQuery(document).ready(function () {
+        HOME.ChangeCategory("CD_Id", '@Url.Action("GetSubCategories", "SubCategoriaServicio")');
     });
-
-   function EnableLoader() {
-       jQuery.ajax(
-             {
-                 type: 'GET',
-                 url: '@Url.Action("LoadUplaoder", "Anuncios")',
-
-                         success: function (data) {
-                             jQuery('.divLoader').html(data);
-                         },
-                         error: function (a, b, c) {
-                             alert(a);
-                         }
-                     });
-                 }
 
 </script>
