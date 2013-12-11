@@ -618,7 +618,6 @@ jQuery(function () {
     ANUNCIOS.InactivateAnuncio = function (id, estado, url) {
         var titulo;
         var mensaje;
-        debugger;
         if (estado == 'Activo') {
             titulo = 'Cambiar el estado del anuncio';
             mensaje = '¿Desea desactivar el anuncio?';
