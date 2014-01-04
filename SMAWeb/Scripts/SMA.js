@@ -672,7 +672,7 @@ jQuery(function () {
 
                    },
                    error: function (xhr) {
-                       if (xhr.status == 403) {
+                       if (xhr.status == 403) { 
 
                        }
                        else {

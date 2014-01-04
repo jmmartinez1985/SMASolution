@@ -411,7 +411,7 @@ namespace SMAWeb.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
+            AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id); 
 
             using (var scope = new TransactionScope())
             {
