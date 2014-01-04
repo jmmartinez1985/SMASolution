@@ -74,7 +74,7 @@ namespace SMAWeb.Controllers
             using (Entities model = new Entities())
             {
                 //allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.ST_Id == 1 && acc.UserId == UserId).ToList();
-                allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.UserId == UserId).ToList();
+                allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.UserId == UserId && acc.ST_Id != 2).ToList();
 
 
                 var categoriasList = new List<Categoria>();
@@ -125,7 +125,8 @@ namespace SMAWeb.Controllers
                         EstatusDescription = statusDesc,
                         AnunciosInfo = item,
                         CategoriaDescripcion = categoria,
-                        FirstImage = firstImage, Rating = getRating
+                        FirstImage = firstImage,
+                        Rating = getRating
                     });
 
                 }
@@ -199,7 +200,7 @@ namespace SMAWeb.Controllers
 
         }
 
-        
+
         public ActionResult GetInformationAnuncios(FormCollection form)
         {
             var allAnunciosList = new List<AN_Anuncios>();
@@ -406,7 +407,7 @@ namespace SMAWeb.Controllers
         //
         // POST: /Anuncios/Delete/5
         [Authorize(Roles = "Users")]
-        [HttpPost, ActionName("Delete, Admin")]
+        //[HttpPost, ActionName("Delete, Admin")]
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -414,20 +415,28 @@ namespace SMAWeb.Controllers
 
             using (var scope = new TransactionScope())
             {
-                if (an_anuncios.SS_SolicitudServicio.All(c => c.SS_Id == 1))
+                //if (an_anuncios.SS_SolicitudServicio.All(c => c.ST_Id == 1))
+                //{
+                an_anuncios.SS_SolicitudServicio.AsParallel().ToList().ForEach(sol =>
                 {
-                    an_anuncios.SS_SolicitudServicio.ToList().ForEach(sol =>
+                    //db.SS_SolicitudServicio.Remove(sol);
+                    sol.ST_Id = 2;
+                    db.Entry(sol).State = EntityState.Modified;
+                    sol.RW_Reviews.AsParallel().ToList().ForEach(rev =>
                     {
-                        db.SS_SolicitudServicio.Remove(sol);
+                        db.Entry(sol).State = EntityState.Modified;
+                        rev.ST_Id = 2;
                     });
-
-            db.AN_Anuncios.Remove(an_anuncios);
-            db.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("No se puede borrar este anuncio ya esta sirviendo de referencia para solicitud de servicio, por favor proceda a desactivar el mismo.");
-                }
+                });
+                db.Entry(an_anuncios).State = EntityState.Modified;
+                an_anuncios.ST_Id = 2;
+                db.SaveChanges();
+                scope.Complete();
+                //}
+                //else
+                //{
+                //    throw new Exception("No se puede borrar este anuncio ya esta sirviendo de referencia para solicitud de servicio, por favor proceda a desactivar el mismo.");
+                //}
             }
             if (Request.IsAjaxRequest())
             {
@@ -443,15 +452,15 @@ namespace SMAWeb.Controllers
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
             //activar y desactivar
-            if(an_anuncios.ST_Id == 1)
-            an_anuncios.ST_Id = 2;
+            if (an_anuncios.ST_Id == 1)
+                an_anuncios.ST_Id = 2;
             else
                 an_anuncios.ST_Id = 1;
 
             db.Entry(an_anuncios).State = EntityState.Modified;
             try
             {
-            db.SaveChanges();
+                db.SaveChanges();
             }
             catch (Exception)
             {

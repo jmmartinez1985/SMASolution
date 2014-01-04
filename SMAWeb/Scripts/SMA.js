@@ -686,7 +686,7 @@ jQuery(function () {
     }
 
     ANUNCIOS.DeleteAnuncio = function (id, url) {
-
+        debugger;
         bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
             if (result) {
                 debugger;
