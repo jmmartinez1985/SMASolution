@@ -8,7 +8,7 @@
 <link href="@Url.Content("~/Content/jpages/jPages.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Content/jpages/animate.css")" rel="stylesheet" type="text/css" />
 @*<link href="@Url.Content("~/Content/jpages/style.css")" rel="stylesheet" type="text/css" />*@
-<script src="@Url.Content("~/Scripts/jpage/jPages.min.js")" type="text/javascript"></script> 
+<script src="@Url.Content("~/Scripts/jpage/jPages.min.js")" type="text/javascript"></script>
 
 
 
@@ -72,7 +72,7 @@
                                                     <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Edit", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-edit"></i>&nbsp;Editar</a>
 
 
-                                                    <a class="btn-u btn-u-orange btn-block" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id')" ><i class="icon-white icon-trash"></i>&nbsp;Eliminar</a>
+                                                    <a class="btn-u btn-u-orange btn-block" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id', this)" ><i class="icon-white icon-trash"></i>&nbsp;Eliminar</a>
                                                     <a class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id' , this)" data-estado="@item.EstatusDescription"  ><i class="icon-white icon-refresh"></i>@if (@item.EstatusDescription == "Activo")
                                                                                                                                                                                                                          { <i style="font-style: normal"><span>Desactivar</span></i>}
                                                                                                                                                                                                                          else
@@ -292,8 +292,8 @@
         });
    }*@
 
-    function DeleteAnuncio(id) {
-        ANUNCIOS.DeleteAnuncio(id, '@Url.Content("~/Anuncios/DeleteConfirmed/")');
+    function DeleteAnuncio(id, self) {
+        ANUNCIOS.DeleteAnuncio(id, '@Url.Content("~/Anuncios/Delete/")', self);
     }
 
     function InactivateAnuncio(id, self) {

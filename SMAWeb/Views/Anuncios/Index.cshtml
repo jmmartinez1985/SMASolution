@@ -57,7 +57,7 @@
                                         <div class="span2 pull-right">
 
                                             <a class="btn-u btn-u-orange btn-block" href="@Url.Action("Details", "Anuncios")/@item.AnunciosInfo.AN_Id"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</a>
-                                            <button class="btn-u btn-u-orange btn-block" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id')" style="text-align:left"><i class="icon-white icon-trash"></i>&nbsp;Eliminar</button>
+                                            <button class="btn-u btn-u-orange btn-block" onclick="DeleteAnuncio('@item.AnunciosInfo.AN_Id', this)" style="text-align:left"><i class="icon-white icon-trash"></i>&nbsp;Eliminar</button>
                                             <button class="btn-u btn-u-orange btn-block" onclick="InactivateAnuncio('@item.AnunciosInfo.AN_Id' , this)" data-estado="@item.EstatusDescription" style="text-align:left">
                                                 <i class="icon-white icon-refresh"></i>@if (@item.EstatusDescription == "Activo")
                                                                                        { <i style="font-style: normal"><span>Desactivar</span> </i>}
@@ -113,8 +113,8 @@
 
 
 
-    function DeleteAnuncio(id) {
-        ANUNCIOS.DeleteAnuncio(id, '@Url.Content("~/Anuncios/Delete/")');
+    function DeleteAnuncio(id, self) {
+        ANUNCIOS.DeleteAnuncio(id, '@Url.Content("~/Anuncios/Delete/")', self);
 @*        bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
             if (result) {
                 debugger;
@@ -144,8 +144,8 @@
                });
            }
         });*@
-    
-   }
+
+    }
 
     function InactivateAnuncio(id, self) {
         ANUNCIOS.InactivateAnuncio(id, '@Url.Content("~/Anuncios/Inactivate/")', self);
@@ -193,28 +193,28 @@
            }
        });*@
 
-  }
+    }
 
-  //var $ki = jQuery.noConflict();
-  //function showProgress(loadingImgSrc) {
-  //    $ki.blockUI({
-  //        message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
-  //        css: {
-  //            width: '450px',
-  //            border: 'none',
-  //            padding: '15px',
-  //            backgroundColor: '#fafafa',
-  //            'border-radius': '10px',
-  //            opacity: .95,
-  //            color: '#000',
-  //            'font-size': '18px',
-  //            'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
-  //            'z-index': '9999'
-  //        }
-  //    });
-  //}
+    //var $ki = jQuery.noConflict();
+    //function showProgress(loadingImgSrc) {
+    //    $ki.blockUI({
+    //        message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
+    //        css: {
+    //            width: '450px',
+    //            border: 'none',
+    //            padding: '15px',
+    //            backgroundColor: '#fafafa',
+    //            'border-radius': '10px',
+    //            opacity: .95,
+    //            color: '#000',
+    //            'font-size': '18px',
+    //            'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
+    //            'z-index': '9999'
+    //        }
+    //    });
+    //}
 
-  //function hideProgress() {
-  //    $ki.unblockUI();
-  //}
+    //function hideProgress() {
+    //    $ki.unblockUI();
+    //}
 </script>
