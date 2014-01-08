@@ -406,7 +406,7 @@ namespace SMAWeb.Controllers
 
         //
         // POST: /Anuncios/Delete/5
-        [Authorize(Roles = "Users")]
+        [Authorize(Roles = "Users, Admin")]
         //[HttpPost, ActionName("Delete, Admin")]
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
