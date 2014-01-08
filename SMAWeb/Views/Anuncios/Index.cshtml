@@ -114,7 +114,7 @@
 
 
     function DeleteAnuncio(id, self) {
-        ANUNCIOS.DeleteAnuncio(id, '@Url.Content("~/Anuncios/Delete/")', self);
+        ANUNCIOS.DeleteAnuncio(id, '@Url.Content("~/Anuncios/DeleteConfirmed/")', self);
 @*        bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
             if (result) {
                 debugger;
