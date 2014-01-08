@@ -319,13 +319,20 @@ var bootbox = window.bootbox || (function(document, $) {
             if (typeof handlers[i]['callback']== 'function') {
                 callback = handlers[i]['callback'];
             }
-
+   
             if (handlers[i]['class']) {
                 _class = handlers[i]['class'];
             } else if (i == handlers.length -1 && handlers.length <= 2) {
                 // always add a primary to the main option in a two-button dialog
-                _class = 'btn-primary';
+                _class = 'btn-primary btn-u';
             }
+
+            // Inicio: agregar un estilo predefinido a los botones que no tienen una clase ISRRAEL !*
+            if (_class == null) {
+                _class = "btn-u btn-u-red";
+            }
+            //Fin
+
 
             if (handlers[i]['link'] !== true) {
                 _class = 'btn ' + _class;
@@ -424,10 +431,11 @@ var bootbox = window.bootbox || (function(document, $) {
             onCancel('close');
         });
 
+        // Para no afectar el btn-u ISRRAEL !*
         // well, *if* we have a primary - give the first dom element focus
-        div.on('shown', function() {
-            div.find("a.btn-primary:first").focus();
-        });
+        //div.on('shown', function() {
+        //    div.find("a.btn-primary:first").focus();
+        //});
 
         div.on('hidden', function(e) {
             // @see https://github.com/makeusabrew/bootbox/issues/115

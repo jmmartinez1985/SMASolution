@@ -346,7 +346,7 @@ jQuery(function () {
         });
     }
 
-    HOME.CheckVisibleProjects= function () {
+    HOME.CheckVisibleProjects = function () {
         var rows = jQuery('#anunciosAvailable > tr');
         if (rows.filter(':hidden').size() == rows.length) {
             jQuery('#divNoAnunciosFound').fadeIn(1000);
@@ -623,7 +623,7 @@ jQuery(function () {
     ANUNCIOS.InactivateAnuncio = function (id, url, self) {
         var titulo;
         var mensaje;
-        var estado = $(self).data("estado");
+        var estado = $(self).attr('data-estado');
 
         if (estado == 'Activo') {
             titulo = 'Cambiar el estado del anuncio';
@@ -648,6 +648,7 @@ jQuery(function () {
                        COMMON.HideProgress();
                    },
                    success: function (data) {
+                       debugger;
                        if (estado == "Activo") {
                            $(self).find("span").text("Activar");
                            $(self).attr("data-estado", "Inactivo");
@@ -667,12 +668,9 @@ jQuery(function () {
                                text: 'El anuncio ha sido activado satisfactoriamente.'
                            });
                        }
-                       
-                       //location.reload();
-
                    },
                    error: function (xhr) {
-                       if (xhr.status == 403) { 
+                       if (xhr.status == 403) {
 
                        }
                        else {
@@ -685,11 +683,12 @@ jQuery(function () {
         });
     }
 
-    ANUNCIOS.DeleteAnuncio = function (id, url) {
-        debugger;
+    ANUNCIOS.DeleteAnuncio = function (id, url, self) {
+        var anuncio = $(self).closest(".booking-blocks");
+
         bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
+            debugger;
             if (result) {
-                debugger;
                 jQuery.ajax(
                {
                    type: 'post',
@@ -702,7 +701,11 @@ jQuery(function () {
                        COMMON.HideProgress();
                    },
                    success: function (data) {
-                       location.reload();
+                       anuncio.remove();
+                       $.gritter.add({
+                           title: 'Anuncio Eliminado',
+                           text: 'El anuncio ha sido eliminado satisfactoriamente. Gracias por preferirnos.'
+                       });
                    },
                    error: function (xhr) {
                        if (xhr.status == 403) {
