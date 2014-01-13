@@ -118,7 +118,7 @@
                             @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SubCategories, "Selecione la Subcategoría", new { @class = "span6" })
 
                         </div>
-                        <input type="button" value="Buscar"  data-val="1"  class="btn-u btn btn-warning SearchButton" />
+                        <input type="button" value="Buscar" data-val="1" class="btn-u btn btn-warning SearchButton" />
 
                     </form>
                 </div>
@@ -127,14 +127,14 @@
                         <div class="controls controls-row">
                             <input type="text" id="descriptioninput" class="span12" placeholder="Descripcion, Palabras Clave, Otros">
                         </div>
-                        <input type="button" value="Buscar"  data-val="2"  class="btn-u btn btn-warning SearchButton" />
+                        <input type="button" value="Buscar" data-val="2" class="btn-u btn btn-warning SearchButton" />
                     </form>
                 </div>
                 <div class="tab-pane" id="dealership">
                     <form>
 
                         <div class="controls controls-row">
-                            <input type="text" id="placeinput"  class="span12" placeholder="Lugar, Ciudad , Ubicación">
+                            <input type="text" id="placeinput" class="span12" placeholder="Lugar, Ciudad , Ubicación">
                         </div>
                         <input type="button" value="Buscar" data-val="3" class="btn-u btn btn-warning SearchButton" />
 
@@ -148,7 +148,7 @@
 
 <!--Anuncios Table with pagination-->
 <div style="width: 100%" id="firstSearch">
-    <table class="table-hover">
+    <table class="table-hover" style="width: 100%">
         <thead>
         </thead>
         <tbody id="anunciosAvailable">
@@ -166,7 +166,7 @@
 </div>
 
 <div style="width: 100%" id="SecondSearch">
-    <table class="table-hover">
+    <table class="table-hover" style="width: 100%">
         <thead>
         </thead>
         <tbody id="SearchData">
@@ -200,8 +200,7 @@
         HOME.GetServices('@Url.Action("GetServices", "Home")');
         HOME.SearchKey();
         HOME.ChangeCategory("CAT_Id", '@Url.Action("GetSubCategories", "SubCategoriaServicio")');
-        $(".SearchButton").click(function ()
-        {
+        $(".SearchButton").click(function () {
             var attr = $(this).attr('data-val');
             HOME.CallFilter(attr, '@Url.Action("GetInformationAnuncios", "Anuncios")');
         });
