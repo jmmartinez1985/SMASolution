@@ -74,7 +74,7 @@ namespace SMAWeb.Controllers
             using (Entities model = new Entities())
             {
                 //allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.ST_Id == 1 && acc.UserId == UserId).ToList();
-                allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.UserId == UserId && acc.ST_Id != 2).ToList();
+                allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.UserId == UserId && (acc.ST_Id == 1 | acc.ST_Id == 2)).ToList();
 
 
                 var categoriasList = new List<Categoria>();
@@ -420,16 +420,16 @@ namespace SMAWeb.Controllers
                 an_anuncios.SS_SolicitudServicio.AsParallel().ToList().ForEach(sol =>
                 {
                     //db.SS_SolicitudServicio.Remove(sol);
-                    sol.ST_Id = 2;
+                    sol.ST_Id = 7;
                     db.Entry(sol).State = EntityState.Modified;
                     sol.RW_Reviews.AsParallel().ToList().ForEach(rev =>
                     {
                         db.Entry(sol).State = EntityState.Modified;
-                        rev.ST_Id = 2;
+                        rev.ST_Id = 7;
                     });
                 });
                 db.Entry(an_anuncios).State = EntityState.Modified;
-                an_anuncios.ST_Id = 2;
+                an_anuncios.ST_Id = 7;
                 db.SaveChanges();
                 scope.Complete();
                 //}
