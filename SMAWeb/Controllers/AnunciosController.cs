@@ -271,7 +271,7 @@ namespace SMAWeb.Controllers
 
         //
         // GET: /Anuncios/Details/5
-        [Authorize(Roles = "Users, Admin")]
+        //[Authorize(Roles = "Users, Admin")]
         public ActionResult Details(int id = 0)
         {
             AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
