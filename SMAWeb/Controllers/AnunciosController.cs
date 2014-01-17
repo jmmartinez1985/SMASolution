@@ -464,7 +464,7 @@ namespace SMAWeb.Controllers
             }
             catch (Exception)
             {
-                throw new Exception("El anuncio no puedo ser inactivado, por intente más tarde o pongase en contacto con el administrador.");
+                throw new Exception("El anuncio no puedo ser inactivado, intente más tarde o pongase en contacto con el administrador.");
             }
             if (Request.IsAjaxRequest())
             {

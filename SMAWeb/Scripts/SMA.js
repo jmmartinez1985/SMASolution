@@ -209,6 +209,7 @@ jQuery(function () {
             }
         });
     }
+
     LAYOUTS.GetLastAnuncios = function (url, urldetails) {
         jQuery.ajax(
         {
@@ -250,6 +251,7 @@ jQuery(function () {
             }
         });
     }
+
     COMMON.HideProgress = function hideProgress() {
         $ki.unblockUI();
     }
@@ -611,7 +613,6 @@ jQuery(function () {
                url: url,
 
                success: function (data) {
-                   debugger;
                    jQuery('.divLoader').html(data);
                },
                error: function (a, b, c) {
@@ -722,4 +723,48 @@ jQuery(function () {
 
     }
 
+    CONTACTOS.Create = function (url, nombre, telefono, celular, email, mensaje) {
+        debugger;
+        var contacto = {
+            "CON_Id": 0,
+            "CON_Nombre": nombre,
+            "CON_Telefono": telefono,
+            "CON_Celular": celular,
+            "CON_Email": email,
+            "CON_Mensaje": mensaje,
+            "CON_Fecha": new Date()
+        };
+
+        var jsonSerialized = JSON.stringify(contacto);
+
+        jQuery.ajax(
+              {
+                  type: 'post',
+                  url: url,
+                  data: jsonSerialized,
+                  dataType: "json",
+                  contentType: "application/json; charset=utf-8",
+                  beforeSend: function () {
+                      COMMON.CallProgress(LoadingImage);
+                  },
+                  complete: function (data) {
+                      COMMON.HideProgress();
+                  },
+                  success: function (data) {
+                      $.gritter.add({
+                          title: 'Mensaje Enviado',
+                          text: 'Hemos registrado satisfactoriamente su mensaje. Pronto le estaremos contactando para responder a sus consultas. Gracias por preferirnos.'
+                      });
+                  },
+                  error: function (xhr) {
+                      if (xhr.status == 403) {
+
+                      }
+                      else {
+                          bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                          });
+                      }
+                  }
+              });
+    }
 });

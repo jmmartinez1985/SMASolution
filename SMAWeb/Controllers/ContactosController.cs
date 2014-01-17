@@ -53,7 +53,7 @@ namespace SMAWeb.Controllers
         // POST: /Contactos/Create
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create(CON_Contactenos con_contactenos)
         {
             if (con_contactenos.CON_Celular == null)
@@ -66,10 +66,16 @@ namespace SMAWeb.Controllers
                 con_contactenos.CON_Fecha = DateTime.Now;
                 db.CON_Contactenos.Add(con_contactenos);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
-            }
 
-            return View(con_contactenos);
+
+            }
+            
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { redirectToUrl = Url.Action("Create", "Contactos") });
+            }
+            return RedirectToAction("Index", "Home");
+            //return View(con_contactenos);
         }
 
         //
