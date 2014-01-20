@@ -112,109 +112,13 @@
     });
 
 
-
     function DeleteAnuncio(id, self) {
         ANUNCIOS.DeleteAnuncio(id, '@Url.Content("~/Anuncios/DeleteConfirmed/")', self);
-@*        bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
-            if (result) {
-                debugger;
-                jQuery.ajax(
-               {
-                   type: 'post',
-                   url: '@Url.Content("~/Anuncios/Delete/")',
-                   data: { id: id },
-                   beforeSend: function () {
-                       showProgress('@Url.Content("~/images/loading.gif")');
-                   },
-                   complete: function (data) {
-                       hideProgress();
-                   },
-                   success: function (data) {
-                       location.reload();
-                   },
-                   error: function (xhr) {
-                       if (xhr.status == 403) {
-
-                       }
-                       else {
-                           bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
-                           });
-                       }
-                   }
-               });
-           }
-        });*@
-
     }
 
     function InactivateAnuncio(id, self) {
+        debugger;
         ANUNCIOS.InactivateAnuncio(id, '@Url.Content("~/Anuncios/Inactivate/")', self);
-      @* var titulo;
-       var mensaje;
-       debugger;
-       if (estado == 'Activo') {
-           titulo = 'Cambiar el estado del anuncio';
-           mensaje = '¿Desea desactivar el anuncio?';
-       }
-       else {
-           titulo = 'Cambiar el estado del anuncio';
-           mensaje = '¿Desea activar el anuncio?';
-       }
-
-
-       bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result) {
-           if (result) {
-               jQuery.ajax(
-              {
-                  type: 'post',
-                  url: '@Url.Content("~/Anuncios/Inactivate/")',
-                  data: { id: id },
-                  beforeSend: function () {
-                      showProgress('@Url.Content("~/images/loading.gif")');
-                   },
-                  complete: function (data) {
-                      hideProgress();
-                  },
-                  success: function (data) {
-                      location.reload();
-
-                  },
-                  error: function (xhr) {
-                      debugger;
-                      if (xhr.status == 403) {
-
-                      }
-                      else {
-                          bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
-                          });
-                      }
-                  }
-              });
-           }
-       });*@
-
     }
 
-    //var $ki = jQuery.noConflict();
-    //function showProgress(loadingImgSrc) {
-    //    $ki.blockUI({
-    //        message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
-    //        css: {
-    //            width: '450px',
-    //            border: 'none',
-    //            padding: '15px',
-    //            backgroundColor: '#fafafa',
-    //            'border-radius': '10px',
-    //            opacity: .95,
-    //            color: '#000',
-    //            'font-size': '18px',
-    //            'box-shadow': '0px 0px 12px rgba(0,0,0,.6)',
-    //            'z-index': '9999'
-    //        }
-    //    });
-    //}
-
-    //function hideProgress() {
-    //    $ki.unblockUI();
-    //}
 </script>

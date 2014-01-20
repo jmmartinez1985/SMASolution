@@ -66,13 +66,19 @@ namespace SMAWeb.Controllers
                 con_contactenos.CON_Fecha = DateTime.Now;
                 db.CON_Contactenos.Add(con_contactenos);
                 db.SaveChanges();
-
-
+            }
+            else
+            {
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(new { wasSuccess = "False" });
+                }
             }
             
             if (Request.IsAjaxRequest())
             {
-                return Json(new { redirectToUrl = Url.Action("Create", "Contactos") });
+                //return Json(new { wasSuccess = "True" , redirectToUrl = Url.Action("Create", "Contactos") });
+                return Json(new { wasSuccess = "True" });
             }
             return RedirectToAction("Index", "Home");
             //return View(con_contactenos);

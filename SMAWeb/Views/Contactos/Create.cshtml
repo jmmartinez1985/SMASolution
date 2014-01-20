@@ -276,10 +276,16 @@
     });*@
 
     function Contactenos() {
-        debugger;
-        CONTACTOS.Create('@Url.Action("Create", "Contactos")', $('#CON_Nombre').val(), $('#CON_Telefono').val(), $('#CON_Celular').val(), $('#CON_Email').val(), $('#CON_Mensaje').val())
-
+        if ($('#CON_Nombre').val() == "" || $('#CON_Email').val() == "" || $('#CON_Mensaje').val() == "") {
+            $.gritter.add({
+                title: 'Datos Insuficientes',
+                text: 'Para poder enviar su mensaje es necesario que complete debidamente todos los campos requeridos (*). Gracias por preferirnos.'
+            });
         }
+        else {
+            CONTACTOS.Create('@Url.Action("Create", "Contactos")', $('#CON_Nombre').val(), $('#CON_Telefono').val(), $('#CON_Celular').val(), $('#CON_Email').val(), $('#CON_Mensaje').val())
+        }
+    }
 
 </script>
 @section Scripts {

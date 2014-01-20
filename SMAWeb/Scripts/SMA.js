@@ -141,7 +141,6 @@ function CreateSubCategoria(data) {
     jQuery(".alert").fadeOut(3000);
 };
 
-
 function ShortDateTime(dateObject) {
     //var d = new Date(dateObject);
     //var day = d.getDate();
@@ -269,6 +268,12 @@ jQuery(function () {
                 jQuery('#SecondSearch').hide();
                 jQuery.each(result.$values, function (val, anuncio) {
 
+                    var param = {
+                        "Id": anuncio.AnunciosInfo.AN_Id,
+                        "Nombre": anuncio.Usuario,
+                        "Titulo": anuncio.AnunciosInfo.AN_Titulo,
+                    };
+
                     htmldata += '<tr><td><div class="row-fluid">';
                     htmldata += '<div class="span12 booking-blocks"> ';
                     htmldata += '<div class="span10">';
@@ -297,7 +302,7 @@ jQuery(function () {
                     htmldata += '</div>';
                     htmldata += '<div class="span2">';
                     htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
-                    htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
+                    htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" id= btnTakeService' + anuncio.AnunciosInfo.AN_Id + '  data-nombre= "' + anuncio.Usuario + '" data-titulo= "' + anuncio.AnunciosInfo.AN_Titulo + '" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
                     htmldata += '</div>';
                     htmldata += '</div>';
                     htmldata += '</div></td> </tr>';
@@ -494,47 +499,53 @@ jQuery(function () {
         });
     }
 
-    HOME.TakeService = function (anuncioid, url) {
+    HOME.TakeService = function (anuncioid, url, nombre, titulo) {
         debugger;
+        var mensaje;
         var data = new FormData();
         data.append("Anuncio", anuncioid);
-        $.ajax({
-            url: url,//'@Url.Action("TakeService", "SolicitudServicio")',
-            type: 'post',
-            data: data,
-            cache: false,
-            contentType: false,
-            processData: false,
-            beforeSend: function () {
-                COMMON.CallProgress(LoadingImage);
-            },
-            complete: function (data) {
-                COMMON.HideProgress();
-            },
-            success: function (data) {
-                debugger;
 
-                $.gritter.add({
-                    title: 'Servicio Solicitado',
-                    text: 'El servicio ha sido solicitado satisfactoriamente. El anunciante recibirá un correo electrónico con sus datos para poder contactarle. Gracias por preferirnos.'
+        mensaje = 'Ha hecho clic en la opción contactar el servicio: <b>"' + titulo + '"</b>. Pronto estaremos enviándole un correo a ' + nombre + ' como parte del proceso de solicitud de servicios de Service Market. ¿Confirma que desea solicitar el servicio?';
+        bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result) {
+            if (result) {
+                $.ajax({
+                    url: url,//'@Url.Action("TakeService", "SolicitudServicio")',
+                    type: 'post',
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function () {
+                        COMMON.CallProgress(LoadingImage);
+                    },
+                    complete: function (data) {
+                        COMMON.HideProgress();
+                    },
+                    success: function (data) {
+                        debugger;
+
+                        $.gritter.add({
+                            title: 'Servicio Solicitado',
+                            text: 'El servicio ha sido solicitado satisfactoriamente. El anunciante recibirá un correo electrónico con sus datos para poder contactarle. Gracias por preferirnos.'
+                        });
+                        //$("#anunciosAvailable").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
+                        //$('.alert').alert();
+                        //$('.alert').fadeOut(3000)
+                        //  alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
+                    },
+                    error: function (xhr) {
+                        debugger;
+                        if (xhr.status == 403) {
+                            var response = $.parseJSON(xhr.responseText);
+                            window.location = response.LogOnUrl;
+                        }
+                        else {
+                            alert(xhr.responseText, 'An error has ocurred');
+                        }
+                    }
                 });
-                //$("#anunciosAvailable").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
-                //$('.alert').alert();
-                //$('.alert').fadeOut(3000)
-                //  alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
-            },
-            error: function (xhr) {
-                debugger;
-                if (xhr.status == 403) {
-                    var response = $.parseJSON(xhr.responseText);
-                    window.location = response.LogOnUrl;
-                }
-                else {
-                    alert(xhr.responseText, 'An error has ocurred');
-                }
             }
         });
-
     }
 
     ANUNCIOS.PostComment = function (element, userId, url) {
@@ -649,7 +660,6 @@ jQuery(function () {
                        COMMON.HideProgress();
                    },
                    success: function (data) {
-                       debugger;
                        if (estado == "Activo") {
                            $(self).find("span").text("Activar");
                            $(self).attr("data-estado", "Inactivo");
@@ -724,7 +734,7 @@ jQuery(function () {
     }
 
     CONTACTOS.Create = function (url, nombre, telefono, celular, email, mensaje) {
-        debugger;
+
         var contacto = {
             "CON_Id": 0,
             "CON_Nombre": nombre,
@@ -751,10 +761,19 @@ jQuery(function () {
                       COMMON.HideProgress();
                   },
                   success: function (data) {
-                      $.gritter.add({
-                          title: 'Mensaje Enviado',
-                          text: 'Hemos registrado satisfactoriamente su mensaje. Pronto le estaremos contactando para responder a sus consultas. Gracias por preferirnos.'
-                      });
+                      if (data.wasSuccess == "True") {
+                          $.gritter.add({
+                              title: 'Mensaje Enviado',
+                              text: 'Hemos registrado satisfactoriamente su mensaje. Pronto le estaremos contactando para responder a sus consultas. Gracias por preferirnos.'
+                          });
+                      }
+                      else {
+                          $.gritter.add({
+                              title: 'Datos insuficientes',
+                              text: 'Le informamos que no se ha podido enviar su mensaje debido a que no ha completado todos los datos requeridos (*). Gracias por preferirnos.'
+                          });
+                      }
+
                   },
                   error: function (xhr) {
                       if (xhr.status == 403) {

@@ -17,6 +17,9 @@
             @Html.HiddenFor(model => model.UserId)
             @Html.HiddenFor(model => model.ST_Id)
             @Html.HiddenFor(model => model.AN_FechaExpiracion)
+            @Html.HiddenFor(model => model.UserProfile.Name)
+            @Html.HiddenFor(model => model.AN_Titulo)
+
             <div class="row-fluid">
                 <div class="span12">
                     <!-- Columna1 -->
@@ -354,8 +357,8 @@
     });
 
     function TakeService() {
-        
-        HOME.TakeService($('#AN_Id').val(), '@Url.Action("TakeService", "SolicitudServicio")');
+        debugger;
+        HOME.TakeService($('#AN_Id').val(), '@Url.Action("TakeService", "SolicitudServicio")', $('#UserProfile_Name').val(), $('#AN_Titulo').val());
     }
 
     function PostComment(link) {
