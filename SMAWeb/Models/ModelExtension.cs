@@ -96,6 +96,12 @@ namespace SMAWeb.Models
 
     }
 
+    [MetadataType(typeof(RegisterModelMetadata))]
+    public partial class RegisterModel
+    {
+
+    }
+
     #endregion
 
     #region PartialClass
@@ -527,6 +533,27 @@ namespace SMAWeb.Models
 
         [Display(Name = "Recordar mis datos")]
         public bool RememberMe { get; set; }
+    }
+
+
+    public partial class RegisterModelMetadata
+    {
+        [Required]
+        [Display(Name = "Correo Electrónico")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "La contraseña debe ser de al menos {2} caracteres de largo.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmar contraseña")]
+        [Compare("Password", ErrorMessage = "La contraseña y la confirmación no concuerdan.")]
+        public string ConfirmPassword { get; set; }
     }
 
     #endregion

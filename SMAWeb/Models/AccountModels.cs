@@ -72,7 +72,7 @@ namespace SMAWeb.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterModel
+    public partial class RegisterModel
     {
         [Required]
         [Display(Name = "Email")]

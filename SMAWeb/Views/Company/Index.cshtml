@@ -17,9 +17,9 @@
             <div class="headline">
                 <h3>Formulario de Compañía</h3>
             </div>
-            <p>
+         @*   <p>
                 @Html.ActionLink("Nuevo", "Create")
-            </p>
+            </p>*@
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -38,7 +38,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.COM_Correo)
                         </th>
-                        <th>
+                       @* <th>
                             @Html.DisplayNameFor(model => model.COM_Web)
                         </th>
                         <th>
@@ -49,7 +49,7 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.COM_ContactoEmail)
-                        </th>
+                        </th>*@
                         <th></th>
                     </tr>
                 </thead>
@@ -75,7 +75,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.COM_Correo)
                             </td>
-                            <td>
+                            @*<td>
                                 @Html.DisplayFor(modelItem => item.COM_Web)
                             </td>
                             <td>
@@ -86,11 +86,11 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.COM_ContactoEmail)
-                            </td>
+                            </td>*@
                             <td>
                                 @Html.ActionLink("Editar", "Edit", new { id = item.COM_Id }) |
-            @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
+            @*@Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ })*@ |
+            @*@Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })*@
                             </td>
                         </tr>
                     }
