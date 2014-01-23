@@ -162,7 +162,7 @@
                             </div>
                             <div class="control-group" style="margin-bottom: 0px;">
                                 <label class="control-label"><strong>@Html.DisplayNameFor(model => model.AN_Fecha)</strong></label>
-                                <div class="controls">
+                                <div class="controls" id="AN_Fecha">
                                     @Html.DisplayFor(model => model.AN_Fecha)
                                 </div>
                             </div>
@@ -332,6 +332,9 @@
 <script>
     jQuery(document).ready(function ($) {
 
+        debugger;
+        //$('#AN_Fecha').text(ShortDateTime($('#AN_Fecha').val()));
+
         $('#myCarousel').carousel({
             interval: 5000
         });
@@ -353,7 +356,7 @@
             $('#carousel-text').html($('#slide-content-' + id).html());
         });
 
-
+      
     });
 
     function TakeService() {

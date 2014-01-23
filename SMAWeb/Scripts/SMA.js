@@ -25,62 +25,73 @@ jQuery(document).ready(function () {
 
 });
 
-
-
 function CreateCategoria(data) {
     var Titulo = 'Creación de Categoría';
     var Mensaje = '';
-    var TipoAlerta = '';
+    //var TipoAlerta = '';
     if (data.wasSuccess) {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
-        TipoAlerta = 'alert-success';
+        $("#CD_Descripcion").val('');
     }
     else {
         Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
-        TipoAlerta = 'alert-error';
     }
 
-    jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
-    jQuery(".alert").alert();
-    jQuery(".alert").fadeOut(3000);
+    $.gritter.add({
+        title: Titulo,
+        text: Mensaje
+    });
+
+    //jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+    //jQuery(".alert").alert();
+    //jQuery(".alert").fadeOut(3000);
 };
 
 function CreateFAQ(data) {
     var Titulo = 'Creación de FAQ';
     var Mensaje = '';
-    var TipoAlerta = '';
-    debugger;
+    
     if (data.wasSuccess) {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
-        TipoAlerta = 'alert-success';
+        $("#FAQ_Question").val('');
+        $("#FAQ_Answer").val('');
     }
     else {
         Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
-        TipoAlerta = 'alert-error';
     }
 
-    jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
-    jQuery(".alert").alert();
-    jQuery(".alert").fadeOut(3000);
+    $.gritter.add({
+        title: Titulo,
+        text: Mensaje
+    });
+
+    //jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+    //jQuery(".alert").alert();
+    //jQuery(".alert").fadeOut(3000);
 };
 
 function CreateMembresia(data) {
-    debugger;
+    
     var Titulo = 'Creación de Membresía';
     var Mensaje = '';
-    var TipoAlerta = '';
+    
     if (data.wasSuccess) {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
-        TipoAlerta = 'alert-success';
+        $("#MP_Descripcion").val('');
+        $("#MP_ExpiracionDays").val('');
     }
     else {
         Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
-        TipoAlerta = 'alert-error';
     }
 
-    jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
-    jQuery(".alert").alert();
-    jQuery(".alert").fadeOut(3000);
+    $.gritter.add({
+        title: Titulo,
+        text: Mensaje
+    });
+
+    //jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+    //jQuery(".alert").alert();
+    //jQuery(".alert").fadeOut(3000);
 
 };
 
@@ -125,20 +136,24 @@ function CreateRegion(data) {
 function CreateSubCategoria(data) {
     var Titulo = 'Creación de SubCategoría';
     var Mensaje = '';
-    var TipoAlerta = '';
-    debugger;
+    
     if (data.wasSuccess) {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
-        TipoAlerta = 'alert-success';
+        $("#SBS_Descripcion").val('');
+        $('#CD_Id').prop('selectedIndex', 0)
     }
     else {
         Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
-        TipoAlerta = 'alert-error';
     }
 
-    jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
-    jQuery(".alert").alert();
-    jQuery(".alert").fadeOut(3000);
+    $.gritter.add({
+        title: Titulo,
+        text: Mensaje
+    });
+
+    //jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
+    //jQuery(".alert").alert();
+    //jQuery(".alert").fadeOut(3000);
 };
 
 function ShortDateTime(dateObject) {

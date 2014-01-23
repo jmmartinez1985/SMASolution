@@ -32,12 +32,19 @@
     <link href="@Url.Content("~/Content/Unify/orange.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/Unify/parallax-slider.css")" rel="stylesheet" />
 
-    
+
 
     <script src="@Url.Content("~/Scripts/raty-2.5.2/lib/jquery.raty.min.js")"></script>
     <link href="@Url.Content("~/Content/Rating.css")" rel="stylesheet" />
 
-    
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.24.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-1.8.2.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/jquery-1.8.2.intellisense.js")"></script>
+
+
+
     <script src="~/Scripts/jquery.alerts.js"></script>
     <link href="~/Content/jquery.alerts.css" rel="stylesheet" />
     <script src="~/Scripts/hover-dropdown.min.js"></script>
@@ -64,7 +71,7 @@
 
 </head>
 <body>
- 
+
 
     <!--=== Top ===-->
     <div class="top">
@@ -77,13 +84,27 @@
                     </ul>
                 </li>*@
                 @* <li class="devider">&nbsp;</li>*@
-                <li><a href="#" class="login-btn">Ayuda</a></li>
+                <li><a href="@Url.Content("~/FAQ/Details")" class="login-btn">Ayuda</a></li>
                 <li class="devider">&nbsp;</li>
 
 
                 @if (Request.IsAuthenticated)
                 {
                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -105,6 +126,14 @@
 
 
 
+
+
+
+
+
+
+
+
                     <li>
 
                         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "LoginFormAuth" }))
@@ -113,6 +142,14 @@
                            
  @Html.AntiForgeryToken()
                    
+
+
+
+
+
+
+
+
 
 
 
@@ -148,6 +185,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "login-btn" })</li>
 
 
@@ -156,7 +209,23 @@
 
 
 
+
+
+
+
+
+
+
+
                     <li class="devider">&nbsp;</li>
+
+
+
+
+
+
+
+
 
 
 

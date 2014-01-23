@@ -72,7 +72,7 @@ namespace SMAWeb.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterModel
+    public partial class RegisterModel
     {
         [Required]
         [Display(Name = "Email")]
@@ -90,6 +90,10 @@ namespace SMAWeb.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
+        [Required(ErrorMessage = "Must accept terms of agreement and conditions.")]
+        public bool AcceptTerms { get; set; }
     }
 
     public class ExternalLogin
@@ -106,5 +110,5 @@ namespace SMAWeb.Models
 
         [Required]
         public string Email { get; set; }
-    } 
+    }
 }

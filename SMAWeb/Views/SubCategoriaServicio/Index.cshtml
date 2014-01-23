@@ -50,9 +50,9 @@
                                 @Html.DisplayFor(modelItem => item.SBS_Descripcion)
                             </td>
                             <td>
-                                @Html.ActionLink("Editar", "Edit", new { id = item.SBS_Id }) |
-          @*  @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |*@
-                                @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
+                                @Html.ActionLink("Editar", "Edit", new { id = item.SBS_Id })  @*|
+           @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })*@
                             </td>
                         </tr>
                     }
@@ -81,7 +81,7 @@
             previous: "Anterior",
             next: "Siguiente",
             last: "Última",
-            perPage: 5,
+            perPage: 15,
             delay: 20
         });
     });
