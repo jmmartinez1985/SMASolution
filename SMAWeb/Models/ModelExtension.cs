@@ -145,7 +145,7 @@ namespace SMAWeb.Models
         [StringLength(20, ErrorMessage = "Por favor verifique el campo teléfono 1, sólo se permite un teléfono de hasta 20 dígitos.")]
         [Display(Name = "Teléfono 1")]
         public string AN_Telefono { get; set; }
-
+         
         [Display(Name = "Teléfono 2")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3,4})[-. ]?([0-9]{3,4})$", ErrorMessage = "Introduzca un formato de número telefonico válido ex. 0123456789, 012-345-6789, (012)-345-6789 etc.")]
         [StringLength(20, ErrorMessage = "Por favor verifique el campo teléfono 2, sólo se permite un teléfono de hasta 20 dígitos.")]
