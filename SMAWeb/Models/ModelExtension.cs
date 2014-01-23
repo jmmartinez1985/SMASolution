@@ -156,6 +156,7 @@ namespace SMAWeb.Models
         [Display(Name = "Descripción")]
         public string AN_Descripcion { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Fecha de Publicación")]
         public System.DateTime AN_Fecha { get; set; }
 

@@ -333,6 +333,10 @@
     jQuery(document).ready(function ($) {
 
         debugger;
+        var fex = $.trim($('#AN_Fecha').text());
+        fex = ShortDateTime(fex);
+        
+
         //$('#AN_Fecha').text(ShortDateTime($('#AN_Fecha').val()));
 
         $('#myCarousel').carousel({
