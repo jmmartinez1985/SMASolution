@@ -551,8 +551,11 @@
     <Content Include="Scripts\jpage\jPages.js" />
     <Content Include="Scripts\jpage\jPages.min.js" />
     <Content Include="Scripts\jpage\jquery.lazyload.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\jquery.alerts.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
@@ -711,6 +714,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\SolicitudServicio\Details.cshtml" />
+    <Content Include="Views\Home\Terminos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
