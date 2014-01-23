@@ -59,8 +59,8 @@
 
                     <div class="controls form-inline">
                         <label class="checkbox">
-                            @Html.CheckBoxFor(model=> model.AcceptTerms)  &nbsp; He leído<a href="#">Terminos y Condiciones</a></label>
-                        <input class="btn-u pull-right" id="submitregister" type="submit" value="Registrase" disabled="disabled">
+                            @Html.CheckBoxFor(model=> model.AcceptTerms)  &nbsp; He leído<a target="_blank" class="color-green" href="@Url.Action("Terminos", "Home")">&nbsp;Términos y Condiciones</a></label>
+                        <input class="btn-u-orange btn-u pull-right" id="submitregister" type="submit" value="Registrarse" disabled="disabled">
                     </div>
 
                     <hr />

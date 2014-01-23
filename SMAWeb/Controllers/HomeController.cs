@@ -104,6 +104,11 @@ namespace SMAWeb.Controllers
             return View();
         }
 
+        public ActionResult Terminos()
+        {
+            ViewBag.Message = "Terminos y Condiciones.";
+            return View();
+        }
 
     }
 }
