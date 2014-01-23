@@ -141,11 +141,13 @@ namespace SMAWeb.Models
         public string AN_Titulo { get; set; }
 
         [Required(ErrorMessage = "Por favor ingrese el teléfono 1.")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3,4})[-. ]?([0-9]{3,4})$", ErrorMessage = "Introduzca un formato de número telefonico válido ex. 0123456789, 012-345-6789, (012)-345-6789 etc.")]
         [StringLength(20, ErrorMessage = "Por favor verifique el campo teléfono 1, sólo se permite un teléfono de hasta 20 dígitos.")]
         [Display(Name = "Teléfono 1")]
         public string AN_Telefono { get; set; }
-
+         
         [Display(Name = "Teléfono 2")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3,4})[-. ]?([0-9]{3,4})$", ErrorMessage = "Introduzca un formato de número telefonico válido ex. 0123456789, 012-345-6789, (012)-345-6789 etc.")]
         [StringLength(20, ErrorMessage = "Por favor verifique el campo teléfono 2, sólo se permite un teléfono de hasta 20 dígitos.")]
         public string AN_Celular { get; set; }
 
@@ -354,9 +356,11 @@ namespace SMAWeb.Models
         public string CON_Nombre { get; set; }
 
         [Display(Name = "Teléfono")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3,4})[-. ]?([0-9]{3,4})$", ErrorMessage = "Introduzca un formato de número telefonico válido ex. 0123456789, 012-345-6789, (012)-345-6789 etc.")]
         public string CON_Telefono { get; set; }
 
         [Display(Name = "Celular")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3,4})[-. ]?([0-9]{3,4})$", ErrorMessage = "Introduzca un formato de número telefonico válido ex. 0123456789, 012-345-6789, (012)-345-6789 etc.")]
         public string CON_Celular { get; set; }
 
         [Required(ErrorMessage = "Por favor ingrese el correo electrónico.")]
@@ -391,6 +395,7 @@ namespace SMAWeb.Models
 
         [Required(ErrorMessage = "Por favor ingrese el teléfono de la compañía")]
         [Display(Name = "Teléfono")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3,4})[-. ]?([0-9]{3,4})$", ErrorMessage = "Introduzca un formato de número telefonico válido ex. 0123456789, 012-345-6789, (012)-345-6789 etc.")]
         [StringLength(20, ErrorMessage = "Por favor verifique el campo teléfono de la compañía, sólo se permite un número telefónico de hasta 20 dígitos.")]
         public string COM_Telefono { get; set; }
 
@@ -406,6 +411,7 @@ namespace SMAWeb.Models
 
         [Display(Name = "Persona de Contacto")]
         [StringLength(50, ErrorMessage = "Por favor verifique el campo persona, sólo se permite un nombre de persona de contacto de hasta 50 dígitos.")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3,4})[-. ]?([0-9]{3,4})$", ErrorMessage = "Introduzca un formato de número telefonico válido ex. 0123456789, 012-345-6789, (012)-345-6789 etc.")]
         public string COM_ContactoNombre { get; set; }
 
         [Display(Name = "Teléfono de Contacto")]
