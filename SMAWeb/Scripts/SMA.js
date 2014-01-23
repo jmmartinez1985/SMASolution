@@ -539,10 +539,18 @@ jQuery(function () {
                     success: function (data) {
                         debugger;
 
-                        $.gritter.add({
-                            title: 'Servicio Solicitado',
-                            text: 'El servicio ha sido solicitado satisfactoriamente. El anunciante recibirá un correo electrónico con sus datos para poder contactarle. Gracias por preferirnos.'
-                        });
+                        if (data.Message != null | data.Message != undefined) {
+                            $.gritter.add({
+                                title: 'Solicitud cancelada por SMA',
+                                text: data.Message
+                            });
+                        }
+                        else {
+                            $.gritter.add({
+                                title: 'Servicio Solicitado',
+                                text: 'El servicio ha sido solicitado satisfactoriamente. El anunciante recibirá un correo electrónico con sus datos para poder contactarle. Gracias por preferirnos.'
+                            });
+                        }
                         //$("#anunciosAvailable").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
                         //$('.alert').alert();
                         //$('.alert').fadeOut(3000)

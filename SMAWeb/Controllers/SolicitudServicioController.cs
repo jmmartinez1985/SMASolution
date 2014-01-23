@@ -62,7 +62,7 @@ namespace SMAWeb.Controllers
             return View(mysol);
         }
 
-         
+
 
         [HttpPost]
         [AjaxAuthorizeAttribute(Roles = "Admin, Users")]
@@ -73,6 +73,11 @@ namespace SMAWeb.Controllers
                 int anuncioId = int.Parse(form[0]);
                 using (var db = new Entities())
                 {
+                    var existSolicitud = db.SS_SolicitudServicio.Any(c => c.AN_Id == anuncioId && c.ST_Id == 1);
+                    if (existSolicitud)
+                    {
+                        return Json(new { Message = "Tiene una solicitud activa para este anuncio que desea solicitar, por favor ponerse en contacto con el anunciante." });
+                    }
                     var solicitud = db.SS_SolicitudServicio.Add(new SS_SolicitudServicio
                     {
                         AN_Id = anuncioId,
@@ -96,7 +101,7 @@ namespace SMAWeb.Controllers
             var mysol = new List<SolicitudViewModel>();
             using (var db = new Entities())
             {
-                var solicitudes = db.SS_SolicitudServicio.OrderByDescending(c => c.SS_Id ).Where(c => c.AN_Anuncios.UserId == WebSecurity.CurrentUserId);
+                var solicitudes = db.SS_SolicitudServicio.OrderByDescending(c => c.SS_Id).Where(c => c.AN_Anuncios.UserId == WebSecurity.CurrentUserId);
                 Func<int, string> x = value =>
                 {
                     switch (value)
