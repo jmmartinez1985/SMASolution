@@ -25,8 +25,6 @@ jQuery(document).ready(function () {
 
 });
 
-
-
 function CreateCategoria(data) {
     var Titulo = 'Creación de Categoría';
     var Mensaje = '';
