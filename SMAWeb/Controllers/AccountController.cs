@@ -12,6 +12,7 @@ using SMAWeb.Filters;
 using SMAWeb.Models;
 using System.Net.Mail;
 using System.IO;
+using Recaptcha;
 
 namespace SMAWeb.Controllers
 {
@@ -76,14 +77,19 @@ namespace SMAWeb.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterModel model)
+        [RecaptchaControlMvc.CaptchaValidator]
+        public ActionResult Register(RegisterModel model, bool captchaValid)
         {
+            if (!captchaValid)
+            {
+                ModelState.AddModelError(string.Empty, "El captcha ingresado no es correcto, por favor vuelva a intentarlo.");
+            }
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.Email, model.Password );
+                    WebSecurity.CreateUserAndAccount(model.Email, model.Password);
                     WebSecurity.Login(model.Email, model.Password);
                     if (!Roles.IsUserInRole("Users"))
                         Roles.AddUsersToRole(new string[] { model.Email }, "Users");

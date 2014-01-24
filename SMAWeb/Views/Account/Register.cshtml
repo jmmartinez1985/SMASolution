@@ -1,4 +1,5 @@
-﻿@model SMAWeb.Models.RegisterModel
+﻿@using Recaptcha
+@model SMAWeb.Models.RegisterModel
 @{
     ViewBag.Title = "Registro de Usuario";
 }
@@ -34,6 +35,9 @@
                             <label>Confirmar Contraseña <span class="color-red">*</span></label>
                             @Html.PasswordFor(m => m.ConfirmPassword, new { @placeholder = "Confirmar Contraseña", @class = "span12" })
                         </div>
+                    </div>
+                    <div class="controls">
+                        @Html.Raw(Html.GenerateCaptcha())
                     </div>
                 
 
