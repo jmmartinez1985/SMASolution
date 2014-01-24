@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using SMAWeb.Extensions;
 using SMAWeb.Filters;
+using WebMatrix.WebData;
 
 namespace SMAWeb.Controllers
 {
@@ -21,9 +22,21 @@ namespace SMAWeb.Controllers
                 var ListCategorias = db.CD_CategoriaServicio.ToList();
                 var firstCategoria = ListCategorias.FirstOrDefault().CD_Id;
                 var ListSubCategory = db.SBS_SubCategoriaServicio.Where(c => c.CD_Id == firstCategoria).ToList();
-
+                ViewBag.IsIncomplete = false;
                 ViewBag.Categories = new SelectList(ListCategorias, "CD_Id", "CD_Descripcion");
                 ViewBag.SubCategories = new SelectList(ListSubCategory, "SBS_Id", "SBS_Descripcion");
+
+                if (Request.IsAuthenticated)
+                {
+                    var user = db.UserProfile.FirstOrDefault(c=> c.UserId== WebSecurity.CurrentUserId);
+                    if (user != null)
+                    {
+                        if (user.Name == null | user.UserName == null)
+                        {
+                            ViewBag.IsIncomplete = true;
+                        }
+                    }
+                }
             }
 
             return View();

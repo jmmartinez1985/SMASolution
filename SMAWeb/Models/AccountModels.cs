@@ -31,6 +31,8 @@ namespace SMAWeb.Models
     {
         [Required]
         [Display(Name = "Nombre de Usuario")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string UserName { get; set; }
 
         public string ExternalLoginData { get; set; }

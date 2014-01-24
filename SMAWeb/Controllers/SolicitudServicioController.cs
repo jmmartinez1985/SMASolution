@@ -78,6 +78,12 @@ namespace SMAWeb.Controllers
                     {
                         return Json(new { Message = "Tiene una solicitud activa para este anuncio que desea solicitar, por favor ponerse en contacto con el anunciante." });
                     }
+                    var anuncio = db.AN_Anuncios.Find(anuncioId);
+                    if (anuncio.UserId == WebSecurity.CurrentUserId)
+                    {
+                        return Json(new { Message = "No se puede hacer solicitudes de anuncios con su propio usuario." });
+                    }
+
                     var solicitud = db.SS_SolicitudServicio.Add(new SS_SolicitudServicio
                     {
                         AN_Id = anuncioId,

@@ -3,6 +3,7 @@
 }
 
 
+
 <!--=== Purchase Block ===-->
 <div class="row-fluid purchase margin-bottom-30">
     <div class="container">
@@ -16,6 +17,16 @@
 <!--/row-fluid-->
 <!-- End Purchase Block -->
 
+@if(Request.IsAuthenticated && ViewBag.IsIncomplete)
+{
+<div class="row-fluid">
+    <div class="alert alert-error">
+         <strong><a href="@Url.Action("UserProfile","EditUser")">Haga click aquí</a></strong> para completar el registro de su perfil.
+        
+      </div>
+    <br />
+</div>
+}
 <div class="slider-inner">
     <div id="da-slider" class="da-slider">
         <div class="da-slide">
@@ -74,6 +85,8 @@
     </div>
     <!--/da-slider-->
 </div>
+
+
 
 <br />
 

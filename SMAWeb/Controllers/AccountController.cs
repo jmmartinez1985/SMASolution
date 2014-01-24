@@ -83,7 +83,7 @@ namespace SMAWeb.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.Email, model.Password);
+                    WebSecurity.CreateUserAndAccount(model.Email, model.Password );
                     WebSecurity.Login(model.Email, model.Password);
                     if (!Roles.IsUserInRole("Users"))
                         Roles.AddUsersToRole(new string[] { model.Email }, "Users");
@@ -296,9 +296,6 @@ namespace SMAWeb.Controllers
 
             client.Send(msg);
         }
-
-
-
 
         //
         // POST: /Account/Disassociate
