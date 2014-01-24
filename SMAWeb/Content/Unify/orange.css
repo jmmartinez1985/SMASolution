@@ -345,7 +345,7 @@ input.input-validation-error {
     border: 1px solid #e80c4d;
 }
 
-textarea.input-validation-error {
+.input-validation-error {
     border: 1px solid #e80c4d;
 }
 

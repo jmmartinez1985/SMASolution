@@ -26,6 +26,11 @@ namespace SMAWeb.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (WebSecurity.CurrentUserId > 0)
+            {
+                WebSecurity.Logout();
+                return RedirectToAction("Login", "Account");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -68,6 +73,11 @@ namespace SMAWeb.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (WebSecurity.CurrentUserId > 0)
+            {
+                WebSecurity.Logout();
+                return RedirectToAction("Register", "Account");
+            }
             return View();
         }
 
