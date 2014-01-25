@@ -26,21 +26,41 @@ namespace SMAWeb.Controllers
                 ViewBag.Categories = new SelectList(ListCategorias, "CD_Id", "CD_Descripcion");
                 ViewBag.SubCategories = new SelectList(ListSubCategory, "SBS_Id", "SBS_Descripcion");
 
-                if (Request.IsAuthenticated)
-                {
-                    var user = db.UserProfile.FirstOrDefault(c=> c.UserId== WebSecurity.CurrentUserId);
-                    if (user != null)
-                    {
-                        if (user.Name == null | user.UserName == null)
-                        {
-                            ViewBag.IsIncomplete = true;
-                        }
-                    }
-                }
+                //if (Request.IsAuthenticated)
+                //{
+                //    var user = db.UserProfile.FirstOrDefault(c => c.UserId == WebSecurity.CurrentUserId);
+                //    if (user != null)
+                //    {
+                //        if (user.Name == null | user.UserName == null)
+                //        {
+                //            ViewBag.IsIncomplete = true;
+                //        }
+                //    }
+                //}
             }
 
             return View();
         }
+
+        public ActionResult VerifyCompleteCredential()
+        {
+            using (var db = new Entities())
+            {
+                if (Request.IsAuthenticated)
+                {
+                    var user = db.UserProfile.FirstOrDefault(c => c.UserId == WebSecurity.CurrentUserId);
+                    if (user != null)
+                    {
+                        if (user.Name == null | user.UserName == null)
+                        {
+                            return Json(new { IsIncomplete = true });
+                        }
+                    }
+                }
+            }
+            return Json(new { IsIncomplete = false });
+        }
+
 
         public ActionResult GetServices()
         {

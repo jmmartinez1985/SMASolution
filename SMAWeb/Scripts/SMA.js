@@ -270,6 +270,11 @@ jQuery(function () {
         $ki.unblockUI();
     }
 
+    HOME.VerifyCredential = function (url)
+    {
+
+    }
+
     HOME.GetServices = function (url) {
 
         jQuery.ajax(
