@@ -34,7 +34,6 @@ namespace SMAWeb.Models
         public DbSet<CON_Contactenos> CON_Contactenos { get; set; }
         public DbSet<CONF_Parametros> CONF_Parametros { get; set; }
         public DbSet<FAQs> FAQs { get; set; }
-        public DbSet<MB_Membresia> MB_Membresia { get; set; }
         public DbSet<MT_MultimediaTipos> MT_MultimediaTipos { get; set; }
         public DbSet<PA_Paises> PA_Paises { get; set; }
         public DbSet<SBS_SubCategoriaServicio> SBS_SubCategoriaServicio { get; set; }
@@ -51,6 +50,8 @@ namespace SMAWeb.Models
         public DbSet<AE_AnunciosExtras> AE_AnunciosExtras { get; set; }
         public DbSet<AN_Anuncios> AN_Anuncios { get; set; }
         public DbSet<ELMAH_Error> ELMAH_Error { get; set; }
+        public DbSet<MB_Membresia> MB_Membresia { get; set; }
+        public DbSet<MC_MembresiaControl> MC_MembresiaControl { get; set; }
     
         public virtual ObjectResult<SEL_BusquedaAvanzada_Result> SEL_BusquedaAvanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar)
         {

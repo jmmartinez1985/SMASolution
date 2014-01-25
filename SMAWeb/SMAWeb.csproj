@@ -257,6 +257,9 @@
     <Compile Include="Models\MB_Membresia.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MC_MembresiaControl.cs">
+      <DependentUpon>SMAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelExtension.cs" />
     <Compile Include="Models\MT_MultimediaTipos.cs">
       <DependentUpon>SMAModel.tt</DependentUpon>
