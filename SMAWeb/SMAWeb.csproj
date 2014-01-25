@@ -313,6 +313,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Assemblies\Recaptcha.dll" />
     <Content Include="Content\Bootstrap2.3\bootstrap-responsive.css" />
     <Content Include="Content\Bootstrap2.3\bootstrap-responsive.min.css" />
     <Content Include="Content\Bootstrap2.3\bootstrap.css" />
@@ -721,7 +722,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assemblies\" />
     <Folder Include="Extra\" />
     <Folder Include="FilesUploaded\Admin\" />
     <Folder Include="FilesUploaded\Profiles\" />
