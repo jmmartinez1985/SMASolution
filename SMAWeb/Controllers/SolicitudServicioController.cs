@@ -41,6 +41,8 @@ namespace SMAWeb.Controllers
                         case 5: return "Completado";
                         case 6: return "Iniciar Tarea";
                         case 7: return "A revisión";
+                        case 8: return "Eliminado";
+                        case 9: return "Expirado";
                         default: return "";
                     }
                 };
@@ -119,6 +121,8 @@ namespace SMAWeb.Controllers
                         case 5: return "Completado";
                         case 6: return "Iniciar Tarea";
                         case 7: return "A revisión";
+                        case 8: return "Eliminado";
+                        case 9: return "Expirado";
                         default: return "";
                     }
                 };

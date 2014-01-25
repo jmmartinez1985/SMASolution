@@ -20,6 +20,7 @@ namespace SMAWeb.Models
             this.SS_SolicitudServicio = new HashSet<SS_SolicitudServicio>();
             this.webpages_Roles = new HashSet<webpages_Roles>();
             this.AN_Anuncios = new HashSet<AN_Anuncios>();
+            this.MC_MembresiaControl = new HashSet<MC_MembresiaControl>();
         }
     
         public int UserId { get; set; }
@@ -34,11 +35,12 @@ namespace SMAWeb.Models
         public string Image { get; set; }
     
         public virtual ICollection<CR_ComentarioReview> CR_ComentarioReview { get; set; }
-        public virtual MB_Membresia MB_Membresia { get; set; }
         public virtual PA_Paises PA_Paises { get; set; }
         public virtual ICollection<SS_SolicitudServicio> SS_SolicitudServicio { get; set; }
         public virtual ST_Estatus ST_Estatus { get; set; }
         public virtual ICollection<webpages_Roles> webpages_Roles { get; set; }
         public virtual ICollection<AN_Anuncios> AN_Anuncios { get; set; }
+        public virtual MB_Membresia MB_Membresia { get; set; }
+        public virtual ICollection<MC_MembresiaControl> MC_MembresiaControl { get; set; }
     }
 }
