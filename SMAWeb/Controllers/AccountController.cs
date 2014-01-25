@@ -134,9 +134,9 @@ namespace SMAWeb.Controllers
             if (user == null)
             {
                 if (Email == string.Empty)
-                    TempData["Message"] = "No ha ingresado el correo electrónico.";
+                    TempData["Message"] = "No se puede continuar con su solicitud pues no ha ingresado el correo electrónico.";
                 else
-                    TempData["Message"] = "El correo electronico ingresado no corresponde a un usuario existente.";
+                    TempData["Message"] = "Estimado usuario, le informamos que el correo electrónico ingresado no corresponde a ningún usuario existente.";
             }
             else
             {
@@ -156,18 +156,25 @@ namespace SMAWeb.Controllers
                 try
                 {
                     SendEMail(emailid, subject, body);
-                    TempData["Message"] = "Mensaje enviado.";
+                    TempData["Message"] = "Estimado usuario, le hemos enviado un correo electrónico con el cual podrá restaurar su contraseña.";
                 }
                 catch (Exception ex)
                 {
-                    TempData["Message"] = "Ha ocurrido un error enviando el mensaje." + ex.Message;
+                    TempData["Message"] = "Ha ocurrido un error al momento de enviar el correo. Vuelva a intentarlo más tarde a comuníquese con nuestros agentes Service Market.  "; // + ex.Message;
                 }
                 //only for testing
-                TempData["Message"] = "Se ha enviado un correo electrónico en el cual podrá restaurar su contraseña.";
+                //TempData["Message"] = "Se ha enviado un correo electrónico en el cual podrá restaurar su contraseña.";
 
             }
 
-            return View();
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { message = TempData["Message"] });
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult ResetPasswordComplete()

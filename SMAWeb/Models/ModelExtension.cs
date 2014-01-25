@@ -308,8 +308,9 @@ namespace SMAWeb.Models
         [Display(Name = "Correo Electrónico")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required (ErrorMessage = "Por favor ingrese su nombre completo.")]
         [Display(Name = "Nombre Completo")]
+   
         public string Name { get; set; }
 
         [Display(Name = "Profesión")]

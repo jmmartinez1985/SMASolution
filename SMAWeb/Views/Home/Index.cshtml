@@ -217,6 +217,7 @@
             var attr = $(this).attr('data-val');
             HOME.CallFilter(attr, '@Url.Action("GetInformationAnuncios", "Anuncios")');
         });
+        HOME.VerifyCredential('@Url.Action("VerifyCompleteCredential", "Home")', '@Url.Action("EditUser", "UserProfile")');
     });
 
     function CheckVisibleProjects() {

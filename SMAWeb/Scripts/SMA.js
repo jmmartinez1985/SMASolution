@@ -25,6 +25,16 @@ jQuery(document).ready(function () {
 
 });
 
+function ForgotPassword(data) {
+    var Titulo = 'Olvidó su contraseña';
+    $("#Email").val('');
+    $.gritter.add({
+        title: Titulo,
+        text: data.message
+    });
+
+}
+
 function CreateCategoria(data) {
     var Titulo = 'Creación de Categoría';
     var Mensaje = '';
@@ -50,7 +60,7 @@ function CreateCategoria(data) {
 function CreateFAQ(data) {
     var Titulo = 'Creación de FAQ';
     var Mensaje = '';
-    
+
     if (data.wasSuccess) {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
         $("#FAQ_Question").val('');
@@ -71,10 +81,10 @@ function CreateFAQ(data) {
 };
 
 function CreateMembresia(data) {
-    
+
     var Titulo = 'Creación de Membresía';
     var Mensaje = '';
-    
+
     if (data.wasSuccess) {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
         $("#MP_Descripcion").val('');
@@ -136,7 +146,7 @@ function CreateRegion(data) {
 function CreateSubCategoria(data) {
     var Titulo = 'Creación de SubCategoría';
     var Mensaje = '';
-    
+
     if (data.wasSuccess) {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
         $("#SBS_Descripcion").val('');
@@ -270,13 +280,35 @@ jQuery(function () {
         $ki.unblockUI();
     }
 
-    HOME.VerifyCredential = function (url)
-    {
+    HOME.VerifyCredential = function (url, redirect) {
 
+        jQuery.ajax(
+        {
+            type: 'post',
+            url: url,
+            success: function (data) {
+                debugger;
+                if (data.IsIncomplete == true) {
+                    bootbox.confirm("<h5>Estimado usuario, antes de seguir disfrutando de Service Market le solicitamos por favor completar algunos datos requeridos en su perfil. ¿Desea completar su perfil en este momento?</h5>", "Cancelar", "Aceptar", function (result) {
+                        if (result) {
+                            $(location).attr('href', redirect);
+                        }
+                    });
+                }
+            },
+            error: function (xhr) {
+                if (xhr.status == 403) {
+
+                }
+                else {
+                    bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                    });
+                }
+            }
+        });
     }
 
     HOME.GetServices = function (url) {
-
         jQuery.ajax(
         {
             type: 'post',
