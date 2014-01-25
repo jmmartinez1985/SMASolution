@@ -10,20 +10,17 @@
  *
  */
 
-jQuery(document).ready(function () {
-    //jQuery('.validation-summary-errors').wrap('<div class="alert fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p></p></strong><p></p></div>').after('<div id="divBlanco"></div>');
-    jQuery('.validation-summary-errors').addClass("alert alert-error");
 
-
-    if (jQuery("#statusMessage").text().trim().length > 0) {
-        jQuery('#statusMessage').addClass("alert alert-info");
-        jQuery('#statusMessage').append('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>');
-    }
-    else {
-        jQuery('#statusMessage').removeClass("alert alert-info");
-    }
-
-});
+function ChangePassword(data) {
+    var Titulo = 'Cambio de contraseña';
+    $("#OldPassword").val('');
+    $("#NewPassword").val('');
+    $("#ConfirmPassword").val('');
+    $.gritter.add({
+        title: Titulo,
+        text: data.message
+    });
+}
 
 function ForgotPassword(data) {
     var Titulo = 'Olvidó su contraseña';
@@ -32,7 +29,6 @@ function ForgotPassword(data) {
         title: Titulo,
         text: data.message
     });
-
 }
 
 function CreateCategoria(data) {

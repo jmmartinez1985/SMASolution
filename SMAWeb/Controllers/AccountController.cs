@@ -361,7 +361,16 @@ namespace SMAWeb.Controllers
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");
-            return View();
+           
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { message = TempData["Message"] });
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         //
@@ -391,11 +400,15 @@ namespace SMAWeb.Controllers
 
                     if (changePasswordSucceeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        //Cambio de funcionalidad
+                        //return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        return Json(new { message = "Su contraseña ha sido cambiada satisfactoriamente." });
                     }
                     else
                     {
+                        //Cambio de funcionalidad
                         ModelState.AddModelError("", "La actual contraseña es incorrecta o la nueva contraseña es inválida.");
+                        return Json(new { message = "La actual contraseña es incorrecta o la nueva contraseña es inválida." });
                     }
                 }
             }

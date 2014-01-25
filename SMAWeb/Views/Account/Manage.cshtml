@@ -21,9 +21,6 @@
         @Html.Partial("_SetPasswordPartial")
     }
 
-    <div id="statusMessage" class="margin-bottom-20">
-        @ViewBag.StatusMessage
-    </div>
     @* <div class="alert alert-info fade-in">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>*@
 
@@ -38,14 +35,3 @@
         @Scripts.Render("~/bundles/jqueryval")
     }
 </div>
-@*<script type="text/javascript">
-    jQuery(document).ready(function () {
-        if (jQuery("#statusMessage").text().trim().length > 0) {
-            jQuery('#statusMessage').addClass("alert alert-info");
-            jQuery('#statusMessage').append('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>');
-        }
-        else {
-            jQuery('#statusMessage').removeClass("alert alert-info");
-        }
-    });
-</script>*@
