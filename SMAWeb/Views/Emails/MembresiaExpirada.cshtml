@@ -4,7 +4,7 @@
 
 To: @ViewBag.To
 From: lolcats@website.com
-Subject: Registro en Service Market
+Subject: Membresía Expirada
 
 
 <br />
@@ -14,15 +14,15 @@ Subject: Registro en Service Market
             <a href="@Url.Action("Index", "Home")">
                 <img id="logo-header" src="@Url.Content("~/Images/logo1-blue.png")" alt="Logo"></a>
         </div>
-        <h3>Registro en Service Market</h3>
+        <h3>Membresía Expirada</h3>
     </div>
     <h5>Estimado(a) @ViewBag.UserName :
     </h5>
     <br />
-    <h5>Ha iniciado el proceso de registro en Service Market, para concluir el mismo haga clic en el siguiente link de confirmación @ViewBag.ConfirmLink  @* http://localhost/Account/RegisterConfirmation/@ViewBag.ConfirmationToken*@
-    </h5>
-    <h5>Si usted no ha iniciado este proceso comuníquese con nuestro de atención al usuario.
-    </h5>
+    <h5>Service Market le informa que su membresía ha expirarado. Si desea extender su membresía haga clic<a href="@ViewBag.ConfirmLink">&nbsp;aqui.</a></h5>  
+    <br />
+    <h5>Le recordamos que al expirar su membresía sus anuncios serán desactivados y se le asignará una membresía totalmente gratuita.</h5>
+    <br />
     <br />
     <h5>Gracias por preferirnos.</h5>
     <br />

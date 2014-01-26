@@ -8436,7 +8436,7 @@
             <div class="row-fluid">
               <div class="span12">
                 <p>
-                  2013 &#169; Service Market. Todos los derechos reservados. <a href="#">Política de Privacidad</a> | <a href="#">Término de Servicios</a>
+                  2014 &#169; Service Market. Todos los derechos reservados. <a href="#">Política de Privacidad</a> | <a href="#">Término de Servicios</a>
                 </p>
               </div>
             </div>

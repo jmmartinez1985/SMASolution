@@ -46,10 +46,10 @@
  @Html.AntiForgeryToken()
  @Html.ValidationSummary(true)
  @Html.HiddenFor(model => model.UserId)
-
+                    @Html.HiddenFor(model => model.UserName)
                     <div class="row-fluid">
                         <div class="span3">@Html.LabelFor(model => model.UserName, new { @class = "control-label" })</div>
-                        <div class="span3">@Html.TextBoxFor(model => model.UserName, new { @placeholder = "Correo Electrónico", @class = "input-xxlarge", @disabled = "disabled" })
+                        <div class="span3">@Html.DisplayFor(model => model.UserName)
 
                         </div>
                     </div>

@@ -733,6 +733,8 @@
     <Content Include="Views\Account\ConfirmationSuccess.cshtml" />
     <Content Include="Views\Account\RegisterInstruction.cshtml" />
     <Content Include="Views\Emails\Web.config" />
+    <Content Include="Views\Emails\MembresiaProximaExpirar.cshtml" />
+    <Content Include="Views\Emails\MembresiaExpirada.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

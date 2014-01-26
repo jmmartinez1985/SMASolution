@@ -283,7 +283,7 @@ jQuery(function () {
             type: 'post',
             url: url,
             success: function (data) {
-                debugger;
+
                 if (data.IsIncomplete == true) {
                     bootbox.confirm("<h5>Estimado usuario, antes de seguir disfrutando de Service Market le solicitamos por favor completar algunos datos requeridos en su perfil. ¿Desea completar su perfil en este momento?</h5>", "Cancelar", "Aceptar", function (result) {
                         if (result) {
@@ -297,8 +297,9 @@ jQuery(function () {
 
                 }
                 else {
-                    bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
-                    });
+                    if (xhr.responseText != "")
+                        bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                        });
                 }
             }
         });
@@ -310,6 +311,7 @@ jQuery(function () {
             type: 'post',
             url: url,//'@Url.Action("GetServices", "Home")',
             success: function (data) {
+
                 var result = JSON.parse(data);
                 var htmldata = '';
                 jQuery('#firstSearch').show(300);
@@ -373,7 +375,8 @@ jQuery(function () {
                 });
             },
             error: function (xhr) {
-                alert('An error has ocurred loading data: ' + xhr.responseText, 'Error');
+                if (xhr.responseText != "")
+                    alert('An error has ocurred loading data: ' + xhr.responseText, 'Error');
             }
         });
 
@@ -741,8 +744,9 @@ jQuery(function () {
 
                        }
                        else {
-                           bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
-                           });
+                           if (xhr.responseText != "")
+                               bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                               });
                        }
                    }
                });
@@ -779,8 +783,9 @@ jQuery(function () {
 
                        }
                        else {
-                           bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
-                           });
+                           if (xhr.responseText != "")
+                               bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                               });
                        }
                    }
                });
@@ -789,24 +794,21 @@ jQuery(function () {
 
     }
 
-    ANUNCIOS.ValidateCreate = function (url)
-    {
+    ANUNCIOS.ValidateCreate = function (url) {
         $.ajax({
             url: url,
             type: 'get',
             dataType: "json",
             contentType: "application/json; charset=utf-8",
-          
+
             success: function (data) {
-                if (data.ErrorMessage != null | data.ErrorMessage != undefined)
-                {
+                if (data.ErrorMessage != null | data.ErrorMessage != undefined) {
                     $.gritter.add({
                         title: 'Límite de anuncios publicados superado.',
                         text: data.ErrorMessage
                     });
                 }
-                else if (data.UrlAnuncios != null | data.UrlAnuncios != undefined)
-                {
+                else if (data.UrlAnuncios != null | data.UrlAnuncios != undefined) {
                     window.location = data.UrlAnuncios;
                 }
             },
@@ -869,8 +871,9 @@ jQuery(function () {
 
                       }
                       else {
-                          bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
-                          });
+                          if (xhr.responseText != "")
+                              bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                              });
                       }
                   }
               });
