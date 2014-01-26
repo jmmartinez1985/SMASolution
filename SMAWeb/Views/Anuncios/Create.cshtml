@@ -43,19 +43,22 @@
                                 @Html.LabelFor(model => model.PA_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("PA_Id", (IEnumerable<SelectListItem>)ViewBag.PA_Id, "Selecione el país", new { @class = "input-block-level" })
+                                @*@Html.DropDownList("PA_Id", (IEnumerable<SelectListItem>)ViewBag.PA_Id, "Selecione el país", new { @class = "input-block-level" })  *@
+                                @Html.DropDownListFor(model => model.PA_Id, (IEnumerable<SelectListItem>)ViewBag.PA_Id, "Selecione el país", new { @class = "input-block-level" })
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.CD_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("CD_Id", (IEnumerable<SelectListItem>)ViewBag.CD_Id, "Selecione la categoría", new { @class = "input-block-level" })
+                               @*@Html.DropDownList("CD_Id", (IEnumerable<SelectListItem>)ViewBag.CD_Id, "Selecione la categoría", new { @class = "input-block-level" })*@
+                                 @Html.DropDownListFor(model => model.CD_Id, (IEnumerable<SelectListItem>)ViewBag.CD_Id, "Selecione la categoría", new { @class = "input-block-level" })
                             </div>
                             <div class="controls form-inline">
-                                @Html.LabelFor(model => model.SBS_Id)
+                                @Html.LabelFor(model => model.SBS_Id) 
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id, "Selecione la subcategoría", new { @class = "input-block-level" })
+                             @*   @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id, "Selecione la subcategoría", new { @class = "input-block-level" })*@
+                                @Html.DropDownListFor(model => model.SBS_Id, (IEnumerable<SelectListItem>)ViewBag.SBS_Id, "Selecione la subcategoría", new { @class = "input-block-level" })
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.AN_Telefono)<span class="color-red"> *</span>
@@ -190,7 +193,7 @@
         $('.submitback').show();
     }
 
-  @*  jQuery("#CD_Id").change(function () {
+    @*  jQuery("#CD_Id").change(function () {
         $.ajax({
             dataType: "json",
             type: 'post',
