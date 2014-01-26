@@ -16,8 +16,8 @@ namespace SMAWeb.Models
     {
         public MB_Membresia()
         {
-            this.MC_MembresiaControl = new HashSet<MC_MembresiaControl>();
             this.UserProfile = new HashSet<UserProfile>();
+            this.MC_MembresiaControl = new HashSet<MC_MembresiaControl>();
         }
     
         public int MP_MemberShipId { get; set; }
@@ -25,7 +25,7 @@ namespace SMAWeb.Models
         public Nullable<int> MP_ExpiracionDays { get; set; }
         public Nullable<int> MP_AnunciosQty { get; set; }
     
-        public virtual ICollection<MC_MembresiaControl> MC_MembresiaControl { get; set; }
         public virtual ICollection<UserProfile> UserProfile { get; set; }
+        public virtual ICollection<MC_MembresiaControl> MC_MembresiaControl { get; set; }
     }
 }

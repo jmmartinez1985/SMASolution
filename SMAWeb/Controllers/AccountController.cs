@@ -13,6 +13,7 @@ using SMAWeb.Models;
 using System.Net.Mail;
 using System.IO;
 using Recaptcha;
+using Postal;
 
 namespace SMAWeb.Controllers
 {
@@ -99,11 +100,28 @@ namespace SMAWeb.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.Email, model.Password);
-                    WebSecurity.Login(model.Email, model.Password);
+
+                    string confirmationToken =
+                       WebSecurity.CreateUserAndAccount(model.Email, model.Password,null, true);
+
+                    ManageMembership(model.Email);
                     if (!Roles.IsUserInRole("Users"))
                         Roles.AddUsersToRole(new string[] { model.Email }, "Users");
-                    return RedirectToAction("EditUser", "UserProfile");
+                    dynamic email = new Email("RegEmail");
+                    var confirmLink = Url.Action("RegisterConfirmation", "Account", null, "http");
+                    email.ConfirmLink = confirmLink + "/" + confirmationToken;
+                    email.To = model.Email;
+                    email.UserName = model.Email;
+                    email.ConfirmationToken = confirmationToken;
+                    email.Send();
+                    return RedirectToAction("RegisterInstruction", "Account");
+
+
+                    // WebSecurity.CreateUserAndAccount(model.Email, model.Password);
+                    //WebSecurity.Login(model.Email, model.Password);
+                    //if (!Roles.IsUserInRole("Users"))
+                    //    Roles.AddUsersToRole(new string[] { model.Email }, "Users");
+                    //return RedirectToAction("EditUser", "UserProfile");
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -178,6 +196,35 @@ namespace SMAWeb.Controllers
         }
 
         public ActionResult ResetPasswordComplete()
+        {
+            return View();
+        }
+
+
+        [AllowAnonymous]
+        public ActionResult RegisterInstruction()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult RegisterConfirmation(string Id)
+        {
+            if (WebSecurity.ConfirmAccount(Id))
+            {
+                return RedirectToAction("ConfirmationSuccess");
+            }
+            return RedirectToAction("ConfirmationFailure");
+        }
+
+        [AllowAnonymous]
+        public ActionResult ConfirmationSuccess()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult ConfirmationFailure()
         {
             return View();
         }
@@ -361,7 +408,7 @@ namespace SMAWeb.Controllers
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");
-           
+
             if (Request.IsAjaxRequest())
             {
                 return Json(new { message = TempData["Message"] });
@@ -648,6 +695,41 @@ namespace SMAWeb.Controllers
                     return "Ha ocurrido un error. Por favor verifique los datos ingresados y vuelva a intentarlo. Si los problemas continuan por favor contactenos.";
             }
         }
+
+        private void ManageMembership(string username)
+        {
+            try
+            {
+                var userId = WebSecurity.GetUserId(username);
+                if (userId != null)
+                {
+                    using (var db = new Entities())
+                    {
+                        var user = db.UserProfile.Find(userId);
+                        if (user != null)
+                        {
+                            var Membership = db.MB_Membresia.Find(user.MP_MemberShipId);
+
+                            db.MC_MembresiaControl.Add(new MC_MembresiaControl
+                            {
+                                MC_UserId = user.UserId,
+                                MC_MembershipId = user.MP_MemberShipId,
+                                MC_Caducidad = System.DateTime.Now.AddMonths((int)Membership.MP_ExpiracionDays)
+                            });
+                            db.SaveChanges();
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
         #endregion
     }
 }

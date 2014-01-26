@@ -15,8 +15,8 @@
 
                 @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
                 {
- @Html.AntiForgeryToken()
- @Html.ValidationSummary(true)
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
               
                     <div class="controls">
 
@@ -51,7 +51,7 @@
                             <li>
                                 @Html.ValidationMessageFor(model => model.ConfirmPassword)
                             </li>
-                             <li>
+                            <li>
                                 @Html.ValidationMessageFor(model => model.AcceptTerms)
                             </li>
                         </ul>
@@ -61,7 +61,7 @@
 
                     <div class="controls form-inline">
                         <label class="checkbox">
-                            @Html.CheckBoxFor(model=> model.AcceptTerms)  &nbsp; He leído<a target="_blank" class="color-green" href="@Url.Action("Terminos", "Home")">&nbsp;Términos y Condiciones</a></label>
+                            @Html.CheckBoxFor(model => model.AcceptTerms)  &nbsp; He leído<a target="_blank" class="color-green" href="@Url.Action("Terminos", "Home")">&nbsp;Términos y Condiciones</a></label>
                         <input class="btn-u-orange btn-u pull-right" id="submitregister" type="submit" value="Registrarse" disabled="disabled">
                     </div>
 
@@ -72,15 +72,15 @@
             </div>
             <div class="span5">
 
-               @* <section class="social" id="socialLoginForm">*@
+                @* <section class="social" id="socialLoginForm">*@
 
-                    <div class="headline">
-                        <h3>Registro con Redes Sociales</h3>
-                    </div>
+                <div class="headline">
+                    <h3>Registro con Redes Sociales</h3>
+                </div>
 
-                    <div class="span8 offset2">
-                        @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-                    </div>
+                <div class="span8 offset2">
+                    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+                </div>
                 @*</section>*@
 
             </div>

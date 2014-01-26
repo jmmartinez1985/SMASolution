@@ -46,6 +46,10 @@
       <HintPath>..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Postal, Version=0.9.1.0, Culture=neutral, PublicKeyToken=45719375b8b4d528, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\postal.0.9.1\lib\net40\Postal.dll</HintPath>
+    </Reference>
     <Reference Include="Recaptcha">
       <HintPath>..\..\..\..\Desktop\Recaptcha.dll</HintPath>
     </Reference>
@@ -316,6 +320,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Assemblies\Postal.dll" />
     <Content Include="Assemblies\Recaptcha.dll" />
     <Content Include="Content\Bootstrap2.3\bootstrap-responsive.css" />
     <Content Include="Content\Bootstrap2.3\bootstrap-responsive.min.css" />
@@ -722,6 +727,12 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\SolicitudServicio\Details.cshtml" />
     <Content Include="Views\Home\Terminos.cshtml" />
+    <Content Include="Views\Emails\RegEmail.cshtml" />
+    <Content Include="Views\Emails\_ViewStart.cshtml" />
+    <Content Include="Views\Account\ConfirmationFailure.cshtml" />
+    <Content Include="Views\Account\ConfirmationSuccess.cshtml" />
+    <Content Include="Views\Account\RegisterInstruction.cshtml" />
+    <Content Include="Views\Emails\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

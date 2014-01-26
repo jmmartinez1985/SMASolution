@@ -279,7 +279,7 @@
           <Key>
             <PropertyRef Name="MC_Id" />
           </Key>
-          <Property Name="MC_Id" Type="int" Nullable="false" />
+          <Property Name="MC_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MC_MembershipId" Type="int" Nullable="false" />
           <Property Name="MC_UserId" Type="int" Nullable="false" />
           <Property Name="MC_Caducidad" Type="datetime" Nullable="false" />
@@ -857,14 +857,14 @@
             <Parameter Name="Lugar" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.MB_Membresia" />
+          <AssociationSet Name="FK_UserProfile_MB_Membresia" Association="ServiceMarketModel.FK_UserProfile_MB_Membresia">
+            <End Role="MB_Membresia" EntitySet="MB_Membresia" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
           <EntitySet Name="MC_MembresiaControl" EntityType="ServiceMarketModel.MC_MembresiaControl" />
           <AssociationSet Name="FK_MC_MembresiaControl_MB_Membresia" Association="ServiceMarketModel.FK_MC_MembresiaControl_MB_Membresia">
             <End Role="MB_Membresia" EntitySet="MB_Membresia" />
             <End Role="MC_MembresiaControl" EntitySet="MC_MembresiaControl" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserProfile_MB_Membresia" Association="ServiceMarketModel.FK_UserProfile_MB_Membresia">
-            <End Role="MB_Membresia" EntitySet="MB_Membresia" />
-            <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
           <AssociationSet Name="FK_MC_MembresiaControl_UserProfile" Association="ServiceMarketModel.FK_MC_MembresiaControl_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
@@ -1422,14 +1422,26 @@
           <Property Type="String" Name="MP_Descripcion" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="MP_ExpiracionDays" />
           <Property Type="Int32" Name="MP_AnunciosQty" />
-          <NavigationProperty Name="MC_MembresiaControl" Relationship="ServiceMarketModel.FK_MC_MembresiaControl_MB_Membresia" FromRole="MB_Membresia" ToRole="MC_MembresiaControl" />
           <NavigationProperty Name="UserProfile" Relationship="ServiceMarketModel.FK_UserProfile_MB_Membresia" FromRole="MB_Membresia" ToRole="UserProfile" />
+          <NavigationProperty Name="MC_MembresiaControl" Relationship="ServiceMarketModel.FK_MC_MembresiaControl_MB_Membresia" FromRole="MB_Membresia" ToRole="MC_MembresiaControl" />
         </EntityType>
+        <Association Name="FK_UserProfile_MB_Membresia">
+          <End Type="ServiceMarketModel.MB_Membresia" Role="MB_Membresia" Multiplicity="1" />
+          <End Type="ServiceMarketModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MB_Membresia">
+              <PropertyRef Name="MP_MemberShipId" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="MP_MemberShipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="MC_MembresiaControl">
           <Key>
             <PropertyRef Name="MC_Id" />
           </Key>
-          <Property Type="Int32" Name="MC_Id" Nullable="false" />
+          <Property Type="Int32" Name="MC_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="MC_MembershipId" Nullable="false" />
           <Property Type="Int32" Name="MC_UserId" Nullable="false" />
           <Property Type="DateTime" Name="MC_Caducidad" Nullable="false" Precision="3" />
@@ -1445,18 +1457,6 @@
             </Principal>
             <Dependent Role="MC_MembresiaControl">
               <PropertyRef Name="MC_MembershipId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserProfile_MB_Membresia">
-          <End Type="ServiceMarketModel.MB_Membresia" Role="MB_Membresia" Multiplicity="1" />
-          <End Type="ServiceMarketModel.UserProfile" Role="UserProfile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MB_Membresia">
-              <PropertyRef Name="MP_MemberShipId" />
-            </Principal>
-            <Dependent Role="UserProfile">
-              <PropertyRef Name="MP_MemberShipId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

@@ -49,9 +49,9 @@
         <AssociationConnector Association="ServiceMarketModel.FK_AN_Anuncios_UserProfile" />
         <AssociationConnector Association="ServiceMarketModel.FK_SS_SolicitudServicio_AN_Anuncios" />
         <EntityTypeShape EntityType="ServiceMarketModel.MB_Membresia" Width="1.5" PointX="10.371238856749255" PointY="16.026236884308158" />
-        <EntityTypeShape EntityType="ServiceMarketModel.MC_MembresiaControl" Width="1.5" PointX="1.9724068632220884" PointY="6.91897243583527" />
-        <AssociationConnector Association="ServiceMarketModel.FK_MC_MembresiaControl_MB_Membresia" />
         <AssociationConnector Association="ServiceMarketModel.FK_UserProfile_MB_Membresia" />
+        <EntityTypeShape EntityType="ServiceMarketModel.MC_MembresiaControl" Width="1.5" PointX="11.405204236230443" PointY="19.943851852763377" />
+        <AssociationConnector Association="ServiceMarketModel.FK_MC_MembresiaControl_MB_Membresia" />
         <AssociationConnector Association="ServiceMarketModel.FK_MC_MembresiaControl_UserProfile" />
         </Diagram>
     </edmx:Diagrams>
