@@ -378,7 +378,19 @@ namespace SMAWeb.Controllers
             ViewBag.SBS_Id = new SelectList(subcategorias, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id);
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName", an_anuncios.UserId);
-            ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion", an_anuncios.PA_Id);
+            
+
+            //var selecteditems = new List<SelectListItem>();
+
+            //db.PA_Paises.ToList().ForEach(item => 
+            //{
+            //    selecteditems.Add(new SelectListItem { Text = item.PA_Descripcion, Value = item.PA_Id.ToString(), Selected = item.PA_Id == an_anuncios.PA_Id ? true : false });
+            //});
+
+            ViewBag.PA_Id = db.PA_Paises.ToList();
+            ViewData["Paises"] = new SelectList(db.PA_Paises.ToList(), "PA_Id", "PA_Descripcion", an_anuncios.PA_Id);// your dropdownlist
+           
+        
             ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion", an_anuncios.CD_Id);
             return View(an_anuncios);
         }

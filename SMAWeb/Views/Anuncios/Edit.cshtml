@@ -44,21 +44,23 @@
                                 @Html.LabelFor(model => model.PA_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("PA_Id", (IEnumerable<SelectListItem>)ViewBag.PA_Id, new { @class = "input-block-level" })
+                                @*  @Html.DropDownList("PA_Id", (IEnumerable<SelectListItem>)ViewBag.PA_Id, new { @class = "input-block-level" })*@
+                                @Html.DropDownListFor(model => model.PA_Id, ViewData["Paises"] as SelectList, new { @class = "input-block-level", @paid = Model.PA_Id })
 
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.CD_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("CD_Id", (IEnumerable<SelectListItem>)ViewBag.CD_Id, new { @class = "input-block-level" })
+
+                                @Html.DropDownList("CD_Id", (IEnumerable<SelectListItem>)ViewBag.CD_Id, new { @class = "input-block-level" , @cdid = Model.CD_Id })
 
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.SBS_Id)<span class="color-red"> *</span>
                             </div>
                             <div class="editor-field">
-                                @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id, new { @class = "input-block-level" })
+                                @Html.DropDownList("SBS_Id", (IEnumerable<SelectListItem>)ViewBag.SBS_Id, new { @class = "input-block-level", @scid = Model.SBS_Id })
                             </div>
                             <div class="controls form-inline">
                                 @Html.LabelFor(model => model.AN_Telefono)<span class="color-red"> *</span>
@@ -183,4 +185,27 @@
         HOME.ChangeCategory("CD_Id", '@Url.Action("GetSubCategories", "SubCategoriaServicio")');
     });
 
+    jQuery(document).ready(function () {
+        var selectpa = $('#PA_Id').attr("paid");
+        var selectca = $('#CD_Id').attr("cdid");
+        var selectsc = $('#SBS_Id').attr("scid");
+        $('#PA_Id option').each(function () {
+            if ($(this).val() == selectpa) {
+                $(this).prop("selected", true);
+                return false;
+            } 
+        });
+        $('#CD_Id option').each(function () {
+            if ($(this).val() == selectca) {
+                $(this).prop("selected", true);
+                return false;
+            } 
+        });
+        $('#SBS_Id option').each(function () {
+            if ($(this).val() == selectsc) {
+                $(this).prop("selected", true);
+                return false;
+            } 
+        });
+    });
 </script>
