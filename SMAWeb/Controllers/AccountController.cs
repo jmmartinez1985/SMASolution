@@ -103,7 +103,6 @@ namespace SMAWeb.Controllers
 
                     string confirmationToken =
                        WebSecurity.CreateUserAndAccount(model.Email, model.Password,null, true);
-
                     ManageMembership(model.Email);
                     if (!Roles.IsUserInRole("Users"))
                         Roles.AddUsersToRole(new string[] { model.Email }, "Users");

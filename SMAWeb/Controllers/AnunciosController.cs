@@ -346,6 +346,22 @@ namespace SMAWeb.Controllers
             return View(an_anuncios);
         }
 
+
+        public JsonResult ValidateAnuncioCreate()
+        {
+            using (var db = new Entities())
+            {
+                if (db.AN_Anuncios.Count(c => c.UserId == WebSecurity.CurrentUserId) >=
+                    db.UserProfile.Where(c => c.UserId == WebSecurity.CurrentUserId).FirstOrDefault().MB_Membresia.MP_AnunciosQty)
+                {
+                    return Json(new { ErrorMessage = "No puede agregar más anuncios ya que supera el limite de lo permitido en su membresia" }, JsonRequestBehavior.AllowGet);
+                }
+                else {
+                    return Json(new { UrlAnuncios = Url.Action("Create", "Anuncios") }, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
         //
         // GET: /Anuncios/Edit/5
         [Authorize(Roles = "Users")]
@@ -411,7 +427,7 @@ namespace SMAWeb.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id); 
+            AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
 
             using (var scope = new TransactionScope())
             {

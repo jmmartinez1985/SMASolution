@@ -789,6 +789,39 @@ jQuery(function () {
 
     }
 
+    ANUNCIOS.ValidateCreate = function (url)
+    {
+        $.ajax({
+            url: url,
+            type: 'get',
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+          
+            success: function (data) {
+                if (data.ErrorMessage != null | data.ErrorMessage != undefined)
+                {
+                    $.gritter.add({
+                        title: 'Límite de anuncios publicados superado.',
+                        text: data.ErrorMessage
+                    });
+                }
+                else if (data.UrlAnuncios != null | data.UrlAnuncios != undefined)
+                {
+                    window.location = data.UrlAnuncios;
+                }
+            },
+            error: function (xhr) {
+                if (xhr.status == 403) {
+                    var response = $.parseJSON(xhr.responseText);
+                    window.location = response.LogOnUrl;
+                }
+                else {
+                    alert(xhr.responseText, 'An error has ocurred');
+                }
+            }
+        });
+    }
+
     CONTACTOS.Create = function (url, nombre, telefono, celular, email, mensaje) {
 
         var contacto = {

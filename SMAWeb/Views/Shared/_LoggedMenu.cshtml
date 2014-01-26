@@ -26,7 +26,7 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="@Url.Action("Create", "Anuncios")"><i class="icon-plus"></i>&nbsp;Crear Nuevo Anuncio</a></li>
+                        <li><a href="#" onclick="CallAnuncioCreate()"><i class="icon-plus"></i>&nbsp;Crear Nuevo Anuncio</a></li>
                         <li><a href="@Url.Action("GetAnunciosByUser", "Anuncios")"><i class="icon-book"></i>&nbsp;Mis Anuncios Publicados</a></li>
                         <li><a href="@Url.Action("SolicitudRequest", "SolicitudServicio")"><i class="icon-briefcase"></i>&nbsp;Mis Solicitudes de Servicios</a></li>
                         @*<li><a href="@Url.Action("GetAnunciosByUser", "Anuncios")"><i class="icon-cog"></i>&nbsp;Estadísticas</a></li>*@
@@ -41,6 +41,12 @@
 </div>
 <!-- /navbar -->
 
+<script src="~/Scripts/SMA.js"></script>
 <script>
+
+    function CallAnuncioCreate() {
+        ANUNCIOS.ValidateCreate('@Url.Action("ValidateAnuncioCreate", "Anuncios")');
+    };
+
 
 </script>

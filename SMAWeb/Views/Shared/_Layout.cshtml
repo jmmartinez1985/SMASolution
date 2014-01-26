@@ -140,7 +140,7 @@
                         {
 
                            
- @Html.AntiForgeryToken()
+                            @Html.AntiForgeryToken()
                    
 
 
@@ -260,21 +260,21 @@
                 if (Roles.IsUserInRole("Admin"))
                 {
              
- <text>
+                <text>
                 @Html.Partial("_LoggedAdminMenu")
                 </text>
          
                 }
                 else
                 {
- <text>
+                <text>
                 @Html.Partial("_LoggedMenu")
                 </text>}
             }
             else
             {
          
- <text>
+                <text>
                 @Html.Partial("_NotLoggedMenu")
                 </text>
             }
