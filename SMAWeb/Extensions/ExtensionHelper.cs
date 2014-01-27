@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 using System.Xml.Serialization;
@@ -73,13 +74,14 @@ namespace SMAWeb.Extensions
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     Credentials = new System.Net.NetworkCredential(senderID, senderPassword),
                     Timeout = 30000,
-
-
                 };
-
                 MailMessage message = new MailMessage(senderID, toAddress, subject, body);
                 message.IsBodyHtml = true;
-                smtp.Send(message);
+                Task.Factory.StartNew(() =>
+                {
+                    smtp.SendAsync(message,null);
+                });
+
             }
             catch (Exception ex)
             {
