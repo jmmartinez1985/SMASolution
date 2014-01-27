@@ -326,6 +326,7 @@
     <Content Include="Content\Bootstrap2.3\bootstrap-responsive.min.css" />
     <Content Include="Content\Bootstrap2.3\bootstrap.css" />
     <Content Include="Content\Bootstrap2.3\bootstrap.min.css" />
+    <Content Include="Content\EmailTemplates.css" />
     <Content Include="Content\FileUpload\blueimp-gallery.min.css" />
     <Content Include="Content\FileUpload\demo.css" />
     <Content Include="Content\FileUpload\jquery-ui.css" />
@@ -639,6 +640,9 @@
     <Content Include="Content\Images\star-on-big.png" />
     <Content Include="Content\Images\star-on.png" />
     <Content Include="Scripts\SMA.js" />
+    <Content Include="Views\Emails\MembresiaExpirada.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -734,7 +738,6 @@
     <Content Include="Views\Account\RegisterInstruction.cshtml" />
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Emails\MembresiaProximaExpirar.cshtml" />
-    <Content Include="Views\Emails\MembresiaExpirada.cshtml" />
     <Content Include="Views\Membresia\Pricing.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -763,7 +766,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>5735</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

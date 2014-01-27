@@ -110,6 +110,7 @@ namespace SMAWeb.Controllers
                     var confirmLink = Url.Action("RegisterConfirmation", "Account", null, "http");
                     email.ConfirmLink = confirmLink + "/" + confirmationToken;
                     email.To = model.Email;
+                    email.IsBodyHtml = true;
                     email.UserName = model.Email;
                     email.ConfirmationToken = confirmationToken;
                     email.Send();
