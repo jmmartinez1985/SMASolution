@@ -735,6 +735,7 @@
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Emails\MembresiaProximaExpirar.cshtml" />
     <Content Include="Views\Emails\MembresiaExpirada.cshtml" />
+    <Content Include="Views\Membresia\Pricing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

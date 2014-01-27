@@ -824,6 +824,32 @@ jQuery(function () {
         });
     }
 
+    ANUNCIOS.SetDropDowns = function () {
+
+        var selectpa = $('#PA_Id').attr("paid");
+        var selectca = $('#CD_Id').attr("cdid");
+        var selectsc = $('#SBS_Id').attr("scid");
+        $('#PA_Id option').each(function () {
+            if ($(this).val() == selectpa) {
+                $(this).prop("selected", true);
+                return false;
+            }
+        });
+        $('#CD_Id option').each(function () {
+            if ($(this).val() == selectca) {
+                $(this).prop("selected", true);
+                return false;
+            }
+        });
+        $('#SBS_Id option').each(function () {
+            if ($(this).val() == selectsc) {
+                $(this).prop("selected", true);
+                return false;
+            }
+        });
+
+    }
+
     CONTACTOS.Create = function (url, nombre, telefono, celular, email, mensaje) {
 
         var contacto = {

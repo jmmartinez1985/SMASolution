@@ -13,6 +13,15 @@ namespace SMAWeb.Controllers
     {
         private Entities db = new Entities();
 
+
+        //
+        // GET: /Membresia/Pricing
+        [AllowAnonymous]
+        public ActionResult Pricing()
+        {
+            return View(db.MB_Membresia.ToList());
+        }
+
         //
         // GET: /Membresia/
         [Authorize(Roles = "Admin")]

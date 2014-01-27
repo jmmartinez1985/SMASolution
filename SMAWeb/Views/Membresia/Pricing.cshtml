@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SMAWeb.Models.MB_Membresia>
+@{
+    ViewBag.Title = "Tipos de Membresia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="container">
+    <div class="row-fluid margin-bottom-10">
+        <div class="another-page">
+            <div class="headline">
+                <h3>Tipos de Membresia</h3>
+            </div>
+            <br />
+            <div class="row-fluid margin-bottom-40">
+
+                @foreach (var item in Model)
+                {
+                    <div class="span3 pricing hover-effect">
+                        <div class="pricing-head">
+                            <h3>@Html.DisplayFor(modelItem => item.MP_Descripcion) <span>Planes Service Market</span></h3>
+                            <h4><i>$</i>5<i>.49</i> <span>Per Month</span></h4>
+                        </div>
+                        <ul class="pricing-content unstyled">
+                     
+                            <li><i class="icon-tags"></i>Membresía por @Html.DisplayFor(modelItem => item.MP_ExpiracionDays) mes(es)</li>   
+                            <li><i class="icon-asterisk"></i>Cantidad de anuncios: @Html.DisplayFor(modelItem => item.MP_AnunciosQty)</li>
+                            <li><i class="icon-heart"></i>Fusce condimentum</li>
+                            <li><i class="icon-star"></i>Ut non libero</li>
+                            <li><i class="icon-shopping-cart"></i>Consecte adiping elit</li>
+                        </ul>
+                        <div class="pricing-footer">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .</p>
+                            <button type="submit">Order Now</button>
+                        </div>
+                    </div>
+                    
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
