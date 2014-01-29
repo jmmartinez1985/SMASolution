@@ -712,9 +712,11 @@
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="Lugar" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SEL_MembresiasPorExpirar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SEL_ValoracionAnuncios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AN_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="UPD_MembresiasExpiradas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -870,6 +872,8 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="MC_MembresiaControl" EntitySet="MC_MembresiaControl" />
           </AssociationSet>
+          <FunctionImport Name="SEL_MembresiasPorExpirar" ReturnType="Collection(String)" />
+          <FunctionImport Name="UPD_MembresiasExpiradas" ReturnType="Collection(String)" />
           </EntityContainer>
         <EntityType Name="AM_MultimediaAnuncios">
           <Key>
@@ -1786,6 +1790,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SEL_MembresiasPorExpirar" FunctionName="ServiceMarketModel.Store.SEL_MembresiasPorExpirar" />
+          <FunctionImportMapping FunctionImportName="UPD_MembresiasExpiradas" FunctionName="ServiceMarketModel.Store.UPD_MembresiasExpiradas" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
