@@ -445,6 +445,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="EmailTemplates\MembresiaExpirada.xslt" />
+    <Content Include="EmailTemplates\MembresiaProximaExpirar.xslt" />
     <Content Include="EmailTemplates\RespuestaContacto.xslt" />
     <Content Include="EmailTemplates\ServicioRequestProved.xslt" />
     <Content Include="EmailTemplates\ServicioRequestClient.xslt" />
@@ -640,9 +642,6 @@
     <Content Include="Content\Images\star-on-big.png" />
     <Content Include="Content\Images\star-on.png" />
     <Content Include="Scripts\SMA.js" />
-    <Content Include="Views\Emails\MembresiaExpirada.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -737,7 +736,6 @@
     <Content Include="Views\Account\ConfirmationSuccess.cshtml" />
     <Content Include="Views\Account\RegisterInstruction.cshtml" />
     <Content Include="Views\Emails\Web.config" />
-    <Content Include="Views\Emails\MembresiaProximaExpirar.cshtml" />
     <Content Include="Views\Membresia\Pricing.cshtml" />
   </ItemGroup>
   <ItemGroup>
