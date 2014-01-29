@@ -108,6 +108,10 @@ namespace SMAWeb.Controllers
                     {
                         firstImage = item.AE_AnunciosExtras.FirstOrDefault().AN_ImagenUrl;
                     }
+                    else
+                    {
+                        firstImage = item.UserProfile.Image == null ? "~/Images/No_Profile.jpg" : item.UserProfile.Image;
+                    }
 
                     var getRating = model.SEL_ValoracionAnuncios(item.AN_Id).FirstOrDefault();
 

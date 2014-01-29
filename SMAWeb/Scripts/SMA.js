@@ -334,7 +334,7 @@ jQuery(function () {
                     //htmldata += '</ul>';
                     ////fin reviews
                     htmldata += '<div class="pull-left booking-img">';
-                    htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
+                    htmldata += '<img src="' + anuncio.FirstImage + '" alt="' + anuncio.Usuario + '"> ';
                     htmldata += '<ul class="unstyled">';
                     htmldata += '<li><ul class="unstyled inline"><li><div class="ratyclass" id=' + "toraty" + val + '  ratyval= ' + anuncio.Rating + ' style="width:20px;" ></div </li></ul></li>'
                     htmldata += '</ul>';
