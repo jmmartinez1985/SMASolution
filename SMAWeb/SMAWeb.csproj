@@ -215,6 +215,7 @@
     <Compile Include="Controllers\SolicitudServicioController.cs" />
     <Compile Include="Controllers\SubCategoriaServicioController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
+    <Compile Include="Controllers\WebApiSMAController.cs" />
     <Compile Include="Extensions\ExtensionHelper.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
