@@ -874,6 +874,7 @@
           </AssociationSet>
           <FunctionImport Name="SEL_MembresiasPorExpirar" ReturnType="Collection(String)" />
           <FunctionImport Name="UPD_MembresiasExpiradas" ReturnType="Collection(String)" />
+          <FunctionImport Name="get_MembresiaPorExpirar" />
           </EntityContainer>
         <EntityType Name="AM_MultimediaAnuncios">
           <Key>
@@ -1792,6 +1793,7 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SEL_MembresiasPorExpirar" FunctionName="ServiceMarketModel.Store.SEL_MembresiasPorExpirar" />
           <FunctionImportMapping FunctionImportName="UPD_MembresiasExpiradas" FunctionName="ServiceMarketModel.Store.UPD_MembresiasExpiradas" />
+          <FunctionImportMapping FunctionImportName="get_MembresiaPorExpirar" FunctionName="ServiceMarketModel.Store.SEL_MembresiasPorExpirar" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

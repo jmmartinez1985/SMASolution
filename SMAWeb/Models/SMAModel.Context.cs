@@ -175,5 +175,20 @@ namespace SMAWeb.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("Get_AdvanceSearch", mergeOption, categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
         }
+    
+        public virtual ObjectResult<string> SEL_MembresiasPorExpirar() 
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SEL_MembresiasPorExpirar");
+        }
+    
+        public virtual ObjectResult<string> UPD_MembresiasExpiradas() 
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UPD_MembresiasExpiradas");
+        }
+    
+        public virtual int get_MembresiaPorExpirar()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_MembresiaPorExpirar");
+        }
     }
 }
