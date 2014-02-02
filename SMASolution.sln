@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BD Backup", "BD Backup", "{
 		..\..\..\smascript.sql = ..\..\..\smascript.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpirationNotification", "ExpirationNotification\ExpirationNotification.csproj", "{655333D1-B532-498E-B84E-B3F5E24462A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpireAccount", "ExpireAccount\ExpireAccount.csproj", "{596D2C1C-9F25-437D-A34C-1F8F9972871B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{252C6037-B2C3-4A24-A5A1-D4B116CE74EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{252C6037-B2C3-4A24-A5A1-D4B116CE74EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{252C6037-B2C3-4A24-A5A1-D4B116CE74EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{655333D1-B532-498E-B84E-B3F5E24462A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{655333D1-B532-498E-B84E-B3F5E24462A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{655333D1-B532-498E-B84E-B3F5E24462A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{655333D1-B532-498E-B84E-B3F5E24462A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{596D2C1C-9F25-437D-A34C-1F8F9972871B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{596D2C1C-9F25-437D-A34C-1F8F9972871B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{596D2C1C-9F25-437D-A34C-1F8F9972871B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{596D2C1C-9F25-437D-A34C-1F8F9972871B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
