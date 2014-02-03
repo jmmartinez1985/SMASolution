@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 
 namespace SMAWeb.Controllers
 {
-    public class NotificaController : ApiController
+    public class NotificationController : ApiController
     {
         [System.Web.Http.HttpGet]
         public string GetExpiration()

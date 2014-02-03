@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,7 +19,16 @@ namespace ExpireAccount
         {
             using (var client = new HttpClient())
             {
-                // TODO - Send HTTP requests
+                client.BaseAddress = new Uri(System.Configuration.ConfigurationManager.AppSettings["ServiceBaseAddress"]);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                // New code:
+                HttpResponseMessage response = await client.GetAsync(System.Configuration.ConfigurationManager.AppSettings["ServiceMethod"]);
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Success process");
+                }
             }
         }
     }
