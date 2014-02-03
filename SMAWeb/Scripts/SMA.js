@@ -240,7 +240,7 @@ jQuery(function () {
                 var htmldata = '';
                 jQuery.each(result.$values, function (val, anuncio) {
                     var urlcontent = urldetails + anuncio.AnunciosInfo.AN_Id;
-                    htmldata += '<dl class="dl-horizontal"><dt><a href="' + urlcontent + '"><img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '></a></dt><dd><p><a href="' + urlcontent + '">';
+                    htmldata += '<dl class="dl-horizontal"><dt><a href="' + urlcontent + '"><img src="' + anuncio.FirstImage + '" alt="' + anuncio.Usuario + '"></a></dt><dd><p><a href="' + urlcontent + '">';
                     htmldata += anuncio.AnunciosInfo.AN_Descripcion;
                     htmldata += '</a></p></dd></dl>';
                 });
@@ -903,5 +903,89 @@ jQuery(function () {
                       }
                   }
               });
+    }
+
+    MEMBRESIA.MembresiasExpiradas = function (url)
+    {
+        jQuery.ajax({
+            url: url,
+            type: 'get',
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function () {
+                COMMON.CallProgress(LoadingImage);
+            },
+            complete: function (data) {
+                COMMON.HideProgress();
+            },
+            success: function (data) {
+                if (data.Message != null | data.Message != undefined) {
+                    $.gritter.add({
+                        title: 'Membresias Expiradas',
+                        text: data.Message
+                    });
+                }
+                else {
+                    $.gritter.add({
+                        title: 'Membresias Expiradas',
+                        text: 'Se han expirado las membresias satisfactoriamente.'
+                    });
+                }
+            },
+            error: function (xhr) {
+                debugger;
+                if (xhr.status == 403) {
+                    var response = $.parseJSON(xhr.responseText);
+                    window.location = response.LogOnUrl;
+                }
+                else {
+                    alert(xhr.responseText, 'An error has ocurred');
+                }
+            }
+        });
+    }
+
+    MEMBRESIA.PorExpirar = function (url)
+    {
+        jQuery.ajax({
+            url: url,
+            type: 'get',
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function () {
+                COMMON.CallProgress(LoadingImage);
+            },
+            complete: function (data) {
+                COMMON.HideProgress();
+            },
+            success: function (data) {
+                debugger;
+
+                if (data.Message != null | data.Message != undefined) {
+                    $.gritter.add({
+                        title: 'Membresias Por Expirar',
+                        text: data.Message
+                    });
+                }
+                else {
+                    $.gritter.add({
+                        title: 'Membresias Por Expirar',
+                        text: 'Se han enviado las notificaciones a las cuentas que se encuentren por expirar.'
+                    });
+                }
+            },
+            error: function (xhr) {
+                debugger;
+                if (xhr.status == 403) {
+                    var response = $.parseJSON(xhr.responseText);
+                    window.location = response.LogOnUrl;
+                }
+                else {
+                    alert(xhr.responseText, 'An error has ocurred');
+                }
+            }
+        });
     }
 });

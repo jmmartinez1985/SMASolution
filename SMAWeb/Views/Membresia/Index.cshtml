@@ -17,9 +17,14 @@
                 <h3>Formulario de Membresía</h3>
             </div>
 
+            <div class="form-inline control-group">
             <p>
-                @Html.ActionLink("Nuevo", "Create")
+                @Html.ActionLink("Nuevo", "Create", "Membresia", new { @class = "btn-u btn btn-orange pull-right" })
+               
             </p>
+            <a class="btn-u btn btn-orange pull-right" style="padding-right:10px; margin-right:10px;" onclick="MembresiasPorExpirar()" >Membresias por Expirar</a>
+            <a class="btn-u btn btn-orange pull-right" style="padding-right:10px; margin-right:10px;" onclick="MembresiasExpiradas()" >Membresias Expiradas</a>
+                </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -68,7 +73,7 @@
         </div>
     </div>
 </div>
-
+<script src="~/Scripts/SMA.js"></script>
 <script>
     var $jpage = jQuery.noConflict();
     $jpage(function () {
@@ -84,4 +89,13 @@
             delay: 20
         });
     });
+
+    function MembresiasExpiradas() {
+        MEMBRESIA.MembresiasExpiradas('@Url.Content("~/api/Expire/Get/")');
+    }
+    
+    function MembresiasPorExpirar() {
+        MEMBRESIA.PorExpirar('@Url.Content("~/api/Notification/GetExpiration/")');
+    }
+
 </script>

@@ -18,19 +18,59 @@
                     <div class="span3 pricing hover-effect">
                         <div class="pricing-head">
                             <h3>@Html.DisplayFor(modelItem => item.MP_Descripcion) <span>Planes Service Market</span></h3>
-                            <h4><i>$</i>5<i>.49</i> <span>Per Month</span></h4>
+                            @if (item.MP_ExpiracionDays == 1)
+                            {
+                                <h4><i>Gratis</i><span>Todos los meses</span></h4>
+                            }
+                            else if (item.MP_ExpiracionDays == 3)
+                            {
+                                <h4><i>$</i>1<i>.95</i> <span>Por Mes</span></h4>
+                            }
+                            else if (item.MP_ExpiracionDays == 12)
+                            {
+                                <h4><i>$</i>1<i>.50</i> <span>Por Mes</span></h4>
+                            }
+                            else if (item.MP_ExpiracionDays == 24)
+                            {
+                                <h4><i>$</i>1<i>.25</i> <span>Por Mes</span></h4>
+                            }
+                            
                         </div>
                         <ul class="pricing-content unstyled">
-                     
-                            <li><i class="icon-tags"></i>Membresía por @Html.DisplayFor(modelItem => item.MP_ExpiracionDays) mes(es)</li>   
+                     @if (item.MP_ExpiracionDays == 1)
+                     {
+                               <li><i class="icon-tags"></i>Membresía por @Html.DisplayFor(modelItem => item.MP_ExpiracionDays) mes</li>
+                     }
+                            else
+                            {
+                         <li><i class="icon-tags"></i>Membresía por @Html.DisplayFor(modelItem => item.MP_ExpiracionDays) meses</li>
+                     }
+                               
                             <li><i class="icon-asterisk"></i>Cantidad de anuncios: @Html.DisplayFor(modelItem => item.MP_AnunciosQty)</li>
-                            <li><i class="icon-heart"></i>Fusce condimentum</li>
+                            @*<li><i class="icon-heart"></i>Fusce condimentum</li>
                             <li><i class="icon-star"></i>Ut non libero</li>
-                            <li><i class="icon-shopping-cart"></i>Consecte adiping elit</li>
+                            *@
+                            
+                            @if (item.MP_ExpiracionDays == 1)
+                            {
+                            <li><i class="icon-shopping-cart"></i>Siempre Gratis</li>
+                            }
+                            else if (item.MP_ExpiracionDays == 3)
+                            {
+                                <li><i class="icon-shopping-cart"></i>Total a Pagar: $5.85</li>
+                            }
+                            else if (item.MP_ExpiracionDays == 12)
+                            {
+                                <li><i class="icon-shopping-cart"></i>Total a Pagar: $18.00</li>
+                            }
+                            else if (item.MP_ExpiracionDays == 24)
+                            {
+                                <li><i class="icon-shopping-cart"></i>Total a Pagar: $30.00</li>
+                            }
                         </ul>
                         <div class="pricing-footer">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .</p>
-                            <button type="submit">Order Now</button>
+                            <p>Publique, actualice y agregue imágenes a sus anuncios.</p>
+                            <button type="submit">Ordene ahora</button>
                         </div>
                     </div>
                     

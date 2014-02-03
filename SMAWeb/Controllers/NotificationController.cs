@@ -48,9 +48,9 @@ namespace SMAWeb.Controllers
         private void SendEmailNotification(string Correo, string Plantilla, string Asunto)
         {
             string pXml = string.Empty;
-            string imagen = "imagen";
-            string serverPath = "url del sitio";
-            string linkMembresia = "link";
+            string imagen = System.Configuration.ConfigurationManager.AppSettings["NotificationLogo"].ToString();
+            string serverPath = System.Configuration.ConfigurationManager.AppSettings["NotificationPath"].ToString();
+            string linkMembresia = System.Configuration.ConfigurationManager.AppSettings["NotificationLink"].ToString();
             string body = string.Empty;
             var ppEmailTemplate = new Notification();
 
