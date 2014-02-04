@@ -59,11 +59,11 @@ namespace SMAWeb.Extensions
 
         public static string SendEmail(string toAddress, string subject, string body)
         {
-            string result = "Message Sent Successfully..!!";
+            string result = "Message Sent Successfully...!!";
 
             string senderID = System.Configuration.ConfigurationManager.AppSettings["EmailId"]; ;// use sender's email id here..
             string senderPassword = System.Configuration.ConfigurationManager.AppSettings["EmailPwd"]; // sender password here...
-
+             
             try
             {
                 SmtpClient smtp = new SmtpClient
