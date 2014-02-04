@@ -27,6 +27,8 @@ namespace SMAWeb.Controllers
         [System.Web.Http.HttpGet]
         public string GetExpiration()
         {
+           var current= HttpContext.Current;
+
             var tareaAsincronica = Task.Factory.StartNew(() => PorExpirar());
             Task.WaitAll(tareaAsincronica);
             return "Proceso concluido satisfactoriamente";
@@ -39,7 +41,7 @@ namespace SMAWeb.Controllers
                 
                 model.SEL_MembresiasPorExpirar().ToList().ForEach(correo =>
                 {
-                    SendEmailNotification(correo.ToString(),  @"EmailTemplates\ServicioReview.xslt", "Membresía Por Expirar");
+                    SendEmailNotification(correo.ToString(),  @"EmailTemplates/ServicioReview.xslt", "Membresía Por Expirar");
                 });
                 // colocar el sp correcto y hacer un foreach
             }
@@ -48,8 +50,9 @@ namespace SMAWeb.Controllers
         private void SendEmailNotification(string Correo, string Plantilla, string Asunto)
         {
             string pXml = string.Empty;
+            var current = HttpContext.Current;
             string imagen = System.Configuration.ConfigurationManager.AppSettings["NotificationLogo"].ToString();
-            string serverPath = System.Configuration.ConfigurationManager.AppSettings["NotificationPath"].ToString();
+            string serverPath = current.Server.MapPath("~/"); //System.Configuration.ConfigurationManager.AppSettings["NotificationPath"].ToString();
             string linkMembresia = System.Configuration.ConfigurationManager.AppSettings["NotificationLink"].ToString();
             string body = string.Empty;
             var ppEmailTemplate = new Notification();
