@@ -72,15 +72,18 @@ namespace SMAWeb.Extensions
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
                     Credentials = new System.Net.NetworkCredential(senderID, senderPassword),
                     Timeout = 30000,
                 };
                 MailMessage message = new MailMessage(senderID, toAddress, subject, body);
                 message.IsBodyHtml = true;
-                Task.Factory.StartNew(() =>
-                {
-                    smtp.SendAsync(message,null);
-                });
+                smtp.Send(message);
+                //smtp.SendAsync(message, null);
+                //Task.Factory.StartNew(() =>
+                //{
+                //    smtp.SendAsync(message,null);
+                //});
 
             }
             catch (Exception ex)
