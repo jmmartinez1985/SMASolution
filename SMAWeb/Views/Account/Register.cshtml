@@ -108,4 +108,13 @@
             }
         });
     });
+
+    $(document).ready(function () {
+        debugger;
+        if ($('#AcceptTerms').is(':checked')) {
+            $('#submitregister').removeAttr('disabled');
+        } else {
+            $('#submitregister').attr('disabled', 'disabled');
+        }
+    });
 </script>
