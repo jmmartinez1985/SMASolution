@@ -78,12 +78,12 @@ namespace SMAWeb.Extensions
                 };
                 MailMessage message = new MailMessage(senderID, toAddress, subject, body);
                 message.IsBodyHtml = true;
-                smtp.Send(message);
+                //smtp.Send(message);
                 //smtp.SendAsync(message, null);
-                //Task.Factory.StartNew(() =>
-                //{
-                //    smtp.SendAsync(message,null);
-                //});
+                Task.Factory.StartNew(() =>
+                {
+                    smtp.SendAsync(message, null);
+                });
 
             }
             catch (Exception ex)

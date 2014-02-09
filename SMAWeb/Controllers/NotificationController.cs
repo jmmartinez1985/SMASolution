@@ -24,10 +24,14 @@ namespace SMAWeb.Controllers
 {
     public class NotificationController : ApiController
     {
+
+        public HttpContext Context { get; set; }
+
+
         [System.Web.Http.HttpGet]
         public string GetExpiration()
         {
-           var current= HttpContext.Current;
+           this.Context= HttpContext.Current;
 
             var tareaAsincronica = Task.Factory.StartNew(() => PorExpirar());
             Task.WaitAll(tareaAsincronica);
@@ -50,7 +54,7 @@ namespace SMAWeb.Controllers
         private void SendEmailNotification(string Correo, string Plantilla, string Asunto)
         {
             string pXml = string.Empty;
-            var current = HttpContext.Current;
+            var current = this.Context;
             string imagen = System.Configuration.ConfigurationManager.AppSettings["NotificationLogo"].ToString();
             string serverPath = current.Server.MapPath("~/"); //System.Configuration.ConfigurationManager.AppSettings["NotificationPath"].ToString();
             string linkMembresia = System.Configuration.ConfigurationManager.AppSettings["NotificationLink"].ToString();
