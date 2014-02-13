@@ -48,7 +48,7 @@ namespace SMAWeb.Controllers
                 model.UPD_MembresiasExpiradas().ToList().ForEach(correo =>
                 {
 
-                    SendEmailNotification(correo.ToString(), @"EmailTemplates/ServicioReview.xslt", "Membresía Expirada");
+                    SendEmailNotification(correo.ToString(), @"EmailTemplates/MembresiaExpirada.xslt", "Membresía Expirada");
                 });
             }
 

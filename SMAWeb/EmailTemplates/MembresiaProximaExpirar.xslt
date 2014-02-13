@@ -8400,6 +8400,10 @@
               <xsl:attribute name="href">
                 <xsl:value-of select="LinkMembresia"/>
               </xsl:attribute>
+              <xsl:attribute name="class">
+                color-green
+              </xsl:attribute>
+              Extender Membresía.
             </xsl:element>
           </h5>
           <br />

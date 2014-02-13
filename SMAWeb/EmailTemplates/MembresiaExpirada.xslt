@@ -8399,10 +8399,14 @@
           <h5>
             Service Market le informa que su membresía ha expirarado. Si desea extender su membresía haga clic en el siguiente:
             <xsl:element name="a">
-              <xsl:attribute name="href">
-                <xsl:value-of select="LinkMembresia"/>
-              </xsl:attribute>
-            </xsl:element>
+            <xsl:attribute name="href">
+              <xsl:value-of select="LinkMembresia"/>
+            </xsl:attribute>
+            <xsl:attribute name="class">
+              color-green
+            </xsl:attribute>
+            Extender Membresía.
+          </xsl:element>
           </h5>
           <br />
           <h5>Le recordamos que al expirar su membresía sus anuncios serán desactivados y se le asignará una membresía totalmente gratuita.</h5>

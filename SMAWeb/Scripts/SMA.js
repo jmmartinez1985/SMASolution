@@ -883,6 +883,12 @@ jQuery(function () {
                               title: 'Mensaje Enviado',
                               text: 'Hemos registrado satisfactoriamente su mensaje. Pronto le estaremos contactando para responder a sus consultas. Gracias por preferirnos.'
                           });
+                        
+                          $('#CON_Nombre').val("");
+                          $('#CON_Telefono').val("");
+                          $('#CON_Celular').val("");
+                          $('#CON_Email').val("");
+                          $('#CON_Mensaje').val("");
                       }
                       else {
                           $.gritter.add({

@@ -45,7 +45,7 @@ namespace SMAWeb.Controllers
                 
                 model.SEL_MembresiasPorExpirar().ToList().ForEach(correo =>
                 {
-                    SendEmailNotification(correo.ToString(),  @"EmailTemplates/ServicioReview.xslt", "Membresía Por Expirar");
+                    SendEmailNotification(correo.ToString(), @"EmailTemplates/MembresiaProximaExpirar.xslt", "Membresía Por Expirar");
                 });
                 // colocar el sp correcto y hacer un foreach
             }
