@@ -4,7 +4,7 @@
 
 
 
-    @*<script src="@Url.Content("~/Scripts/jquery-ui-1.8.24.js")"></script>
+@*<script src="@Url.Content("~/Scripts/jquery-ui-1.8.24.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery-1.8.2.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
 
@@ -30,6 +30,11 @@
                                 <span>Seleccionar imagenes...</span>
                                 <input type="file" name="files[]" id="filecontrol" multiple>
                             </span>
+
+
+                            <div id="fileqty"></div>
+
+
                         </li>
                         <br />
                         <li>
@@ -41,24 +46,24 @@
                     </ol>
                 </form>
             </div>
-            @*   <div style="display: table-cell; width: 100px; text-align: center; vertical-align: middle;">- OR -</div>
+        @*   <div style="display: table-cell; width: 100px; text-align: center; vertical-align: middle;">- OR -</div>
             <div style="display: table-cell; width: 275px;">
                 <div id="dropzone" style='border: 3px dashed #ccc; width: 150px; height: 80px; margin: 0px auto; text-align: center; display: block'>
                     <p style="padding: 10px 10px; text-align: center">Drag & drop files here</p>
                 </div>
             </div>*@
-        </div>
-
-        <div id="imagesResult">
-            <table id="imagesColumns" class="table" style="width: 655px">
-                <thead>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-
     </div>
+
+    <div id="imagesResult">
+        <table id="imagesColumns" class="table" style="width: 655px">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+</div>
 </div>
 @*    </div>
 </div>*@
@@ -125,6 +130,13 @@
                 }
                 UploadFiles(lenght);
                 return false;
+            });
+
+            $('#fileupload').change(function (e) {
+
+                var fileCount = e.originalEvent.target.files.length;
+                $('#fileqty').html('<a class="btn btn-mini" target="_blank"><i class="icon-star"></i>' + fileCount + ' Archivo(s)</a>');
+
             });
         });
 
