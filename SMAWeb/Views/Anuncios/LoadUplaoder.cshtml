@@ -25,7 +25,7 @@
                     <ol>
                         <li>
 
-                            <span class="btn btn-u btn-success fileinput-button" style="margin-top: 5px;">
+                            <span class="btn btn-u btn-u-orange fileinput-button" style="margin-top: 5px;">
                                 <i class="icon-plus icon-white"></i>
                                 <span>Seleccionar imagenes...</span>
                                 <input type="file" name="files[]" id="filecontrol" multiple>
@@ -38,7 +38,7 @@
                         </li>
                         <br />
                         <li>
-                            <button type="submit" class="btn-u btn-primary start">
+                            <button type="submit" class="btn-u btn-u-orange start">
                                 <i class="icon-upload icon-white"></i>
                                 <span>Iniciar carga</span>
                             </button>
@@ -89,10 +89,10 @@
                     showMessage('Your browser does not support HTML5 file uploads!');
                     break;
                 case 'TooManyFiles':
-                    alert('Too many files! Please select 5 at most!');
+                    bootbox.alert('¡Demasiados archivos para cargar! Por favor seleccione hasta 5 archivos');
                     break;
                 case 'FileTooLarge':
-                    alert(file.name + ' is too large! Please upload files up to 5mb.');
+                    bootbox.alert('El archivo '+file.name + ' es muy pesado! Sólo se permiten archivos de hasta 5mb.');
                     break;
                 default:
                     break;
@@ -104,7 +104,7 @@
             var ext = file.name.split('.').pop().toLowerCase()
             var typeArr = ['jpg', 'jpeg', 'gif', 'png', 'pdf', 'doc', 'docx', 'ppt', 'pptx', 'mp3', 'mp4', 'mpeg', 'kml'];
             if (jQuery.inArray(ext, typeArr) == -1) {
-                jAlert('Invalid file type. Please, choose a valid type (ex. "jpg", "jpeg", "gif", "png", "pdf", "doc", "docx", "ppt", "pptx")');
+                bootbox.alert('Tipo de archivo no válido. Por favor, seleccione un tipo de archivo válido (ej. "jpg", "jpeg", "gif", "png", "pdf", "doc", "docx", "ppt", "pptx")');
                 return false;
             }
         },
@@ -142,14 +142,14 @@
 
         function VerifyFiles() {
             if ($('#filecontrol').val() == '') {
-                jAlert('No file(s) selected. Please, choose a valid file to upload.');
+                bootbox.alert('No ha seleccionado ningun archivo. Por favor, seleccione un archivo válido para iniciar la carga.');
                 return true;
             }
             if ($('#filecontrol').val() != '') {
                 var ext = $('#filecontrol').val().split('.').pop().toLowerCase();
                 var typeArr = ['jpg', 'jpeg', 'gif', 'png', 'pdf', 'doc', 'docx', 'ppt', 'pptx'];
                 if (jQuery.inArray(ext, typeArr) == -1) {
-                    jAlert('Invalid file type. Please, choose a valid type (ex. "jpg", "jpeg", "gif", "png", "pdf", "doc", "docx", "ppt", "pptx")');
+                    bootbox.alert('Tipo de archivo no válido. Por favor, seleccione un tipo de archivo válido (ej. "jpg", "jpeg", "gif", "png", "pdf", "doc", "docx", "ppt", "pptx")');
                     return true;
                 }
             }
@@ -197,12 +197,13 @@
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     hideProgress();
-                    jAlert('An exception has ocurred when uploading the file: ' + jqXHR.responseText, 'Error');
+                    bootbox.alert('Ha ocurrido un error mientras se cargaba el archivo: ' + jqXHR.responseText);
                 }
             });
         }
 
-        function LoadNewFiles(data, fileName) {
+    function LoadNewFiles(data, fileName) {
+        debugger;
             var result = JSON.parse(data);
             $.each(result.$values, function (i, e) {
                 debugger;
@@ -241,12 +242,17 @@
         }
 
         function DeleteFile(link) {
+            
+            debugger;
+
             var url = $(link).attr('data-url');
             var idres = $(link).attr('data-idelement');
-            debugger;
+            var name = $(link).attr('data-name');
+
             var urldelete = '@Url.Content("~/HttpHandler/UploadHandler.ashx")' + url + "&id=" + idres;
 
-            jConfirm('Do you want to delete "' + name + '" resource?', 'Delete resource', function (confirm) {
+            var mensaje = "¿Desea eliminar la siguiente imagen: "+ name + " ?"
+            bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (confirm) {
                 if (confirm) {
                     showProgress('@Url.Content("~/images/loading.gif")');
                     jQuery.ajax({
@@ -268,7 +274,7 @@
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             hideProgress();
-                            jAlert('An exception has ocurred when uploading the file: ' + jqXHR.responseText, 'Error');
+                            bootbox.alert('Ha ocurrido una error al cargar el arhivo: ' + jqXHR.responseText);
                         }
                     });
                 }
