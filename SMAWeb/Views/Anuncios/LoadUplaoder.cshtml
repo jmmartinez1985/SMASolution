@@ -46,24 +46,24 @@
                     </ol>
                 </form>
             </div>
-        @*   <div style="display: table-cell; width: 100px; text-align: center; vertical-align: middle;">- OR -</div>
+            @*   <div style="display: table-cell; width: 100px; text-align: center; vertical-align: middle;">- OR -</div>
             <div style="display: table-cell; width: 275px;">
                 <div id="dropzone" style='border: 3px dashed #ccc; width: 150px; height: 80px; margin: 0px auto; text-align: center; display: block'>
                     <p style="padding: 10px 10px; text-align: center">Drag & drop files here</p>
                 </div>
             </div>*@
-    </div>
+        </div>
 
-    <div id="imagesResult">
-        <table id="imagesColumns" class="table" style="width: 655px">
-            <thead>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
+        <div id="imagesResult">
+            <table id="imagesColumns" class="table" style="width: 655px">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
 
-</div>
+    </div>
 </div>
 @*    </div>
 </div>*@
@@ -92,7 +92,7 @@
                     bootbox.alert('¡Demasiados archivos para cargar! Por favor seleccione hasta 5 archivos');
                     break;
                 case 'FileTooLarge':
-                    bootbox.alert('El archivo '+file.name + ' es muy pesado! Sólo se permiten archivos de hasta 5mb.');
+                    bootbox.alert('El archivo ' + file.name + ' es muy pesado! Sólo se permiten archivos de hasta 5mb.');
                     break;
                 default:
                     break;
@@ -202,8 +202,8 @@
             });
         }
 
-    function LoadNewFiles(data, fileName) {
-        debugger;
+        function LoadNewFiles(data, fileName) {
+            debugger;
             var result = JSON.parse(data);
             $.each(result.$values, function (i, e) {
                 debugger;
@@ -242,7 +242,7 @@
         }
 
         function DeleteFile(link) {
-            
+
             debugger;
 
             var url = $(link).attr('data-url');
@@ -251,7 +251,7 @@
 
             var urldelete = '@Url.Content("~/HttpHandler/UploadHandler.ashx")' + url + "&id=" + idres;
 
-            var mensaje = "¿Desea eliminar la siguiente imagen: "+ name + " ?"
+            var mensaje = "¿Desea eliminar la siguiente imagen: " + name + " ?"
             bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (confirm) {
                 if (confirm) {
                     showProgress('@Url.Content("~/images/loading.gif")');
