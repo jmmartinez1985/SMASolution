@@ -346,8 +346,8 @@ namespace SMAWeb.Controllers
             SmtpClient client = new SmtpClient();
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.EnableSsl = true;
-            client.Host = "smtp.gmail.com";
-            client.Port = 587;
+            client.Host = System.Configuration.ConfigurationManager.AppSettings["SMTP"];
+            client.Port = Convert.ToInt16( System.Configuration.ConfigurationManager.AppSettings["Port"]);
 
             var user = System.Configuration.ConfigurationManager.AppSettings["EmailId"].ToString();
             var pwduser = System.Configuration.ConfigurationManager.AppSettings["EmailPwd"].ToString();
