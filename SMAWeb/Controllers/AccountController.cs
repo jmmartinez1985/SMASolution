@@ -113,7 +113,7 @@ namespace SMAWeb.Controllers
                     email.IsBodyHtml = true;
                     email.UserName = model.Email;
                     email.ConfirmationToken = confirmationToken;
-                    email.Image = HttpContext.Request.Url.ToString().Replace (HttpContext.Request.Path, "") + "/Images/logo1-blue.png" ;
+                    //email.Image = HttpContext.Request.Url.ToString().Replace (HttpContext.Request.Path, "") + "/Images/logo1-blue.png" ;
                     email.Send();
                     return RedirectToAction("RegisterInstruction", "Account");
 
