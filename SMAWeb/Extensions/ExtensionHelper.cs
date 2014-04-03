@@ -94,27 +94,14 @@ namespace SMAWeb.Extensions
             return result;
         }
 
-        public static bool NotApproved(this string ReviewText)
+        public static bool NotApproved(this string Text)
         {
-            List<string> wordNotAllowed = new List<string>();
-
-            wordNotAllowed.Add("puto");
-            wordNotAllowed.Add("desgra");
-            wordNotAllowed.Add("puta");
-            wordNotAllowed.Add("desgraciado");
-            wordNotAllowed.Add("desgraciada");
-            wordNotAllowed.Add("estupido");
-            wordNotAllowed.Add("imbesil");
-            wordNotAllowed.Add("aww");
-            wordNotAllowed.Add("maricon");
-            wordNotAllowed.Add("marica");
-            wordNotAllowed.Add("gay");
-            wordNotAllowed.Add("homosexual");
-            wordNotAllowed.Add("motherfucker");
-            wordNotAllowed.Add("mierda");
-            wordNotAllowed.Add("shit");
-            var q = wordNotAllowed.Any(w => ReviewText.Contains(w));
-            return q;
+            List<SMAWeb.Models.BL_BlackList> wordNotAllowed = new List<SMAWeb.Models.BL_BlackList>();
+            using (SMAWeb.Models.Entities db = new Models.Entities())
+            {
+                var q = db.BL_BlackList.Any(w => Text.Contains(w.BL_Descripcion));
+                return q;
+            }
         }
 
     }

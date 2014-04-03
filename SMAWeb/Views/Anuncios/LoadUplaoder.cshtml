@@ -117,7 +117,6 @@
         $(document).ready(function () {
 
             $('#fileupload').submit(function (e) {
-                debugger;
                 var lenght = jQuery(".thumbnails").find('li[itemid]').length;
                 if (lenght == undefined)
                     lenght = 0;
@@ -194,6 +193,7 @@
                     LoadNewFiles(data);
 
                     hideProgress();
+                    $('#fileqty').html('');
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     hideProgress();

@@ -186,13 +186,13 @@ namespace SMAWeb.Controllers
             var bytes = new byte[1024];
             if (image != null)
             {
-            using (FileStream fs = new FileStream(Server.MapPath(image), FileMode.Open))
-            {
-                bytes = ReadFully(fs);
-            }
+                using (FileStream fs = new FileStream(Server.MapPath(image), FileMode.Open))
+                {
+                    bytes = ReadFully(fs);
+                }
             }
             return bytes != null ? new FileContentResult(bytes, "image/jpg") : null;
-            
+
         }
 
         public ActionResult UploadFiles()
@@ -208,9 +208,12 @@ namespace SMAWeb.Controllers
                 var findUser = db.UserProfile.FirstOrDefault(c => c.UserId == WebSecurity.CurrentUserId);
                 if (findUser != null)
                 {
-                    string savedFileName = Path.Combine(
-                       AppDomain.CurrentDomain.BaseDirectory, "FilesUploaded", "Profiles",
-                       Path.GetFileName(hpf.FileName));
+                    //string savedFileName = Path.Combine(
+                    //   AppDomain.CurrentDomain.BaseDirectory, "FilesUploaded", "Profiles",
+                    //   Path.GetFileName(hpf.FileName));
+
+                    string savedFileName = System.Web.HttpContext.Current.Server.MapPath(string.Format("~/FilesUploaded/Profiles/{0}", Path.GetFileName(hpf.FileName)));
+
                     hpf.SaveAs(savedFileName);
                     findUser.Image = "~/FilesUploaded/Profiles/" + Path.GetFileName(hpf.FileName);
                     if (TempData.ContainsKey("UserImage"))
