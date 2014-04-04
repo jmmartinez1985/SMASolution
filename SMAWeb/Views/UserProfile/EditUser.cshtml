@@ -35,7 +35,7 @@
                     <span class="btn-u btn btn-success fileinput-button">
                         <i class="icon-upload icon-white"></i>
                         <span>Iniciar Carga</span>
-                        <input type="submit" name="submit" class="btn-u" />
+                        <input type="submit" name="submit" class="btn-u" id="btnIniciarCarga" disabled="disabled" />
                     </span>
                 </form>
             </div>
@@ -149,3 +149,16 @@
         </div>
     </div>
 </div>
+<script>
+
+    
+    $('#file').change(function (e) {
+        debugger;
+        var fileCount = e.originalEvent.target.files.length;
+        if (fileCount > 0)
+            $('#btnIniciarCarga').removeAttr('disabled');
+        else
+            $('#btnIniciarCarga').attr('disabled', 'disabled');
+    });
+
+</script>
