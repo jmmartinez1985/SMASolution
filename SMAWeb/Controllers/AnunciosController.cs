@@ -290,6 +290,7 @@ namespace SMAWeb.Controllers
                     ListReview.Add(new ContentReviews { ReviewsList = an.RW_Reviews, SolicitudProfilePic = an.UserProfile.Image });
                 });
 
+
             ViewBag.ReviewFound = ListReview;
 
             ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion");

@@ -8392,10 +8392,10 @@
           </h5>
           <br />
           <h5>
-            Le informamos que la solicitud de servicio en el Sitio Web Service Market se ha creado satisfactoriamente.
+            Le informamos que la solicitud de servicio en nuestro Sitio Web Service Market se ha creado satisfactoriamente.
           </h5>
           <h5>
-            El número de su solicitado es el <xsl:value-of select="SolicitudId" />.
+            El número de su solicitud es el <xsl:value-of select="SolicitudId" />.
           </h5>
           <h5>
             A continuación los datos del anunciante que usted ha contactado.
@@ -8425,7 +8425,7 @@
           <div class="container">
             <div class="row-fluid">
               <div class="span12">
-                <h6>Por favor no responda a este mensaje; fue enviado desde una dirección de correo electrónico no supervisada como parte del servicio que ofrece el Sitio Web Service Market.</h6>
+                <h6>Por favor no responda a este mensaje; fue enviado desde una dirección de correo electrónico no supervisada como parte del servicio que ofrece nuestro Sitio Web Service Market.</h6>
               </div>
             </div>
           </div>

@@ -63,13 +63,13 @@ namespace SMAWeb.Extensions
 
             string senderID = System.Configuration.ConfigurationManager.AppSettings["EmailId"]; ;// use sender's email id here..
             string senderPassword = System.Configuration.ConfigurationManager.AppSettings["EmailPwd"]; // sender password here...
-             
+
             try
             {
                 SmtpClient smtp = new SmtpClient
                 {
-                    Host = "smtp.gmail.com", // smtp server address here...
-                    Port = 587,
+                    Host = System.Configuration.ConfigurationManager.AppSettings["SMTP"],
+                    Port = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["Port"]),
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     UseDefaultCredentials = false,

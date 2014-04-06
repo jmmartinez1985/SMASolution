@@ -8392,7 +8392,7 @@
           </h5>
           <br />
           <h5>
-            Le informamos que tiene una nueva solicitud de servicio en el Sitio Web de Service Market.
+            Le informamos que tiene una nueva solicitud de servicio en nuestro Sitio Web Service Market.
           </h5>
           <h5>
             El número del anuncio solicitado es el <xsl:value-of select="AnuncioId" />.
@@ -8425,7 +8425,7 @@
           <div class="container">
             <div class="row-fluid">
               <div class="span12">
-                <h6>Por favor no responda a este mensaje; fue enviado desde una dirección de correo electrónico no supervisada como parte del servicio que ofrece el Sitio Web Service Market.</h6>
+                <h6>Por favor no responda a este mensaje; fue enviado desde una dirección de correo electrónico no supervisada como parte del servicio que ofrece nuestro Sitio Web Service Market.</h6>
               </div>
             </div>
           </div>

@@ -287,6 +287,7 @@ namespace SMAWeb.Controllers
                 ppEmailTemplate.ProviderName = soli.FirstOrDefault().AN_Anuncios.UserProfile.Name;
                 ppEmailTemplate.SolicitudId = soli.FirstOrDefault().SS_Id;
                 ppEmailTemplate.AnuncioId = soli.FirstOrDefault().AN_Anuncios.AN_Id;
+                ppEmailTemplate.AnuncioTitulo = soli.FirstOrDefault().AN_Anuncios.AN_Titulo;
                 ppEmailTemplate.EmailCliente = soli.FirstOrDefault().UserProfile.UserName;
                 ppEmailTemplate.EmailProveedor = soli.FirstOrDefault().AN_Anuncios.UserProfile.UserName;
 
@@ -310,7 +311,7 @@ namespace SMAWeb.Controllers
                 if (isReview)
                 {
                     body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioReview.xslt"));
-                    Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailCliente, "Informanos de como te fue en el servicio", body);
+                    Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailCliente, "¿Qué te pareció el servicio contratado?", body);
 
                     var soliupdate = db.SS_SolicitudServicio.Find(solicitud.SS_Id);
                     soliupdate.ST_Id = 4;
@@ -338,6 +339,7 @@ namespace SMAWeb.Controllers
             public string CustomerName { get; set; }
             public string ProviderName { get; set; }
             public int AnuncioId { get; set; }
+            public string AnuncioTitulo { get; set; }
             public int SolicitudId { get; set; }
             public string EmailCliente { get; set; }
             public string EmailProveedor { get; set; }

@@ -637,16 +637,26 @@ jQuery(function () {
                 var html = '';
                 var carusel = $("#testimonials-" + review).find('.carousel-inner');
                 html += '<div class="item">';
-                html += ' <p>' + result.data.Comments + '</p>';
-                html += '         <div class="testimonial-info">';
-                html += '   <img src="' + result.data.Image + '" width="90px" height="60px" alt="">';
-                html += '      <span class="testimonial-author">' + result.data.Name + '';
-                html += '         <em>Visitor</em>';
-                html += '      </span>';
-                html += '   </div>';
-                html += ' </div>';
+                html += '<div class="testimonial-info">';
+                html += '<blockquote>';
+                html += '<div class="span2">';
+                html += '<img class="img-circle img-polaroid" src="' + result.data.Image + '"style="width:68px; height:68px;">';
+                html += '</div>';
+                html += '<div class="span10">';
+                html += '<p>'+ result.data.Comments;
+                html += '<small>';
+                html += '<em>'+ result.data.Name +'</em></small>';
+                html += '</p>';
+                html += '</div>';
+                html += '</blockquote>';
+                html += '</div>';
+                html += '</div>';
                 carusel.append(html);
-                jAlert('Comentario publicado.');
+
+                $.gritter.add({
+                    title: 'Comentario Publicado',
+                    text: 'Su comentario ha sido publicado satisfactoriamente.'
+                });
             },
             error: function (xhr) {
                 if (xhr.status == 403) {
@@ -758,7 +768,7 @@ jQuery(function () {
         var anuncio = $(self).closest(".booking-blocks");
 
         bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
-            debugger;
+            
             if (result) {
                 jQuery.ajax(
                {

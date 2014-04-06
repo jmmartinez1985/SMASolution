@@ -8392,19 +8392,21 @@
           </h5>
           <br />
           <h5>
-            Le solicitamos cordialmente nos brinde su opinión acerca del servicio número <xsl:value-of select="SolicitudId" />  que fue solicitado por usted al anunciante <xsl:value-of select="ProviderName" /> en el Sitio Web de Service Market.
+            Le solicitamos cordialmente nos brinde su opinión acerca del servicio número <xsl:value-of select="SolicitudId" /> <b> "<xsl:value-of select="AnuncioTitulo" />"</b> que fue solicitado por usted al anunciante <xsl:value-of select="ProviderName" /> en nuestro Sitio Web Service Market.
           </h5>
           <h5>
-            El número del anuncio solicitado es el <xsl:value-of select="AnuncioId" />.
-          </h5>
-          <h5>
-            Para calificar el servicio y dejar sus comentarios haga clic en el siguiente link
+            Para calificar el servicio y dejar sus comentarios haga clic en el siguiente link:
           </h5>
           <xsl:element name="a">
             <xsl:attribute name="href">
               <xsl:value-of select="LinkReview"/>
             </xsl:attribute>
+            <xsl:attribute name="class">
+              color-green
+            </xsl:attribute>
+            Calificar Servicio.
           </xsl:element>
+          
           <br />
           <h5>
             Le recordamos la importancia de sus comentarios pues permitirán a otros usuarios tener una referencia de este servicio.
