@@ -27,7 +27,6 @@
         <EntityTypeShape EntityType="ServiceMarketModel.RW_Reviews" Width="1.5" PointX="12.875" PointY="1.125" />
         <AssociationConnector Association="ServiceMarketModel.FK_RW_Reviews_SS_SolicitudServicio" />
         <AssociationConnector Association="ServiceMarketModel.FK_RW_Reviews_ST_Estatus" />
-        <EntityTypeShape EntityType="ServiceMarketModel.BL_BlackList" Width="1.5" PointX="1.6208501353956994" PointY="20.755309457311085" />
         <EntityTypeShape EntityType="ServiceMarketModel.CR_ComentarioReview" Width="1.5" PointX="10.780542214764536" PointY="31.118680521435422" />
         <AssociationConnector Association="ServiceMarketModel.FK_CR_ComentarioReview_RW_Reviews" />
         <AssociationConnector Association="ServiceMarketModel.FK_CR_ComentarioReview_ST_Estatus" />
@@ -53,6 +52,7 @@
         <EntityTypeShape EntityType="ServiceMarketModel.MC_MembresiaControl" Width="1.5" PointX="11.405204236230443" PointY="19.943851852763377" />
         <AssociationConnector Association="ServiceMarketModel.FK_MC_MembresiaControl_MB_Membresia" />
         <AssociationConnector Association="ServiceMarketModel.FK_MC_MembresiaControl_UserProfile" />
+        <EntityTypeShape EntityType="ServiceMarketModel.BL_BlackList" Width="1.5" PointX="3.125" PointY="7" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

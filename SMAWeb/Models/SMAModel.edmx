@@ -9,12 +9,7 @@
           <EntitySet Name="AE_AnunciosExtras" EntityType="ServiceMarketModel.Store.AE_AnunciosExtras" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AM_MultimediaAnuncios" EntityType="ServiceMarketModel.Store.AM_MultimediaAnuncios" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AN_Anuncios" EntityType="ServiceMarketModel.Store.AN_Anuncios" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="BL_BlackList" EntityType="ServiceMarketModel.Store.BL_BlackList" store:Type="Tables" store:Schema="dbo" store:Name="BL_BlackList">
-            <DefiningQuery>SELECT 
-      [BL_BlackList].[BL_Id] AS [BL_Id], 
-      [BL_BlackList].[BL_Descripcion] AS [BL_Descripcion]
-      FROM [dbo].[BL_BlackList] AS [BL_BlackList]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="BL_BlackList" EntityType="ServiceMarketModel.Store.BL_BlackList" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CD_CategoriaServicio" EntityType="ServiceMarketModel.Store.CD_CategoriaServicio" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="COM_Compañia" EntityType="ServiceMarketModel.Store.COM_Compañia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CON_Contactenos" EntityType="ServiceMarketModel.Store.CON_Contactenos" store:Type="Tables" Schema="dbo" />
@@ -174,13 +169,9 @@
           <Property Name="ST_Id" Type="int" Nullable="false" />
           <Property Name="CD_Id" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'ServiceMarket.dbo.BL_BlackList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="BL_BlackList">
           <Key>
             <PropertyRef Name="BL_Id" />
-            <PropertyRef Name="BL_Descripcion" />
           </Key>
           <Property Name="BL_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="BL_Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
@@ -780,7 +771,6 @@
             <End Role="ST_Estatus" EntitySet="ST_Estatus" />
             <End Role="RW_Reviews" EntitySet="RW_Reviews" />
           </AssociationSet>
-          <EntitySet Name="BL_BlackList" EntityType="ServiceMarketModel.BL_BlackList" />
           <EntitySet Name="CR_ComentarioReview" EntityType="ServiceMarketModel.CR_ComentarioReview" />
           <AssociationSet Name="FK_CR_ComentarioReview_RW_Reviews" Association="ServiceMarketModel.FK_CR_ComentarioReview_RW_Reviews">
             <End Role="RW_Reviews" EntitySet="RW_Reviews" />
@@ -875,6 +865,7 @@
           <FunctionImport Name="SEL_MembresiasPorExpirar" ReturnType="Collection(String)" />
           <FunctionImport Name="UPD_MembresiasExpiradas" ReturnType="Collection(String)" />
           <FunctionImport Name="get_MembresiaPorExpirar" />
+          <EntitySet Name="BL_BlackList" EntityType="ServiceMarketModel.BL_BlackList" />
           </EntityContainer>
         <EntityType Name="AM_MultimediaAnuncios">
           <Key>
@@ -1147,14 +1138,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="BL_BlackList">
-          <Key>
-            <PropertyRef Name="BL_Id" />
-            <PropertyRef Name="BL_Descripcion" />
-          </Key>
-          <Property Type="Int32" Name="BL_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="BL_Descripcion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="CR_ComentarioReview">
           <Key>
             <PropertyRef Name="CR_Id" />
@@ -1477,6 +1460,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BL_BlackList">
+          <Key>
+            <PropertyRef Name="BL_Id" />
+          </Key>
+          <Property Type="Int32" Name="BL_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="BL_Descripcion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1680,14 +1670,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BL_BlackList">
-            <EntityTypeMapping TypeName="ServiceMarketModel.BL_BlackList">
-              <MappingFragment StoreEntitySet="BL_BlackList">
-                <ScalarProperty Name="BL_Descripcion" ColumnName="BL_Descripcion" />
-                <ScalarProperty Name="BL_Id" ColumnName="BL_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CR_ComentarioReview">
             <EntityTypeMapping TypeName="ServiceMarketModel.CR_ComentarioReview">
               <MappingFragment StoreEntitySet="CR_ComentarioReview">
@@ -1794,6 +1776,14 @@
           <FunctionImportMapping FunctionImportName="SEL_MembresiasPorExpirar" FunctionName="ServiceMarketModel.Store.SEL_MembresiasPorExpirar" />
           <FunctionImportMapping FunctionImportName="UPD_MembresiasExpiradas" FunctionName="ServiceMarketModel.Store.UPD_MembresiasExpiradas" />
           <FunctionImportMapping FunctionImportName="get_MembresiaPorExpirar" FunctionName="ServiceMarketModel.Store.SEL_MembresiasPorExpirar" />
+          <EntitySetMapping Name="BL_BlackList">
+            <EntityTypeMapping TypeName="ServiceMarketModel.BL_BlackList">
+              <MappingFragment StoreEntitySet="BL_BlackList">
+                <ScalarProperty Name="BL_Descripcion" ColumnName="BL_Descripcion" />
+                <ScalarProperty Name="BL_Id" ColumnName="BL_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

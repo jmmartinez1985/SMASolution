@@ -44,7 +44,6 @@ namespace SMAWeb.Models
         public DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
         public DbSet<webpages_Roles> webpages_Roles { get; set; }
         public DbSet<RW_Reviews> RW_Reviews { get; set; }
-        public DbSet<BL_BlackList> BL_BlackList { get; set; }
         public DbSet<CR_ComentarioReview> CR_ComentarioReview { get; set; }
         public DbSet<UserProfile> UserProfile { get; set; }
         public DbSet<AE_AnunciosExtras> AE_AnunciosExtras { get; set; }
@@ -52,6 +51,7 @@ namespace SMAWeb.Models
         public DbSet<ELMAH_Error> ELMAH_Error { get; set; }
         public DbSet<MB_Membresia> MB_Membresia { get; set; }
         public DbSet<MC_MembresiaControl> MC_MembresiaControl { get; set; }
+        public DbSet<BL_BlackList> BL_BlackList { get; set; }
     
         public virtual ObjectResult<SEL_BusquedaAvanzada_Result> SEL_BusquedaAvanzada(Nullable<int> categoria, Nullable<int> subCategoria, string descripcion, string lugar)
         {
@@ -176,12 +176,12 @@ namespace SMAWeb.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AN_Anuncios>("Get_AdvanceSearch", mergeOption, categoriaParameter, subCategoriaParameter, descripcionParameter, lugarParameter);
         }
     
-        public virtual ObjectResult<string> SEL_MembresiasPorExpirar() 
+        public virtual ObjectResult<string> SEL_MembresiasPorExpirar()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SEL_MembresiasPorExpirar");
         }
     
-        public virtual ObjectResult<string> UPD_MembresiasExpiradas() 
+        public virtual ObjectResult<string> UPD_MembresiasExpiradas()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UPD_MembresiasExpiradas");
         }

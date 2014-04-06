@@ -34,7 +34,6 @@ function ForgotPassword(data) {
 function CreateBlackList(data) {
     var Titulo = 'Creación de Black List';
     var Mensaje = '';
-    //var TipoAlerta = '';
     if (data.wasSuccess) {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
         $("#BL_Descripcion").val('');
@@ -47,10 +46,6 @@ function CreateBlackList(data) {
         title: Titulo,
         text: Mensaje
     });
-
-    //jQuery(".message").prepend('<div class="alert ' + TipoAlerta + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p>' + Titulo + '</p></strong><p>' + Mensaje + '</p></div>');
-    //jQuery(".alert").alert();
-    //jQuery(".alert").fadeOut(3000);
 };
 
 function CreateCategoria(data) {
