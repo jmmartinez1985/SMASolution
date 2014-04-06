@@ -102,6 +102,12 @@ namespace SMAWeb.Models
 
     }
 
+    [MetadataType(typeof(BL_BlackListMetadata))]
+    public partial class BL_BlackList
+    {
+
+    }
+
     #endregion
 
     #region PartialClass
@@ -145,7 +151,7 @@ namespace SMAWeb.Models
         [StringLength(20, ErrorMessage = "Por favor verifique el campo teléfono 1, sólo se permite un teléfono de hasta 20 dígitos.")]
         [Display(Name = "Teléfono 1")]
         public string AN_Telefono { get; set; }
-         
+
         [Display(Name = "Teléfono 2")]
         //[RegularExpression(@"^\(\d{3}\) ?\d{3,4}( |-)?\d{4}|^\d{3}( |-)?\d{3,4}( |-)?\d{4}", ErrorMessage = "Introduzca un formato de número telefonico válido ex. (658)154-1122 | (658)1542-1122 | 6581541122 | 658-154-1122 | 658-1542-1122 etc.")]
         [StringLength(20, ErrorMessage = "Por favor verifique el campo teléfono 2, sólo se permite un teléfono de hasta 20 dígitos.")]
@@ -308,9 +314,9 @@ namespace SMAWeb.Models
         [Display(Name = "Correo Electrónico")]
         public string UserName { get; set; }
 
-        [Required (ErrorMessage = "Por favor ingrese su nombre completo.")]
+        [Required(ErrorMessage = "Por favor ingrese su nombre completo.")]
         [Display(Name = "Nombre Completo")]
-   
+
         public string Name { get; set; }
 
         [Display(Name = "Profesión")]
@@ -563,6 +569,19 @@ namespace SMAWeb.Models
         [Compare("Password", ErrorMessage = "La contraseña y la confirmación no concuerdan.")]
         public string ConfirmPassword { get; set; }
     }
+
+    public partial class BL_BlackListMetadata
+    {
+        [Display(Name = "ID Black List")]
+        public int BL_Id { get; set; }
+
+        [Required(ErrorMessage = "Por favor ingrese la descripcion.")]
+        [StringLength(30, ErrorMessage = "Por favor verifique el campo descripción, sólo se permite una descripción máxima de 30 dígitos.")]
+        [Display(Name = "Descripción")]
+        public string BL_Descripcion { get; set; }
+
+    }
+
 
     #endregion
 

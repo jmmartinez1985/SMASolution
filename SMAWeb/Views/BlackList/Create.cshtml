@@ -1,0 +1,56 @@
+﻿@model SMAWeb.Models.BL_BlackList
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<br />
+<div class="container">
+    <div class="row-fluid margin-bottom-10">
+
+        <div class="another-page">
+            <div class="headline">
+                <h3>Crear Black List</h3>
+            </div>
+
+            <div class="message">
+            </div>
+
+            @using (Ajax.BeginForm("Create", "BlackList", new AjaxOptions { HttpMethod = "Post", OnSuccess = "CreateBlackList" }))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                @Html.HiddenFor(model => model.BL_Id)
+                    
+
+
+       
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BL_Descripcion)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BL_Descripcion)
+                    @Html.ValidationMessageFor(model => model.BL_Descripcion)
+                </div>
+
+                <p>
+                    <input type="submit" value="Crear" class="btn-u" />
+                </p>
+                <ul style="list-style: none;">
+                    <li>@Html.ValidationMessageFor(model => model.BL_Descripcion)
+                    </li>
+                </ul>
+            }
+
+        </div>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

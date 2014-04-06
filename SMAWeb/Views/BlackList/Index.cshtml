@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SMAWeb.Models.CD_CategoriaServicio>
+﻿@model IEnumerable<SMAWeb.Models.BL_BlackList>
 
 @{
     ViewBag.Title = "Index";
@@ -26,28 +26,29 @@
 
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.CD_Id)
+                            @Html.DisplayNameFor(model => model.BL_Id)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.CD_Descripcion)
+                            @Html.DisplayNameFor(model => model.BL_Descripcion)
                         </th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody id="divBody">
+
                     @foreach (var item in Model)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.CD_Id)
+                                @Html.DisplayFor(modelItem => item.BL_Id)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.CD_Descripcion)
+                                @Html.DisplayFor(modelItem => item.BL_Descripcion)
                             </td>
                             <td>
-                                @Html.ActionLink("Editar", "Edit", new { id = item.CD_Id })  @*|
-           @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                @Html.ActionLink("Edit", "Edit", new { id = item.BL_Id }) @*|
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                             </td>
                         </tr>
                     }

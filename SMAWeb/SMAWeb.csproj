@@ -199,6 +199,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnunciosController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BlackListController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CategoriaServicioController.cs" />
     <Compile Include="Controllers\ComentariosController.cs" />
@@ -740,6 +741,9 @@
     <Content Include="Views\Account\RegisterInstruction.cshtml" />
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Membresia\Pricing.cshtml" />
+    <Content Include="Views\BlackList\Index.cshtml" />
+    <Content Include="Views\BlackList\Create.cshtml" />
+    <Content Include="Views\BlackList\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
