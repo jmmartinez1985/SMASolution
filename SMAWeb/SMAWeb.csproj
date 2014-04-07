@@ -451,6 +451,7 @@
     <Content Include="EmailTemplates\MembresiaExpirada.xslt" />
     <Content Include="EmailTemplates\MembresiaProximaExpirar.xslt" />
     <Content Include="EmailTemplates\RespuestaContacto.xslt" />
+    <Content Include="EmailTemplates\ServicioRejected.xslt" />
     <Content Include="EmailTemplates\ServicioRequestProved.xslt" />
     <Content Include="EmailTemplates\ServicioRequestClient.xslt" />
     <Content Include="EmailTemplates\ServicioReview.xslt" />

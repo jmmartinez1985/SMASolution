@@ -96,7 +96,7 @@ namespace SMAWeb.Controllers
                     var solicitudcreada = db.SaveChanges<SS_SolicitudServicio>(solicitud);
                     if (solicitudcreada != null)
                     {
-                        SendEmailNotification(solicitudcreada, false);
+                        SendEmailNotification(solicitudcreada, false, 1);
                     }
                 }
             }
@@ -161,7 +161,11 @@ namespace SMAWeb.Controllers
                 db.SaveChanges();
                 if (Status == 3)
                 {
-                    SendEmailNotification(solicitud, true);
+                    SendEmailNotification(solicitud, true, Status );
+                }
+                else if (Status == 2)
+                {
+                    SendEmailNotification(solicitud, false, Status);
                 }
             }
             return Json(update.SerializeToJson(), JsonRequestBehavior.AllowGet);
@@ -275,7 +279,7 @@ namespace SMAWeb.Controllers
         }
 
 
-        private void SendEmailNotification(SS_SolicitudServicio solicitud, bool isReview)
+        private void SendEmailNotification(SS_SolicitudServicio solicitud, bool isReview, int Status)
         {
             string pXml = string.Empty;
             var ppEmailTemplate = new Notification();
@@ -322,12 +326,20 @@ namespace SMAWeb.Controllers
 
                 else
                 {
-                    body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioRequestClient.xslt"));
-                    Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailCliente, "Solicitud de Servicio", body);
+                    if (Status == 2)
+                    {
+                        body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioRejected.xslt"));
+                        Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailCliente, "Servicio No Disponible", body);
+                    }
+                    else
+                    {
+                        body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioRequestClient.xslt"));
+                        Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailCliente, "Solicitud de Servicio", body);
 
 
-                    body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioRequestProved.xslt"));
-                    Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailProveedor, "Solicitud de Servicio", body);
+                        body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ServicioRequestProved.xslt"));
+                        Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailProveedor, "Solicitud de Servicio", body);
+                    }
                 }
             }
         }
