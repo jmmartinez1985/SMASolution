@@ -152,7 +152,7 @@ namespace SMAWeb.Controllers
         [HttpGet]
         public ActionResult ChangeStatus(int Solicitud, int Status)
         {
-            Updating update = new Updating() { Message = "Proceso de Actualización Exitosa." };
+            Updating update = new Updating() { Message = "La solicitud número " + Solicitud.ToString() + " ha sido cancelada." };
             using (var db = new Entities())
             {
                 var solicitud = db.SS_SolicitudServicio.Find(Solicitud);
@@ -161,14 +161,22 @@ namespace SMAWeb.Controllers
                 db.SaveChanges();
                 if (Status == 3)
                 {
-                    SendEmailNotification(solicitud, true, Status );
+                    SendEmailNotification(solicitud, true, Status);
                 }
                 else if (Status == 2)
                 {
                     SendEmailNotification(solicitud, false, Status);
                 }
             }
-            return Json(update.SerializeToJson(), JsonRequestBehavior.AllowGet);
+
+
+            if (Request.IsAjaxRequest())
+            {
+                return Json(update.SerializeToJson(), JsonRequestBehavior.AllowGet);
+            }
+
+            return View();
+
         }
 
         //

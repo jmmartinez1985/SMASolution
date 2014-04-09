@@ -568,7 +568,7 @@ jQuery(function () {
     }
 
     HOME.TakeService = function (anuncioid, url, nombre, titulo) {
-        debugger;
+
         var mensaje;
         var data = new FormData();
         data.append("Anuncio", anuncioid);
@@ -660,9 +660,9 @@ jQuery(function () {
                 html += '<img class="img-circle img-polaroid" src="' + result.data.Image + '"style="width:68px; height:68px;">';
                 html += '</div>';
                 html += '<div class="span10">';
-                html += '<p>'+ result.data.Comments;
+                html += '<p>' + result.data.Comments;
                 html += '<small>';
-                html += '<em>'+ result.data.Name +'</em></small>';
+                html += '<em>' + result.data.Name + '</em></small>';
                 html += '</p>';
                 html += '</div>';
                 html += '</blockquote>';
@@ -785,7 +785,7 @@ jQuery(function () {
         var anuncio = $(self).closest(".booking-blocks");
 
         bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
-            
+
             if (result) {
                 jQuery.ajax(
                {
@@ -910,7 +910,7 @@ jQuery(function () {
                               title: 'Mensaje Enviado',
                               text: 'Hemos registrado satisfactoriamente su mensaje. Pronto le estaremos contactando para responder a sus consultas. Gracias por preferirnos.'
                           });
-                        
+
                           $('#CON_Nombre').val("");
                           $('#CON_Telefono').val("");
                           $('#CON_Celular').val("");
@@ -938,8 +938,7 @@ jQuery(function () {
               });
     }
 
-    MEMBRESIA.MembresiasExpiradas = function (url)
-    {
+    MEMBRESIA.MembresiasExpiradas = function (url) {
         jQuery.ajax({
             url: url,
             type: 'get',
@@ -979,8 +978,7 @@ jQuery(function () {
         });
     }
 
-    MEMBRESIA.PorExpirar = function (url)
-    {
+    MEMBRESIA.PorExpirar = function (url) {
         jQuery.ajax({
             url: url,
             type: 'get',
@@ -1021,4 +1019,49 @@ jQuery(function () {
             }
         });
     }
+
+    SOLICITUD.CancelTask = function (Solicitud, Status, url) {
+
+        var mensaje;
+        mensaje = 'Ha hecho clic en la opción cancelar el servicio que le fue solicitado. ¿Está seguro que desea cancelar esta solicitud?';
+        bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result) {
+            if (result) {
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function () {
+                        COMMON.CallProgress(LoadingImage);
+                    },
+                    complete: function (data) {
+                        COMMON.HideProgress();
+                    },
+                    success: function (data) {
+                        debugger;
+                        data = JSON.parse(data);
+                        if (data.Message != null | data.Message != undefined) {
+                            $.gritter.add({
+                                title: 'Solicitud cancelada',
+                                text: data.Message
+                            });
+                            setTimeout(function () { window.location = location.href }, 3000);
+                        }
+
+                    },
+                    error: function (xhr) {
+                        if (xhr.status == 403) {
+                            var response = $.parseJSON(xhr.responseText);
+                            window.location = response.LogOnUrl;
+                        }
+                        else {
+                            alert(xhr.responseText, 'An error has ocurred');
+                        }
+                    }
+                });
+            }
+        });
+    }
+
 });
