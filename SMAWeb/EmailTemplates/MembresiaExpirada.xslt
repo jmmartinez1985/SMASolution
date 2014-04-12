@@ -8397,7 +8397,7 @@
           </h5>
           <br />
           <h5>
-            Service Market le informa que su membresía ha expirarado. Si desea extender su membresía haga clic en el siguiente:
+            Service Market le informa que su membresía ha expirarado. Si desea extender su membresía haga clic en el siguiente link:
             <xsl:element name="a">
             <xsl:attribute name="href">
               <xsl:value-of select="LinkMembresia"/>
