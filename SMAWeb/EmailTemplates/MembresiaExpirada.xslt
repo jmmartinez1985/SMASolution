@@ -8409,7 +8409,7 @@
           </xsl:element>
           </h5>
           <br />
-          <h5>Le recordamos que al expirar su membresía sus anuncios serán desactivados y se le asignará una membresía totalmente gratuita.</h5>
+          <h5>Le recordamos que al expirar su membresía sus anuncios serán desactivados y se le asignará una membresía gratuita.</h5>
           <br />
           <br />
           <h5>Gracias por preferirnos.</h5>
