@@ -745,6 +745,7 @@
     <Content Include="Views\BlackList\Index.cshtml" />
     <Content Include="Views\BlackList\Create.cshtml" />
     <Content Include="Views\BlackList\Edit.cshtml" />
+    <Content Include="Views\Home\Policy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

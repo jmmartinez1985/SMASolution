@@ -74,7 +74,7 @@ namespace SMAWeb.Controllers
             using (Entities model = new Entities())
             {
                 //allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.ST_Id == 1 && acc.UserId == UserId).ToList();
-                allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.UserId == UserId && (acc.ST_Id == 1 | acc.ST_Id == 2)).ToList();
+                allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).Where(acc => acc.UserId == UserId && (acc.ST_Id == 1 | acc.ST_Id == 2 | acc.ST_Id == 9)).ToList();
 
 
                 var categoriasList = new List<Categoria>();

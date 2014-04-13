@@ -64,7 +64,6 @@ namespace SMAWeb.Controllers
             return Json(new { IsIncomplete = false });
         }
 
-
         public ActionResult VerifySolicitudesPendientes()
         {
             var anunciosSolicitados = new List<SS_SolicitudServicio>();
@@ -160,9 +159,14 @@ namespace SMAWeb.Controllers
 
         public ActionResult Terminos()
         {
-            ViewBag.Message = "Terminos y Condiciones.";
+            ViewBag.Message = "Términos y Condiciones.";
             return View();
         }
 
+        public ActionResult Policy()
+        {
+            ViewBag.Message = "Políticas de Privacidad";
+            return View();
+        }
     }
 }
