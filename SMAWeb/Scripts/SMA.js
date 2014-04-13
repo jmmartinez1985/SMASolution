@@ -322,6 +322,35 @@ jQuery(function () {
         });
     }
 
+    HOME.VerifySolicitudesPendientes = function (url, redirect) {
+        jQuery.ajax(
+            {
+                type: 'post',
+                url: url,
+                success: function (data) {
+                    debugger;
+                    if (data.SolicitudesPendientes == true) {
+                        $.gritter.add({
+                            title: 'Solicitudes Pendientes',
+                            text: 'Estimado usuario, le informamos que tiene solicitudes pendientes de atender. Para ver estas solicitudes haga clic ' + '<a href="' + redirect + '" class="color-green">aqui</a>'
+                        });
+                    }
+                },
+                error: function (xhr) {
+                    debugger;
+                    if (xhr.status == 403) {
+
+                    }
+                    else {
+                        if (xhr.responseText != "")
+                            bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                            });
+                    }
+                }
+
+            });
+    }
+
     HOME.GetServices = function (url) {
         jQuery.ajax(
         {
@@ -851,6 +880,30 @@ jQuery(function () {
         });
     }
 
+    ANUNCIOS.ValidateCreatePage = function (url, redirect) {
+        $.ajax({
+            url: url,
+            type: 'get',
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                if (data.ErrorMessage != null | data.ErrorMessage != undefined) {
+                    bootbox.alert('<h3>Límite de anuncios publicados superado.</h3><br/><h5>Estimado usuario, Service Market le informa que ha superado el límite de anuncios permitidos para su membresía.</h5>', function () {
+                        $(location).attr('href', redirect);
+                    });
+                }
+            },
+            error: function (xhr) {
+                if (xhr.status == 403) {
+                    var response = $.parseJSON(xhr.responseText);
+                    window.location = response.LogOnUrl;
+                }
+                else {
+                    alert(xhr.responseText, 'An error has ocurred');
+                }
+            }
+        });
+    }
     ANUNCIOS.SetDropDowns = function () {
 
         var selectpa = $('#PA_Id').attr("paid");

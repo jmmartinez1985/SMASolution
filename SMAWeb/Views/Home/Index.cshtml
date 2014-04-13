@@ -218,6 +218,7 @@
             HOME.CallFilter(attr, '@Url.Action("GetInformationAnuncios", "Anuncios")');
         });
         HOME.VerifyCredential('@Url.Action("VerifyCompleteCredential", "Home")', '@Url.Action("EditUser", "UserProfile")');
+        HOME.VerifySolicitudesPendientes('@Url.Action("VerifySolicitudesPendientes", "Home")', '@Url.Action("SolicitudRequest", "SolicitudServicio")');
     });
 
     function CheckVisibleProjects() {

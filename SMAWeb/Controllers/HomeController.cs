@@ -65,6 +65,24 @@ namespace SMAWeb.Controllers
         }
 
 
+        public ActionResult VerifySolicitudesPendientes()
+        {
+            var anunciosSolicitados = new List<SS_SolicitudServicio>();
+            using (Entities model = new Entities())
+            {
+                if (Request.IsAuthenticated)
+                {
+                    anunciosSolicitados = model.SS_SolicitudServicio.Where(c => c.ST_Id == 1 & c.UserId == WebSecurity.CurrentUserId).ToList();
+                    var total = anunciosSolicitados.Count();
+                    if (total > 0)
+                        return Json(new { SolicitudesPendientes = true });
+                    else
+                        return Json(new { SolicitudesPendientes = false });
+                }
+            }
+            return Json(new { SolicitudesPendientes = false });
+        }
+
         public ActionResult GetServices()
         {
             var allAnunciosList = new List<AN_Anuncios>();

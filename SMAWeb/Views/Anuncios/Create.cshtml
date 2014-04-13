@@ -171,12 +171,15 @@
         </div>
     </div>
 </div>
+
 <script src="~/Scripts/SMA.js"></script>
 <script>
     jQuery(document).ready(function () {
         jQuery('.submitback').hide();
         HOME.ChangeCategory("CD_Id", '@Url.Action("GetSubCategories", "SubCategoriaServicio")');
+        ANUNCIOS.ValidateCreatePage('@Url.Action("ValidateAnuncioCreate", "Anuncios")', '@Url.Action("Index", "Home")');
     });
+
 
     function Success() {
         //$("#content").prepend(' <br /> <br /><div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Recursos! </strong> El anuncio esta habilitado para subir sus recursos.</div>');
