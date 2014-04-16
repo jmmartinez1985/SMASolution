@@ -734,7 +734,6 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\SolicitudServicio\Details.cshtml" />
-    <Content Include="Views\Home\Terminos.cshtml" />
     <Content Include="Views\Emails\RegEmail.cshtml" />
     <Content Include="Views\Emails\_ViewStart.cshtml" />
     <Content Include="Views\Account\ConfirmationFailure.cshtml" />
@@ -746,6 +745,7 @@
     <Content Include="Views\BlackList\Create.cshtml" />
     <Content Include="Views\BlackList\Edit.cshtml" />
     <Content Include="Views\Home\Policy.cshtml" />
+    <Content Include="Views\Home\Terms.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
