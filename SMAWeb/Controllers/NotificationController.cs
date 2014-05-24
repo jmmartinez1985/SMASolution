@@ -7,7 +7,6 @@ using System.Web.Http;
 using System.Data;
 using System.Data.Entity;
 using System.Web;
-using System.Web.Mvc;
 using SMAWeb.Models;
 using WebMatrix.WebData;
 using SMAWeb.Filters;
@@ -22,6 +21,7 @@ using System.Threading.Tasks;
 
 namespace SMAWeb.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class NotificationController : ApiController
     {
 
@@ -31,7 +31,7 @@ namespace SMAWeb.Controllers
         [System.Web.Http.HttpGet]
         public string GetExpiration()
         {
-           this.Context= HttpContext.Current;
+            this.Context = HttpContext.Current;
 
             var tareaAsincronica = Task.Factory.StartNew(() => PorExpirar());
             Task.WaitAll(tareaAsincronica);
@@ -42,7 +42,7 @@ namespace SMAWeb.Controllers
         {
             using (Models.Entities model = new Models.Entities())
             {
-                
+
                 model.SEL_MembresiasPorExpirar().ToList().ForEach(correo =>
                 {
                     SendEmailNotification(correo.ToString(), @"EmailTemplates/MembresiaProximaExpirar.xslt", "Membresía Por Expirar");
