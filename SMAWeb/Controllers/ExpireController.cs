@@ -4,14 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
-
 using System.Data;
 using System.Data.Entity;
 using System.Web;
-using System.Web.Mvc;
-
-
 using SMAWeb.Models;
 using WebMatrix.WebData;
 using SMAWeb.Filters;
@@ -26,6 +21,7 @@ using System.Threading.Tasks;
 
 namespace SMAWeb.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ExpireController : ApiController
     {
         public HttpContext Context { get; set; }
