@@ -1,4 +1,108 @@
 ﻿<!-- Menu -->
+
+<style>
+    .panel {
+        background-color: #FFFFFF;
+        border: 1px solid rgba(0, 0, 0, 0);
+        border-radius: 4px 4px 4px 4px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+    }
+
+    .panel-primary {
+    }
+
+        .panel-primary > .panel-heading {
+            background-color: #e67e22;
+            border-color: #428BCA;
+            color: #FFFFFF;
+        }
+
+    .panel-heading {
+        border-bottom: 1px solid rgba(0, 0, 0, 0);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        padding: 10px 15px;
+    }
+
+    .panel-title {
+        font-size: 16px;
+        margin-bottom: 0;
+        margin-top: 0;
+        color: white;
+    }
+
+    .panel-body:before, .panel-body:after {
+        content: " ";
+        display: table;
+    }
+
+    .panel-body:before, .panel-body:after {
+        content: " ";
+        display: table;
+    }
+
+    .panel-body:after {
+        clear: both;
+    }
+
+    .panel-body {
+        padding: 15px;
+    }
+
+    .panel-footer {
+        background-color: #F5F5F5;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        border-top: 1px solid #DDDDDD;
+        padding: 10px 15px;
+    }
+
+
+    .user-row {
+        margin-bottom: 14px;
+    }
+
+        .user-row:last-child {
+            margin-bottom: 0;
+        }
+
+    .dropdown-user {
+        margin: 13px 0;
+        padding: 5px;
+        height: 100%;
+    }
+
+        .dropdown-user:hover {
+            cursor: pointer;
+        }
+
+    .table-user-information > tbody > tr {
+        border-top: 1px solid rgb(221, 221, 221);
+    }
+
+        .table-user-information > tbody > tr:first-child {
+            border-top: 0;
+        }
+
+
+        .table-user-information > tbody > tr > td {
+            border-top: 0;
+        }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#editUser').click(function (e) {
+            location.href = '@Url.Content("~/UserProfile/EditUser/")';
+        });
+
+        $('#closeSession').click(function (e) {
+            location.href = '@Url.Content("~/Account/LogOffUser/")';
+        });
+    });
+</script>
+
+
 <div class="navbar">
     <div class="navbar-inner">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -32,6 +136,74 @@
                         @*<li><a href="@Url.Action("GetAnunciosByUser", "Anuncios")"><i class="icon-cog"></i>&nbsp;Estadísticas</a></li>*@
                     </ul>
                     <b class="caret-out"></b>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cuenta<b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="left: -185px">
+                        <li>
+                            <div class="row-fluid user-infos cyruxx">
+                                <div class="span12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Su cuenta</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row-fluid">
+                                                <div class="span3">
+                                                    <img class="img-circle"
+                                                        src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
+                                                        alt="User Pic">
+                                                </div>
+                                                <div class="span6">
+                                                    <strong>stn_rules@hotmail.com</strong><br>
+                                                    <table class="table table-condensed table-responsive table-user-information">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Membresia:</td>
+                                                                <td>Administrator</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Registrado desde:</td>
+                                                                <td>11/12/2013</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Anuncios</td>
+                                                                <td>15</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Solicitudes</td>
+                                                                <td>0</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <button class="btn  btn-primary" type="button"
+                                                data-toggle="tooltip"
+                                                data-original-title="Send message to user">
+                                                <i class="icon-envelope icon-white"></i>
+                                            </button>
+                                            <span class="pull-right">
+                                                <button class="btn btn-warning" type="button" id="editUser"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Edit this user">
+                                                    <i class="icon-edit icon-white"></i>
+                                                </button>
+                                                <button class="btn btn-danger" type="button" id="closeSession"
+                                                    data-toggle="tooltip" 
+                                                    data-original-title="Remove this user">
+                                                    <i class="icon-remove icon-white"></i>
+                                                </button>
+
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>

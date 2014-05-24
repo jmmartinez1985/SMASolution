@@ -68,6 +68,13 @@ namespace SMAWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+  
+        public ActionResult LogOffUser()
+        {
+            WebSecurity.Logout();
+            return RedirectToAction("Index", "Home");
+        }
+
         //
         // GET: /Account/Register
 

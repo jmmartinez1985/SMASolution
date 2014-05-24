@@ -56,7 +56,46 @@
                     </ul>
                     <b class="caret-out"></b>
                 </li>
+                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                    class="icon-comment"></span>Chats <span class="label label-primary">42</span>
+                </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span class="label label-warning">7:00 AM</span>Hi :)</a></li>
+                        <li><a href="#"><span class="label label-warning">8:00 AM</span>How are you?</a></li>
+                        <li><a href="#"><span class="label label-warning">9:00 AM</span>What are you doing?</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" class="text-center">View All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                    class="icon-envelope"></span>Inbox <span class="label label-info">32</span>
+                </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span class="label label-warning">4:00 AM</span>Favourites Snippet</a></li>
+                        <li><a href="#"><span class="label label-warning">4:30 AM</span>Email marketing</a></li>
+                        <li><a href="#"><span class="label label-warning">5:00 AM</span>Subscriber focused email
+                            design</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" class="text-center">View All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                    class="icon-user"></span>Admin <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Content("~/UserProfile/EditUser")"><span class="icon-user"></span>@User.Identity.Name.ToString()</a></li>
+                       @* <li><a href="#"><span class="icon-cog"></span>Settings</a></li>*@
+                        <li>
+
+                       @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm",  }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <a  href="javascript:document.getElementById('logoutForm').submit()"><span class="icon-off"></span>Cerrar sesión</a>
+                        }
+                        </li>
+                    </ul>
+                </li>
             </ul>
+      
         </div>
         <!-- /nav-collapse -->
     </div>

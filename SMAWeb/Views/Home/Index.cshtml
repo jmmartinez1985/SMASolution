@@ -237,7 +237,7 @@
     }
 
     function TakeService(anuncioid) {
-        debugger;
+        
         var titulo = $("#btnTakeService" + anuncioid).attr("data-titulo");
         var nombre = $("#btnTakeService" + anuncioid).attr("data-nombre");
         HOME.TakeService(anuncioid, '@Url.Action("TakeService", "SolicitudServicio")', nombre, titulo);

@@ -78,7 +78,7 @@
         maxfilesize: 20,
         url: url_handler,
         uploadFinished: function (i, file, response, size, targetdiv) {
-            debugger;
+            
             $('#imagesColumns_tr_empty').remove();
             LoadNewFilesDrop(response, file.name);
             hideProgress();
@@ -115,7 +115,7 @@
     });
 
         $(document).ready(function () {
-            debugger;
+            
             $('#fileupload').submit(function (e) {
                 var lenght = jQuery(".thumbnails").find('li[itemid]').length;
                 if (lenght == undefined)
@@ -203,10 +203,10 @@
         }
 
         function LoadNewFiles(data, fileName) {
-            debugger;
+            
             var result = JSON.parse(data);
             $.each(result.$values, function (i, e) {
-                debugger;
+                
                 var addNewFile = (fileName == undefined) ? true : (fileName.toLowerCase() == e.name.toLowerCase());
                 if (addNewFile) {
                     var row = $('<tr/>');
@@ -225,7 +225,7 @@
 
         function LoadNewFilesDrop(data, fileName) {
             $.each(data.$values, function (i, e) {
-                debugger;
+                
                 var addNewFile = (fileName == undefined) ? true : (fileName.toLowerCase() == e.name.toLowerCase());
                 if (addNewFile) {
                     var row = $('<tr/>');
@@ -243,7 +243,7 @@
 
         function DeleteFile(link) {
 
-            debugger;
+            
 
             var url = $(link).attr('data-url');
             var idres = $(link).attr('data-idelement');

@@ -328,7 +328,7 @@ jQuery(function () {
                 type: 'post',
                 url: url,
                 success: function (data) {
-                    debugger;
+                    
                     if (data.SolicitudesPendientes == true) {
                         $.gritter.add({
                             title: 'Solicitudes Pendientes',
@@ -337,7 +337,7 @@ jQuery(function () {
                     }
                 },
                 error: function (xhr) {
-                    debugger;
+                    
                     if (xhr.status == 403) {
 
                     }
@@ -619,7 +619,7 @@ jQuery(function () {
                         COMMON.HideProgress();
                     },
                     success: function (data) {
-                        debugger;
+                        
 
                         if (data.Message != null | data.Message != undefined) {
                             $.gritter.add({
@@ -639,7 +639,7 @@ jQuery(function () {
                         //  alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
                     },
                     error: function (xhr) {
-                        debugger;
+                        
                         if (xhr.status == 403) {
                             var response = $.parseJSON(xhr.responseText);
                             window.location = response.LogOnUrl;
@@ -654,7 +654,7 @@ jQuery(function () {
     }
 
     ANUNCIOS.PostComment = function (element, userId, url) {
-        debugger;
+        
         var review = $(element).attr('data-val');
         var commentElement = "#comentario-" + review;
 
@@ -1019,7 +1019,7 @@ jQuery(function () {
                 }
             },
             error: function (xhr) {
-                debugger;
+                
                 if (xhr.status == 403) {
                     var response = $.parseJSON(xhr.responseText);
                     window.location = response.LogOnUrl;
@@ -1045,7 +1045,7 @@ jQuery(function () {
                 COMMON.HideProgress();
             },
             success: function (data) {
-                debugger;
+                
 
                 if (data.Message != null | data.Message != undefined) {
                     $.gritter.add({
@@ -1061,7 +1061,7 @@ jQuery(function () {
                 }
             },
             error: function (xhr) {
-                debugger;
+                
                 if (xhr.status == 403) {
                     var response = $.parseJSON(xhr.responseText);
                     window.location = response.LogOnUrl;
@@ -1092,7 +1092,7 @@ jQuery(function () {
                         COMMON.HideProgress();
                     },
                     success: function (data) {
-                        debugger;
+                        
                         data = JSON.parse(data);
                         if (data.Message != null | data.Message != undefined) {
                             $.gritter.add({

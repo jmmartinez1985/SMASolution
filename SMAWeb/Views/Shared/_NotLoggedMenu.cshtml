@@ -1,4 +1,59 @@
 ﻿<!-- Menu -->
+
+<style>
+    .navbar-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        margin-top: 20px;
+    }
+
+        /* Flip around the padding for proper display in narrow viewports */
+        .navbar-wrapper .container {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .navbar-wrapper .navbar {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+    .navbar-content {
+        width: -320px;
+        padding: 15px;
+        padding-bottom: 0px;
+    }
+
+        .navbar-content:before, .navbar-content:after {
+            display: table;
+            content: "";
+            line-height: 0;
+        }
+
+    .navbar-nav.navbar-right:last-child {
+        margin-right: 15px !important;
+    }
+
+    .navbar-footer {
+        background-color: #DDD;
+    }
+
+    .navbar-footer-content {
+        padding: 15px 15px 15px 15px;
+    }
+
+    .dropdown-menu {
+        padding: 0px;
+        overflow: hidden;
+    }
+</style>
+
+
+
+
 <div class="navbar">
     <div class="navbar-inner">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -21,8 +76,22 @@
                 <li>
                     <a href="@Url.Action("Create", "Contactos")" >Contáctenos</a>
                 </li>
+
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                    class="icon-user"></span>Cuenta <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Content("~/Account/Login")"><span class="icon-user"></span>Iniciar Session</a></li>
+                        <li>
+                            <a href="@Url.Content("~/Account/Register")"><span class="icon-cog"></span>Registrarse</a>
+                        </li>
+                       
+                        <li><a href="@Url.Content("~/FAQ/Details")"><span class="icon-info-sign"></span>Ayuda</a></li>
+                    </ul>
+                </li>
                 
             </ul>
+
+
         </div>
         <!-- /nav-collapse -->
     </div>
