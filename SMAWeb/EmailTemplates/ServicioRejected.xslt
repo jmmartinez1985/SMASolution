@@ -8418,7 +8418,7 @@
             <div class="row-fluid">
               <div class="span12">
                 <p>
-                  2014 &#169; Service Market. Todos los derechos reservados. <a href="http://isrrasma2-001-site1.smarterasp.net/Home/Policy">Política de Privacidad</a> | <a href="http://isrrasma2-001-site1.smarterasp.net/Home/Terms">Término de Servicios</a>
+                  2014 &#169; Service Market. Todos los derechos reservados. <a href="xcomar-002-site3.smarterasp.net/Home/Policy">Política de Privacidad</a> | <a href="http://isrrasma2-001-site1.smarterasp.net/Home/Terms">Término de Servicios</a>
                 </p>
               </div>
             </div>

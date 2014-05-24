@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMAWeb", "SMAWeb\SMAWeb.csproj", "{252C6037-B2C3-4A24-A5A1-D4B116CE74EA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BD Backup", "BD Backup", "{864F7DB8-9DC2-4ED2-A029-7A01B2DF9074}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\ServiceMarket.bak = ..\..\..\ServiceMarket.bak
-		..\..\..\smascript.sql = ..\..\..\smascript.sql
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpirationNotification", "ExpirationNotification\ExpirationNotification.csproj", "{655333D1-B532-498E-B84E-B3F5E24462A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpireAccount", "ExpireAccount\ExpireAccount.csproj", "{596D2C1C-9F25-437D-A34C-1F8F9972871B}"
