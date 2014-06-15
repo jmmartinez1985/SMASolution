@@ -133,10 +133,12 @@ namespace SMAWeb.Controllers
 
                 }
             }
-            if (viewModelAnuncios == null || viewModelAnuncios.Count == 0)
-            {
-                return HttpNotFound();
-            }
+
+            ////Comentado porque causa error en la pantalla cuando no hay anuncios publicados
+            //if (viewModelAnuncios == null || viewModelAnuncios.Count == 0)
+            //{
+            //    return HttpNotFound();
+            //}
 
 
             var anuncios = viewModelAnuncios.SerializeToJson();

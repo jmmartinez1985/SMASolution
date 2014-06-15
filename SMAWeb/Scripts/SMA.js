@@ -11,7 +11,8 @@
  */
 
 
-function ChangePassword(data) {
+function ChangePassword(data)
+{
     var Titulo = 'Cambio de contraseña';
     $("#OldPassword").val('');
     $("#NewPassword").val('');
@@ -22,7 +23,8 @@ function ChangePassword(data) {
     });
 }
 
-function ForgotPassword(data) {
+function ForgotPassword(data)
+{
     var Titulo = 'Olvidó su contraseña';
     $("#Email").val('');
     $.gritter.add({
@@ -31,14 +33,17 @@ function ForgotPassword(data) {
     });
 }
 
-function CreateBlackList(data) {
+function CreateBlackList(data)
+{
     var Titulo = 'Creación de Black List';
     var Mensaje = '';
-    if (data.wasSuccess) {
+    if (data.wasSuccess)
+    {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
         $("#BL_Descripcion").val('');
     }
-    else {
+    else
+    {
         Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
     }
 
@@ -48,15 +53,18 @@ function CreateBlackList(data) {
     });
 };
 
-function CreateCategoria(data) {
+function CreateCategoria(data)
+{
     var Titulo = 'Creación de Categoría';
     var Mensaje = '';
     //var TipoAlerta = '';
-    if (data.wasSuccess) {
+    if (data.wasSuccess)
+    {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
         $("#CD_Descripcion").val('');
     }
-    else {
+    else
+    {
         Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
     }
 
@@ -70,16 +78,19 @@ function CreateCategoria(data) {
     //jQuery(".alert").fadeOut(3000);
 };
 
-function CreateFAQ(data) {
+function CreateFAQ(data)
+{
     var Titulo = 'Creación de FAQ';
     var Mensaje = '';
 
-    if (data.wasSuccess) {
+    if (data.wasSuccess)
+    {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
         $("#FAQ_Question").val('');
         $("#FAQ_Answer").val('');
     }
-    else {
+    else
+    {
         Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
     }
 
@@ -93,17 +104,20 @@ function CreateFAQ(data) {
     //jQuery(".alert").fadeOut(3000);
 };
 
-function CreateMembresia(data) {
+function CreateMembresia(data)
+{
 
     var Titulo = 'Creación de Membresía';
     var Mensaje = '';
 
-    if (data.wasSuccess) {
+    if (data.wasSuccess)
+    {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
         $("#MP_Descripcion").val('');
         $("#MP_ExpiracionDays").val('');
     }
-    else {
+    else
+    {
         Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
     }
 
@@ -118,15 +132,18 @@ function CreateMembresia(data) {
 
 };
 
-function CreatePaises(data) {
+function CreatePaises(data)
+{
     var Titulo = 'Creación de Países';
     var Mensaje = '';
     var TipoAlerta = '';
-    if (data.wasSuccess) {
+    if (data.wasSuccess)
+    {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
         TipoAlerta = 'alert-success';
     }
-    else {
+    else
+    {
         Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
         TipoAlerta = 'alert-error';
     }
@@ -137,15 +154,18 @@ function CreatePaises(data) {
 
 };
 
-function CreateRegion(data) {
+function CreateRegion(data)
+{
     var Titulo = 'Creación de Países';
     var Mensaje = '';
     var TipoAlerta = '';
-    if (data.wasSuccess) {
+    if (data.wasSuccess)
+    {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
         TipoAlerta = 'alert-success';
     }
-    else {
+    else
+    {
         Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
         TipoAlerta = 'alert-error';
     }
@@ -156,16 +176,19 @@ function CreateRegion(data) {
 
 };
 
-function CreateSubCategoria(data) {
+function CreateSubCategoria(data)
+{
     var Titulo = 'Creación de SubCategoría';
     var Mensaje = '';
 
-    if (data.wasSuccess) {
+    if (data.wasSuccess)
+    {
         Mensaje = 'Se ha registrado satisfactoriamente los datos ingresados.';
         $("#SBS_Descripcion").val('');
         $('#CD_Id').prop('selectedIndex', 0)
     }
-    else {
+    else
+    {
         Mensaje = 'Hubo un error al registrar los datos. Por favor verifique.';
     }
 
@@ -179,7 +202,8 @@ function CreateSubCategoria(data) {
     //jQuery(".alert").fadeOut(3000);
 };
 
-function ShortDateTime(dateObject) {
+function ShortDateTime(dateObject)
+{
     //var d = new Date(dateObject);
     //var day = d.getDate();
     //var month = d.getMonth();
@@ -218,14 +242,17 @@ var LAYOUTS = LAYOUTS || {};
 
 var SOLICITUD = SOLICITUD || {};
 
-jQuery(function () {
+jQuery(function ()
+{
 
-    LAYOUTS.GetCompanyInformation = function (url) {
+    LAYOUTS.GetCompanyInformation = function (url)
+    {
         jQuery.ajax(
         {
             type: 'post',
             url: url,
-            success: function (data) {
+            success: function (data)
+            {
                 var result = JSON.parse(data);
                 var htmldata = '';
                 htmldata +=
@@ -241,21 +268,26 @@ jQuery(function () {
                 jQuery('#divAddress').append(htmldata);
 
             },
-            error: function (a, b, c) {
+            error: function (a, b, c)
+            {
 
             }
         });
     }
 
-    LAYOUTS.GetLastAnuncios = function (url, urldetails) {
+    LAYOUTS.GetLastAnuncios = function (url, urldetails)
+    {
+        debugger;
         jQuery.ajax(
         {
             type: 'post',
             url: url,
-            success: function (data) {
+            success: function (data)
+            {
                 var result = JSON.parse(data);
                 var htmldata = '';
-                jQuery.each(result.$values, function (val, anuncio) {
+                jQuery.each(result.$values, function (val, anuncio)
+                {
                     var urlcontent = urldetails + anuncio.AnunciosInfo.AN_Id;
                     htmldata += '<dl class="dl-horizontal"><dt><a href="' + urlcontent + '"><img src="' + anuncio.FirstImage + '" alt="' + anuncio.Usuario + '"></a></dt><dd><p><a href="' + urlcontent + '">';
                     htmldata += anuncio.AnunciosInfo.AN_Descripcion;
@@ -265,13 +297,15 @@ jQuery(function () {
                 jQuery('#UltimosAnuncios').append(htmldata);
 
             },
-            error: function (a, b, c) {
+            error: function (a, b, c)
+            {
 
             }
         });
     }
 
-    COMMON.CallProgress = function showProgress(loadingImgSrc) {
+    COMMON.CallProgress = function showProgress(loadingImgSrc)
+    {
         $ki.blockUI({
             message: '<p>Por favor espere mientra se procesa la solicitud...</p><img src="' + loadingImgSrc + '" /> <br>',
             css: {
@@ -289,61 +323,78 @@ jQuery(function () {
         });
     }
 
-    COMMON.HideProgress = function hideProgress() {
+    COMMON.HideProgress = function hideProgress()
+    {
         $ki.unblockUI();
     }
 
-    HOME.VerifyCredential = function (url, redirect) {
+    HOME.VerifyCredential = function (url, redirect)
+    {
 
         jQuery.ajax(
         {
             type: 'post',
             url: url,
-            success: function (data) {
+            success: function (data)
+            {
 
-                if (data.IsIncomplete == true) {
-                    bootbox.confirm("<h5>Estimado usuario, antes de seguir disfrutando de Service Market le solicitamos por favor completar algunos datos requeridos en su perfil. ¿Desea completar su perfil en este momento?</h5>", "Cancelar", "Aceptar", function (result) {
-                        if (result) {
+                if (data.IsIncomplete == true)
+                {
+                    bootbox.confirm("<h5>Estimado usuario, antes de seguir disfrutando de Service Market le solicitamos por favor completar algunos datos requeridos en su perfil. ¿Desea completar su perfil en este momento?</h5>", "Cancelar", "Aceptar", function (result)
+                    {
+                        if (result)
+                        {
                             $(location).attr('href', redirect);
                         }
                     });
                 }
             },
-            error: function (xhr) {
-                if (xhr.status == 403) {
+            error: function (xhr)
+            {
+                if (xhr.status == 403)
+                {
 
                 }
-                else {
+                else
+                {
                     if (xhr.responseText != "")
-                        bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                        bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function ()
+                        {
                         });
                 }
             }
         });
     }
 
-    HOME.VerifySolicitudesPendientes = function (url, redirect) {
+    HOME.VerifySolicitudesPendientes = function (url, redirect)
+    {
         jQuery.ajax(
             {
                 type: 'post',
                 url: url,
-                success: function (data) {
+                success: function (data)
+                {
                     debugger;
-                    if (data.SolicitudesPendientes == true) {
+                    if (data.SolicitudesPendientes == true)
+                    {
                         $.gritter.add({
                             title: 'Solicitudes Pendientes',
                             text: 'Estimado usuario, le informamos que tiene solicitudes pendientes de atender. Para ver estas solicitudes haga clic ' + '<a href="' + redirect + '" class="color-green">aqui</a>'
                         });
                     }
                 },
-                error: function (xhr) {
+                error: function (xhr)
+                {
                     debugger;
-                    if (xhr.status == 403) {
+                    if (xhr.status == 403)
+                    {
 
                     }
-                    else {
+                    else
+                    {
                         if (xhr.responseText != "")
-                            bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                            bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function ()
+                            {
                             });
                     }
                 }
@@ -351,76 +402,89 @@ jQuery(function () {
             });
     }
 
-    HOME.GetServices = function (url) {
+    HOME.GetServices = function (url)
+    {
+        debugger;
         jQuery.ajax(
         {
             type: 'post',
             url: url,//'@Url.Action("GetServices", "Home")',
-            success: function (data) {
-
+            success: function (data)
+            {
+                debugger;
                 var result = JSON.parse(data);
                 var htmldata = '';
                 jQuery('#firstSearch').show(300);
                 jQuery('#SecondSearch').hide();
-                jQuery.each(result.$values, function (val, anuncio) {
 
-                    var param = {
-                        "Id": anuncio.AnunciosInfo.AN_Id,
-                        "Nombre": anuncio.Usuario,
-                        "Titulo": anuncio.AnunciosInfo.AN_Titulo,
-                    };
+                if (result.$values = undefined)
+                {
 
-                    htmldata += '<tr><td><div class="row-fluid">';
-                    htmldata += '<div class="span12 booking-blocks"> ';
-                    htmldata += '<div class="span10">';
-                    ////reviews
-                    //htmldata += '<ul class="unstyled inline blog-info">';
-                    //htmldata += ' <li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>';
-                    //htmldata += ' <li><i class="icon-comments"></i> <a href="#">'+ anuncio.Comments+ ' Reviews</a></li>';
-                    //htmldata += '</ul>';
-                    ////fin reviews
-                    htmldata += '<div class="pull-left booking-img">';
-                    htmldata += '<img src="' + anuncio.FirstImage + '" alt="' + anuncio.Usuario + '"> ';
-                    htmldata += '<ul class="unstyled">';
-                    htmldata += '<li><ul class="unstyled inline"><li><div class="ratyclass" id=' + "toraty" + val + '  ratyval= ' + anuncio.Rating + ' style="width:20px;" ></div </li></ul></li>'
-                    htmldata += '</ul>';
-                    htmldata += '</div>';
-                    htmldata += '<div style="overflow: hidden;">';
-                    htmldata += '<h2><a href="javascript:SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');">' + anuncio.AnunciosInfo.AN_Titulo + '</a> (' + anuncio.Comments + ' Reviews)</h2> ';
-                    htmldata += '<b>' + anuncio.Usuario + '</b>';
-                    htmldata += '<ul class="unstyled inline">';
-                    htmldata += '<li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>&nbsp;';
-                    htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
-                    htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
-                    htmldata += '</ul>';
-                    htmldata += '<p>' + anuncio.AnunciosInfo.AN_Descripcion + '</p>';
-                    htmldata += '</div>';
-                    htmldata += '</div>';
-                    htmldata += '<div class="span2">';
-                    htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
-                    htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" id= btnTakeService' + anuncio.AnunciosInfo.AN_Id + '  data-nombre= "' + anuncio.Usuario + '" data-titulo= "' + anuncio.AnunciosInfo.AN_Titulo + '" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
-                    htmldata += '</div>';
-                    htmldata += '</div>';
-                    htmldata += '</div></td> </tr>';
-                });
-                jQuery('#anunciosAvailable').prepend(htmldata);
-                jQuery('.ratyclass').each(function (i, elem) {
-                    var ratyvalue = $(this).attr('ratyval');
-                    $ki(this).raty({ readOnly: true, score: ratyvalue });
-                });
-                $ki("div.holder").jPages({
-                    containerID: "anunciosAvailable",
-                    //              previous: "←",
-                    //              next: "→",
-                    first: "Primera",
-                    previous: "Anterior",
-                    next: "Siguiente",
-                    last: "Última",
-                    perPage: 7,
-                    delay: 20
-                });
+                    jQuery.each(result.$values, function (val, anuncio)
+                    {
+
+                        var param = {
+                            "Id": anuncio.AnunciosInfo.AN_Id,
+                            "Nombre": anuncio.Usuario,
+                            "Titulo": anuncio.AnunciosInfo.AN_Titulo,
+                        };
+
+                        htmldata += '<tr><td><div class="row-fluid">';
+                        htmldata += '<div class="span12 booking-blocks"> ';
+                        htmldata += '<div class="span10">';
+                        ////reviews
+                        //htmldata += '<ul class="unstyled inline blog-info">';
+                        //htmldata += ' <li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>';
+                        //htmldata += ' <li><i class="icon-comments"></i> <a href="#">'+ anuncio.Comments+ ' Reviews</a></li>';
+                        //htmldata += '</ul>';
+                        ////fin reviews
+                        htmldata += '<div class="pull-left booking-img">';
+                        htmldata += '<img src="' + anuncio.FirstImage + '" alt="' + anuncio.Usuario + '"> ';
+                        htmldata += '<ul class="unstyled">';
+                        htmldata += '<li><ul class="unstyled inline"><li><div class="ratyclass" id=' + "toraty" + val + '  ratyval= ' + anuncio.Rating + ' style="width:20px;" ></div </li></ul></li>'
+                        htmldata += '</ul>';
+                        htmldata += '</div>';
+                        htmldata += '<div style="overflow: hidden;">';
+                        htmldata += '<h2><a href="javascript:SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');">' + anuncio.AnunciosInfo.AN_Titulo + '</a> (' + anuncio.Comments + ' Reviews)</h2> ';
+                        htmldata += '<b>' + anuncio.Usuario + '</b>';
+                        htmldata += '<ul class="unstyled inline">';
+                        htmldata += '<li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>&nbsp;';
+                        htmldata += '<li><i class="icon-briefcase"></i>' + anuncio.CategoriaDescripcion + '</li> ';
+                        htmldata += '<li><i class="icon-map-marker"></i>' + anuncio.AnunciosInfo.AN_Area + '</li>';
+                        htmldata += '</ul>';
+                        htmldata += '<p>' + anuncio.AnunciosInfo.AN_Descripcion + '</p>';
+                        htmldata += '</div>';
+                        htmldata += '</div>';
+                        htmldata += '<div class="span2">';
+                        htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
+                        htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" id= btnTakeService' + anuncio.AnunciosInfo.AN_Id + '  data-nombre= "' + anuncio.Usuario + '" data-titulo= "' + anuncio.AnunciosInfo.AN_Titulo + '" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
+                        htmldata += '</div>';
+                        htmldata += '</div>';
+                        htmldata += '</div></td> </tr>';
+                    });
+                    jQuery('#anunciosAvailable').prepend(htmldata);
+                    jQuery('.ratyclass').each(function (i, elem)
+                    {
+                        var ratyvalue = $(this).attr('ratyval');
+                        $ki(this).raty({ readOnly: true, score: ratyvalue });
+                    });
+                    $ki("div.holder").jPages({
+                        containerID: "anunciosAvailable",
+                        //              previous: "←",
+                        //              next: "→",
+                        first: "Primera",
+                        previous: "Anterior",
+                        next: "Siguiente",
+                        last: "Última",
+                        perPage: 7,
+                        delay: 20
+                    });
+
+                }
             },
-            error: function (xhr) {
+            error: function (xhr)
+            {
+                debugger;
                 if (xhr.responseText != "")
                     alert('An error has ocurred loading data: ' + xhr.responseText, 'Error');
             }
@@ -429,20 +493,26 @@ jQuery(function () {
 
     }
 
-    HOME.SearchKey = function () {
-        jQuery('#txtSearchHome').keyup(function () {
+    HOME.SearchKey = function ()
+    {
+        jQuery('#txtSearchHome').keyup(function ()
+        {
             var text = jQuery('#txtSearchHome').val();
             var rows = jQuery('#anunciosAvailable > tr');
             var isVisible = $('#firstSearch').is(':visible');
-            if (!isVisible) {
+            if (!isVisible)
+            {
                 rows = jQuery('#SearchData > tr');
             }
-            rows.each(function (idx, elem) {
+            rows.each(function (idx, elem)
+            {
                 var rowText = $(elem).text().toLowerCase();
-                if (rowText.indexOf(text.toLowerCase()) < 0) {
+                if (rowText.indexOf(text.toLowerCase()) < 0)
+                {
                     jQuery(elem).hide();
                 }
-                else {
+                else
+                {
                     jQuery(elem).show();
                 }
             });
@@ -450,38 +520,48 @@ jQuery(function () {
         });
     }
 
-    HOME.CheckVisibleProjects = function () {
+    HOME.CheckVisibleProjects = function ()
+    {
         var rows = jQuery('#anunciosAvailable > tr');
-        if (rows.filter(':hidden').size() == rows.length) {
+        if (rows.filter(':hidden').size() == rows.length)
+        {
             jQuery('#divNoAnunciosFound').fadeIn(1000);
         }
-        else {
+        else
+        {
             jQuery('#divNoAnunciosFound').hide();
         }
     }
 
-    HOME.ChangeCategory = function (Control, url) {
-        jQuery("#" + Control).change(function () {
+    HOME.ChangeCategory = function (Control, url)
+    {
+        jQuery("#" + Control).change(function ()
+        {
             $.ajax({
                 dataType: "json",
                 type: 'post',
                 url: url,
                 data: { Cat: parseInt(jQuery("#" + Control).val()) },
-                success: function (data) {
+                success: function (data)
+                {
                     var result = JSON.parse(data);
                     var select = $('#SBS_Id');
-                    if (select.prop) {
+                    if (select.prop)
+                    {
                         var options = select.prop('options');
                     }
-                    else {
+                    else
+                    {
                         var options = select.attr('options');
                     }
                     $('option', select).remove();
-                    $.each(result.$values, function (key, val) {
+                    $.each(result.$values, function (key, val)
+                    {
                         options[options.length] = new Option(val.SBS_Descripcion, val.SBS_Id);
                     });
                 },
-                error: function (a, b, c) {
+                error: function (a, b, c)
+                {
 
                 },
             });
@@ -489,21 +569,25 @@ jQuery(function () {
         });
     }
 
-    HOME.FillFormData = function (search) {
+    HOME.FillFormData = function (search)
+    {
         var form = new FormData();
-        if (search == 1) {
+        if (search == 1)
+        {
             form.append("Categoria", jQuery('#CAT_Id').val());
             form.append("SubCategoria", jQuery('#SBS_Id').val());
             form.append("Lugar", "");
             form.append("Descripcion", "");
         }
-        else if (search == 2) {
+        else if (search == 2)
+        {
             form.append("Categoria", "");
             form.append("SubCategoria", "");
             form.append("Descripcion", jQuery('#descriptioninput').val());
             form.append("Lugar", "");
         }
-        else {
+        else
+        {
             form.append("Categoria", "");
             form.append("SubCategoria", "");
             form.append("Descripcion", "");
@@ -512,7 +596,8 @@ jQuery(function () {
         return form;
     }
 
-    HOME.CallFilter = function (search, url) {
+    HOME.CallFilter = function (search, url)
+    {
 
         var formdata = HOME.FillFormData(search)
         $.ajax({
@@ -522,14 +607,18 @@ jQuery(function () {
             cache: false,
             contentType: false,
             processData: false,
-            beforeSend: function () {
+            beforeSend: function ()
+            {
                 COMMON.CallProgress(LoadingImage);
             },
-            complete: function (data) {
+            complete: function (data)
+            {
                 COMMON.HideProgress();
             },
-            success: function (data) {
-                if (data.Error) {
+            success: function (data)
+            {
+                if (data.Error)
+                {
                     jQuery('#divNoAnunciosFound').fadeIn(1000);
                     jQuery('#SecondSearch').hide();
                     jQuery('#firstSearch').hide();
@@ -542,7 +631,8 @@ jQuery(function () {
                 jQuery('#SearchData').html('');
                 var result = JSON.parse(data);
                 var htmldata = '';
-                jQuery.each(result.$values, function (val, anuncio) {
+                jQuery.each(result.$values, function (val, anuncio)
+                {
                     htmldata += '<tr><td><div class="row-fluid">';
                     htmldata += '<div class="span12 booking-blocks"> ';
                     htmldata += '<div class="span10">';
@@ -582,7 +672,8 @@ jQuery(function () {
                     perPage: 7,
                     delay: 20
                 });
-                jQuery('.ratyclass').each(function (i, elem) {
+                jQuery('.ratyclass').each(function (i, elem)
+                {
                     var ratyvalue = $(this).attr('ratyval');
                     $ki(this).raty({ readOnly: true, score: ratyvalue });
                 });
@@ -590,21 +681,25 @@ jQuery(function () {
                 jQuery('#advanced').modal('hide');
 
             },
-            error: function (xhr) {
+            error: function (xhr)
+            {
                 COMMON.HideProgress();
             }
         });
     }
 
-    HOME.TakeService = function (anuncioid, url, nombre, titulo) {
+    HOME.TakeService = function (anuncioid, url, nombre, titulo)
+    {
 
         var mensaje;
         var data = new FormData();
         data.append("Anuncio", anuncioid);
 
         mensaje = 'Ha hecho clic en la opción contactar el servicio: <b>"' + titulo + '"</b>. Pronto estaremos enviándole un correo a ' + nombre + ' como parte del proceso de solicitud de servicios de Service Market. ¿Confirma que desea solicitar el servicio?';
-        bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result) {
-            if (result) {
+        bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result)
+        {
+            if (result)
+            {
                 $.ajax({
                     url: url,//'@Url.Action("TakeService", "SolicitudServicio")',
                     type: 'post',
@@ -612,22 +707,27 @@ jQuery(function () {
                     cache: false,
                     contentType: false,
                     processData: false,
-                    beforeSend: function () {
+                    beforeSend: function ()
+                    {
                         COMMON.CallProgress(LoadingImage);
                     },
-                    complete: function (data) {
+                    complete: function (data)
+                    {
                         COMMON.HideProgress();
                     },
-                    success: function (data) {
+                    success: function (data)
+                    {
                         debugger;
 
-                        if (data.Message != null | data.Message != undefined) {
+                        if (data.Message != null | data.Message != undefined)
+                        {
                             $.gritter.add({
                                 title: 'Solicitud cancelada por SMA',
                                 text: data.Message
                             });
                         }
-                        else {
+                        else
+                        {
                             $.gritter.add({
                                 title: 'Servicio Solicitado',
                                 text: 'El servicio ha sido solicitado satisfactoriamente. El anunciante recibirá un correo electrónico con sus datos para poder contactarle. Gracias por preferirnos.'
@@ -638,13 +738,16 @@ jQuery(function () {
                         //$('.alert').fadeOut(3000)
                         //  alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
                     },
-                    error: function (xhr) {
+                    error: function (xhr)
+                    {
                         debugger;
-                        if (xhr.status == 403) {
+                        if (xhr.status == 403)
+                        {
                             var response = $.parseJSON(xhr.responseText);
                             window.location = response.LogOnUrl;
                         }
-                        else {
+                        else
+                        {
                             alert(xhr.responseText, 'An error has ocurred');
                         }
                     }
@@ -653,7 +756,8 @@ jQuery(function () {
         });
     }
 
-    ANUNCIOS.PostComment = function (element, userId, url) {
+    ANUNCIOS.PostComment = function (element, userId, url)
+    {
         debugger;
         var review = $(element).attr('data-val');
         var commentElement = "#comentario-" + review;
@@ -671,13 +775,16 @@ jQuery(function () {
             data: jsonSerialized,
             dataType: "json",
             contentType: "application/json; charset=utf-8",
-            beforeSend: function () {
+            beforeSend: function ()
+            {
                 COMMON.CallProgress(LoadingImage);
             },
-            complete: function (data) {
+            complete: function (data)
+            {
                 COMMON.HideProgress();
             },
-            success: function (data) {
+            success: function (data)
+            {
                 $(commentElement).val('');
                 var result = JSON.parse(data);
                 var html = '';
@@ -704,78 +811,96 @@ jQuery(function () {
                     text: 'Su comentario ha sido publicado satisfactoriamente.'
                 });
             },
-            error: function (xhr) {
-                if (xhr.status == 403) {
+            error: function (xhr)
+            {
+                if (xhr.status == 403)
+                {
                     var response = $.parseJSON(xhr.responseText);
                     window.location = response.LogOnUrl;
                 }
-                else {
+                else
+                {
                     alert(xhr.responseText, 'An error has ocurred');
                 }
             }
         });
     }
 
-    ANUNCIOS.DeleteResource = function (id, url, urlLoader) {
+    ANUNCIOS.DeleteResource = function (id, url, urlLoader)
+    {
         jQuery.ajax(
         {
             type: 'POST',
             url: url + id,
-            success: function (data) {
+            success: function (data)
+            {
                 var element = jQuery(".thumbnails").find('li[itemid= ' + id + ' ]');
                 element.remove();
                 ANUNCIOS.EnableLoader(urlLoader);
             },
-            error: function (a, b, c) {
+            error: function (a, b, c)
+            {
                 alert(a);
             }
         });
     }
 
-    ANUNCIOS.EnableLoader = function (url) {
+    ANUNCIOS.EnableLoader = function (url)
+    {
         jQuery.ajax(
            {
                type: 'GET',
                url: url,
 
-               success: function (data) {
+               success: function (data)
+               {
                    jQuery('.divLoader').html(data);
                },
-               error: function (a, b, c) {
+               error: function (a, b, c)
+               {
                    alert(a);
                }
            });
     }
 
-    ANUNCIOS.InactivateAnuncio = function (id, url, self) {
+    ANUNCIOS.InactivateAnuncio = function (id, url, self)
+    {
         var titulo;
         var mensaje;
         var estado = $(self).attr('data-estado');
 
-        if (estado == 'Activo') {
+        if (estado == 'Activo')
+        {
             titulo = 'Cambiar el estado del anuncio';
             mensaje = '¿Desea desactivar el anuncio?';
         }
-        else {
+        else
+        {
             titulo = 'Cambiar el estado del anuncio';
             mensaje = '¿Desea activar el anuncio?';
         }
 
-        bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result) {
-            if (result) {
+        bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result)
+        {
+            if (result)
+            {
                 jQuery.ajax(
                {
                    type: 'post',
                    url: url,
                    data: { id: id },
-                   beforeSend: function () {
+                   beforeSend: function ()
+                   {
                        COMMON.CallProgress(LoadingImage);
                    },
-                   complete: function (data) {
+                   complete: function (data)
+                   {
                        COMMON.HideProgress();
                    },
-                   success: function (data) {
-                       if (estado == "Activo") {
+                   success: function (data)
+                   {
+                       if (estado == "Activo")
+                       {
                            $(self).find("span").text("Activar");
                            $(self).attr("data-estado", "Inactivo");
 
@@ -785,7 +910,8 @@ jQuery(function () {
                            });
 
                        }
-                       else {
+                       else
+                       {
                            $(self).find("span").text("Desactivar");
                            $(self).attr("data-estado", "Activo");
 
@@ -795,13 +921,17 @@ jQuery(function () {
                            });
                        }
                    },
-                   error: function (xhr) {
-                       if (xhr.status == 403) {
+                   error: function (xhr)
+                   {
+                       if (xhr.status == 403)
+                       {
 
                        }
-                       else {
+                       else
+                       {
                            if (xhr.responseText != "")
-                               bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                               bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function ()
+                               {
                                });
                        }
                    }
@@ -810,37 +940,47 @@ jQuery(function () {
         });
     }
 
-    ANUNCIOS.DeleteAnuncio = function (id, url, self) {
+    ANUNCIOS.DeleteAnuncio = function (id, url, self)
+    {
         var anuncio = $(self).closest(".booking-blocks");
 
-        bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
+        bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result)
+        {
 
-            if (result) {
+            if (result)
+            {
                 jQuery.ajax(
                {
                    type: 'post',
                    url: url,
                    data: { id: id },
-                   beforeSend: function () {
+                   beforeSend: function ()
+                   {
                        COMMON.CallProgress(LoadingImage);
                    },
-                   complete: function (data) {
+                   complete: function (data)
+                   {
                        COMMON.HideProgress();
                    },
-                   success: function (data) {
+                   success: function (data)
+                   {
                        anuncio.remove();
                        $.gritter.add({
                            title: 'Anuncio Eliminado',
                            text: 'El anuncio ha sido eliminado satisfactoriamente. Gracias por preferirnos.'
                        });
                    },
-                   error: function (xhr) {
-                       if (xhr.status == 403) {
+                   error: function (xhr)
+                   {
+                       if (xhr.status == 403)
+                       {
 
                        }
-                       else {
+                       else
+                       {
                            if (xhr.responseText != "")
-                               bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                               bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function ()
+                               {
                                });
                        }
                    }
@@ -850,79 +990,101 @@ jQuery(function () {
 
     }
 
-    ANUNCIOS.ValidateCreate = function (url) {
+    ANUNCIOS.ValidateCreate = function (url)
+    {
         $.ajax({
             url: url,
             type: 'get',
             dataType: "json",
             contentType: "application/json; charset=utf-8",
 
-            success: function (data) {
-                if (data.ErrorMessage != null | data.ErrorMessage != undefined) {
+            success: function (data)
+            {
+                if (data.ErrorMessage != null | data.ErrorMessage != undefined)
+                {
                     $.gritter.add({
                         title: 'Límite de anuncios publicados superado.',
                         text: data.ErrorMessage
                     });
                 }
-                else if (data.UrlAnuncios != null | data.UrlAnuncios != undefined) {
+                else if (data.UrlAnuncios != null | data.UrlAnuncios != undefined)
+                {
                     window.location = data.UrlAnuncios;
                 }
             },
-            error: function (xhr) {
-                if (xhr.status == 403) {
+            error: function (xhr)
+            {
+                if (xhr.status == 403)
+                {
                     var response = $.parseJSON(xhr.responseText);
                     window.location = response.LogOnUrl;
                 }
-                else {
+                else
+                {
                     alert(xhr.responseText, 'An error has ocurred');
                 }
             }
         });
     }
 
-    ANUNCIOS.ValidateCreatePage = function (url, redirect) {
+    ANUNCIOS.ValidateCreatePage = function (url, redirect)
+    {
         $.ajax({
             url: url,
             type: 'get',
             dataType: "json",
             contentType: "application/json; charset=utf-8",
-            success: function (data) {
-                if (data.ErrorMessage != null | data.ErrorMessage != undefined) {
-                    bootbox.alert('<h3>Límite de anuncios publicados superado.</h3><br/><h5>Estimado usuario, Service Market le informa que ha superado el límite de anuncios permitidos para su membresía.</h5>', function () {
+            success: function (data)
+            {
+                if (data.ErrorMessage != null | data.ErrorMessage != undefined)
+                {
+                    bootbox.alert('<h3>Límite de anuncios publicados superado.</h3><br/><h5>Estimado usuario, Service Market le informa que ha superado el límite de anuncios permitidos para su membresía.</h5>', function ()
+                    {
                         $(location).attr('href', redirect);
                     });
                 }
             },
-            error: function (xhr) {
-                if (xhr.status == 403) {
+            error: function (xhr)
+            {
+                if (xhr.status == 403)
+                {
                     var response = $.parseJSON(xhr.responseText);
                     window.location = response.LogOnUrl;
                 }
-                else {
+                else
+                {
                     alert(xhr.responseText, 'An error has ocurred');
                 }
             }
         });
     }
-    ANUNCIOS.SetDropDowns = function () {
+
+    ANUNCIOS.SetDropDowns = function ()
+    {
 
         var selectpa = $('#PA_Id').attr("paid");
         var selectca = $('#CD_Id').attr("cdid");
         var selectsc = $('#SBS_Id').attr("scid");
-        $('#PA_Id option').each(function () {
-            if ($(this).val() == selectpa) {
+        $('#PA_Id option').each(function ()
+        {
+            if ($(this).val() == selectpa)
+            {
                 $(this).prop("selected", true);
                 return false;
             }
         });
-        $('#CD_Id option').each(function () {
-            if ($(this).val() == selectca) {
+        $('#CD_Id option').each(function ()
+        {
+            if ($(this).val() == selectca)
+            {
                 $(this).prop("selected", true);
                 return false;
             }
         });
-        $('#SBS_Id option').each(function () {
-            if ($(this).val() == selectsc) {
+        $('#SBS_Id option').each(function ()
+        {
+            if ($(this).val() == selectsc)
+            {
                 $(this).prop("selected", true);
                 return false;
             }
@@ -930,7 +1092,8 @@ jQuery(function () {
 
     }
 
-    CONTACTOS.Create = function (url, nombre, telefono, celular, email, mensaje) {
+    CONTACTOS.Create = function (url, nombre, telefono, celular, email, mensaje)
+    {
 
         var contacto = {
             "CON_Id": 0,
@@ -951,14 +1114,18 @@ jQuery(function () {
                   data: jsonSerialized,
                   dataType: "json",
                   contentType: "application/json; charset=utf-8",
-                  beforeSend: function () {
+                  beforeSend: function ()
+                  {
                       COMMON.CallProgress(LoadingImage);
                   },
-                  complete: function (data) {
+                  complete: function (data)
+                  {
                       COMMON.HideProgress();
                   },
-                  success: function (data) {
-                      if (data.wasSuccess == "True") {
+                  success: function (data)
+                  {
+                      if (data.wasSuccess == "True")
+                      {
                           $.gritter.add({
                               title: 'Mensaje Enviado',
                               text: 'Hemos registrado satisfactoriamente su mensaje. Pronto le estaremos contactando para responder a sus consultas. Gracias por preferirnos.'
@@ -970,7 +1137,8 @@ jQuery(function () {
                           $('#CON_Email').val("");
                           $('#CON_Mensaje').val("");
                       }
-                      else {
+                      else
+                      {
                           $.gritter.add({
                               title: 'Datos insuficientes',
                               text: 'Le informamos que no se ha podido enviar su mensaje debido a que no ha completado todos los datos requeridos (*). Gracias por preferirnos.'
@@ -978,123 +1146,152 @@ jQuery(function () {
                       }
 
                   },
-                  error: function (xhr) {
-                      if (xhr.status == 403) {
+                  error: function (xhr)
+                  {
+                      if (xhr.status == 403)
+                      {
 
                       }
-                      else {
+                      else
+                      {
                           if (xhr.responseText != "")
-                              bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function () {
+                              bootbox.alert("<h1>A ocurrido un error</h1> <br />" + xhr.responseText, function ()
+                              {
                               });
                       }
                   }
               });
     }
 
-    MEMBRESIA.MembresiasExpiradas = function (url) {
+    MEMBRESIA.MembresiasExpiradas = function (url)
+    {
         jQuery.ajax({
             url: url,
             type: 'get',
             cache: false,
             contentType: false,
             processData: false,
-            beforeSend: function () {
+            beforeSend: function ()
+            {
                 COMMON.CallProgress(LoadingImage);
             },
-            complete: function (data) {
+            complete: function (data)
+            {
                 COMMON.HideProgress();
             },
-            success: function (data) {
-                if (data.Message != null | data.Message != undefined) {
+            success: function (data)
+            {
+                if (data.Message != null | data.Message != undefined)
+                {
                     $.gritter.add({
                         title: 'Membresias Expiradas',
                         text: data.Message
                     });
                 }
-                else {
+                else
+                {
                     $.gritter.add({
                         title: 'Membresias Expiradas',
                         text: 'Se han expirado las membresias satisfactoriamente.'
                     });
                 }
             },
-            error: function (xhr) {
+            error: function (xhr)
+            {
                 debugger;
-                if (xhr.status == 403) {
+                if (xhr.status == 403)
+                {
                     var response = $.parseJSON(xhr.responseText);
                     window.location = response.LogOnUrl;
                 }
-                else {
+                else
+                {
                     alert(xhr.responseText, 'An error has ocurred');
                 }
             }
         });
     }
 
-    MEMBRESIA.PorExpirar = function (url) {
+    MEMBRESIA.PorExpirar = function (url)
+    {
         jQuery.ajax({
             url: url,
             type: 'get',
             cache: false,
             contentType: false,
             processData: false,
-            beforeSend: function () {
+            beforeSend: function ()
+            {
                 COMMON.CallProgress(LoadingImage);
             },
-            complete: function (data) {
+            complete: function (data)
+            {
                 COMMON.HideProgress();
             },
-            success: function (data) {
+            success: function (data)
+            {
                 debugger;
 
-                if (data.Message != null | data.Message != undefined) {
+                if (data.Message != null | data.Message != undefined)
+                {
                     $.gritter.add({
                         title: 'Membresias Por Expirar',
                         text: data.Message
                     });
                 }
-                else {
+                else
+                {
                     $.gritter.add({
                         title: 'Membresias Por Expirar',
                         text: 'Se han enviado las notificaciones a las cuentas que se encuentren por expirar.'
                     });
                 }
             },
-            error: function (xhr) {
+            error: function (xhr)
+            {
                 debugger;
-                if (xhr.status == 403) {
+                if (xhr.status == 403)
+                {
                     var response = $.parseJSON(xhr.responseText);
                     window.location = response.LogOnUrl;
                 }
-                else {
+                else
+                {
                     alert(xhr.responseText, 'An error has ocurred');
                 }
             }
         });
     }
 
-    SOLICITUD.CancelTask = function (Solicitud, Status, url) {
+    SOLICITUD.CancelTask = function (Solicitud, Status, url)
+    {
 
         var mensaje;
         mensaje = 'Ha hecho clic en la opción cancelar el servicio que le fue solicitado. ¿Está seguro que desea cancelar esta solicitud?';
-        bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result) {
-            if (result) {
+        bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result)
+        {
+            if (result)
+            {
                 $.ajax({
                     url: url,
                     type: 'get',
                     cache: false,
                     contentType: false,
                     processData: false,
-                    beforeSend: function () {
+                    beforeSend: function ()
+                    {
                         COMMON.CallProgress(LoadingImage);
                     },
-                    complete: function (data) {
+                    complete: function (data)
+                    {
                         COMMON.HideProgress();
                     },
-                    success: function (data) {
+                    success: function (data)
+                    {
                         debugger;
                         data = JSON.parse(data);
-                        if (data.Message != null | data.Message != undefined) {
+                        if (data.Message != null | data.Message != undefined)
+                        {
                             $.gritter.add({
                                 title: 'Solicitud cancelada',
                                 text: data.Message
@@ -1103,12 +1300,15 @@ jQuery(function () {
                         }
 
                     },
-                    error: function (xhr) {
-                        if (xhr.status == 403) {
+                    error: function (xhr)
+                    {
+                        if (xhr.status == 403)
+                        {
                             var response = $.parseJSON(xhr.responseText);
                             window.location = response.LogOnUrl;
                         }
-                        else {
+                        else
+                        {
                             alert(xhr.responseText, 'An error has ocurred');
                         }
                     }
