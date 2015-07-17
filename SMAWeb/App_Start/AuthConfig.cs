@@ -16,7 +16,7 @@ namespace SMAWeb
 
             //OAuthWebSecurity.RegisterMicrosoftClient(
             //    clientId: "",
-            //    clientSecret: "");
+            //    clientSecret: ""); 
 
 
             //Se debe actualizar estos credenciales por los reales.
