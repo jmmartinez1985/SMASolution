@@ -52,8 +52,10 @@
 
     <script type="text/javascript">
 
-        function UrlHelper() {
-            this.urlImage = function (img) {
+        function UrlHelper()
+        {
+            this.urlImage = function (img)
+            {
                 var ROOT = '@Url.Content("~/")';
                 return ROOT + img;
             }
@@ -61,7 +63,8 @@
 
 
             var $ki = jQuery.noConflict();
-            $ki(function () {
+            $ki(function ()
+            {
                 $ki.fn.raty.defaults.path = '@Url.Content("~/Scripts/raty-2.5.2/lib/img")';
             });
     </script>
@@ -138,106 +141,19 @@
 
                         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "LoginFormAuth" }))
                         {
-
-                           
                             @Html.AntiForgeryToken()
-                   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             <a class="login-btn" style="vertical-align: bottom;" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
-
-
-
-
-
-                          
                         }
 
                     </li>
                    
                 }
                 else
-                {
-                  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                {                
                     <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "login-btn" })</li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <li class="devider">&nbsp;</li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <li>@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "login-btn" })</li>
-                  
                 }
-
-
             </ul>
         </div>
     </div>
@@ -310,6 +226,7 @@
                     </div>
                     <p class="margin-bottom-25">Service Market es un sitio dedicado a servicios persona a persona. Con el objetivo de fomentar la adquisición de servicios personales con una herramienta fácil de usar y capaz de crear un gran beneficio económico para nuestros usuarios.</p>
 
+                    <!-- Stay Connected -->
 
                 </div>
                 <!--/span4-->
@@ -351,24 +268,30 @@
                 <!--/span4-->
 
                 <div class="span4">
-                    <!-- Monthly Newsletter -->
-                    <div class="headline">
+                    <div class="row">
+                        <!-- Monthly Newsletter -->
+                        @*<div class="headline">
                         <h3>Contáctenos</h3>
+                    </div>*@
+
+                        <div id="divAddress">
+                        </div>
+                        <div class="headline">
+                            <h3>Manténgase Conectado</h3>
+                        </div>
+                        <ul class="social-icons">
+                            <li><a href="https://www.facebook.com/IsrraBanton12" target="_blank" data-original-title="Facebook" class="social_facebook"></a></li>
+                            <li><a href="https://www.twitter.com/SMAPanama" target="_blank" data-original-title="Twitter" class="social_twitter"></a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="row" style="padding-top:45px;">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img id="logo-footer" src="@Url.Content("~/Images/logo2-blue.png")" class="pull-right" alt=""></a>
+
                     </div>
 
-                    <div id="divAddress">
-                    </div>
 
-                    <!-- Stay Connected -->
-                    <div class="headline">
-                        <h3>Manténgase Conectado</h3>
-                    </div>
-                    <ul class="social-icons">
-
-                        <li><a href="https://www.facebook.com/IsrraBanton12" target="_blank" data-original-title="Facebook" class="social_facebook"></a></li>
-                        <li><a href="https://www.twitter.com/SMAPanama" target="_blank" data-original-title="Twitter" class="social_twitter"></a></li>
-
-                    </ul>
                 </div>
                 <!--/span4-->
             </div>
@@ -384,11 +307,9 @@
         <div class="container">
             <div class="row-fluid">
                 <div class="span8">
-                    <p>2014 © Service Market. Todos los derechos reservados. <a href="@Url.Action("About", "Home" )">Nosotros</a> | <a href="@Url.Action("Terms", "Home" )">Término de Servicios</a> | <a href="@Url.Action("Policy", "Home" )">Política de Privacidad</a> </p>
+                    <p>2014 © Service Market. Todos los derechos reservados. <a href="@Url.Action("About", "Home")">Nosotros</a> | <a href="@Url.Action("Terms", "Home")">Término de Servicios</a> | <a href="@Url.Action("Policy", "Home")">Política de Privacidad</a> </p>
                 </div>
                 <div class="span4">
-                    <a href="@Url.Action("Index", "Home")">
-                        <img id="logo-footer" src="@Url.Content("~/Images/logo2-blue.png")" class="pull-right" alt=""></a>
                 </div>
             </div>
             <!--/row-fluid-->
@@ -413,8 +334,9 @@
     <script type="text/javascript">
         var imageUp = '@Url.Content("~/images/up.png")';
         var LoadingImage = '@Url.Content("~/images/loading.gif")';
-        $(function () {
-            LAYOUTS.GetCompanyInformation('@Url.Action("GetCompanyInfo", "Company")');
+        $(function ()
+        {
+            //LAYOUTS.GetCompanyInformation('@Url.Action("GetCompanyInfo", "Company")');
             LAYOUTS.GetLastAnuncios('@Url.Action("GetLastAnuncios", "Anuncios")', '@Url.Content("~/Anuncios/Details/")');
         });
 

@@ -277,7 +277,6 @@ jQuery(function ()
 
     LAYOUTS.GetLastAnuncios = function (url, urldetails)
     {
-        debugger;
         jQuery.ajax(
         {
             type: 'post',
@@ -374,7 +373,6 @@ jQuery(function ()
                 url: url,
                 success: function (data)
                 {
-                    debugger;
                     if (data.SolicitudesPendientes == true)
                     {
                         $.gritter.add({
@@ -385,7 +383,6 @@ jQuery(function ()
                 },
                 error: function (xhr)
                 {
-                    debugger;
                     if (xhr.status == 403)
                     {
 
@@ -417,7 +414,7 @@ jQuery(function ()
                 jQuery('#firstSearch').show(300);
                 jQuery('#SecondSearch').hide();
 
-                if (result.$values = undefined)
+                if (result.$values != undefined)
                 {
 
                     jQuery.each(result.$values, function (val, anuncio)
@@ -484,7 +481,6 @@ jQuery(function ()
             },
             error: function (xhr)
             {
-                debugger;
                 if (xhr.responseText != "")
                     alert('An error has ocurred loading data: ' + xhr.responseText, 'Error');
             }
@@ -717,8 +713,6 @@ jQuery(function ()
                     },
                     success: function (data)
                     {
-                        debugger;
-
                         if (data.Message != null | data.Message != undefined)
                         {
                             $.gritter.add({
@@ -740,7 +734,6 @@ jQuery(function ()
                     },
                     error: function (xhr)
                     {
-                        debugger;
                         if (xhr.status == 403)
                         {
                             var response = $.parseJSON(xhr.responseText);
@@ -758,7 +751,6 @@ jQuery(function ()
 
     ANUNCIOS.PostComment = function (element, userId, url)
     {
-        debugger;
         var review = $(element).attr('data-val');
         var commentElement = "#comentario-" + review;
 
@@ -1198,7 +1190,6 @@ jQuery(function ()
             },
             error: function (xhr)
             {
-                debugger;
                 if (xhr.status == 403)
                 {
                     var response = $.parseJSON(xhr.responseText);
@@ -1230,8 +1221,6 @@ jQuery(function ()
             },
             success: function (data)
             {
-                debugger;
-
                 if (data.Message != null | data.Message != undefined)
                 {
                     $.gritter.add({
@@ -1249,7 +1238,6 @@ jQuery(function ()
             },
             error: function (xhr)
             {
-                debugger;
                 if (xhr.status == 403)
                 {
                     var response = $.parseJSON(xhr.responseText);
@@ -1288,7 +1276,6 @@ jQuery(function ()
                     },
                     success: function (data)
                     {
-                        debugger;
                         data = JSON.parse(data);
                         if (data.Message != null | data.Message != undefined)
                         {
