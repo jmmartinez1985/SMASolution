@@ -22,7 +22,7 @@
                             @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
                             {
                                 @Html.AntiForgeryToken()
-                                @Html.ValidationSummary(true)
+                                
 
                                 <div id="divBlanco"></div>
                                 <h3>Inicie sesión con su cuenta Service Market</h3>
@@ -45,6 +45,11 @@
                                     @* <button class="btn-u pull-right" type="submit">Login</button>*@
                                     <input class="btn-u pull-right" id="submit" type="submit" value="Iniciar Sesión" />
                                 </div>
+                                
+                                <div class="controls form-inline" style="padding-top:20px;">
+                                    @Html.ValidationSummary(true)
+                                </div>
+                                
                                 <hr />
                                 <h4>¿Olvidó su contraseña?</h4>
                                 <p>No se preocupe, <a class="color-green" href="@Url.Action("ForgotPassword", "Account")">haga clic aquí</a> para reinicializar su contraseña.</p>
@@ -80,11 +85,10 @@
 }
 
 
-@*<script>
+<script>
     jQuery(document).ready(function () {
-        //debugger;
         //jQuery('.validation-summary-errors').wrap('<div class="alert fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><p></p></strong><p></p></div>').after('<div id="divBlanco"></div>');
         jQuery('.validation-summary-errors').addClass("alert alert-error");
     });
 
-</script>*@
+</script>
