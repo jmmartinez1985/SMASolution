@@ -240,10 +240,15 @@
     }
 
     function TakeService(anuncioid) {
-        debugger;
         var titulo = $("#btnTakeService" + anuncioid).attr("data-titulo");
         var nombre = $("#btnTakeService" + anuncioid).attr("data-nombre");
         HOME.TakeService(anuncioid, '@Url.Action("TakeService", "SolicitudServicio")', nombre, titulo);
+    }
+
+    function ReportarSpam(anuncioid) {
+        var titulo = $("#btnTakeService" + anuncioid).attr("data-titulo");
+        var nombre = $("#btnTakeService" + anuncioid).attr("data-nombre");
+        HOME.ReportarSpam(anuncioid, '@Url.Action("Spam", "Anuncios")', nombre, titulo);
     }
 
     

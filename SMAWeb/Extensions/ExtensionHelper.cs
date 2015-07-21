@@ -105,4 +105,12 @@ namespace SMAWeb.Extensions
         }
 
     }
+
+    public enum Plantillas
+    {
+        AnuncioReview,
+        AnuncioSpam,
+        ComentarioReview
+    }
+
 }

@@ -1,7 +1,9 @@
 ﻿using Elmah;
+using SMAWeb.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -112,5 +114,66 @@ namespace SMAWeb.Controllers
                 base.ExecuteResult(context);
             }
         }
+
+        public void SendEmailNotification(int value, Plantillas plantilla)
+        {
+            string pXml = string.Empty;
+            var ppEmailTemplate = new SolicitudServicioController.Notification();
+            var userName = WebMatrix.WebData.WebSecurity.CurrentUserName;
+
+           
+
+            string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
+            var firstImage = "~/Images/logo2-blue.png";
+            var formatted = firstImage.Replace("~", "");
+            if (formatted.StartsWith("/"))
+                formatted = formatted.Remove(0, 1);
+            firstImage = urlimg + formatted;
+
+            ppEmailTemplate.Image = firstImage;
+            string serverPath = string.Empty;
+            serverPath = base.Server.MapPath("~");
+            string body = string.Empty;
+
+            string subject = "Servicio No Disponible";
+            switch (plantilla)
+            {
+                case Plantillas.AnuncioReview:
+                    ppEmailTemplate.AnuncioId = value;
+                    ppEmailTemplate.EmailCliente = System.Configuration.ConfigurationManager.AppSettings["EmailId"].ToString();
+                    subject = "Anuncio a Revisión";
+                    pXml = ppEmailTemplate.Serialize<SolicitudServicioController.Notification>();
+                    body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\AnuncioRevisionAdmin.xslt"));
+                    //Envio a Admin
+                    Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailCliente, subject, body);
+
+                    body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\AnuncioRevision.xslt"));
+                    ppEmailTemplate.ProviderName = userName;
+                    //Envio a Usuario
+                    Extensions.ExtensionHelper.SendEmail(userName, subject, body);
+                    break;
+                case Plantillas.AnuncioSpam:
+                    ppEmailTemplate.AnuncioId = value;
+                    ppEmailTemplate.EmailCliente = System.Configuration.ConfigurationManager.AppSettings["EmailId"].ToString();
+                    subject = "Anuncio reportado como Spam";
+                    pXml = ppEmailTemplate.Serialize<SolicitudServicioController.Notification>();
+                    body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\AnuncioSpam.xslt"));
+                    Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailCliente, subject, body);
+                    break;
+                case Plantillas.ComentarioReview:
+                    ppEmailTemplate.CR_Id = value;
+                    subject = "Comentario a Revisión";
+                    ppEmailTemplate.EmailCliente = System.Configuration.ConfigurationManager.AppSettings["EmailId"].ToString();
+                    pXml = ppEmailTemplate.Serialize<SolicitudServicioController.Notification>();
+                    body = pXml.ConvertXML(Path.Combine(serverPath, @"EmailTemplates\ComentarioRevision.xslt"));
+                    Extensions.ExtensionHelper.SendEmail(ppEmailTemplate.EmailCliente, subject, body);
+                    break;
+                default:
+                    break;
+            }
+            
+
+        }
     }
+
 }

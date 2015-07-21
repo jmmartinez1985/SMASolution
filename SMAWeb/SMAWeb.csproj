@@ -415,6 +415,12 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="EmailTemplates\AnuncioSpam.xslt" />
+    <Content Include="EmailTemplates\AnuncioRevisionAdmin.xslt" />
+    <Content Include="EmailTemplates\ComentarioRevision.xslt" />
+    <Content Include="EmailTemplates\AnuncioRevision.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="EmailTemplates\MembresiaExpirada.xslt" />
     <Content Include="EmailTemplates\MembresiaProximaExpirar.xslt" />
     <Content Include="EmailTemplates\RespuestaContacto.xslt" />
@@ -578,7 +584,9 @@
     <Content Include="Content\Images\star-on-big.png" />
     <Content Include="Content\Images\star-on.png" />
     <Content Include="Scripts\SMA.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

@@ -361,6 +361,7 @@ namespace SMAWeb.Controllers
             public int AnuncioId { get; set; }
             public string AnuncioTitulo { get; set; }
             public int SolicitudId { get; set; }
+            public int CR_Id { get; set; }
             public string EmailCliente { get; set; }
             public string EmailProveedor { get; set; }
             public string LinkReview { get; set; }

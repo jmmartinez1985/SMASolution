@@ -456,6 +456,7 @@ jQuery(function ()
                         htmldata += '<div class="span2">';
                         htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
                         htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" id= btnTakeService' + anuncio.AnunciosInfo.AN_Id + '  data-nombre= "' + anuncio.Usuario + '" data-titulo= "' + anuncio.AnunciosInfo.AN_Titulo + '" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
+                        htmldata += '<button onclick="ReportarSpam(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-remove-circle"></i>&nbsp;Reportar Spam</button>';
                         htmldata += '</div>';
 
                         htmldata += '<div class="span12">';
@@ -667,6 +668,7 @@ jQuery(function ()
                     htmldata += '<div class="span2">';
                     htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
                     htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
+                    htmldata += '<button onclick="ReportarSpam(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-remove-circle"></i>&nbsp;Reportar Spam</button>';
                     htmldata += '</div>';
 
                     htmldata += '<div class="span12">';
@@ -778,6 +780,61 @@ jQuery(function ()
             }
         });
     }
+
+    HOME.ReportarSpam = function (anuncioid, url, nombre, titulo) {
+
+        var mensaje;
+        var data = new FormData();
+        data.append("id", anuncioid);
+
+        mensaje = 'Ha hecho clic en la opción reportar el servicio : <b>"' + titulo + '"</b> como spam. ¿Confirma que desea reportarlo el anuncio como spam?';
+        bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result) {
+            if (result) {
+                $.ajax({
+                    url: url,//'@Url.Action("TakeService", "SolicitudServicio")',
+                    type: 'post',
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function () {
+                        COMMON.CallProgress(LoadingImage);
+                    },
+                    complete: function (data) {
+                        COMMON.HideProgress();
+                    },
+                    success: function (data) {
+                        if (data.Message != null | data.Message != undefined) {
+                            $.gritter.add({
+                                title: 'Solicitud cancelada por SMA',
+                                text: data.Message
+                            });
+                        }
+                        else {
+                            $.gritter.add({
+                                title: 'Servicio Reportado como Spam',
+                                text: 'El servicio ha sido reportado como spam satisfactoriamente. El administrador evaluará su reporte de spam. Gracias por preferirnos.'
+                            });
+                        }
+                        //$("#anunciosAvailable").prepend('<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>Servicio Solicitado!</strong> En breves horas el anunciante se debe contactar con usted para coordinar cita.</div>');
+                        //$('.alert').alert();
+                        //$('.alert').fadeOut(3000)
+                        //  alert('El servicio ha sido solicitado satisfactoriamente.', 'Solicitud de Servicio');
+                    },
+                    error: function (xhr) {
+                        if (xhr.status == 403) {
+                            var response = $.parseJSON(xhr.responseText);
+                            window.location = response.LogOnUrl;
+                        }
+                        else {
+                            alert(xhr.responseText, 'An error has ocurred');
+                        }
+                    }
+                });
+            }
+        });
+    }
+
 
     ANUNCIOS.PostComment = function (element, userId, url)
     {

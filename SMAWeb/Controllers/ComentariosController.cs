@@ -74,9 +74,11 @@ namespace SMAWeb.Controllers
                 }
                 else
                     cr_comentarioreview.ST_Id = 1;
-                db.SaveChanges<CR_ComentarioReview>(cr_comentarioreview);
+                var cr = db.SaveChanges<CR_ComentarioReview>(cr_comentarioreview);
                 var user = db.UserProfile.Find(WebSecurity.CurrentUserId);
                 CommentReview cmt = new CommentReview { Comments = cr_comentarioreview.CR_Comentario, Image = Url.Content(string.IsNullOrEmpty(user.Image) ? "~/Images/No_Profile.jpg" : user.Image), Name = user.Name };
+                if (cr.ST_Id == 7)
+                    base.SendEmailNotification(cr.RW_Id, Plantillas.AnuncioReview);
                 if (Request.IsAjaxRequest())
                 {
                     return Json(new { data = cmt }.SerializeToJson());

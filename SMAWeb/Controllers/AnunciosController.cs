@@ -329,9 +329,14 @@ namespace SMAWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                bool wasNotApproved = Extensions.ExtensionHelper.NotApproved(an_anuncios.AN_Descripcion);
+                if (wasNotApproved)
+                {
+                    an_anuncios.ST_Id = 7;
+                }
+                else
+                    an_anuncios.ST_Id = 1;
                 db.AN_Anuncios.Add(an_anuncios);
-
-
                 var Anuncio = db.SaveChanges<AN_Anuncios>(an_anuncios);
                 if (Anuncio != null)
                 {
@@ -340,6 +345,9 @@ namespace SMAWeb.Controllers
                         System.IO.Directory.CreateDirectory(Server.MapPath(directorio + Anuncio.AN_Id));
                 }
                 HttpContext.Session["Anuncio"] = Anuncio.AN_Id;
+                if (Anuncio.ST_Id == 7)
+                    base.SendEmailNotification(an_anuncios.AN_Id, Plantillas.AnuncioReview);
+
                 return PartialView("LoadUplaoder");
             }
 
@@ -361,7 +369,8 @@ namespace SMAWeb.Controllers
                 {
                     return Json(new { ErrorMessage = "No puede agregar más anuncios ya que supera el limite de anuncios permitidos para su membresia" }, JsonRequestBehavior.AllowGet);
                 }
-                else {
+                else
+                {
                     return Json(new { UrlAnuncios = Url.Action("Create", "Anuncios") }, JsonRequestBehavior.AllowGet);
                 }
             }
@@ -383,7 +392,7 @@ namespace SMAWeb.Controllers
             ViewBag.SBS_Id = new SelectList(subcategorias, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id);
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName", an_anuncios.UserId);
-            
+
 
             //var selecteditems = new List<SelectListItem>();
 
@@ -394,8 +403,8 @@ namespace SMAWeb.Controllers
 
             ViewBag.PA_Id = db.PA_Paises.ToList();
             ViewData["Paises"] = new SelectList(db.PA_Paises.ToList(), "PA_Id", "PA_Descripcion", an_anuncios.PA_Id);// your dropdownlist
-           
-        
+
+
             ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion", an_anuncios.CD_Id);
             return View(an_anuncios);
         }
@@ -409,6 +418,14 @@ namespace SMAWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                bool wasNotApproved = Extensions.ExtensionHelper.NotApproved(an_anuncios.AN_Descripcion);
+                if (wasNotApproved)
+                {
+                    an_anuncios.ST_Id = 7;
+                    base.SendEmailNotification(an_anuncios.AN_Id, Plantillas.AnuncioReview);
+                }
+                else
+                    an_anuncios.ST_Id = 1;
                 db.Entry(an_anuncios).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("GetAnunciosByUser");
@@ -511,6 +528,35 @@ namespace SMAWeb.Controllers
             if (Request.IsAjaxRequest())
                 return PartialView("LoadUplaoder");
             return View();
+        }
+
+        [Authorize(Roles = "Users, Admin")]
+        [HttpPost, ActionName("Spam")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult SpamAnuncio(int id)
+        {
+            AN_Anuncios an_anuncios = db.AN_Anuncios.Find(id);
+            //activar y desactivar
+            if (an_anuncios.ST_Id == 1)
+                an_anuncios.ST_Id = 10;
+            else
+                an_anuncios.ST_Id = 1;
+
+            db.Entry(an_anuncios).State = EntityState.Modified;
+            try
+            {
+                db.SaveChanges();
+                base.SendEmailNotification(id, Plantillas.AnuncioSpam);
+            }
+            catch (Exception)
+            {
+                throw new Exception("El anuncio no puedo ser reportado como spam, intente más tarde o pongase en contacto con el administrador.");
+            }
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { redirectToUrl = Url.Action("Index", "Home") });
+            }
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
