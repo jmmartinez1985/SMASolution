@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿F<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -52,10 +52,8 @@
 
     <script type="text/javascript">
 
-        function UrlHelper()
-        {
-            this.urlImage = function (img)
-            {
+        function UrlHelper() {
+            this.urlImage = function (img) {
                 var ROOT = '@Url.Content("~/")';
                 return ROOT + img;
             }
@@ -63,8 +61,7 @@
 
 
             var $ki = jQuery.noConflict();
-            $ki(function ()
-            {
+            $ki(function () {
                 $ki.fn.raty.defaults.path = '@Url.Content("~/Scripts/raty-2.5.2/lib/img")';
             });
     </script>
@@ -211,15 +208,15 @@
             @RenderBody()
             @*    </section>*@
 
-        <div id="fb-root"></div>
-        <script>
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4&appId=530931017003510";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
+            <div id="fb-root"></div>
+            <script>
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4&appId=530931017003510";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
         </div>
     </div>
     <!--/body -->
@@ -294,8 +291,16 @@
                             <li><a href="https://www.twitter.com/SMAPanama" target="_blank" data-original-title="Twitter" class="social_twitter"></a></li>
                         </ul>
                     </div>
-                    
-                    <div class="row" style="padding-top:45px;">
+                    <div class="span4">
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="PPV676WYKXQPG">
+                            <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
+                            <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                    </div>
+
+                    <div class="row" style="padding-top: 45px;">
                         <a href="@Url.Action("Index", "Home")">
                             <img id="logo-footer" src="@Url.Content("~/Images/logo2-blue.png")" class="pull-right" alt=""></a>
 
@@ -344,8 +349,7 @@
     <script type="text/javascript">
         var imageUp = '@Url.Content("~/images/up.png")';
         var LoadingImage = '@Url.Content("~/images/loading.gif")';
-        $(function ()
-        {
+        $(function () {
             //LAYOUTS.GetCompanyInformation('@Url.Action("GetCompanyInfo", "Company")');
             LAYOUTS.GetLastAnuncios('@Url.Action("GetLastAnuncios", "Anuncios")', '@Url.Content("~/Anuncios/Details/")');
         });
