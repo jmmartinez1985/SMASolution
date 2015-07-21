@@ -213,12 +213,12 @@
 <script type="text/javascript">
     jQuery(function () {
         Index.initParallaxSlider();
-        HOME.GetServices('@Url.Action("GetServices", "Home")');
+        HOME.GetServices('@Url.Action("GetServices", "Home")', '@Url.Action("Details", "Anuncios")');
         HOME.SearchKey();
         HOME.ChangeCategory("CAT_Id", '@Url.Action("GetSubCategories", "SubCategoriaServicio")');
         $(".SearchButton").click(function () {
             var attr = $(this).attr('data-val');
-            HOME.CallFilter(attr, '@Url.Action("GetInformationAnuncios", "Anuncios")');
+            HOME.CallFilter(attr, '@Url.Action("GetInformationAnuncios", "Anuncios")', '@Url.Action("Details", "Anuncios")');
         });
         HOME.VerifyCredential('@Url.Action("VerifyCompleteCredential", "Home")', '@Url.Action("EditUser", "UserProfile")');
         HOME.VerifySolicitudesPendientes('@Url.Action("VerifySolicitudesPendientes", "Home")', '@Url.Action("SolicitudRequest", "SolicitudServicio")');
@@ -245,5 +245,7 @@
         var nombre = $("#btnTakeService" + anuncioid).attr("data-nombre");
         HOME.TakeService(anuncioid, '@Url.Action("TakeService", "SolicitudServicio")', nombre, titulo);
     }
+
+    
 
 </script>

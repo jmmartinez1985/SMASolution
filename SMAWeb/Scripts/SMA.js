@@ -399,7 +399,7 @@ jQuery(function ()
             });
     }
 
-    HOME.GetServices = function (url)
+    HOME.GetServices = function (url, urlSocial)
     {
         debugger;
         jQuery.ajax(
@@ -419,7 +419,8 @@ jQuery(function ()
 
                     jQuery.each(result.$values, function (val, anuncio)
                     {
-
+                        debugger;
+                        var urlAnuncio = urlSocial + "/" + anuncio.AnunciosInfo.AN_Id; //'@Url.Action("Details", "Anuncios")' + "/" + anuncio.AnunciosInfo.AN_Id;
                         var param = {
                             "Id": anuncio.AnunciosInfo.AN_Id,
                             "Nombre": anuncio.Usuario,
@@ -456,8 +457,18 @@ jQuery(function ()
                         htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
                         htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" id= btnTakeService' + anuncio.AnunciosInfo.AN_Id + '  data-nombre= "' + anuncio.Usuario + '" data-titulo= "' + anuncio.AnunciosInfo.AN_Titulo + '" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
                         htmldata += '</div>';
+
+                        htmldata += '<div class="span12">';
+                        htmldata += '<div class="fb-share-button" data-href="' + urlAnuncio + '" data-layout="button"></div>';
+                        htmldata += '</div>';
+
+                        htmldata += '<div class="span12">';
+                        htmldata += '<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://instinctcoder.com" data-text="Su portal de Búsqueda de Servicios en Línea" data-via="SMAWeb">Tweet</a>';
+                        htmldata += '</div>';
+
                         htmldata += '</div>';
                         htmldata += '</div></td> </tr>';
+
                     });
                     jQuery('#anunciosAvailable').prepend(htmldata);
                     jQuery('.ratyclass').each(function (i, elem)
@@ -476,6 +487,7 @@ jQuery(function ()
                         perPage: 7,
                         delay: 20
                     });
+                    !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
 
                 }
             },
@@ -592,7 +604,7 @@ jQuery(function ()
         return form;
     }
 
-    HOME.CallFilter = function (search, url)
+    HOME.CallFilter = function (search, url, urlSocial)
     {
 
         var formdata = HOME.FillFormData(search)
@@ -629,6 +641,9 @@ jQuery(function ()
                 var htmldata = '';
                 jQuery.each(result.$values, function (val, anuncio)
                 {
+                    debugger;
+                    var urlAnuncio = urlSocial + "/" + anuncio.AnunciosInfo.AN_Id; //'@Url.Action("Details", "Anuncios")' + "/" + anuncio.AnunciosInfo.AN_Id;
+
                     htmldata += '<tr><td><div class="row-fluid">';
                     htmldata += '<div class="span12 booking-blocks"> ';
                     htmldata += '<div class="span10">';
@@ -653,6 +668,15 @@ jQuery(function ()
                     htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
                     htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
                     htmldata += '</div>';
+
+                    htmldata += '<div class="span12">';
+                    htmldata += '<div class="fb-share-button" data-href="' + urlAnuncio + '" data-layout="button"></div>';
+                    htmldata += '</div>';
+
+                    htmldata += '<div class="span12">';
+                    htmldata += '<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://instinctcoder.com" data-text="Su portal de Búsqueda de Servicios en Línea" data-via="SMAWeb">Tweet</a>';
+                    htmldata += '</div>';
+
                     htmldata += '</div>';
                     htmldata += '</div></td> </tr>';
                 });
@@ -668,6 +692,7 @@ jQuery(function ()
                     perPage: 7,
                     delay: 20
                 });
+                
                 jQuery('.ratyclass').each(function (i, elem)
                 {
                     var ratyvalue = $(this).attr('ratyval');
@@ -675,6 +700,9 @@ jQuery(function ()
                 });
                 COMMON.HideProgress();
                 jQuery('#advanced').modal('hide');
+                //Render social plugins
+                FB.XFBML.parse();
+                twttr.widgets.load();
 
             },
             error: function (xhr)
@@ -682,6 +710,8 @@ jQuery(function ()
                 COMMON.HideProgress();
             }
         });
+        
+        !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
     }
 
     HOME.TakeService = function (anuncioid, url, nombre, titulo)

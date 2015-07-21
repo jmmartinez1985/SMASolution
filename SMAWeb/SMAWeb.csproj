@@ -46,6 +46,9 @@
       <HintPath>..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NWebsec.Core">
+      <HintPath>..\packages\NWebsec.Core.1.4.1\lib\45\NWebsec.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Postal, Version=0.9.1.0, Culture=neutral, PublicKeyToken=45719375b8b4d528, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\postal.0.9.1\lib\net40\Postal.dll</HintPath>
