@@ -437,7 +437,7 @@ jQuery(function ()
                         //htmldata += '</ul>';
                         ////fin reviews
                         htmldata += '<div class="pull-left booking-img">';
-                        htmldata += '<img src="' + anuncio.FirstImage + '" alt="' + anuncio.Usuario + '"> ';
+                        htmldata += '<img src="' + anuncio.FirstImage + '" alt="' + anuncio.Usuario + '" style="max-height:140px;" > ';
                         htmldata += '<ul class="unstyled">';
                         htmldata += '<li><ul class="unstyled inline"><li><div class="ratyclass" id=' + "toraty" + val + '  ratyval= ' + anuncio.Rating + ' style="width:20px;" ></div </li></ul></li>'
                         htmldata += '</ul>';
@@ -468,6 +468,8 @@ jQuery(function ()
                         htmldata += '</div>';
 
                         htmldata += '</div>';
+
+                        //htmldata += '<div class="span2 booking-blocks"></div>';
                         htmldata += '</div></td> </tr>';
 
                     });

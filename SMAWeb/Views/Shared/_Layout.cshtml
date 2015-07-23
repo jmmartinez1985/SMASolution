@@ -52,8 +52,10 @@
 
     <script type="text/javascript">
 
-        function UrlHelper() {
-            this.urlImage = function (img) {
+        function UrlHelper()
+        {
+            this.urlImage = function (img)
+            {
                 var ROOT = '@Url.Content("~/")';
                 return ROOT + img;
             }
@@ -61,7 +63,8 @@
 
 
             var $ki = jQuery.noConflict();
-            $ki(function () {
+            $ki(function ()
+            {
                 $ki.fn.raty.defaults.path = '@Url.Content("~/Scripts/raty-2.5.2/lib/img")';
             });
     </script>
@@ -91,37 +94,9 @@
                 @if (Request.IsAuthenticated)
                 {
                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <li><a href="@Url.Content("~/UserProfile/EditUser")">@User.Identity.Name.ToString()</a></li>@*
                     <li>@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "login-btn", title = "Manage" })!</li>*@
-
-
-
+                    
 
 
 
@@ -210,7 +185,8 @@
 
             <div id="fb-root"></div>
             <script>
-                (function (d, s, id) {
+                (function (d, s, id)
+                {
                     var js, fjs = d.getElementsByTagName(s)[0];
                     if (d.getElementById(id)) return;
                     js = d.createElement(s); js.id = id;
@@ -283,22 +259,35 @@
 
                         <div id="divAddress">
                         </div>
-                        <div class="headline">
+                        @*<div class="headline">
                             <h3>Manténgase Conectado</h3>
                         </div>
                         <ul class="social-icons">
                             <li><a href="https://www.facebook.com/IsrraBanton12" target="_blank" data-original-title="Facebook" class="social_facebook"></a></li>
                             <li><a href="https://www.twitter.com/SMAPanama" target="_blank" data-original-title="Twitter" class="social_twitter"></a></li>
-                        </ul>
+                        </ul>*@
+                        <div class="headline">
+                            <h3>¿Te Gusta Service Market?</h3>
+
+                        </div>
+                        <p>¡Apoya nuestro proyecto con tu donación! </p>
+                        <div class="pull-right">
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                <input type="hidden" name="cmd" value="_s-xclick">
+                                <input type="hidden" name="hosted_button_id" value="PPV676WYKXQPG">
+                                <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
+                                <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                            </form>
+                        </div>
                     </div>
-                    <div class="span4">
+                    @*<div class="span4">
                         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                             <input type="hidden" name="cmd" value="_s-xclick">
                             <input type="hidden" name="hosted_button_id" value="PPV676WYKXQPG">
                             <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
                             <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
                         </form>
-                    </div>
+                    </div>*@
 
                     <div class="row" style="padding-top: 45px;">
                         <a href="@Url.Action("Index", "Home")">
@@ -321,10 +310,15 @@
     <div class="copyright">
         <div class="container">
             <div class="row-fluid">
-                <div class="span8">
+                <div class="span10">
                     <p>@DateTime.Today.Year © Service Market. Todos los derechos reservados. <a href="@Url.Action("About", "Home")">Nosotros</a> | <a href="@Url.Action("Terms", "Home")">Término de Servicios</a> | <a href="@Url.Action("Policy", "Home")">Política de Privacidad</a> </p>
+
                 </div>
-                <div class="span4">
+                <div class="span2 ">
+                    <ul class="social-icons pull-right">
+                        <li><a href="https://www.facebook.com/IsrraBanton12" target="_blank" data-original-title="Facebook" class="social_facebook"></a></li>
+                        <li><a href="https://www.twitter.com/SMAPanama" target="_blank" data-original-title="Twitter" class="social_twitter"></a></li>
+                    </ul>
                 </div>
             </div>
             <!--/row-fluid-->
@@ -349,7 +343,8 @@
     <script type="text/javascript">
         var imageUp = '@Url.Content("~/images/up.png")';
         var LoadingImage = '@Url.Content("~/images/loading.gif")';
-        $(function () {
+        $(function ()
+        {
             //LAYOUTS.GetCompanyInformation('@Url.Action("GetCompanyInfo", "Company")');
             LAYOUTS.GetLastAnuncios('@Url.Action("GetLastAnuncios", "Anuncios")', '@Url.Content("~/Anuncios/Details/")');
         });
