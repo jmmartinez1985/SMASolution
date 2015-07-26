@@ -443,7 +443,7 @@ jQuery(function ()
                         htmldata += '</ul>';
                         htmldata += '</div>';
                         htmldata += '<div style="overflow: hidden;">';
-                        htmldata += '<h2><a href="javascript:SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');">' + anuncio.AnunciosInfo.AN_Titulo + '</a> (' + anuncio.Comments + ' Reviews)</h2> ';
+                        htmldata += '<h4><a href="javascript:SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');">' + anuncio.AnunciosInfo.AN_Titulo + '</a> (' + anuncio.Comments + ' Reviews)</h4> ';
                         htmldata += '<b>' + anuncio.Usuario + '</b>';
                         htmldata += '<ul class="unstyled inline">';
                         htmldata += '<li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>&nbsp;';
@@ -456,7 +456,7 @@ jQuery(function ()
                         htmldata += '<div class="span2">';
                         htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
                         htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" id= btnTakeService' + anuncio.AnunciosInfo.AN_Id + '  data-nombre= "' + anuncio.Usuario + '" data-titulo= "' + anuncio.AnunciosInfo.AN_Titulo + '" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
-                        htmldata += '<button onclick="ReportarSpam(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-remove-circle"></i>&nbsp;Reportar Spam</button>';
+                        htmldata += '<button onclick="ReportarSpam(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-remove-circle"></i>&nbsp;Reportar</button>';
                         htmldata += '</div>';
 
                         htmldata += '<div class="span12">';
@@ -657,7 +657,7 @@ jQuery(function ()
                     htmldata += '</ul>';
                     htmldata += '</div>';
                     htmldata += '<div style="overflow: hidden;">';
-                    htmldata += '<h2><a href="javascript:SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');">' + anuncio.AnunciosInfo.AN_Titulo + '</a> (' + anuncio.Comments + ' Reviews)</h2> ';
+                    htmldata += '<h4><a href="javascript:SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');">' + anuncio.AnunciosInfo.AN_Titulo + '</a> (' + anuncio.Comments + ' Reviews)</h4> ';
                     htmldata += '<b>' + anuncio.Usuario + '</b>';
                     htmldata += '<ul class="unstyled inline">';
                     htmldata += '<li><i class="icon-calendar"></i>' + ShortDateTime(anuncio.AnunciosInfo.AN_Fecha) + ' </li>&nbsp;';
@@ -670,7 +670,7 @@ jQuery(function ()
                     htmldata += '<div class="span2">';
                     htmldata += '<button onclick="SeeAnuncios(' + anuncio.AnunciosInfo.AN_Id + ');"class="btn-u btn-u-orange btn-block"><i class="icon-white icon-plus"></i>&nbsp;Leer Más</button>';
                     htmldata += '<button onclick="TakeService(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-ok"></i>&nbsp;Solicitar</button>';
-                    htmldata += '<button onclick="ReportarSpam(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-remove-circle"></i>&nbsp;Reportar Spam</button>';
+                    htmldata += '<button onclick="ReportarSpam(' + anuncio.AnunciosInfo.AN_Id + ');" class="btn-u btn-u-orange btn-block"><i class="icon-white icon-remove-circle"></i>&nbsp;Reportar</button>';
                     htmldata += '</div>';
 
                     htmldata += '<div class="span12">';
