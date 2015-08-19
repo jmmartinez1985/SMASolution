@@ -16,9 +16,10 @@ namespace SMAWeb.Controllers
     {
         private Entities db = new Entities();
 
+
         //
         // GET: /Comentarios/
-        [Authorize(Roles = "Users, Admin")]
+        [Authorize(Roles = "Users, Admin")] 
         public ActionResult Index()
         {
             var cr_comentarioreview = db.CR_ComentarioReview.Include(c => c.RW_Reviews).Include(c => c.ST_Estatus).Include(c => c.UserProfile);
