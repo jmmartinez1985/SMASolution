@@ -464,7 +464,7 @@ jQuery(function ()
                         htmldata += '</div>';
 
                         htmldata += '<div class="span12">';
-                        htmldata += '<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://instinctcoder.com" data-text="Su portal de Búsqueda de Servicios en Línea" data-via="SMAWeb">Tweet</a>';
+                        htmldata += '<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.servicemarketpanama.com/" data-text="Su portal de Búsqueda de Servicios en Línea" data-via="SMAWeb">Tweet</a>';
                         htmldata += '</div>';
 
                         htmldata += '</div>';
@@ -678,7 +678,7 @@ jQuery(function ()
                     htmldata += '</div>';
 
                     htmldata += '<div class="span12">';
-                    htmldata += '<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://instinctcoder.com" data-text="Su portal de Búsqueda de Servicios en Línea" data-via="SMAWeb">Tweet</a>';
+                    htmldata += '<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://http://www.servicemarketpanama.com/" data-text="Su portal de Búsqueda de Servicios en Línea" data-via="SMAWeb">Tweet</a>';
                     htmldata += '</div>';
 
                     htmldata += '</div>';
