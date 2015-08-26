@@ -95,46 +95,66 @@ namespace SMAWeb.Controllers
             {
                 ModelState.AddModelError(string.Empty, "El captcha ingresado no es correcto, por favor vuelva a intentarlo.");
             }
+
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
+                string confirmationToken = string.Empty;
+
                 try
                 {
-
-                    string confirmationToken =
-                       WebSecurity.CreateUserAndAccount(model.Email, model.Password,null, true);
-                    ManageMembership(model.Email);
-                    if (!Roles.IsUserInRole("Users"))
-                        Roles.AddUsersToRole(new string[] { model.Email }, "Users");
-                    dynamic email = new Email("RegEmail");
-                    var confirmLink = Url.Action("RegisterConfirmation", "Account", null, "http");
-                    email.ConfirmLink = confirmLink + "/" + confirmationToken;
-                    email.To = model.Email;
-                    email.IsBodyHtml = true;
-                    email.UserName = model.Email;
-                    email.ConfirmationToken = confirmationToken;
-                    //email.Image = HttpContext.Request.Url.ToString().Replace (HttpContext.Request.Path, "") + "/Images/logo1-blue.png" ;
-                    email.Send();
-                    return RedirectToAction("RegisterInstruction", "Account");
-
-
-                    // WebSecurity.CreateUserAndAccount(model.Email, model.Password);
-                    //WebSecurity.Login(model.Email, model.Password);
-                    //if (!Roles.IsUserInRole("Users"))
-                    //    Roles.AddUsersToRole(new string[] { model.Email }, "Users");
-                    //return RedirectToAction("EditUser", "UserProfile");
+                    // Attempt to register the user
+                    confirmationToken = WebSecurity.CreateUserAndAccount(
+                        userName: model.Email, 
+                        password: model.Password, 
+                        propertyValues: new {
+                            UserName = model.Email,
+                            ST_Id = 1,
+                            MP_MemberShipId = 1,
+                            Name = model.Email
+                        }, requireConfirmationToken: true);
                 }
                 catch (MembershipCreateUserException e)
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                    // If we got ProviderError in the Exception status code we skip it.
+                    if (e.StatusCode != MembershipCreateStatus.ProviderError)
+                    {
+                        ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                        return View(model);
+                    }
                 }
+
+                if(confirmationToken == string.Empty)
+                    confirmationToken = WebSecurity.CreateAccount(model.Email, model.Password, true);
+
+                ManageMembership(model.Email);
+
+                if (!Roles.IsUserInRole("Users"))
+                    Roles.AddUsersToRole(new string[] { model.Email }, "Users");
+
+                dynamic email = new Email("RegEmail");
+                var confirmLink = Url.Action("RegisterConfirmation", "Account", null, "http");
+                email.ConfirmLink = confirmLink + "/" + confirmationToken;
+                email.To = model.Email;
+                email.IsBodyHtml = true;
+                email.UserName = model.Email;
+                email.ConfirmationToken = confirmationToken;
+                //email.Image = HttpContext.Request.Url.ToString().Replace (HttpContext.Request.Path, "") + "/Images/logo1-blue.png" ;
+
+                try
+                {
+                    email.Send();
+                }
+                catch (Exception e)
+                {
+                    //TODO: Add logging syntaxis
+                }
+
+                return RedirectToAction("RegisterInstruction", "Account");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-
 
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -702,7 +722,7 @@ namespace SMAWeb.Controllers
             try
             {
                 var userId = WebSecurity.GetUserId(username);
-                if (userId != null)
+                if (userId != -1)
                 {
                     using (var db = new Entities())
                     {
