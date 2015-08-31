@@ -46,6 +46,7 @@ namespace SMAWeb.Models
         public string OldPassword { get; set; }
 
         [Required]
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*[!@#$&*.])(?=.*[0-9])(?=.*[a-z]).{6,12}$", ErrorMessage = "La contraseña ingresado debe tener al menos una letra en mayúscula, una letra en minúscula, un número, un caracter especial y no ser mayor de 12 caracteres.")]
         [StringLength(100, ErrorMessage = "La {0} debe ser al menos de {2} caracteres de largo.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Nueva Contraseña")]
