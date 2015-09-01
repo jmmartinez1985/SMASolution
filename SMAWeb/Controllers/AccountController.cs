@@ -95,46 +95,66 @@ namespace SMAWeb.Controllers
             {
                 ModelState.AddModelError(string.Empty, "El captcha ingresado no es correcto, por favor vuelva a intentarlo.");
             }
+
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
+                string confirmationToken = string.Empty;
+
                 try
                 {
-
-                    string confirmationToken =
-                       WebSecurity.CreateUserAndAccount(model.Email, model.Password,null, true);
-                    ManageMembership(model.Email);
-                    if (!Roles.IsUserInRole("Users"))
-                        Roles.AddUsersToRole(new string[] { model.Email }, "Users");
-                    dynamic email = new Email("RegEmail");
-                    var confirmLink = Url.Action("RegisterConfirmation", "Account", null, "http");
-                    email.ConfirmLink = confirmLink + "/" + confirmationToken;
-                    email.To = model.Email;
-                    email.IsBodyHtml = true;
-                    email.UserName = model.Email;
-                    email.ConfirmationToken = confirmationToken;
-                    //email.Image = HttpContext.Request.Url.ToString().Replace (HttpContext.Request.Path, "") + "/Images/logo1-blue.png" ;
-                    email.Send();
-                    return RedirectToAction("RegisterInstruction", "Account");
-
-
-                    // WebSecurity.CreateUserAndAccount(model.Email, model.Password);
-                    //WebSecurity.Login(model.Email, model.Password);
-                    //if (!Roles.IsUserInRole("Users"))
-                    //    Roles.AddUsersToRole(new string[] { model.Email }, "Users");
-                    //return RedirectToAction("EditUser", "UserProfile");
+                    // Attempt to register the user
+                    confirmationToken = WebSecurity.CreateUserAndAccount(
+                        userName: model.Email, 
+                        password: model.Password, 
+                        propertyValues: new {
+                            UserName = model.Email,
+                            ST_Id = 1,
+                            MP_MemberShipId = 1,
+                            Name = model.Email
+                        }, requireConfirmationToken: true);
                 }
                 catch (MembershipCreateUserException e)
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                    // If we got ProviderError in the Exception status code we skip it.
+                    if (e.StatusCode != MembershipCreateStatus.ProviderError)
+                    {
+                        ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                        return View(model);
+                    }
                 }
+
+                if(confirmationToken == string.Empty)
+                    confirmationToken = WebSecurity.CreateAccount(model.Email, model.Password, true);
+
+                ManageMembership(model.Email);
+
+                if (!Roles.IsUserInRole("Users"))
+                    Roles.AddUsersToRole(new string[] { model.Email }, "Users");
+
+                dynamic email = new Email("RegEmail");
+                var confirmLink = Url.Action("RegisterConfirmation", "Account", null, "http");
+                email.ConfirmLink = confirmLink + "/" + confirmationToken;
+                email.To = model.Email;
+                email.IsBodyHtml = true;
+                email.UserName = model.Email;
+                email.ConfirmationToken = confirmationToken;
+                //email.Image = HttpContext.Request.Url.ToString().Replace (HttpContext.Request.Path, "") + "/Images/logo1-blue.png" ;
+
+                try
+                {
+                    email.Send();
+                }
+                catch (Exception e)
+                {
+                    //TODO: Add logging syntaxis
+                }
+
+                return RedirectToAction("RegisterInstruction", "Account");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-
 
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -296,7 +316,7 @@ namespace SMAWeb.Controllers
             mensaje += "<h3 style='border-bottom: 2px solid #e67e22; margin-bottom: 25px; color: #585f69; margin: 0 0 -2px 0; padding-right: 10px; display: inline-block; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 24.5px; line-height: 40px; text-rendering: optimizelegibility; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;' >Nueva Contraseña de Service Market</h3></div><h5 style='color: #555; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>";
             mensaje += "Hemos atendido su solicitud de restauración de contraseña. Su nueva contraseña para Service Market es:</h5><br /><h1 style='color: #e67e22; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>" + password + "</h1><br /><br /><h5 style='color: #555; margin-top: 5px; text-shadow: none; text-shadow: 0 0 1px #f6f6f6; font-weight: normal !important; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 20px; text-rendering: optimizelegibility; border-radius: 0 !important; display: block; -webkit-margin-before: 1.67em; -webkit-margin-after: 1.67em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>Le recomendamos guardar su contraseña en un lugar seguro.</h5>";
             mensaje += "</div><div style='margin-top: 40px; padding: 20px 10px; background: #585f69; color: #dadada; border-radius: 0 !important; display: block; font-size: 13px; line-height: 1.6;' ><div class='container'><div class='row-fluid'><div class='span12'><h6 style='font-size: 11.9px; margin: 10px 0; font-family: inherit; font-weight: bold; line-height: 20px; color: inherit; text-rendering: optimizelegibility; -webkit-margin-before: 2.33em; -webkit-margin-after: 2.33em; -webkit-margin-start: 0px; -webkit-margin-end: 0px;'>Por favor no responda a este mensaje; fue enviado desde una dirección de correo electrónico no supervisada como parte del servicio de restauración de su contraseña de Service Market.</h6>";
-            mensaje += "</div></div></div></div><div style='font-size: 12px; padding: 5px 10px; background: #3e4753; border-top: solid 1px #777; border-radius: 0 !important;'><div class='container'><div class='row-fluid'><div class='span8'><p style='color: #dadada; line-height: 1.6; margin: 0 0 10px; border-radius: 0 !important; display: block; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; font-size: 12px;'>2014 © Service Market. Todos los derechos reservados. <a href='xcomar-002-site3.smarterasp.net/Home/Policy' style='color: #e67e22; text-decoration: none;'>Política de Privacidad</a> | <a href='http://isrrasma2-001-site1.smarterasp.net/Home/Terms' style='color: #e67e22; text-decoration: none;'>Término de Servicios</a></p></div></div></div></div></div>";
+            mensaje += "</div></div></div></div><div style='font-size: 12px; padding: 5px 10px; background: #3e4753; border-top: solid 1px #777; border-radius: 0 !important;'><div class='container'><div class='row-fluid'><div class='span8'><p style='color: #dadada; line-height: 1.6; margin: 0 0 10px; border-radius: 0 !important; display: block; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; font-size: 12px;'>2015 © Service Market. Todos los derechos reservados. <a href='www.servicemarketpanama.com/Home/Policy' style='color: #e67e22; text-decoration: none;'>Política de Privacidad</a> | <a href='http://www.servicemarketpanama.com/Home/Terms' style='color: #e67e22; text-decoration: none;'>Término de Servicios</a></p></div></div></div></div></div>";
 
             return mensaje;
 
@@ -322,7 +342,7 @@ namespace SMAWeb.Controllers
             mensaje += "</div></div></div></div>";
             mensaje += "<div style='font-size: 12px; padding: 5px 10px; background: #3e4753; border-top: solid 1px #777; border-radius: 0 !important;'>";
             mensaje += "<div class='container'><div class='row-fluid'><div class='span8'>";
-            mensaje += "<p style='color: #dadada; line-height: 1.6; margin: 0 0 10px; border-radius: 0 !important; display: block; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; font-size: 12px;'>2014 © Service Market. Todos los derechos reservados. <a href='xcomar-002-site3.smarterasp.net/Home/Policy' style='color: #e67e22; text-decoration: none;'>Política de Privacidad</a> | <a href='http://isrrasma2-001-site1.smarterasp.net/Home/Terms' style='color: #e67e22; text-decoration: none;'>Término de Servicios</a></p>";
+            mensaje += "<p style='color: #dadada; line-height: 1.6; margin: 0 0 10px; border-radius: 0 !important; display: block; -webkit-margin-before: 1em; -webkit-margin-after: 1em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; font-size: 12px;'>2015 © Service Market. Todos los derechos reservados. <a href='www.servicemarketpanama.com/Home/Policy' style='color: #e67e22; text-decoration: none;'>Política de Privacidad</a> | <a href='http://www.servicemarketpanama.com/Home/Terms' style='color: #e67e22; text-decoration: none;'>Término de Servicios</a></p>";
             mensaje += "</div></div></div></div></div>";
 
             return mensaje;
@@ -702,7 +722,7 @@ namespace SMAWeb.Controllers
             try
             {
                 var userId = WebSecurity.GetUserId(username);
-                if (userId != null)
+                if (userId != -1)
                 {
                     using (var db = new Entities())
                     {
