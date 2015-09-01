@@ -63,3 +63,21 @@
     <!-- /navbar-inner -->
 </div>
 <!-- /navbar -->
+<script>
+    $(function () {
+        debugger;
+        return $("a.dropdown-toggle:not(.multiselect)").click(function (e) {
+            $("ul.dropdown-menu:not(.multiselect-container)").css("display", "none");
+            $(this).next("ul.dropdown-menu").css("display", "block");
+            return e.stopPropagation();
+        });
+    });
+
+    $(document).on('click click.dropdown.data-api', function (e) {
+        debugger;
+        if (!$(e.target).closest('.dropdown, .multiselect-container').length) {
+            return $("ul.dropdown-menu:not(.multiselect-container)").css("display", "none");
+        }
+    });
+
+</script>
