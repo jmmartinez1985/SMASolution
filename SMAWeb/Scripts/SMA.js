@@ -401,14 +401,14 @@ jQuery(function ()
 
     HOME.GetServices = function (url, urlSocial)
     {
-        debugger;
+        
         jQuery.ajax(
         {
             type: 'post',
             url: url,//'@Url.Action("GetServices", "Home")',
             success: function (data)
             {
-                debugger;
+                
                 var result = JSON.parse(data);
                 var htmldata = '';
                 jQuery('#firstSearch').show(300);
@@ -419,7 +419,7 @@ jQuery(function ()
 
                     jQuery.each(result.$values, function (val, anuncio)
                     {
-                        debugger;
+                        
                         var urlAnuncio = urlSocial + "/" + anuncio.AnunciosInfo.AN_Id; //'@Url.Action("Details", "Anuncios")' + "/" + anuncio.AnunciosInfo.AN_Id;
                         var param = {
                             "Id": anuncio.AnunciosInfo.AN_Id,
@@ -644,7 +644,7 @@ jQuery(function ()
                 var htmldata = '';
                 jQuery.each(result.$values, function (val, anuncio)
                 {
-                    debugger;
+                    
                     var urlAnuncio = urlSocial + "/" + anuncio.AnunciosInfo.AN_Id; //'@Url.Action("Details", "Anuncios")' + "/" + anuncio.AnunciosInfo.AN_Id;
 
                     htmldata += '<tr><td><div class="row-fluid">';

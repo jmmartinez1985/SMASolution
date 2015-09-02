@@ -197,7 +197,7 @@
 
         bootbox.confirm("¿Desea eliminar el anuncio publicado?", "Cancelar", "Aceptar", function (result) {
             if (result) {
-                debugger;
+                
                 jQuery.ajax(
                {
                    type: 'post',
@@ -215,7 +215,7 @@
                        location.reload();
                    },
                    error: function (xhr) {
-                       debugger;
+                       
                        if (xhr.status == 403) {
 
                        }
@@ -264,7 +264,7 @@
 
                   },
                   error: function (xhr) {
-                      debugger;
+                      
                       if (xhr.status == 403) {
 
                       }
@@ -297,7 +297,7 @@
 
                    },
                    error: function (xhr) {
-                       debugger;
+                       
                        if (xhr.status == 403) {
 
                        }
