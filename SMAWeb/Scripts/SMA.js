@@ -337,7 +337,7 @@ jQuery(function ()
             success: function (data)
             {
 
-                if (data.IsIncomplete == true)
+                if (data.IsIncomplete.toString() == "true")
                 {
                     bootbox.confirm("<h5>Estimado usuario, antes de seguir disfrutando de Service Market le solicitamos por favor completar algunos datos requeridos en su perfil. ¿Desea completar su perfil en este momento?</h5>", "Cancelar", "Aceptar", function (result)
                     {

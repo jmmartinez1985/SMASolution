@@ -109,8 +109,8 @@ namespace SMAWeb.Controllers
                         propertyValues: new {
                             UserName = model.Email,
                             ST_Id = 1,
-                            MP_MemberShipId = 1,
-                            Name = model.Email
+                            MP_MemberShipId = 1//,
+                            //Name = model.Email
                         }, requireConfirmationToken: true);
                 }
                 catch (MembershipCreateUserException e)
