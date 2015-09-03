@@ -71,7 +71,14 @@ namespace SMAWeb.Controllers
             {
                 if (Request.IsAuthenticated)
                 {
-                    anunciosSolicitados = model.SS_SolicitudServicio.Where(c => c.ST_Id == 1 & c.UserId == WebSecurity.CurrentUserId).ToList();
+                    //anunciosSolicitados = model.SS_SolicitudServicio.Where(c => c.ST_Id == 1 & c.UserId == WebSecurity.CurrentUserId).ToList();
+
+                    anunciosSolicitados = model.AN_Anuncios
+                        .Where(a => a.UserId == WebSecurity.CurrentUserId)
+                        .SelectMany(a => a.SS_SolicitudServicio)
+                        .Where(s => s.ST_Id == 1)
+                        .ToList();
+
                     var total = anunciosSolicitados.Count();
                     if (total > 0)
                         return Json(new { SolicitudesPendientes = true });
