@@ -75,7 +75,7 @@ namespace SMAWeb.Controllers
                 int anuncioId = int.Parse(form[0]);
                 using (var db = new Entities())
                 {
-                    var existSolicitud = db.SS_SolicitudServicio.Any(c => c.AN_Id == anuncioId && c.ST_Id == 1);
+                    var existSolicitud = db.SS_SolicitudServicio.Any(c => c.AN_Id == anuncioId && c.ST_Id == 1 && c.UserId == WebSecurity.CurrentUserId );
                     if (existSolicitud)
                     {
                         return Json(new { Message = "Estimado usuario, le informamos que ya cuenta con una solicitud activa para este anuncio que desea solicitar, por favor póngase en contacto con el anunciante." });
@@ -126,8 +126,10 @@ namespace SMAWeb.Controllers
                         default: return "";
                     }
                 };
+                
                 solicitudes.ToList().ForEach((sol) =>
                 {
+                    
                     mysol.Add(new SolicitudViewModel
                     {
                         Solicitante = sol.UserProfile.Name,
@@ -135,7 +137,7 @@ namespace SMAWeb.Controllers
                         FechaCreacion = sol.SS_Fecha,
                         Solicitud = sol.SS_Id,
                         Status = x.Invoke(sol.ST_Id),
-                        TelefonoSolicitante = "No Telefono",
+                        TelefonoSolicitante = sol.AN_Anuncios.AN_Telefono,
                         StatusId = sol.ST_Id
                     });
                 });

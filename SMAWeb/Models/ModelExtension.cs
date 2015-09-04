@@ -637,6 +637,7 @@ namespace SMAWeb.Models
         public int Solicitud { get; set; }
 
         [Display(Name = "Fecha")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime FechaCreacion { get; set; }
 
         [Display(Name = "Solicitante")]
