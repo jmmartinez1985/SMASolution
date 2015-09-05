@@ -15,6 +15,9 @@ using System.Xml.XPath;
 using SMAWeb.Extensions;
 using System.Dynamic;
 
+using System.Web.Security;
+
+
 namespace SMAWeb.Controllers
 {
     public class SolicitudServicioController : BaseController
@@ -55,7 +58,7 @@ namespace SMAWeb.Controllers
                         FechaCreacion = sol.SS_Fecha,
                         Solicitud = sol.SS_Id,
                         Status = x.Invoke(sol.ST_Id),
-                        TelefonoSolicitante = "No Telefono",
+                        TelefonoSolicitante = sol.AN_Anuncios.AN_Telefono  , // "No Telefono",
                         StatusId = sol.ST_Id
                     });
                 });
@@ -75,11 +78,20 @@ namespace SMAWeb.Controllers
                 int anuncioId = int.Parse(form[0]);
                 using (var db = new Entities())
                 {
-                    var existSolicitud = db.SS_SolicitudServicio.Any(c => c.AN_Id == anuncioId && c.ST_Id == 1 && c.UserId == WebSecurity.CurrentUserId );
+                    //Si es administrador
+                    if (Roles.IsUserInRole(WebSecurity.CurrentUserName, "Admin"))
+                    {
+                        return Json(new { Message = "Estimado usuario, le informamos que su cuenta administrador no le permite solicitar servicios. Utilice su cuenta de usuario regular." });
+                    }
+
+                    //Si existe una solicitud sin iniciar atención
+                    var existSolicitud = db.SS_SolicitudServicio.Any(c => c.AN_Id == anuncioId && c.ST_Id == 1 && c.UserId == WebSecurity.CurrentUserId);
                     if (existSolicitud)
                     {
                         return Json(new { Message = "Estimado usuario, le informamos que ya cuenta con una solicitud activa para este anuncio que desea solicitar, por favor póngase en contacto con el anunciante." });
                     }
+
+                    //Si es un propio anuncio
                     var anuncio = db.AN_Anuncios.Find(anuncioId);
                     if (anuncio.UserId == WebSecurity.CurrentUserId)
                     {
@@ -126,10 +138,10 @@ namespace SMAWeb.Controllers
                         default: return "";
                     }
                 };
-                
+
                 solicitudes.ToList().ForEach((sol) =>
                 {
-                    
+
                     mysol.Add(new SolicitudViewModel
                     {
                         Solicitante = sol.UserProfile.Name,

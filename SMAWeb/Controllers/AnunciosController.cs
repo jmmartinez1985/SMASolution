@@ -27,7 +27,7 @@ namespace SMAWeb.Controllers
             List<AnunciosViewModel> viewModelAnuncios = new List<AnunciosViewModel>();
             using (Entities model = new Entities())
             {
-                allAnunciosList = model.AN_Anuncios.OrderBy(c => c.AN_Fecha).ToList();
+                allAnunciosList = model.AN_Anuncios.OrderByDescending(c => c.AN_Fecha).ToList();
                 foreach (var item in allAnunciosList)
                 {
                     string username = item.UserProfile.Name;
