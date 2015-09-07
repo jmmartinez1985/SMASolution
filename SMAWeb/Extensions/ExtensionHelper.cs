@@ -70,7 +70,7 @@ namespace SMAWeb.Extensions
                 {
                     Host = System.Configuration.ConfigurationManager.AppSettings["SMTP"],
                     Port = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["Port"]),
-                    EnableSsl = true,
+                    EnableSsl = false,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     UseDefaultCredentials = false,
                     Credentials = new System.Net.NetworkCredential(senderID, senderPassword),
