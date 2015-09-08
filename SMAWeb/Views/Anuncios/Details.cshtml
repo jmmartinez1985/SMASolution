@@ -274,13 +274,21 @@
 
                                                                 <blockquote>
                                                                     <div class="span2">
-                                                                        <img class="img-circle img-polaroid" src="@Url.Content(itemcomment.UserProfile.Image)" style="width:68px; height:68px;"  >
+                                                                        @if (itemcomment.UserProfile.Image != null)
+                                                                        {
+                                                                            <img class="img-circle img-polaroid" src="@Url.Content(itemcomment.UserProfile.Image)" style="width:68px; height:68px;">
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <img class="img-circle img-polaroid" src="@Url.Content("~/Images/No_Profile.jpg")" style="width:68px; height:68px;">
+                                                                        }
                                                                     </div>
                                                                     <div class="span10">
                                                                         <p>
                                                                             @itemcomment.CR_Comentario
                                                                             <small>
-                                                                                <em>@itemcomment.UserProfile.Name</em></small>
+                                                                                <em>@itemcomment.UserProfile.Name</em>
+                                                                            </small>
                                                                         </p>
                                                                     </div>
                                                                 </blockquote>
