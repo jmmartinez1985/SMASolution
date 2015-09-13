@@ -250,7 +250,21 @@ namespace SMAWeb.Controllers
                             c.RW_Reviews.AsParallel().ToList().ForEach(i => rvList.Add(i));
                         });
 
-
+                    var number = 0;
+                    item.SS_SolicitudServicio.AsParallel().ToList().ForEach((counter) =>
+                    {
+                        number += counter.RW_Reviews.Count;
+                    });
+                    //viewModelAnuncios.Add(new AnunciosViewModel
+                    //{
+                    //    Usuario = username,
+                    //    EstatusDescription = statusDesc,
+                    //    AnunciosInfo = item,
+                    //    CategoriaDescripcion = categoria,
+                    //    FirstImage = firstImage,
+                    //    Rating = getRating,
+                    //    Comments = number,
+                    //});
 
                     viewModelAnuncios.Add(new AnunciosViewModel
                     {
@@ -260,7 +274,7 @@ namespace SMAWeb.Controllers
                         CategoriaDescripcion = categoria,
                         FirstImage = firstImage,
                         Rating = getRating,
-                        ReviewList = rvList
+                        Comments = number,
                     });
 
                 }

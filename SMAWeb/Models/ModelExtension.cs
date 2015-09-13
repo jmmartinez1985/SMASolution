@@ -666,7 +666,6 @@ namespace SMAWeb.Models
         public string SolicitudProfilePic { get; set; }
         public ICollection<RW_Reviews> ReviewsList { get; set; }
 
-
     }
 
     #endregion
