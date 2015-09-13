@@ -366,7 +366,7 @@ namespace SMAWeb.Controllers
             var from = System.Configuration.ConfigurationManager.AppSettings["EmailId"];
             SmtpClient client = new SmtpClient();
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.EnableSsl = true;
+            client.EnableSsl = false;
             client.Host = System.Configuration.ConfigurationManager.AppSettings["SMTP"];
             client.Port = Convert.ToInt16( System.Configuration.ConfigurationManager.AppSettings["Port"]);
 

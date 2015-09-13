@@ -1,48 +1,83 @@
 ﻿@model IEnumerable<SMAWeb.Models.FAQs>
 
-@{
-    ViewBag.Title = "Details";
-}
+    @{
+        ViewBag.Title = "Details";
+    }
 
-<br />
-<div class="container">
-    <div class="row-fluid margin-bottom-10">
+    <br />
+    <div class="container">
+        <div class="row-fluid margin-bottom-10">
 
-        <div class="another-page">
-            <div class="headline">
-                <h3>FAQs</h3>
-                <h5>Preguntas y Respuestas Frecuentes de Service Market</h5>
-            </div>
-
-
-            <div class="accordion acc-home" id="accordion3">
-                @{ int counter = 0; string cssClass = "in"; }
-                @foreach (var item in Model)
+            <div class="another-page">
+                <div class="span7">
+                    <div class="headline">
+                        <h3>FAQs</h3>
+                        <h5>Preguntas y Respuestas Frecuentes de Service Market</h5>
+                    </div>
+                    <div class="accordion acc-home" id="accordion3">
+                        @{ int counter = 0; string cssClass = "in"; }
+                        @foreach (var item in Model)
                 {
                     if (counter > 0)
                     {
                         cssClass = "";
                     }
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapse-@counter">@item.FAQ_Question
-                            </a>
-                        </div>
-                        <div id="collapse-@counter" class="accordion-body collapse @cssClass">
-                            <div class="accordion-inner">
-                                <p>@item.FAQ_Answer</p>
-                            </div>
-                        </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapse-@counter">
+                            @item.FAQ_Question
+                    </a>
+                </div>
+                <div id="collapse-@counter" class="accordion-body collapse @cssClass">
+                    <div class="accordion-inner">
+                        <p>@item.FAQ_Answer</p>
                     </div>
+                </div>
+            </div>
                     <!--/accordion-group-->
                     counter++;
                 }
+                    </div>
+                </div>
+                <div class="span5" >
+                    <div>
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- FAQS -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-3305573167906515"
+                             data-ad-slot="2775180787"
+                             data-ad-format="auto"></ins>
+                        <script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                    
+                    <div>
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- FAQS2 -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-3305573167906515"
+                             data-ad-slot="4251913987"
+                             data-ad-format="auto"></ins>
+                        <script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                    <div>
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- FAQS3 -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-3305573167906515"
+                             data-ad-slot="6111606785"
+                             data-ad-format="auto"></ins>
+                        <script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
             </div>
-
-            @*<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
         </div>
     </div>
-</div>
