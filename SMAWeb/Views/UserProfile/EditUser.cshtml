@@ -24,12 +24,17 @@
                 <form action="@Url.Action("UploadFiles", "UserProfile")" method="post" enctype="multipart/form-data">
 
 
-                    <div class="upload">
+                    <div class="upload uploaded-enabled" >
                         <input type="button" class="uploadButton btn-u btn-u-orange" value="Buscar" />
                         <input type="file" name="upload" accept="image/*" id="fileUpload" />
                         <span class="fileName">Seleccione..</span>
                     </div>
-                    <input type="submit" class="uploadButton btn-u btn-u-orange" value="Cargar" />
+                    <input type="submit" class="uploadButton btn-u btn-u-orange uploaded-enabled" value="Cargar"  />
+
+                    <div class="alert alert-error noperfil" style="display:none">
+                        <i class="glyphicons icon-user"></i>
+                        <strong>Perfil Incompleto!</strong> Completa tus datos y procede a cargar tu imagen de perfil
+                    </div>
                 </form>
             </div>
             <div class="span6">
@@ -45,8 +50,8 @@
                         <div class="span3">
                             @Html.DisplayFor(model => model.UserName)
 
+                        </div>
                     </div>
-                </div>
 
 
 
@@ -154,6 +159,19 @@
         else
             $('#btnIniciarCarga').attr('disabled', 'disabled');
     });
+
+    debugger;
+    if ($("#UserName").val() != "" && $("#UserName").val() != null && $("#UserName").val() != undefined
+        && $("#Name").val() != "" && $("#Name").val() != null && $("#Name").val() != undefined) {
+
+        $(".uploaded-enabled").show();
+    }
+    else
+    {
+        $(".uploaded-enabled").hide();
+        $(".noperfil").show();
+
+    }
 
 </script>
 
