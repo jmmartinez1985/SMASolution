@@ -67,8 +67,6 @@ namespace SMAWeb.Controllers
             return View(mysol);
         }
 
-
-
         [HttpPost]
         [AjaxAuthorizeAttribute(Roles = "Admin, Users")]
         public ActionResult TakeService(FormCollection form)
@@ -317,6 +315,8 @@ namespace SMAWeb.Controllers
                 ppEmailTemplate.AnuncioTitulo = soli.FirstOrDefault().AN_Anuncios.AN_Titulo;
                 ppEmailTemplate.EmailCliente = soli.FirstOrDefault().UserProfile.UserName;
                 ppEmailTemplate.EmailProveedor = soli.FirstOrDefault().AN_Anuncios.UserProfile.UserName;
+                ppEmailTemplate.TelefonoProveedor = soli.FirstOrDefault().AN_Anuncios.AN_Telefono;
+                ppEmailTemplate.TelefonoCliente = soli.FirstOrDefault().UserProfile.NumeroTelefono;
 
                 string urlimg = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
                 var firstImage = "~/Images/logo2-blue.png";

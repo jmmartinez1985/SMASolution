@@ -33,6 +33,7 @@ namespace SMAWeb.Models
         public int MP_MemberShipId { get; set; }
         public int ST_Id { get; set; }
         public string Image { get; set; }
+        public string NumeroTelefono { get; set; }
     
         public virtual ICollection<CR_ComentarioReview> CR_ComentarioReview { get; set; }
         public virtual PA_Paises PA_Paises { get; set; }

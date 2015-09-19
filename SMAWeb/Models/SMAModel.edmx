@@ -4,141 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ServiceMarketModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="ServiceMarketModelStoreContainer">
-          <EntitySet Name="AE_AnunciosExtras" EntityType="ServiceMarketModel.Store.AE_AnunciosExtras" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="AM_MultimediaAnuncios" EntityType="ServiceMarketModel.Store.AM_MultimediaAnuncios" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="AN_Anuncios" EntityType="ServiceMarketModel.Store.AN_Anuncios" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="BL_BlackList" EntityType="ServiceMarketModel.Store.BL_BlackList" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CD_CategoriaServicio" EntityType="ServiceMarketModel.Store.CD_CategoriaServicio" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="COM_Compañia" EntityType="ServiceMarketModel.Store.COM_Compañia" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CON_Contactenos" EntityType="ServiceMarketModel.Store.CON_Contactenos" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CONF_Parametros" EntityType="ServiceMarketModel.Store.CONF_Parametros" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CR_ComentarioReview" EntityType="ServiceMarketModel.Store.CR_ComentarioReview" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ELMAH_Error" EntityType="ServiceMarketModel.Store.ELMAH_Error" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="FAQs" EntityType="ServiceMarketModel.Store.FAQs" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MB_Membresia" EntityType="ServiceMarketModel.Store.MB_Membresia" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MC_MembresiaControl" EntityType="ServiceMarketModel.Store.MC_MembresiaControl" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MT_MultimediaTipos" EntityType="ServiceMarketModel.Store.MT_MultimediaTipos" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PA_Paises" EntityType="ServiceMarketModel.Store.PA_Paises" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RW_Reviews" EntityType="ServiceMarketModel.Store.RW_Reviews" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SBS_SubCategoriaServicio" EntityType="ServiceMarketModel.Store.SBS_SubCategoriaServicio" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SS_SolicitudServicio" EntityType="ServiceMarketModel.Store.SS_SolicitudServicio" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ST_Estatus" EntityType="ServiceMarketModel.Store.ST_Estatus" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="ServiceMarketModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="UserProfile" EntityType="ServiceMarketModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="webpages_Membership" EntityType="ServiceMarketModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="webpages_OAuthMembership" EntityType="ServiceMarketModel.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="webpages_Roles" EntityType="ServiceMarketModel.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="webpages_UsersInRoles" EntityType="ServiceMarketModel.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_AE_AnunciosExtras_AN_Anuncios" Association="ServiceMarketModel.Store.FK_AE_AnunciosExtras_AN_Anuncios">
-            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
-            <End Role="AE_AnunciosExtras" EntitySet="AE_AnunciosExtras" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AM_MultimediaAnuncios_AN_Anuncios" Association="ServiceMarketModel.Store.FK_AM_MultimediaAnuncios_AN_Anuncios">
-            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
-            <End Role="AM_MultimediaAnuncios" EntitySet="AM_MultimediaAnuncios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AM_MultimediaAnuncios_MT_MultimediaTipos" Association="ServiceMarketModel.Store.FK_AM_MultimediaAnuncios_MT_MultimediaTipos">
-            <End Role="MT_MultimediaTipos" EntitySet="MT_MultimediaTipos" />
-            <End Role="AM_MultimediaAnuncios" EntitySet="AM_MultimediaAnuncios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AN_Anuncios_CD_CategoriaServicio" Association="ServiceMarketModel.Store.FK_AN_Anuncios_CD_CategoriaServicio">
-            <End Role="CD_CategoriaServicio" EntitySet="CD_CategoriaServicio" />
-            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AN_Anuncios_PA_Paises" Association="ServiceMarketModel.Store.FK_AN_Anuncios_PA_Paises">
-            <End Role="PA_Paises" EntitySet="PA_Paises" />
-            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AN_Anuncios_SBS_SubCategoriaServicio" Association="ServiceMarketModel.Store.FK_AN_Anuncios_SBS_SubCategoriaServicio">
-            <End Role="SBS_SubCategoriaServicio" EntitySet="SBS_SubCategoriaServicio" />
-            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AN_Anuncios_ST_Estatus" Association="ServiceMarketModel.Store.FK_AN_Anuncios_ST_Estatus">
-            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
-            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AN_Anuncios_UserProfile" Association="ServiceMarketModel.Store.FK_AN_Anuncios_UserProfile">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CR_ComentarioReview_RW_Reviews" Association="ServiceMarketModel.Store.FK_CR_ComentarioReview_RW_Reviews">
-            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
-            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CR_ComentarioReview_ST_Estatus" Association="ServiceMarketModel.Store.FK_CR_ComentarioReview_ST_Estatus">
-            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
-            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CR_ComentarioReview_UserProfile" Association="ServiceMarketModel.Store.FK_CR_ComentarioReview_UserProfile">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FAQs_ST_Estatus" Association="ServiceMarketModel.Store.FK_FAQs_ST_Estatus">
-            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
-            <End Role="FAQs" EntitySet="FAQs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MC_MembresiaControl_MB_Membresia" Association="ServiceMarketModel.Store.FK_MC_MembresiaControl_MB_Membresia">
-            <End Role="MB_Membresia" EntitySet="MB_Membresia" />
-            <End Role="MC_MembresiaControl" EntitySet="MC_MembresiaControl" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MC_MembresiaControl_UserProfile" Association="ServiceMarketModel.Store.FK_MC_MembresiaControl_UserProfile">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="MC_MembresiaControl" EntitySet="MC_MembresiaControl" />
-          </AssociationSet>
-          <AssociationSet Name="fk_RoleId" Association="ServiceMarketModel.Store.fk_RoleId">
-            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
-            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RW_Reviews_SS_SolicitudServicio" Association="ServiceMarketModel.Store.FK_RW_Reviews_SS_SolicitudServicio">
-            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
-            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RW_Reviews_ST_Estatus" Association="ServiceMarketModel.Store.FK_RW_Reviews_ST_Estatus">
-            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
-            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SBS_SubCategoriaServicio_CD_CategoriaServicio" Association="ServiceMarketModel.Store.FK_SBS_SubCategoriaServicio_CD_CategoriaServicio">
-            <End Role="CD_CategoriaServicio" EntitySet="CD_CategoriaServicio" />
-            <End Role="SBS_SubCategoriaServicio" EntitySet="SBS_SubCategoriaServicio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SS_SolicitudServicio_AN_Anuncios" Association="ServiceMarketModel.Store.FK_SS_SolicitudServicio_AN_Anuncios">
-            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
-            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SS_SolicitudServicio_ST_Estatus" Association="ServiceMarketModel.Store.FK_SS_SolicitudServicio_ST_Estatus">
-            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
-            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SS_SolicitudServicio_UserProfile" Association="ServiceMarketModel.Store.FK_SS_SolicitudServicio_UserProfile">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
-          </AssociationSet>
-          <AssociationSet Name="fk_UserId" Association="ServiceMarketModel.Store.fk_UserId">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserProfile_MB_Membresia" Association="ServiceMarketModel.Store.FK_UserProfile_MB_Membresia">
-            <End Role="MB_Membresia" EntitySet="MB_Membresia" />
-            <End Role="UserProfile" EntitySet="UserProfile" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserProfile_PA_Paises" Association="ServiceMarketModel.Store.FK_UserProfile_PA_Paises">
-            <End Role="PA_Paises" EntitySet="PA_Paises" />
-            <End Role="UserProfile" EntitySet="UserProfile" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserProfile_ST_Estatus" Association="ServiceMarketModel.Store.FK_UserProfile_ST_Estatus">
-            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
-            <End Role="UserProfile" EntitySet="UserProfile" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="ServiceMarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AE_AnunciosExtras">
           <Key>
             <PropertyRef Name="AE_Id" />
           </Key>
-          <Property Name="AE_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AE_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AN_Id" Type="int" Nullable="false" />
-          <Property Name="AN_Nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="AN_Nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="AN_ImagenUrl" Type="varchar" MaxLength="350" />
         </EntityType>
         <EntityType Name="AM_MultimediaAnuncios">
@@ -155,14 +28,14 @@
           <Key>
             <PropertyRef Name="AN_Id" />
           </Key>
-          <Property Name="AN_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AN_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="PA_Id" Type="int" Nullable="false" />
           <Property Name="SBS_Id" Type="int" />
-          <Property Name="AN_Titulo" Type="varchar" Nullable="false" MaxLength="250" />
-          <Property Name="AN_Telefono" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="AN_Titulo" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="AN_Telefono" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="AN_Celular" Type="varchar" MaxLength="20" />
-          <Property Name="AN_Descripcion" Type="varchar" Nullable="false" MaxLength="2000" />
+          <Property Name="AN_Descripcion" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="AN_Fecha" Type="datetime" Nullable="false" />
           <Property Name="AN_Area" Type="varchar" MaxLength="300" />
           <Property Name="AN_FechaExpiracion" Type="datetime" />
@@ -173,21 +46,21 @@
           <Key>
             <PropertyRef Name="BL_Id" />
           </Key>
-          <Property Name="BL_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="BL_Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="BL_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BL_Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="CD_CategoriaServicio">
           <Key>
             <PropertyRef Name="CD_Id" />
           </Key>
-          <Property Name="CD_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CD_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CD_Descripcion" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="COM_Compañia">
           <Key>
             <PropertyRef Name="COM_Id" />
           </Key>
-          <Property Name="COM_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="COM_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="COM_Nombre" Type="varchar" MaxLength="150" />
           <Property Name="COM_Direccion" Type="varchar" MaxLength="150" />
           <Property Name="COM_Telefono" Type="varchar" MaxLength="20" />
@@ -202,19 +75,19 @@
           <Key>
             <PropertyRef Name="CON_Id" />
           </Key>
-          <Property Name="CON_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="CON_Nombre" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="CON_Telefono" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="CON_Celular" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="CON_Email" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="CON_Mensaje" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CON_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CON_Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CON_Telefono" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CON_Celular" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CON_Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CON_Mensaje" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="CON_Fecha" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="CONF_Parametros">
           <Key>
             <PropertyRef Name="CONG_Id" />
           </Key>
-          <Property Name="CONG_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CONG_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CONF_QtyAnuncios" Type="int" />
           <Property Name="CONF_DayBlocked" Type="int" />
           <Property Name="CONF_Comments" Type="int" />
@@ -226,9 +99,9 @@
           <Key>
             <PropertyRef Name="CR_Id" />
           </Key>
-          <Property Name="CR_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CR_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RW_Id" Type="int" Nullable="false" />
-          <Property Name="CR_Comentario" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CR_Comentario" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="ST_Id" Type="int" Nullable="false" />
         </EntityType>
@@ -237,31 +110,31 @@
             <PropertyRef Name="ErrorId" />
           </Key>
           <Property Name="ErrorId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Application" Type="nvarchar" Nullable="false" MaxLength="60" />
-          <Property Name="Host" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="Source" Type="nvarchar" Nullable="false" MaxLength="60" />
-          <Property Name="Message" Type="nvarchar" Nullable="false" MaxLength="500" />
-          <Property Name="User" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Application" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Host" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Source" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="User" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="StatusCode" Type="int" Nullable="false" />
           <Property Name="TimeUtc" Type="datetime" Nullable="false" />
-          <Property Name="Sequence" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Sequence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AllXml" Type="ntext" Nullable="false" />
         </EntityType>
         <EntityType Name="FAQs">
           <Key>
             <PropertyRef Name="FAQ_Id" />
           </Key>
-          <Property Name="FAQ_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="FAQ_Question" Type="varchar" Nullable="false" MaxLength="500" />
-          <Property Name="FAQ_Answer" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="FAQ_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FAQ_Question" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="FAQ_Answer" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="FAQ_Status" Type="int" />
         </EntityType>
         <EntityType Name="MB_Membresia">
           <Key>
             <PropertyRef Name="MP_MemberShipId" />
           </Key>
-          <Property Name="MP_MemberShipId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MP_MemberShipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MP_Descripcion" Type="varchar" MaxLength="100" />
           <Property Name="MP_ExpiracionDays" Type="int" />
           <Property Name="MP_AnunciosQty" Type="int" />
@@ -270,7 +143,7 @@
           <Key>
             <PropertyRef Name="MC_Id" />
           </Key>
-          <Property Name="MC_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MC_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MC_MembershipId" Type="int" Nullable="false" />
           <Property Name="MC_UserId" Type="int" Nullable="false" />
           <Property Name="MC_Caducidad" Type="datetime" Nullable="false" />
@@ -279,8 +152,8 @@
           <Key>
             <PropertyRef Name="MT_Id" />
           </Key>
-          <Property Name="MT_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="MT_Descripcion" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="MT_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MT_Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="PA_Paises">
           <Key>
@@ -288,17 +161,17 @@
           </Key>
           <Property Name="PA_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="PA_ISONUM" Type="int" Nullable="false" />
-          <Property Name="PA_ISO2" Type="varchar" Nullable="false" MaxLength="2" />
-          <Property Name="PA_ISO3" Type="varchar" Nullable="false" MaxLength="3" />
-          <Property Name="PA_Descripcion" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="PA_ISO2" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="PA_ISO3" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="PA_Descripcion" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
         <EntityType Name="RW_Reviews">
           <Key>
             <PropertyRef Name="RW_Id" />
           </Key>
-          <Property Name="RW_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RW_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SS_Id" Type="int" Nullable="false" />
-          <Property Name="RW_Comentario" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="RW_Comentario" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="RW_Fecha" Type="datetime" Nullable="false" />
           <Property Name="RW_Rate" Type="tinyint" />
           <Property Name="ST_Id" Type="int" />
@@ -307,7 +180,7 @@
           <Key>
             <PropertyRef Name="SBS_Id" />
           </Key>
-          <Property Name="SBS_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SBS_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CD_Id" Type="int" />
           <Property Name="SBS_Descripcion" Type="varchar" MaxLength="150" />
         </EntityType>
@@ -315,7 +188,7 @@
           <Key>
             <PropertyRef Name="SS_Id" />
           </Key>
-          <Property Name="SS_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SS_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AN_Id" Type="int" Nullable="false" />
           <Property Name="SS_Fecha" Type="datetime" Nullable="false" />
           <Property Name="ST_Id" Type="int" Nullable="false" />
@@ -326,15 +199,15 @@
             <PropertyRef Name="ST_Id" />
           </Key>
           <Property Name="ST_Id" Type="int" Nullable="false" />
-          <Property Name="ST_Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ST_Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
@@ -342,8 +215,8 @@
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="500" />
           <Property Name="Details" Type="varchar" MaxLength="150" />
           <Property Name="Address" Type="varchar" MaxLength="150" />
@@ -352,6 +225,7 @@
           <Property Name="MP_MemberShipId" Type="int" Nullable="false" />
           <Property Name="ST_Id" Type="int" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="200" />
+          <Property Name="NumeroTelefono" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="webpages_Membership">
           <Key>
@@ -363,9 +237,9 @@
           <Property Name="IsConfirmed" Type="bit" />
           <Property Name="LastPasswordFailureDate" Type="datetime" />
           <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="PasswordChangedDate" Type="datetime" />
-          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
           <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
         </EntityType>
@@ -374,16 +248,16 @@
             <PropertyRef Name="Provider" />
             <PropertyRef Name="ProviderUserId" />
           </Key>
-          <Property Name="Provider" Type="nvarchar" Nullable="false" MaxLength="30" />
-          <Property Name="ProviderUserId" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Provider" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ProviderUserId" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="webpages_Roles">
           <Key>
             <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <EntityType Name="webpages_UsersInRoles">
           <Key>
@@ -394,10 +268,10 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_AE_AnunciosExtras_AN_Anuncios">
-          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="1">
+          <End Role="AN_Anuncios" Type="Self.AN_Anuncios" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AE_AnunciosExtras" Type="ServiceMarketModel.Store.AE_AnunciosExtras" Multiplicity="*" />
+          <End Role="AE_AnunciosExtras" Type="Self.AE_AnunciosExtras" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AN_Anuncios">
               <PropertyRef Name="AN_Id" />
@@ -408,10 +282,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AM_MultimediaAnuncios_AN_Anuncios">
-          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="1">
+          <End Role="AN_Anuncios" Type="Self.AN_Anuncios" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AM_MultimediaAnuncios" Type="ServiceMarketModel.Store.AM_MultimediaAnuncios" Multiplicity="*" />
+          <End Role="AM_MultimediaAnuncios" Type="Self.AM_MultimediaAnuncios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AN_Anuncios">
               <PropertyRef Name="AN_Id" />
@@ -422,8 +296,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AM_MultimediaAnuncios_MT_MultimediaTipos">
-          <End Role="MT_MultimediaTipos" Type="ServiceMarketModel.Store.MT_MultimediaTipos" Multiplicity="1" />
-          <End Role="AM_MultimediaAnuncios" Type="ServiceMarketModel.Store.AM_MultimediaAnuncios" Multiplicity="*" />
+          <End Role="MT_MultimediaTipos" Type="Self.MT_MultimediaTipos" Multiplicity="1" />
+          <End Role="AM_MultimediaAnuncios" Type="Self.AM_MultimediaAnuncios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MT_MultimediaTipos">
               <PropertyRef Name="MT_Id" />
@@ -434,8 +308,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AN_Anuncios_CD_CategoriaServicio">
-          <End Role="CD_CategoriaServicio" Type="ServiceMarketModel.Store.CD_CategoriaServicio" Multiplicity="0..1" />
-          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="*" />
+          <End Role="CD_CategoriaServicio" Type="Self.CD_CategoriaServicio" Multiplicity="0..1" />
+          <End Role="AN_Anuncios" Type="Self.AN_Anuncios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CD_CategoriaServicio">
               <PropertyRef Name="CD_Id" />
@@ -446,8 +320,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AN_Anuncios_PA_Paises">
-          <End Role="PA_Paises" Type="ServiceMarketModel.Store.PA_Paises" Multiplicity="1" />
-          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="*" />
+          <End Role="PA_Paises" Type="Self.PA_Paises" Multiplicity="1" />
+          <End Role="AN_Anuncios" Type="Self.AN_Anuncios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PA_Paises">
               <PropertyRef Name="PA_Id" />
@@ -458,8 +332,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AN_Anuncios_SBS_SubCategoriaServicio">
-          <End Role="SBS_SubCategoriaServicio" Type="ServiceMarketModel.Store.SBS_SubCategoriaServicio" Multiplicity="0..1" />
-          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="*" />
+          <End Role="SBS_SubCategoriaServicio" Type="Self.SBS_SubCategoriaServicio" Multiplicity="0..1" />
+          <End Role="AN_Anuncios" Type="Self.AN_Anuncios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SBS_SubCategoriaServicio">
               <PropertyRef Name="SBS_Id" />
@@ -470,8 +344,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AN_Anuncios_ST_Estatus">
-          <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="1" />
-          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="*" />
+          <End Role="ST_Estatus" Type="Self.ST_Estatus" Multiplicity="1" />
+          <End Role="AN_Anuncios" Type="Self.AN_Anuncios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ST_Estatus">
               <PropertyRef Name="ST_Id" />
@@ -482,8 +356,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AN_Anuncios_UserProfile">
-          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="1" />
-          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="*" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="AN_Anuncios" Type="Self.AN_Anuncios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="UserId" />
@@ -494,8 +368,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CR_ComentarioReview_RW_Reviews">
-          <End Role="RW_Reviews" Type="ServiceMarketModel.Store.RW_Reviews" Multiplicity="1" />
-          <End Role="CR_ComentarioReview" Type="ServiceMarketModel.Store.CR_ComentarioReview" Multiplicity="*" />
+          <End Role="RW_Reviews" Type="Self.RW_Reviews" Multiplicity="1" />
+          <End Role="CR_ComentarioReview" Type="Self.CR_ComentarioReview" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RW_Reviews">
               <PropertyRef Name="RW_Id" />
@@ -506,8 +380,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CR_ComentarioReview_ST_Estatus">
-          <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="1" />
-          <End Role="CR_ComentarioReview" Type="ServiceMarketModel.Store.CR_ComentarioReview" Multiplicity="*" />
+          <End Role="ST_Estatus" Type="Self.ST_Estatus" Multiplicity="1" />
+          <End Role="CR_ComentarioReview" Type="Self.CR_ComentarioReview" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ST_Estatus">
               <PropertyRef Name="ST_Id" />
@@ -518,8 +392,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CR_ComentarioReview_UserProfile">
-          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="1" />
-          <End Role="CR_ComentarioReview" Type="ServiceMarketModel.Store.CR_ComentarioReview" Multiplicity="*" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="CR_ComentarioReview" Type="Self.CR_ComentarioReview" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="UserId" />
@@ -530,8 +404,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FAQs_ST_Estatus">
-          <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="0..1" />
-          <End Role="FAQs" Type="ServiceMarketModel.Store.FAQs" Multiplicity="*" />
+          <End Role="ST_Estatus" Type="Self.ST_Estatus" Multiplicity="0..1" />
+          <End Role="FAQs" Type="Self.FAQs" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ST_Estatus">
               <PropertyRef Name="ST_Id" />
@@ -542,8 +416,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MC_MembresiaControl_MB_Membresia">
-          <End Role="MB_Membresia" Type="ServiceMarketModel.Store.MB_Membresia" Multiplicity="1" />
-          <End Role="MC_MembresiaControl" Type="ServiceMarketModel.Store.MC_MembresiaControl" Multiplicity="*" />
+          <End Role="MB_Membresia" Type="Self.MB_Membresia" Multiplicity="1" />
+          <End Role="MC_MembresiaControl" Type="Self.MC_MembresiaControl" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MB_Membresia">
               <PropertyRef Name="MP_MemberShipId" />
@@ -554,8 +428,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MC_MembresiaControl_UserProfile">
-          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="1" />
-          <End Role="MC_MembresiaControl" Type="ServiceMarketModel.Store.MC_MembresiaControl" Multiplicity="*" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="MC_MembresiaControl" Type="Self.MC_MembresiaControl" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="UserId" />
@@ -566,8 +440,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_RoleId">
-          <End Role="webpages_Roles" Type="ServiceMarketModel.Store.webpages_Roles" Multiplicity="1" />
-          <End Role="webpages_UsersInRoles" Type="ServiceMarketModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+          <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="webpages_Roles">
               <PropertyRef Name="RoleId" />
@@ -578,8 +452,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RW_Reviews_SS_SolicitudServicio">
-          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.Store.SS_SolicitudServicio" Multiplicity="1" />
-          <End Role="RW_Reviews" Type="ServiceMarketModel.Store.RW_Reviews" Multiplicity="*" />
+          <End Role="SS_SolicitudServicio" Type="Self.SS_SolicitudServicio" Multiplicity="1" />
+          <End Role="RW_Reviews" Type="Self.RW_Reviews" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SS_SolicitudServicio">
               <PropertyRef Name="SS_Id" />
@@ -590,8 +464,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RW_Reviews_ST_Estatus">
-          <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="0..1" />
-          <End Role="RW_Reviews" Type="ServiceMarketModel.Store.RW_Reviews" Multiplicity="*" />
+          <End Role="ST_Estatus" Type="Self.ST_Estatus" Multiplicity="0..1" />
+          <End Role="RW_Reviews" Type="Self.RW_Reviews" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ST_Estatus">
               <PropertyRef Name="ST_Id" />
@@ -602,8 +476,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SBS_SubCategoriaServicio_CD_CategoriaServicio">
-          <End Role="CD_CategoriaServicio" Type="ServiceMarketModel.Store.CD_CategoriaServicio" Multiplicity="0..1" />
-          <End Role="SBS_SubCategoriaServicio" Type="ServiceMarketModel.Store.SBS_SubCategoriaServicio" Multiplicity="*" />
+          <End Role="CD_CategoriaServicio" Type="Self.CD_CategoriaServicio" Multiplicity="0..1" />
+          <End Role="SBS_SubCategoriaServicio" Type="Self.SBS_SubCategoriaServicio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CD_CategoriaServicio">
               <PropertyRef Name="CD_Id" />
@@ -614,8 +488,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SS_SolicitudServicio_AN_Anuncios">
-          <End Role="AN_Anuncios" Type="ServiceMarketModel.Store.AN_Anuncios" Multiplicity="1" />
-          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.Store.SS_SolicitudServicio" Multiplicity="*" />
+          <End Role="AN_Anuncios" Type="Self.AN_Anuncios" Multiplicity="1" />
+          <End Role="SS_SolicitudServicio" Type="Self.SS_SolicitudServicio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AN_Anuncios">
               <PropertyRef Name="AN_Id" />
@@ -626,8 +500,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SS_SolicitudServicio_ST_Estatus">
-          <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="1" />
-          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.Store.SS_SolicitudServicio" Multiplicity="*" />
+          <End Role="ST_Estatus" Type="Self.ST_Estatus" Multiplicity="1" />
+          <End Role="SS_SolicitudServicio" Type="Self.SS_SolicitudServicio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ST_Estatus">
               <PropertyRef Name="ST_Id" />
@@ -638,8 +512,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SS_SolicitudServicio_UserProfile">
-          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="1" />
-          <End Role="SS_SolicitudServicio" Type="ServiceMarketModel.Store.SS_SolicitudServicio" Multiplicity="*" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="SS_SolicitudServicio" Type="Self.SS_SolicitudServicio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="UserId" />
@@ -650,8 +524,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_UserId">
-          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="1" />
-          <End Role="webpages_UsersInRoles" Type="ServiceMarketModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="UserId" />
@@ -662,8 +536,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserProfile_MB_Membresia">
-          <End Role="MB_Membresia" Type="ServiceMarketModel.Store.MB_Membresia" Multiplicity="1" />
-          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="*" />
+          <End Role="MB_Membresia" Type="Self.MB_Membresia" Multiplicity="1" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MB_Membresia">
               <PropertyRef Name="MP_MemberShipId" />
@@ -674,8 +548,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserProfile_PA_Paises">
-          <End Role="PA_Paises" Type="ServiceMarketModel.Store.PA_Paises" Multiplicity="0..1" />
-          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="*" />
+          <End Role="PA_Paises" Type="Self.PA_Paises" Multiplicity="0..1" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PA_Paises">
               <PropertyRef Name="PA_Id" />
@@ -686,8 +560,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserProfile_ST_Estatus">
-          <End Role="ST_Estatus" Type="ServiceMarketModel.Store.ST_Estatus" Multiplicity="1" />
-          <End Role="UserProfile" Type="ServiceMarketModel.Store.UserProfile" Multiplicity="*" />
+          <End Role="ST_Estatus" Type="Self.ST_Estatus" Multiplicity="1" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ST_Estatus">
               <PropertyRef Name="ST_Id" />
@@ -707,7 +581,133 @@
         <Function Name="SEL_ValoracionAnuncios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AN_Id" Type="int" Mode="In" />
         </Function>
-        <Function Name="UPD_MembresiasExpiradas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ServiceMarketModelStoreContainer">
+          <EntitySet Name="AE_AnunciosExtras" EntityType="Self.AE_AnunciosExtras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AM_MultimediaAnuncios" EntityType="Self.AM_MultimediaAnuncios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AN_Anuncios" EntityType="Self.AN_Anuncios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BL_BlackList" EntityType="Self.BL_BlackList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CD_CategoriaServicio" EntityType="Self.CD_CategoriaServicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COM_Compañia" EntityType="Self.COM_Compañia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CON_Contactenos" EntityType="Self.CON_Contactenos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONF_Parametros" EntityType="Self.CONF_Parametros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CR_ComentarioReview" EntityType="Self.CR_ComentarioReview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FAQs" EntityType="Self.FAQs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MB_Membresia" EntityType="Self.MB_Membresia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MC_MembresiaControl" EntityType="Self.MC_MembresiaControl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MT_MultimediaTipos" EntityType="Self.MT_MultimediaTipos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PA_Paises" EntityType="Self.PA_Paises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RW_Reviews" EntityType="Self.RW_Reviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SBS_SubCategoriaServicio" EntityType="Self.SBS_SubCategoriaServicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SS_SolicitudServicio" EntityType="Self.SS_SolicitudServicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ST_Estatus" EntityType="Self.ST_Estatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AE_AnunciosExtras_AN_Anuncios" Association="Self.FK_AE_AnunciosExtras_AN_Anuncios">
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+            <End Role="AE_AnunciosExtras" EntitySet="AE_AnunciosExtras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AM_MultimediaAnuncios_AN_Anuncios" Association="Self.FK_AM_MultimediaAnuncios_AN_Anuncios">
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+            <End Role="AM_MultimediaAnuncios" EntitySet="AM_MultimediaAnuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AM_MultimediaAnuncios_MT_MultimediaTipos" Association="Self.FK_AM_MultimediaAnuncios_MT_MultimediaTipos">
+            <End Role="MT_MultimediaTipos" EntitySet="MT_MultimediaTipos" />
+            <End Role="AM_MultimediaAnuncios" EntitySet="AM_MultimediaAnuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_CD_CategoriaServicio" Association="Self.FK_AN_Anuncios_CD_CategoriaServicio">
+            <End Role="CD_CategoriaServicio" EntitySet="CD_CategoriaServicio" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_PA_Paises" Association="Self.FK_AN_Anuncios_PA_Paises">
+            <End Role="PA_Paises" EntitySet="PA_Paises" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_SBS_SubCategoriaServicio" Association="Self.FK_AN_Anuncios_SBS_SubCategoriaServicio">
+            <End Role="SBS_SubCategoriaServicio" EntitySet="SBS_SubCategoriaServicio" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_ST_Estatus" Association="Self.FK_AN_Anuncios_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AN_Anuncios_UserProfile" Association="Self.FK_AN_Anuncios_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CR_ComentarioReview_RW_Reviews" Association="Self.FK_CR_ComentarioReview_RW_Reviews">
+            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
+            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CR_ComentarioReview_ST_Estatus" Association="Self.FK_CR_ComentarioReview_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CR_ComentarioReview_UserProfile" Association="Self.FK_CR_ComentarioReview_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="CR_ComentarioReview" EntitySet="CR_ComentarioReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FAQs_ST_Estatus" Association="Self.FK_FAQs_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="FAQs" EntitySet="FAQs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MC_MembresiaControl_MB_Membresia" Association="Self.FK_MC_MembresiaControl_MB_Membresia">
+            <End Role="MB_Membresia" EntitySet="MB_Membresia" />
+            <End Role="MC_MembresiaControl" EntitySet="MC_MembresiaControl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MC_MembresiaControl_UserProfile" Association="Self.FK_MC_MembresiaControl_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="MC_MembresiaControl" EntitySet="MC_MembresiaControl" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleId" Association="Self.fk_RoleId">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RW_Reviews_SS_SolicitudServicio" Association="Self.FK_RW_Reviews_SS_SolicitudServicio">
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RW_Reviews_ST_Estatus" Association="Self.FK_RW_Reviews_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="RW_Reviews" EntitySet="RW_Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SBS_SubCategoriaServicio_CD_CategoriaServicio" Association="Self.FK_SBS_SubCategoriaServicio_CD_CategoriaServicio">
+            <End Role="CD_CategoriaServicio" EntitySet="CD_CategoriaServicio" />
+            <End Role="SBS_SubCategoriaServicio" EntitySet="SBS_SubCategoriaServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SS_SolicitudServicio_AN_Anuncios" Association="Self.FK_SS_SolicitudServicio_AN_Anuncios">
+            <End Role="AN_Anuncios" EntitySet="AN_Anuncios" />
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SS_SolicitudServicio_ST_Estatus" Association="Self.FK_SS_SolicitudServicio_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SS_SolicitudServicio_UserProfile" Association="Self.FK_SS_SolicitudServicio_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="SS_SolicitudServicio" EntitySet="SS_SolicitudServicio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserId" Association="Self.fk_UserId">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_MB_Membresia" Association="Self.FK_UserProfile_MB_Membresia">
+            <End Role="MB_Membresia" EntitySet="MB_Membresia" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_PA_Paises" Association="Self.FK_UserProfile_PA_Paises">
+            <End Role="PA_Paises" EntitySet="PA_Paises" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_ST_Estatus" Association="Self.FK_UserProfile_ST_Estatus">
+            <End Role="ST_Estatus" EntitySet="ST_Estatus" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1197,6 +1197,7 @@
           <NavigationProperty Name="AN_Anuncios" Relationship="ServiceMarketModel.FK_AN_Anuncios_UserProfile" FromRole="UserProfile" ToRole="AN_Anuncios" />
           <NavigationProperty Name="MB_Membresia" Relationship="ServiceMarketModel.FK_UserProfile_MB_Membresia" FromRole="UserProfile" ToRole="MB_Membresia" />
           <NavigationProperty Name="MC_MembresiaControl" Relationship="ServiceMarketModel.FK_MC_MembresiaControl_UserProfile" FromRole="UserProfile" ToRole="MC_MembresiaControl" />
+          <Property Name="NumeroTelefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_CR_ComentarioReview_UserProfile">
           <End Type="ServiceMarketModel.UserProfile" Role="UserProfile" Multiplicity="1" />
@@ -1684,6 +1685,7 @@
           <EntitySetMapping Name="UserProfile">
             <EntityTypeMapping TypeName="ServiceMarketModel.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="NumeroTelefono" ColumnName="NumeroTelefono" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="ST_Id" ColumnName="ST_Id" />
                 <ScalarProperty Name="MP_MemberShipId" ColumnName="MP_MemberShipId" />
@@ -1774,7 +1776,6 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SEL_MembresiasPorExpirar" FunctionName="ServiceMarketModel.Store.SEL_MembresiasPorExpirar" />
-          <FunctionImportMapping FunctionImportName="UPD_MembresiasExpiradas" FunctionName="ServiceMarketModel.Store.UPD_MembresiasExpiradas" />
           <FunctionImportMapping FunctionImportName="get_MembresiaPorExpirar" FunctionName="ServiceMarketModel.Store.SEL_MembresiasPorExpirar" />
           <EntitySetMapping Name="BL_BlackList">
             <EntityTypeMapping TypeName="ServiceMarketModel.BL_BlackList">
@@ -1801,6 +1802,7 @@
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

@@ -322,6 +322,10 @@ namespace SMAWeb.Models
         [Display(Name = "Profesión")]
         public string Details { get; set; }
 
+        [Required(ErrorMessage = "Por favor ingrese su número de teléfono de contacto.")]
+        [Display(Name = "Número de Teléfono")]
+        public string NumeroTelefono { get; set; }
+
         [Display(Name = "Dirección")]
         public string Address { get; set; }
 

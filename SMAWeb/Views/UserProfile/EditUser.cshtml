@@ -62,6 +62,15 @@
 
                         </div>
                     </div>
+
+                    <div class="row-fluid">
+                        <div class="span3">@Html.LabelFor(model => model.NumeroTelefono)</div>
+                        <div class="span3">
+                            @Html.TextBoxFor(model => model.NumeroTelefono, new { @placeholder = "Número de Teléfono", @class = "input-xxlarge" })
+
+                        </div>
+                    </div>
+
                     <div class="row-fluid">
                         <div class="span3">@Html.LabelFor(model => model.Details)</div>
                         <div class="span3">
@@ -117,6 +126,9 @@
                             </li>
                             <li>
                                 @Html.ValidationMessageFor(model => model.Name)
+                            </li>
+                            <li>
+                                @Html.ValidationMessageFor(model => model.NumeroTelefono)
                             </li>
                             <li>
                                 @Html.ValidationMessageFor(model => model.Details)
