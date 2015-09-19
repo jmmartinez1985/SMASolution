@@ -8385,7 +8385,7 @@
                 <xsl:value-of select="Image"/>
               </xsl:attribute>
             </xsl:element>
-            <h3>Solicitud de Servicio de Service Market</h3>
+            <h3>Solicitud de Servicio en Service Market</h3>
           </div>
           <h5>
             Estimado(a) <xsl:value-of select="CustomerName"/> :

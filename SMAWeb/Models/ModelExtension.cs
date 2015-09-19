@@ -633,6 +633,9 @@ namespace SMAWeb.Models
 
     public class SolicitudViewModel
     {
+        [Display(Name = "Anuncio")]
+        public string TituloAnuncio { get; set; }
+
         [Display(Name = "Solicitud")]
         public int Solicitud { get; set; }
 

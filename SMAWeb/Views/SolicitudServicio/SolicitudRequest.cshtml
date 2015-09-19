@@ -18,98 +18,51 @@
                 <div class="headline">
                     <h3>Mis Solicitudes de Servicios</h3>
                 </div>
-
                 <div class="span12">
                     @if (Model.Count() > 0)
                     {
-                        <table class="table table-striped">
-                            <thead>
+
+                        <table class="table-hover" style="width: 100%">
+                            @foreach (var item in Model)
+                            {
                                 <tr>
-                                    @*<th>
+                                    <td>
+                                        <div class="row-fluid">
+                                            <div class="span12 booking-blocks" style="padding: 10px; margin-bottom: 15px;">
+                                                <div class="span9">
 
-                                            @Html.DisplayNameFor(model => model.Solicitud)
-                                        </th>*@
-                                    <th>
+                                                    <div style="overflow: hidden;">
 
-                                        @Html.DisplayNameFor(model => model.FechaCreacion)
-                                    </th>
-                                    <th>
+                                                        <h4>@Html.DisplayFor(modelItem => item.TituloAnuncio) </h4>
+                                                        <h5> - Estado: @Html.DisplayFor(modelItem => item.Status)</h5>
+                                                        <ul class="unstyled inline">
+                                                            <li><i class="icon-user"></i>@Html.DisplayFor(modelItem => item.Solicitante)</li>&nbsp;
+                                                            <li><i class="icon-envelope"></i>@Html.DisplayFor(modelItem => item.EmailSolicitante)</li>
+                                                        </ul>
+                                                        <ul class="unstyled inline">
+                                                            <li><i class="icon-calendar"></i>@Html.DisplayFor(modelItem => item.FechaCreacion)</li>&nbsp;
+                                                            <li><i class="icon-bookmark"></i>@Html.DisplayFor(modelItem => item.TelefonoSolicitante)</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="span3">
+                                                    @if (item.StatusId == 1)
+                                                    {
+                                                        <a class="btn-u btn-u-orange btn-block" attrurl="@Url.Action("ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 6 })" id="starttask"><i class="icon-white icon-plus"></i> Iniciar Tarea</a>
+                                                        <a class="btn-u btn-u-orange btn-block" attrurl="@Url.Action("ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 2 })" href="javascript:CancelTask()" id="canceltask"><i class="icon-white icon-remove-circle"></i> Cancelar Tarea</a>
+                                                    }
 
-                                        @Html.DisplayNameFor(model => model.Solicitante)
-                                    </th>
-                                    <th>
-
-                                        @Html.DisplayNameFor(model => model.EmailSolicitante)
-                                    </th>
-                                    <th>
-
-                                        @Html.DisplayNameFor(model => model.TelefonoSolicitante)
-                                    </th>
-                                    <th>
-
-                                        @Html.DisplayNameFor(model => model.Status)
-                                    </th>
-                                    <th>
-                                        Acción
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="divBody">
-
-
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        @*<td>
-                                                @Html.DisplayFor(modelItem => item.Solicitud)
-                                            </td>*@
-                                        <td>
-                                            @*@item.Date.ToString("dd MMM yyyy")*@
-                                            @Html.DisplayFor(modelItem => item.FechaCreacion)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Solicitante)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.EmailSolicitante)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TelefonoSolicitante)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Status)
-                                        </td>
-                                        <td>
-
-                                            @if (item.StatusId == 1)
-                                            {
-                                                <a class="btn-u" attrurl="@Url.Action("ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 6 })" id="starttask">Iniciar Tarea</a>
-                                                <a class="btn-u" attrurl="@Url.Action("ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 2 })" href="javascript:CancelTask()" id="canceltask">Cancelar Tarea</a>
-                                            }
-
-                                            else if (item.StatusId == 6)
-                                            {
-                                                <a class="btn-u" attrurl="@Url.Action("ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 3 })" id="processtask">Tarea Completada</a>
-                                            }
-                                            @*
-                                                else if (item.StatusId == 2)
-                                                {
-                                                    <a class="btn-u">Tarea Cancelada</a>
-                                                }*@
-
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-
-                            <tfoot>
-                                <tr>
-                                    <td colspan="7">
-                                        <div class="holder" style="float: left">
+                                                    else if (item.StatusId == 6)
+                                                    {
+                                                        <a class="btn-u btn-u-orange btn-block" attrurl="@Url.Action("ChangeStatus", "SolicitudServicio", new { Solicitud = item.Solicitud, Status = 3 })" id="processtask"><i class="icon-white icon-ok"></i>Tarea Completada</a>
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
-                            </tfoot>
+                            }
+
                         </table>
                     }
                     else

@@ -115,7 +115,7 @@ namespace SMAWeb.Controllers
             return null;
         }
 
-
+        [AjaxAuthorizeAttribute(Roles = "Users")]
         public ActionResult SolicitudRequest()
         {
             var mysol = new List<SolicitudViewModel>();
@@ -144,6 +144,7 @@ namespace SMAWeb.Controllers
 
                     mysol.Add(new SolicitudViewModel
                     {
+                        TituloAnuncio = sol.AN_Anuncios.AN_Titulo,
                         Solicitante = sol.UserProfile.Name,
                         EmailSolicitante = sol.UserProfile.UserName,
                         FechaCreacion = sol.SS_Fecha,

@@ -731,7 +731,7 @@ jQuery(function ()
         var data = new FormData();
         data.append("Anuncio", anuncioid);
 
-        mensaje = 'Ha hecho clic en la opción contactar el servicio: <b>"' + titulo + '"</b>. Pronto estaremos enviándole un correo a ' + nombre + ' como parte del proceso de solicitud de servicios de Service Market. ¿Confirma que desea solicitar el servicio?';
+        mensaje = 'Ha hecho clic en la opción contactar el servicio: <b>"' + titulo + '"</b>. Pronto estaremos enviándole un correo a ' + nombre + ' como parte del proceso de solicitud de servicios en Service Market. ¿Confirma que desea solicitar el servicio?';
         bootbox.confirm(mensaje, "Cancelar", "Aceptar", function (result)
         {
             if (result)
