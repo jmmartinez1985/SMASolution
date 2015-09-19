@@ -337,9 +337,11 @@
     </div>
 </div>
 <script src="~/Scripts/SMA.js"></script>
+<script src="~/Scripts/Bootstrap2.3/bootstrap.min.js"></script>
 <script>
+    var $f =jQuery.noConflict();
     jQuery(document).ready(function ($) {
-
+        debugger;
         var fex = $.trim($('#AN_Fecha').text());
         fex = ShortDateTime(fex);
         

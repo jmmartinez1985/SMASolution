@@ -226,12 +226,6 @@ function ShortDateTime(dateObject)
     return fechaDivida[2] + "/" + fechaDivida[1] + "/" + fechaDivida[0];
 };
 
-function imgError(image)
-{
-    image.onerror = "";
-    image.src = "../Images/No_Profile.jpg";
-    return true;
-}
 var COMMON = COMMON || {};
 
 var ANUNCIOS = ANUNCIOS || {};
@@ -294,7 +288,7 @@ jQuery(function ()
                 jQuery.each(result.$values, function (val, anuncio)
                 {
                     var urlcontent = urldetails + anuncio.AnunciosInfo.AN_Id;
-                    htmldata += '<dl class="dl-horizontal"><dt><a href="' + urlcontent + '"><img src="' + anuncio.FirstImage + '" alt="' + anuncio.Usuario + '"   onerror="imgError(this);" ></a></dt><dd><p><a href="' + urlcontent + '">';
+                    htmldata += '<dl class="dl-horizontal"><dt><a href="' + urlcontent + '"><img src="' + anuncio.FirstImage + '" alt="' + anuncio.Usuario + '"></a></dt><dd><p><a href="' + urlcontent + '">';
                     htmldata += anuncio.AnunciosInfo.AN_Descripcion;
                     htmldata += '</a></p></dd></dl>';
                 });
@@ -443,7 +437,7 @@ jQuery(function ()
                         //htmldata += '</ul>';
                         ////fin reviews
                         htmldata += '<div class="pull-left booking-img">';
-                        htmldata += '<img src="' + anuncio.FirstImage + '" alt="' + anuncio.Usuario + '" onerror="imgError(this);" style="max-height:120px; max-width:120px;" > ';
+                        htmldata += '<img src="' + anuncio.FirstImage + '" alt="' + anuncio.Usuario + '" style="max-height:120px; max-width:120px;" > ';
                         htmldata += '<ul class="unstyled">';
                         htmldata += '<li><ul class="unstyled inline"><li><div class="ratyclass" id=' + "toraty" + val + '  ratyval= ' + anuncio.Rating + ' style="width:20px;" ></div </li></ul></li>'
                         htmldata += '</ul>';
@@ -470,7 +464,8 @@ jQuery(function ()
                         htmldata += '</div>';
 
                         htmldata += '<div class="span12">';
-                        htmldata += '<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.servicemarketpanama.com/" data-text="Su portal de Búsqueda de Servicios en Línea" data-via="SMAWeb">Tweet</a>';
+                        var urlTwitter = 'http://www.servicemarketpanama.com/Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id;
+                        htmldata += '<a href="https://twitter.com/share" class="twitter-share-button" data-url="' + urlTwitter + '"' + ' data-text="Su portal de Búsqueda de Servicios en Línea" data-via="SMAWeb">Tweet</a>';
                         htmldata += '</div>';
 
                         htmldata += '</div>';
@@ -657,7 +652,7 @@ jQuery(function ()
                     htmldata += '<div class="span12 booking-blocks"> ';
                     htmldata += '<div class="span10">';
                     htmldata += '<div class="pull-left booking-img">';
-                    htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + ' onerror="imgError(this);">  ';
+                    htmldata += '<img src=' + anuncio.FirstImage + ' alt=' + anuncio.Usuario + '> ';
                     htmldata += '<ul class="unstyled">';
                     htmldata += '<li><ul class="unstyled inline"><li><div class="ratyclass" id=' + "toraty" + val + '  ratyval= ' + anuncio.Rating + ' style="width:20px;" ></div </li></ul></li>'
                     htmldata += '</ul>';
@@ -684,7 +679,9 @@ jQuery(function ()
                     htmldata += '</div>';
 
                     htmldata += '<div class="span12">';
-                    htmldata += '<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://http://www.servicemarketpanama.com/" data-text="Su portal de Búsqueda de Servicios en Línea" data-via="SMAWeb">Tweet</a>';
+                    var urlTwitter = 'http://www.servicemarketpanama.com/Anuncios/Details/' + anuncio.AnunciosInfo.AN_Id
+                    htmldata += '<a href="https://twitter.com/share" class="twitter-share-button" data-url="' + urlTwitter + '"' + ' data-text="Su portal de Búsqueda de Servicios en Línea" data-via="SMAWeb">Tweet</a>';
+
                     htmldata += '</div>';
 
                     htmldata += '</div>';
@@ -880,7 +877,7 @@ jQuery(function ()
                 html += '<div class="testimonial-info">';
                 html += '<blockquote>';
                 html += '<div class="span2">';
-                html += '<img class="img-circle img-polaroid" src="' + result.data.Image + '" onerror="imgError(this);" style="width:68px; height:68px;">';
+                html += '<img class="img-circle img-polaroid" src="' + result.data.Image + '"style="width:68px; height:68px;">';
                 html += '</div>';
                 html += '<div class="span10">';
                 html += '<p>' + result.data.Comments;
