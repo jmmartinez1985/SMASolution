@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpirationNotification", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpireAccount", "ExpireAccount\ExpireAccount.csproj", "{596D2C1C-9F25-437D-A34C-1F8F9972871B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{45FF72EA-C627-4B6A-9313-609C7DDB5854}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMAMobile.Droid", "SMAMobile.Droid\SMAMobile.Droid.csproj", "{D308FFF0-A951-4A57-848D-FECC4FF3FBDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,17 @@ Global
 		{596D2C1C-9F25-437D-A34C-1F8F9972871B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{596D2C1C-9F25-437D-A34C-1F8F9972871B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{596D2C1C-9F25-437D-A34C-1F8F9972871B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D308FFF0-A951-4A57-848D-FECC4FF3FBDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D308FFF0-A951-4A57-848D-FECC4FF3FBDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D308FFF0-A951-4A57-848D-FECC4FF3FBDC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D308FFF0-A951-4A57-848D-FECC4FF3FBDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D308FFF0-A951-4A57-848D-FECC4FF3FBDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D308FFF0-A951-4A57-848D-FECC4FF3FBDC}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D308FFF0-A951-4A57-848D-FECC4FF3FBDC} = {45FF72EA-C627-4B6A-9313-609C7DDB5854}
 	EndGlobalSection
 EndGlobal
