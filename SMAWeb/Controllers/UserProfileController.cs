@@ -10,6 +10,10 @@ using SMAWeb.Extensions;
 using System.IO;
 using WebMatrix.WebData;
 
+using Newtonsoft.Json;
+using System.Web.UI.WebControls;
+using System.Drawing;
+
 namespace SMAWeb.Controllers
 {
     public class UserProfileController : BaseController
@@ -58,6 +62,11 @@ namespace SMAWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (userprofile.Image.ToString() == string.Empty)
+                {
+                    userprofile.Image = "~/Images/No_Profile.jpg";
+                }
+
                 db.UserProfile.Add(userprofile);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -144,6 +153,7 @@ namespace SMAWeb.Controllers
             ViewBag.MP_MemberShipId = new SelectList(db.MB_Membresia, "MP_MemberShipId", "MP_Descripcion", userprofile.MP_MemberShipId);
             ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion", userprofile.PA_Id);
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", userprofile.ST_Id);
+            ViewBag.userpic = userprofile.Image;
             return View(userprofile);
         }
 
@@ -235,10 +245,88 @@ namespace SMAWeb.Controllers
                 return ms.ToArray();
             }
         }
+
+
+        [HttpPost]
+        public string UploadOriginalImage(HttpPostedFileBase img)
+        {
+            string folder = Server.MapPath("~/Temp");
+            string extension = Path.GetExtension(img.FileName);
+            string pic = System.IO.Path.GetFileName(Guid.NewGuid().ToString());
+            var tempPath = Path.ChangeExtension(pic, extension);
+            string tempFilePath = System.IO.Path.Combine(folder, tempPath);
+
+            bool exists = System.IO.Directory.Exists(folder);
+            if (!exists)
+                System.IO.Directory.CreateDirectory(folder);
+
+            img.SaveAs(tempFilePath);
+            var image = System.Drawing.Image.FromFile(tempFilePath);
+            var result = new
+            {
+                status = "success",
+                width = image.Width,
+                height = image.Height,
+                url = Url.Action(tempPath, "Temp")
+            };
+            return JsonConvert.SerializeObject(result);
+        }
+
+        [HttpPost]
+        public string CroppedImage(string imgUrl, int imgInitW, int imgInitH, double imgW, double imgH, int imgY1, int imgX1, int cropH, int cropW)
+        {
+            var originalFilePath = Server.MapPath(imgUrl);
+            var fileName = CropImage(originalFilePath, imgInitW, imgInitH, (int)imgW, (int)imgH, imgY1, imgX1, cropH, cropW);
+            var result = new
+            {
+                status = "success",
+                url = "/FilesUploaded/Profiles/" + fileName
+            };
+
+            var findUser = db.UserProfile.FirstOrDefault(c => c.UserId == WebSecurity.CurrentUserId);
+            if (findUser != null)
+            {
+                findUser.Image = "~/FilesUploaded/Profiles/" + Path.GetFileName(fileName);
+                db.Entry(findUser).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return JsonConvert.SerializeObject(result);
+        }
+
+        private string CropImage(string originalFilePath, int origW, int origH, int targetW, int targetH, int cropStartY, int cropStartX, int cropW, int cropH)
+        {
+            var originalImage = System.Drawing.Image.FromFile(originalFilePath);
+
+
+            var resizedOriginalImage = new Bitmap(originalImage, targetW, targetH);
+            //var resizedOriginalImage = new Bitmap(originalImage, targetH, targetW);
+
+            //var targetImage = new Bitmap(cropW, cropH);
+            var targetImage = new Bitmap(cropH, cropW);
+
+            using (var g = Graphics.FromImage(targetImage))
+            {
+                //g.DrawImage(resizedOriginalImage, new Rectangle(0, 0, cropW, cropH), new Rectangle(cropStartX, cropStartY, cropW, cropH), GraphicsUnit.Pixel);
+                g.DrawImage(resizedOriginalImage, new Rectangle(0, 0, cropH, cropW), new Rectangle(cropStartX, cropStartY, cropH, cropW), GraphicsUnit.Pixel);
+            }
+            string fileName = Path.GetFileName(originalFilePath);
+            var folder = Server.MapPath("~/FilesUploaded/Profiles/");
+            string croppedPath = Path.Combine(folder, fileName);
+            bool exists = System.IO.Directory.Exists(folder);
+            if (!exists)
+                System.IO.Directory.CreateDirectory(folder);
+
+            targetImage.Save(croppedPath);
+
+            return fileName;
+
+        }
+
     }
     public class ViewDataUploadFilesResult
     {
         public string Name { get; set; }
         public int Length { get; set; }
     }
+
 }

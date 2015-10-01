@@ -481,6 +481,8 @@
     <Content Include="Scripts\Bootstrap2.3\bootstrap-paginator.js" />
     <Content Include="Scripts\Bootstrap2.3\bootstrap.js" />
     <Content Include="Scripts\Bootstrap2.3\bootstrap.min.js" />
+    <Content Include="Scripts\Croppic\croppic.css" />
+    <Content Include="Scripts\Croppic\croppic.js" />
     <Content Include="Scripts\CustomScript\app.js" />
     <Content Include="Scripts\CustomScript\back-to-top.js" />
     <Content Include="Scripts\CustomScript\behavior.js" />
@@ -510,6 +512,18 @@
     <Content Include="Scripts\FileUpload\main.js" />
     <Content Include="Scripts\FileUpload\tmpl.min.js" />
     <Content Include="Scripts\hover-dropdown.min.js" />
+    <Content Include="Scripts\img\cropperIcons.png" />
+    <Content Include="Scripts\img\downloadIcon.png" />
+    <Content Include="Scripts\img\headerBg.jpg" />
+    <Content Include="Scripts\img\jobotic.png" />
+    <Content Include="Scripts\img\jobotic_bubble.png" />
+    <Content Include="Scripts\img\logo.png" />
+    <Content Include="Scripts\img\night.jpg" />
+    <Content Include="Scripts\img\park_view.jpg" />
+    <Content Include="Scripts\img\placeholder.png" />
+    <Content Include="Scripts\img\placeholderold.png" />
+    <Content Include="Scripts\img\steinlinconsulting.png" />
+    <Content Include="Scripts\img\studio42.png" />
     <Content Include="Scripts\jpage\jPages.js" />
     <Content Include="Scripts\jpage\jPages.min.js" />
     <Content Include="Scripts\jpage\jquery.lazyload.js" />

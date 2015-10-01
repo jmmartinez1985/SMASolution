@@ -4,16 +4,28 @@
 }
 
 <link href="~/Content/FileUpload/jquery.fileupload-ui.css" rel="stylesheet" />
+<script src="~/Scripts/Croppic/croppic.js"></script>
+<link href="~/Scripts/Croppic/croppic.css" rel="stylesheet" />
+
 <br />
 <div class="container">
-    <div class="row-fluid margin-bottom-10">
+    <div class="row-fluid margin-bottom-12">
 
         <div class="another-page">
             <div class="headline">
                 <h3>Editar Perfil</h3>
             </div>
             <div class="span4">
-                <div class="thumbnail-style">
+                <div class="alert alert-error noperfil" style="display:none">
+                    <i class="glyphicons icon-user"></i>
+                    <strong>Perfil Incompleto!</strong> Completa tus datos y procede a cargar tu imagen de perfil
+                </div>
+                <div id="croppic"  ></div>
+                <div>
+                    <span class="btn btn-u btn-block" id="cropButton">Seleccionar Imagen</span>
+                </div>
+
+                 @*<div class="thumbnail-style">
                     <a class="fancybox-button zoomer" data-rel="fancybox-button"></a>
                     <div class="overlay-zoom">
                         <a class="fancybox-button zoomer" data-rel="fancybox-button">
@@ -35,7 +47,7 @@
                         <i class="glyphicons icon-user"></i>
                         <strong>Perfil Incompleto!</strong> Completa tus datos y procede a cargar tu imagen de perfil
                     </div>
-                </form>
+                </form>*@
             </div>
             <div class="span6">
 
@@ -46,8 +58,8 @@
                     @Html.HiddenFor(model => model.UserId)
                     @Html.HiddenFor(model => model.UserName)
                     <div class="row-fluid">
-                        <div class="span3">@Html.LabelFor(model => model.UserName, new { @class = "control-label" })</div>
-                        <div class="span3">
+                        <div class="span4">@Html.LabelFor(model => model.UserName, new { @class = "control-label" })</div>
+                        <div class="span8">
                             @Html.DisplayFor(model => model.UserName)
 
                         </div>
@@ -56,42 +68,32 @@
 
 
                     <div class="row-fluid">
-                        <div class="span3">@Html.LabelFor(model => model.Name)</div>
-                        <div class="span3">
-                            @Html.TextBoxFor(model => model.Name, new { @placeholder = "Nombre Completo", @class = "input-xxlarge" })
+                        <div class="span4">@Html.LabelFor(model => model.Name)</div>
+                        <div class="span8">
+                            @Html.TextBoxFor(model => model.Name, new { @placeholder = "Nombre Completo", @class = "input-xlarge" })
 
                         </div>
                     </div>
 
                     <div class="row-fluid">
-                        <div class="span3">@Html.LabelFor(model => model.NumeroTelefono)</div>
-                        <div class="span3">
-                            @Html.TextBoxFor(model => model.NumeroTelefono, new { @placeholder = "Número de Teléfono", @class = "input-xxlarge" })
+                        <div class="span4">@Html.LabelFor(model => model.NumeroTelefono)</div>
+                        <div class="span8">
+                            @Html.TextBoxFor(model => model.NumeroTelefono, new { @placeholder = "Número de Teléfono", @class = "input-xlarge" })
 
                         </div>
                     </div>
 
                     <div class="row-fluid">
-                        <div class="span3">@Html.LabelFor(model => model.Details)</div>
-                        <div class="span3">
-                            @Html.TextBoxFor(model => model.Details, new { @placeholder = "Profesión", @class = "input-xxlarge" })
+                        <div class="span4">@Html.LabelFor(model => model.Details)</div>
+                        <div class="span8">
+                            @Html.TextBoxFor(model => model.Details, new { @placeholder = "Profesión", @class = "input-xlarge" })
 
                         </div>
                     </div>
                     <div class="row-fluid">
-                        <div class="span3">@Html.LabelFor(model => model.Address)</div>
-                        <div class="span3">
-                            @Html.TextBoxFor(model => model.Address, new { @placeholder = "Dirección", @class = "input-xxlarge" })
-
-                        </div>
-                    </div>
-
-
-
-                    <div class="row-fluid">
-                        <div class="span3">@Html.LabelFor(model => model.City)</div>
-                        <div class="span3">
-                            @Html.TextBoxFor(model => model.City, new { @placeholder = "Ciudad", @class = "input-xxlarge" })
+                        <div class="span4">@Html.LabelFor(model => model.Address)</div>
+                        <div class="span8">
+                            @Html.TextBoxFor(model => model.Address, new { @placeholder = "Dirección", @class = "input-xlarge" })
 
                         </div>
                     </div>
@@ -99,8 +101,18 @@
 
 
                     <div class="row-fluid">
-                        <div class="span3">@Html.LabelFor(model => model.PA_Id)</div>
-                        <div class="span3">
+                        <div class="span4">@Html.LabelFor(model => model.City)</div>
+                        <div class="span8">
+                            @Html.TextBoxFor(model => model.City, new { @placeholder = "Ciudad", @class = "input-xlarge" })
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="row-fluid">
+                        <div class="span4">@Html.LabelFor(model => model.PA_Id)</div>
+                        <div class="span8">
                             @Html.DropDownList("PA_Id", String.Empty)
 
                         </div>
@@ -149,8 +161,8 @@
 
 
                     <p>
-                        <input type="submit" value="Guardar" class="btn-u btn-large" />
-                        <a href="@Url.Content("~/Account/Manage")" class="btn-u btn-large">Cambiar Contraseña</a>
+                        <input type="submit" value="Guardar" class="btn-u span4 offset1" />
+                        <a href="@Url.Content("~/Account/Manage")" class="btn-u span4 offset1">Cambiar Contraseña</a>
                     </p>
                 }
             </div>
@@ -160,7 +172,7 @@
         </div>
     </div>
 </div>
-<script>
+@*<script>
 
 
     $('#file').change(function (e) {
@@ -236,4 +248,41 @@
     .upload + .uploadButton {
         height: 38px;
     }
-</style>
+</style>*@
+
+
+<script type="text/javascript">
+
+    debugger;
+    var urlUpload = '@Url.Action("UploadOriginalImage", "UserProfile")';
+    var urlCrop = '@Url.Action("CroppedImage", "UserProfile")';
+    var urlImage = '@Url.Content(@ViewBag.userpic)';
+    var cropperOptions = {
+        uploadUrl: urlUpload,
+        cropUrl: urlCrop,
+        modal: false,
+        doubleZoomControls: false,
+        rotateControls: false,
+        imgEyecandy: false,
+        customUploadButtonId: 'cropButton',
+        placeHolder: urlImage //  '/Images/No_Profile.jpg',
+
+        //imgEyecandyOpacity: 0.2
+    }
+    var cropper = new Croppic('croppic', cropperOptions);
+
+    debugger;
+    if ($("#UserName").val() != "" && $("#UserName").val() != null && $("#UserName").val() != undefined
+        && $("#Name").val() != "" && $("#Name").val() != null && $("#Name").val() != undefined) {
+
+        $("#croppic").show();
+        $("#cropButton").show();
+    }
+    else {
+        $("#croppic").hide();
+        $("#cropButton").hide();
+        $(".noperfil").show();
+
+    }
+
+</script>

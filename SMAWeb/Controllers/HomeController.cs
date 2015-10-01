@@ -54,7 +54,7 @@ namespace SMAWeb.Controllers
                     var user = db.UserProfile.FirstOrDefault(c => c.UserId == WebSecurity.CurrentUserId);
                     if (user != null)
                     {
-                        if (user.Name == null | user.UserName == null)
+                        if (user.Name.ToString() == string.Empty  | user.UserName.ToString() == string.Empty)
                         {
                             return Json(new { IsIncomplete = true });
                         }
