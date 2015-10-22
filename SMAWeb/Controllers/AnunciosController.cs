@@ -325,11 +325,11 @@ namespace SMAWeb.Controllers
             an.UserId = WebSecurity.CurrentUserId;
             an.AN_Fecha = System.DateTime.Now;
             an.AN_FechaExpiracion = System.DateTime.Now.AddMonths(3);
-            ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion");
+            ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio.OrderBy(x => x.SBS_Descripcion), "SBS_Id", "SBS_Descripcion");
             ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion");
             ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion");
             ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName");
-            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion");
+            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio.OrderBy(x => x.CD_Descripcion), "CD_Id", "CD_Descripcion");
             return View(an);
 
         }
@@ -446,12 +446,13 @@ namespace SMAWeb.Controllers
             }
             ViewBag.ResourcesCount = an_anuncios.AE_AnunciosExtras.Count;
             an_anuncios.AE_AnunciosExtras = db.AE_AnunciosExtras.Where(c => c.AN_Id == an_anuncios.AN_Id).ToList();
-
-            ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio, "SBS_Id", "SBS_Descripcion", an_anuncios.SBS_Id);
-            ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion", an_anuncios.ST_Id);
-            ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName", an_anuncios.UserId);
+            
+            ViewBag.SBS_Id = new SelectList(db.SBS_SubCategoriaServicio.OrderBy(x => x.SBS_Descripcion), "SBS_Id", "SBS_Descripcion");
+            ViewBag.ST_Id = new SelectList(db.ST_Estatus, "ST_Id", "ST_Descripcion");
             ViewBag.PA_Id = new SelectList(db.PA_Paises, "PA_Id", "PA_Descripcion");
-            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion");
+            ViewBag.UserId = new SelectList(db.UserProfile, "UserId", "UserName");
+            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio.OrderBy(x => x.CD_Descripcion), "CD_Id", "CD_Descripcion");
+
             return View(an_anuncios);
         }
 

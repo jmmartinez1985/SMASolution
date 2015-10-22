@@ -35,7 +35,7 @@ namespace SMAWeb.Controllers
 
         public JsonResult GetSubCategories(int Cat)
         {
-            var sbs_subcategoriaservicio = db.SBS_SubCategoriaServicio.Include(s => s.CD_CategoriaServicio).Where(c => c.CD_Id == Cat);
+            var sbs_subcategoriaservicio = db.SBS_SubCategoriaServicio.Include(s => s.CD_CategoriaServicio).Where(c => c.CD_Id == Cat).OrderBy(x => x.SBS_Descripcion);
 
             var subcat = sbs_subcategoriaservicio.SerializeToJson();
 
@@ -64,7 +64,7 @@ namespace SMAWeb.Controllers
             SBS_SubCategoriaServicio subCat = new SBS_SubCategoriaServicio();
             subCat.SBS_Id = 1;
 
-            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion");
+            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio.OrderBy(x => x.CD_Descripcion), "CD_Id", "CD_Descripcion");
             return View(subCat);
         }
 
@@ -106,7 +106,7 @@ namespace SMAWeb.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio, "CD_Id", "CD_Descripcion", sbs_subcategoriaservicio.CD_Id);
+            ViewBag.CD_Id = new SelectList(db.CD_CategoriaServicio.OrderBy(x => x.CD_Descripcion), "CD_Id", "CD_Descripcion", sbs_subcategoriaservicio.CD_Id);
             return View(sbs_subcategoriaservicio);
         }
 
