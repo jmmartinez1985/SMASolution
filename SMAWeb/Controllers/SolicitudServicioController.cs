@@ -148,7 +148,7 @@ namespace SMAWeb.Controllers
                         FechaCreacion = sol.SS_Fecha,
                         Solicitud = sol.SS_Id,
                         Status = x.Invoke(sol.ST_Id),
-                        TelefonoSolicitante = sol.AN_Anuncios.AN_Telefono,
+                        TelefonoSolicitante = sol.UserProfile.NumeroTelefono, // sol.AN_Anuncios.AN_Telefono,
                         StatusId = sol.ST_Id
                     });
                 });
